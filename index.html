@@ -357,7 +357,7 @@ body.deskhome .banner{display:none}
 .fn1{font-size:27px;font-weight:600;letter-spacing:-.005em;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#2B2321}
 .fn1.dn{color:var(--text3);text-decoration:line-through}
 .fn2{font-size:12px;font-weight:500;color:var(--text2);margin-top:3px}
-.fdiv{height:1px;background:#EAD9D5;margin:0}
+.fdiv{height:1px;background:var(--border);margin:0}
 .flab{display:flex;align-items:center;gap:5px;font-size:10.5px;font-weight:700;letter-spacing:.02em;color:#8A7F7C}
 .frows{display:flex;flex-direction:column;gap:6px;padding-left:5px}
 .frow{display:flex;align-items:center;gap:12px;min-width:0;height:24px}
@@ -427,6 +427,24 @@ body.deskhome .banner{display:none}
 .dhead{padding-top:4px!important}
 .hello .h1{font-size:30px;line-height:1.15}
 .hello .eyebrow{font-size:14px}
+/* v24: fitness week strip */
+.fitc{gap:7px!important;background:var(--card)!important;border-color:var(--border)!important}
+.fbadge{width:46px!important;height:46px!important}
+.fbadge svg{width:28px;height:28px}
+.fn1{font-size:23px!important}
+.fn2{margin-top:1px!important}
+.wstrip{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:2px;margin-top:1px}
+.wd{display:flex;flex-direction:column;align-items:center;gap:3px;min-width:0;cursor:pointer}
+.wd .wl{font-size:11px;font-weight:700;letter-spacing:.02em;color:#6E6461}
+.wd .wc{position:relative;width:32px;height:32px;border-radius:99px;background:#FBE9E6;display:flex;align-items:center;justify-content:center;transition:transform .15s}
+.wd:hover .wc{transform:translateY(-1px)}
+.wd .wn{font-size:10px;font-weight:600;color:#6E6461;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:center}
+.wd.rest .wc{background:#F1EEED}
+.wd.today .wl{color:#2B2321;font-weight:800}
+.wd.today .wc{background:#EF6F5E;box-shadow:0 3px 8px -3px rgba(239,111,94,.7)}
+.wd.today .wn{color:#2B2321;font-weight:700}
+.wd.past{opacity:.45}
+.wd .wk{position:absolute;right:-3px;bottom:-2px;width:13px;height:13px;border-radius:99px;background:#EF6F5E;color:#fff;font-size:8px;line-height:13px;text-align:center;font-weight:700;box-shadow:0 0 0 1.5px var(--card)}
 /* v13 */
 .dgc .sh .t .hlt{background:#FCE3C4;border-radius:5px;padding:1px 6px;margin-left:-2px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 /* v12: square folders, natural-height page, highlighted goals */
@@ -816,6 +834,7 @@ var FIC={
  lift:'<circle cx="12" cy="4.3" r="2.4" fill="C"/><path d="M3.2 10h17.6" stroke="C" stroke-width="1.8"/><rect x="2" y="7.2" width="2.6" height="5.6" rx="1" fill="C"/><rect x="19.4" y="7.2" width="2.6" height="5.6" rx="1" fill="C"/><path d="M7.8 10.2L12 8.2l4.2 2M12 8.2v5.8M12 14l-3.2 6.2M12 14l3.2 6.2" stroke="C" stroke-width="2.9"/>',
  pilates:'<circle cx="4.6" cy="13.2" r="2.2" fill="C"/><path d="M7 14.6h6.2l6.8-4.6M10.5 14.4l1.5-3.6" stroke="C" stroke-width="2.7"/><rect x="2" y="17.6" width="20" height="1.9" rx=".95" fill="C"/>',
  run:'<circle cx="15.6" cy="3.9" r="2.3" fill="C"/><path d="M14.2 7.4l-2.4 5.6 3.4 2.6-.9 5M11.8 13l-2.6 3.5-4 .2M14.2 7.4l3.2 3 2.6-.6M14.2 7.4l-4.4.6-2.2 2.8" stroke="C" stroke-width="2.6"/>',
+ rest:'<path d="M14.6 19.6A8.2 8.2 0 0 1 8.4 6a7.6 7.6 0 1 0 6.2 13.6z" fill="C"/><path d="M13.6 3.6h3.6l-3.6 4h3.6M18.6 9h2.8l-2.8 3.2h2.8" stroke="C" stroke-width="1.5"/>',
  hike:'<circle cx="11.6" cy="3.9" r="2.3" fill="C"/><rect x="6.6" y="7" width="3.6" height="6" rx="1.4" fill="C"/><path d="M12 7.6l-.6 6.2 2.6 3.2.2 4M11.4 13.8l-2.6 3.4-.8 3.8M12 8.4l3.4 2.6M17.6 9.6l.8 11.4" stroke="C" stroke-width="2.6"/>'};
 function fic(t,c,sz){return '<svg width="'+sz+'" height="'+sz+'" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">'+FIC[t].replace(/="C"/g,'="'+c+'"')+'</svg>'}
 function wkType(i){var t=(i.tag||"")+" "+i.title;return /strength/i.test(t)?"lift":/run|cardio/i.test(t)?"run":/hike|outdoor/i.test(t)?"hike":"pilates"}
@@ -876,11 +895,12 @@ function fitCard(){
   var wk=ITEMS.filter(function(i){return i.cat==="workout"}).sort(function(a,b){return a.date<b.date?-1:a.date>b.date?1:(a.start||0)-(b.start||0)});
   var td=wk.filter(function(i){return i.date===ref})[0],nx=wk.filter(function(i){return i.date>ref}).slice(0,2);
   var main=td?'<div class="fbig"><span class="fbadge">'+fic(wkType(td),"#fff",32)+'</span><div class="fnm"><div class="fn1'+(S.done[td.id]?' dn':'')+'">'+esc(wkName(td))+'</div><div class="fn2">'+(td.start!=null?tr(td):'Anytime')+(S.done[td.id]?' · Done ✓':'')+'</div></div></div>'
-    :'<div class="fbig"><span class="fbadge" style="background:#F6B3A8">'+fic("pilates","#fff",32)+'</span><div class="fnm"><div class="fn1">Rest day</div><div class="fn2">Recover and stretch</div></div></div>';
-  var rows=nx.length?nx.map(function(i){var d=new Date(i.date+"T12:00:00");
-    return '<div class="frow"><span class="fbar"></span><span class="fday">'+DN[d.getDay()].slice(0,3)+'</span>'+fic(wkType(i),"#3A2E2C",18)+'<span class="fsep"></span><span class="fwn">'+esc(wkName(i))+'</span></div>'}).join(""):'<div class="frow"><span class="fwn" style="color:var(--text3)">Nothing scheduled</span></div>';
-  return '<div class="fitc" data-a="go" data-v="workout" title="Open Workouts"><span class="fpill hpill">TODAY · '+DN[dt.getDay()]+'</span>'+main+'<div class="fdiv"></div>'+
-    '<div class="flab"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M8 12h8M13 8.5l3.5 3.5-3.5 3.5"/></svg>UP NEXT</div><div class="frows">'+rows+'</div></div>';
+    :'<div class="fbig"><span class="fbadge" style="background:#F6B3A8">'+fic("rest","#fff",30)+'</span><div class="fnm"><div class="fn1">Rest day</div><div class="fn2">Recover and stretch</div></div></div>';
+  var mon=new Date(dt);mon.setDate(dt.getDate()-((dt.getDay()+6)%7));
+  var strip=[0,1,2,3,4,5,6].map(function(k){var d=new Date(mon);d.setDate(mon.getDate()+k);var ds=iso(d),w=wk.filter(function(i){return i.date===ds})[0];
+    var st=ds<ref?"past":ds===ref?"today":"next",dn=w&&!!S.done[w.id];
+    return '<div class="wd '+st+(w?'':' rest')+'" data-a="go" data-v="workout" title="'+(w?esc(w.title):'Rest day')+'"><span class="wl">'+DN[d.getDay()].slice(0,3)+'</span><span class="wc">'+fic(w?wkType(w):"rest",st==="today"?"#fff":"#3A2E2C",17)+(dn&&st!=="today"?'<span class="wk">✓</span>':'')+'</span><span class="wn">'+(w?esc(wkName(w)):'Rest')+'</span></div>'}).join("");
+  return '<div class="fitc" data-a="go" data-v="workout" title="Open Workouts"><span class="fpill hpill">TODAY · '+DN[dt.getDay()]+'</span>'+main+'<div class="fdiv"></div><div class="wstrip">'+strip+'</div></div>';
 }
 function vHomeDesk(){
   var pick=S.coverOpen?'<div class="coverpick" data-a="stop2"><div class="label">Presets</div><div class="presets">'+PRESETS.map(function(p){return '<button class="preset'+(COVER.type==="preset"&&COVER.id===p.id?' on':'')+'" data-a="preset" data-v="'+p.id+'" title="'+p.name+'" style="background:'+p.bg.replace(/"/g,"&quot;")+'"></button>'}).join("")+'</div>'+
