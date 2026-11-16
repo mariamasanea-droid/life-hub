@@ -409,6 +409,7 @@ body.deskhome .banner{display:none}
 .ring{width:17px;height:17px;border-radius:99px;border:1.6px solid;background:transparent;padding:0;cursor:pointer;color:#fff;font-size:10px;line-height:13px;justify-self:end}
 .tlnow .nd{position:relative;width:10px;height:10px;border-radius:99px;background:#E5484D;box-shadow:0 0 0 3px var(--card),0 0 0 5px rgba(229,72,77,.2)}
 .tlnow{min-height:34px}
+.dmain.solo{grid-template-columns:minmax(0,1fr)}
 /* v13 */
 .dgc .sh .t .hlt{background:#FCE3C4;border-radius:5px;padding:1px 6px;margin-left:-2px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 /* v12: square folders, natural-height page, highlighted goals */
@@ -897,7 +898,7 @@ function vHomeDesk(){
           :'<div class="ev'+(dd?' dn':'')+'" style="background:'+tint(c,"22")+'"><span class="x">'+esc(i.title)+'</span></div>'}).join("")+'</div></div>'}).join("")+'</div>';
   var cal='<div class="ac"><div class="ach"><div class="mt1">'+MONTHS[m]+' <span>'+y+'</span></div><div class="nav"><button data-a="cm" data-v="-1" aria-label="Previous month">‹</button><button data-a="cm" data-v="0">Today</button><button data-a="cm" data-v="1" aria-label="Next month">›</button></div></div>'+
     '<div class="awd">'+["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].map(function(w){return '<div>'+w+'</div>'}).join("")+'</div>'+grid+'</div>';
-  return '<div class="dh">'+cover+head+'<div class="dtop">'+goals+fitCard()+'<div class="d3"><div class="d3i" id="d3">'+(VARIANT==="B"?tlCard():todoCard())+'</div></div></div>'+folders+'<div class="dmain"><div class="dleft">'+side+'</div><div class="dright">'+cal+'</div></div></div>';
+  return '<div class="dh">'+cover+head+'<div class="dtop">'+goals+fitCard()+'<div class="d3"><div class="d3i" id="d3">'+(VARIANT==="B"?tlCard():todoCard())+'</div></div></div>'+folders+(VARIANT==="A"?'<div class="dmain solo">':'<div class="dmain"><div class="dleft">'+side+'</div>')+'<div class="dright">'+cal+'</div></div></div>';
 }
 function fitDesk(){
   var dh=document.querySelector(".dh");if(!dh)return;
@@ -933,7 +934,7 @@ document.addEventListener("click",function(e){
   if(a==="toggle"){S.done[id]=!S.done[id];saveDone()}
   else if(a==="coveropen"){S.coverOpen=!S.coverOpen}
   else if(a==="preset"){setPreset(v)}
-  else if(a==="hday"){S.hday=S.hday===v?null:v}
+  else if(a==="hday"){if(VARIANT==="A"&&/^2026-11-/.test(v)){S.view="calendar";S.cal="month";S.day=v;S.sel=null;render();window.scrollTo(0,0);location.hash="calendar-month";return}S.hday=S.hday===v?null:v}
   else if(a==="cm"){S.cm=v==="0"?0:S.cm+parseInt(v,10);if(v==="0")S.hday=null}
   else if(a==="goaltoggle"){GOALS.forEach(function(g){if(g.id===id)g.done=!g.done});saveGoals()}
   else if(a==="goaldel"){GOALS=GOALS.filter(function(g){return g.id!==id});saveGoals()}
