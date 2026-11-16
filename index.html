@@ -294,6 +294,29 @@ body.deskhome .banner{display:none}
 .ev .tm{color:var(--text3);font-variant-numeric:tabular-nums;flex-shrink:0}
 .ev.dn .x{text-decoration:line-through;color:var(--text3)}
 .ev.more{color:var(--text2);font-weight:500;padding-left:4px}
+
+/* v5: goals column */
+.dmain{flex:1;min-height:0;display:grid;grid-template-columns:268px minmax(0,1fr);gap:12px}
+.dleft,.dright{display:flex;flex-direction:column;gap:12px;min-height:0;min-width:0}
+.dright .ac{flex:1}
+.dgc{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:12px 12px 10px;display:flex;flex-direction:column;gap:6px;min-height:0;flex:0 1 auto;max-height:46%}
+.dgc .sh{display:flex;align-items:baseline;gap:8px;padding:0 4px}
+.dgc .sh .t{font-size:15px;font-weight:650;flex:1}
+.dgc .sh .r{font-size:12px;color:var(--text3)}
+.dgc .gl2{display:flex;flex-direction:column;overflow-y:auto;min-height:0;scrollbar-width:thin}
+.dgc .gi{display:flex;align-items:center;gap:9px;padding:5px 4px;border-radius:8px}
+.dgc .gi:hover{background:var(--subtle)}
+.dgc .gi .check{width:18px;height:18px;border-radius:99px;font-size:11px;line-height:15px}
+.dgc .gi .gt{flex:1;min-width:0;font-size:13px;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dgc .gi .del{border:none;background:none;color:var(--text3);cursor:pointer;font-size:11px;padding:0 4px;opacity:0;transition:opacity .15s}
+.dgc .gi:hover .del{opacity:1}
+.dgc .gadd{border:1px dashed var(--border2);background:transparent;color:var(--text);border-radius:10px;padding:6px 10px;font:inherit;font-size:13px;outline:none;width:100%;flex-shrink:0}
+.dgc .gadd:focus{border-style:solid;background:var(--card)}
+.dleft .dside{flex:1}
+.vf .vl{overflow:hidden;gap:5px}
+.vf .vl>span:nth-child(2){min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.vf .vl .n{font-size:11.5px}
+.vf .vl .dot{display:none}
 </style>
 </head>
 <body>
@@ -671,13 +694,13 @@ function vHomeDesk(){
   var head='<div class="dhead"><div class="icon">M</div><div class="gtxt"><div class="eyebrow">Monday, 16 November<span class="samp" title="Made-up example data. Ticks, goals and cover are saved on this device.">Sample data</span></div><div class="h1">'+greet()+', Mariama</div>'+(S.coverNote?'<div class="tiny">'+S.coverNote+'</div>':'')+'</div>'+
     '<div class="qa">'+[["task","Task"],["event","Event"],["expense","Expense"],["goal","Goal"]].map(function(q){return '<button class="qb" data-a="qa" data-v="'+q[0]+'"><span class="pl">+</span>'+q[1]+'</button>'}).join("")+'</div></div>';
   var gd=GOALS.filter(function(g){return g.done}).length;
-  var goals='<div class="dgoals"><div class="gh">November goals<span class="r">'+gd+'/'+GOALS.length+'</span></div><div class="gl">'+GOALS.map(function(g){
-      return '<div class="gchip"><button class="check" data-a="goaltoggle" data-id="'+g.id+'" style="'+(g.done?'background:var(--text);border-color:var(--text);color:var(--bg)':'')+'">'+(g.done?'✓':'')+'</button>'+
+  var goals='<div class="dgc"><div class="sh"><div class="t">November goals</div><div class="r">'+gd+'/'+GOALS.length+'</div></div><div class="gl2">'+GOALS.map(function(g){
+      return '<div class="gi"><button class="check" data-a="goaltoggle" data-id="'+g.id+'" style="'+(g.done?'background:var(--text);border-color:var(--text);color:var(--bg)':'')+'">'+(g.done?'✓':'')+'</button>'+
       '<span class="gt'+(g.done?' done title':'')+'" data-a="goaltoggle" data-id="'+g.id+'" title="'+esc(g.text)+'">'+esc(g.text)+'</span><button class="del" data-a="goaldel" data-id="'+g.id+'" aria-label="Remove goal">✕</button></div>'}).join("")+'</div>'+
     '<input class="gadd" id="goalinput" placeholder="+ Add a goal" maxlength="80" enterkeyhint="done"></div>';
   var folders='<div class="dfold">'+CATS.map(function(k){var f=folderInfo(k);
     return '<div class="vf" data-a="go" data-v="'+k.id+'" title="'+esc(f.x)+'" style="border-color:'+tint(k.color,"40")+'"><div class="vt" style="background:radial-gradient(circle at 78% 22%,rgba(255,255,255,.75),transparent 46%),linear-gradient(150deg,'+tint(k.color,"38")+' 0%,'+tint(k.color,"0F")+' 100%)"><span class="tb" style="background:'+k.color+'"></span>'+icon(k.id,30)+'</div>'+
-      '<div class="vl">'+dot(k.color)+'<span>'+k.label+'</span><span class="n">'+f.n+'</span></div></div>'}).join("")+'</div>';
+      '<div class="vl">'+dot(k.color)+'<span>'+k.label+'</span><span class="n">'+(k.id==="budget"?(function(){var t=totals();return "RM "+(Math.round((t.b-t.s)/100)/10)+"k"})():f.n)+'</span></div></div>'}).join("")+'</div>';
   // side panel
   var sd=S.hday||TODAY,its=ITEMS.filter(function(i){return i.date===sd});
   its=its.filter(function(i){return i.start!=null}).sort(function(a,b){return a.start-b.start}).concat(its.filter(function(i){return i.start==null}));
@@ -697,7 +720,7 @@ function vHomeDesk(){
           :'<div class="ev'+(dd?' dn':'')+'" style="background:'+tint(c,"22")+'"><span class="x">'+esc(i.title)+'</span></div>'}).join("")+'</div></div>'}).join("")+'</div>';
   var cal='<div class="ac"><div class="ach"><div class="mt1">'+MONTHS[m]+' <span>'+y+'</span></div><div class="nav"><button data-a="cm" data-v="-1" aria-label="Previous month">‹</button><button data-a="cm" data-v="0">Today</button><button data-a="cm" data-v="1" aria-label="Next month">›</button></div></div>'+
     '<div class="awd">'+["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].map(function(w){return '<div>'+w+'</div>'}).join("")+'</div>'+grid+'</div>';
-  return '<div class="dh">'+cover+head+goals+folders+'<div class="dcal">'+side+cal+'</div></div>';
+  return '<div class="dh">'+cover+head+'<div class="dmain"><div class="dleft">'+goals+side+'</div><div class="dright">'+folders+cal+'</div></div></div>';
 }
 function fitDesk(){
   var dh=document.querySelector(".dh");if(!dh)return;
