@@ -410,12 +410,14 @@ body.deskhome .banner{display:none}
 .tlnow .nd{position:relative;width:10px;height:10px;border-radius:99px;background:#E5484D;box-shadow:0 0 0 3px var(--card),0 0 0 5px rgba(229,72,77,.2)}
 .tlnow{min-height:34px}
 .dmain.solo{grid-template-columns:minmax(0,1fr)}
-/* v21: fluid desktop width */
+/* v22: middle-ground desktop width, compact folders */
 @media (min-width:1000px){
-  :root{--sp:clamp(24px,3vw,48px)}
-  .app{max-width:calc(1760px + 2 * var(--sp));padding:0 var(--sp) 40px}
+  :root{--sp:clamp(32px,2.6vw,40px)}
+  .app{max-width:calc(1280px + 2 * var(--sp));padding:0 var(--sp) 40px}
   .tabs{padding:14px var(--sp) 12px;margin:0 calc(-1 * var(--sp))}
-  .agrid .acell{height:clamp(118px,7.4vw,150px)}
+  .agrid .acell{height:116px!important}
+  .vf .vt{aspect-ratio:2/1!important}
+  .vf .vt svg{width:30px;height:30px}
 }
 /* v13 */
 .dgc .sh .t .hlt{background:#FCE3C4;border-radius:5px;padding:1px 6px;margin-left:-2px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
