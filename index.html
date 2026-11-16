@@ -251,7 +251,7 @@ body.deskhome .banner{display:none}
 .gchip:hover .del{opacity:1}
 .dgoals .gadd{width:150px;flex-shrink:0;border:1px dashed var(--border2);background:transparent;color:var(--text);border-radius:999px;padding:5px 12px;font:inherit;font-size:13px;outline:none}
 .dgoals .gadd:focus{border-style:solid;background:var(--card)}
-.dfold{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;flex-shrink:0}
+.dfold{display:grid;grid-template-columns:268px repeat(5,minmax(0,1fr));gap:10px;flex-shrink:0}
 .vf{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:5px 5px 7px;cursor:pointer;display:flex;flex-direction:column;gap:5px;min-width:0;transition:border-color .15s,transform .15s}
 .vf:hover{transform:translateY(-1px)}
 .vf .vt{height:clamp(30px,5vh,52px);border-radius:10px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
@@ -297,16 +297,8 @@ body.deskhome .banner{display:none}
 .ev.more{color:var(--text2);font-weight:500;padding-left:4px}
 
 /* v5: goals column */
-.dmain{flex:1;min-height:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
-.dmain .dleft{grid-column:span 1;gap:10px}
-.dmain .dright{grid-column:span 5}
-.dleft .dgc{max-height:52%}
-.dleft .sh .t{font-size:14px;white-space:nowrap}
-.dleft .srow{gap:7px;padding:5px 5px 5px 7px}
-.dleft .srow .st .b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.dleft .sh{gap:4px;padding:0 2px}
-.dleft .sh .r{flex-shrink:0}
-.dleft .dgc .sh .t{font-size:13px;overflow:hidden;text-overflow:ellipsis}
+.dmain{flex:1;min-height:0;display:grid;grid-template-columns:268px minmax(0,1fr);gap:10px}
+.dmain .dleft{gap:10px}
 .dleft,.dright{display:flex;flex-direction:column;gap:12px;min-height:0;min-width:0}
 .dright .ac{flex:1}
 .dgc{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:10px 10px 8px;display:flex;flex-direction:column;gap:4px;min-height:0;flex:0 1 auto;max-height:42%}
@@ -718,7 +710,7 @@ function vHomeDesk(){
     (sd!==TODAY?'<button class="link" style="align-self:flex-start;padding-left:4px" data-a="hday" data-v="'+sd+'">← Back to today</button>':'')+
     '<div class="sl">'+(its.length?its.map(function(i){var c=CAT[i.cat],d=!!S.done[i.id];
       return '<div class="srow'+(d?' done':'')+'" data-a="open" data-id="'+i.id+'" style="border-color:'+c.color+';background:'+tint(c.color,"10")+'">'+check(i.id,c.color)+
-        '<div class="st"><div class="a">'+esc(i.title)+'</div><div class="b">'+(i.start!=null?shortT(i.start)+(i.end!=null?'–'+shortT(i.end):''):(i.priority?i.priority+' priority':i.amount!=null?rm(i.amount):'Anytime'))+' · '+c.label+'</div></div></div>'}).join(""):'<div class="free" style="padding:4px">Nothing planned.</div>')+'</div></div>';
+        '<div class="st"><div class="a">'+esc(i.title)+'</div><div class="b">'+(i.start!=null?tr(i):(i.priority?i.priority+' priority':i.amount!=null?rm(i.amount):'Anytime'))+' · '+c.label+'</div></div></div>'}).join(""):'<div class="free" style="padding:4px">Nothing planned.</div>')+'</div></div>';
   // apple-style month
   var base=new Date(2026,10+S.cm,1),y=base.getFullYear(),m=base.getMonth();
   var off=(base.getDay()+6)%7,days=new Date(y,m+1,0).getDate(),rows=Math.ceil((off+days)/7);
