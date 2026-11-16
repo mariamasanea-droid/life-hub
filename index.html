@@ -296,15 +296,17 @@ body.deskhome .banner{display:none}
 .ev.more{color:var(--text2);font-weight:500;padding-left:4px}
 
 /* v5: goals column */
-.dmain{flex:1;min-height:0;display:grid;grid-template-columns:268px minmax(0,1fr);gap:12px}
+.dmain{flex:1;min-height:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+.dmain .dleft{grid-column:span 2;gap:10px}
+.dmain .dright{grid-column:span 4}
 .dleft,.dright{display:flex;flex-direction:column;gap:12px;min-height:0;min-width:0}
 .dright .ac{flex:1}
-.dgc{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:12px 12px 10px;display:flex;flex-direction:column;gap:6px;min-height:0;flex:0 1 auto;max-height:46%}
+.dgc{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:10px 10px 8px;display:flex;flex-direction:column;gap:4px;min-height:0;flex:0 1 auto;max-height:42%}
 .dgc .sh{display:flex;align-items:baseline;gap:8px;padding:0 4px}
 .dgc .sh .t{font-size:15px;font-weight:650;flex:1}
 .dgc .sh .r{font-size:12px;color:var(--text3)}
 .dgc .gl2{display:flex;flex-direction:column;overflow-y:auto;min-height:0;scrollbar-width:thin}
-.dgc .gi{display:flex;align-items:center;gap:9px;padding:5px 4px;border-radius:8px}
+.dgc .gi{display:flex;align-items:center;gap:9px;padding:3px 4px;border-radius:8px}
 .dgc .gi:hover{background:var(--subtle)}
 .dgc .gi .check{width:18px;height:18px;border-radius:99px;font-size:11px;line-height:15px}
 .dgc .gi .gt{flex:1;min-width:0;font-size:13px;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -316,7 +318,6 @@ body.deskhome .banner{display:none}
 .vf .vl{overflow:hidden;gap:5px}
 .vf .vl>span:nth-child(2){min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .vf .vl .n{font-size:11.5px}
-.vf .vl .dot{display:none}
 </style>
 </head>
 <body>
@@ -700,7 +701,7 @@ function vHomeDesk(){
     '<input class="gadd" id="goalinput" placeholder="+ Add a goal" maxlength="80" enterkeyhint="done"></div>';
   var folders='<div class="dfold">'+CATS.map(function(k){var f=folderInfo(k);
     return '<div class="vf" data-a="go" data-v="'+k.id+'" title="'+esc(f.x)+'" style="border-color:'+tint(k.color,"40")+'"><div class="vt" style="background:radial-gradient(circle at 78% 22%,rgba(255,255,255,.75),transparent 46%),linear-gradient(150deg,'+tint(k.color,"38")+' 0%,'+tint(k.color,"0F")+' 100%)"><span class="tb" style="background:'+k.color+'"></span>'+icon(k.id,30)+'</div>'+
-      '<div class="vl">'+dot(k.color)+'<span>'+k.label+'</span><span class="n">'+(k.id==="budget"?(function(){var t=totals();return "RM "+(Math.round((t.b-t.s)/100)/10)+"k"})():f.n)+'</span></div></div>'}).join("")+'</div>';
+      '<div class="vl">'+dot(k.color)+'<span>'+k.label+'</span><span class="n">'+f.n+'</span></div></div>'}).join("")+'</div>';
   // side panel
   var sd=S.hday||TODAY,its=ITEMS.filter(function(i){return i.date===sd});
   its=its.filter(function(i){return i.start!=null}).sort(function(a,b){return a.start-b.start}).concat(its.filter(function(i){return i.start==null}));
@@ -720,7 +721,7 @@ function vHomeDesk(){
           :'<div class="ev'+(dd?' dn':'')+'" style="background:'+tint(c,"22")+'"><span class="x">'+esc(i.title)+'</span></div>'}).join("")+'</div></div>'}).join("")+'</div>';
   var cal='<div class="ac"><div class="ach"><div class="mt1">'+MONTHS[m]+' <span>'+y+'</span></div><div class="nav"><button data-a="cm" data-v="-1" aria-label="Previous month">‹</button><button data-a="cm" data-v="0">Today</button><button data-a="cm" data-v="1" aria-label="Next month">›</button></div></div>'+
     '<div class="awd">'+["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].map(function(w){return '<div>'+w+'</div>'}).join("")+'</div>'+grid+'</div>';
-  return '<div class="dh">'+cover+head+'<div class="dmain"><div class="dleft">'+goals+side+'</div><div class="dright">'+folders+cal+'</div></div></div>';
+  return '<div class="dh">'+cover+head+folders+'<div class="dmain"><div class="dleft">'+goals+side+'</div><div class="dright">'+cal+'</div></div></div>';
 }
 function fitDesk(){
   var dh=document.querySelector(".dh");if(!dh)return;
