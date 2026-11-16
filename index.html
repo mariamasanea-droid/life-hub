@@ -331,6 +331,29 @@ body.deskhome .banner{display:none}
 .vf .vl{overflow:hidden;gap:5px}
 .vf .vl>span:nth-child(2){min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .vf .vl .n{font-size:11.5px}
+
+/* v12: square folders, natural-height page, highlighted goals */
+.dh{height:auto!important;min-height:0!important;padding-bottom:28px}
+.dh .cover{height:104px}
+.vf{padding:6px 6px 9px;gap:6px;border-radius:14px}
+.vf .vt{height:auto;aspect-ratio:4/3;border-radius:10px}
+.vf .vl{padding:0 3px}
+.vf .vs{font-size:11.5px;color:var(--text2);padding:0 3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:-3px}
+.dmain{flex:none;align-items:stretch}
+.dright .ac{flex:none}
+.agrid{flex:none}
+.agrid .acell{height:118px}
+.dleft{min-height:0}
+.dleft .dside{flex:1 1 0;min-height:240px}
+.dgc.hl{background:linear-gradient(165deg,#FDF3E1 0%,#FFFBF4 60%,var(--card) 100%);border-color:#EBCB91;box-shadow:0 1px 0 rgba(227,163,59,.12),0 4px 14px -8px rgba(227,163,59,.45);padding:12px 9px 9px}
+.dgc.hl .sh{align-items:center}
+.dgc.hl .sh .t{font-size:15.5px;font-weight:700;letter-spacing:-.005em}
+.dgc.hl .sh .r{color:#9A6512;font-weight:600}
+.dgc.hl .gico{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:7px;background:#E3A33B;color:#fff;flex-shrink:0}
+.dgc.hl .gbar{height:5px;border-radius:99px;background:rgba(227,163,59,.18);margin:2px 2px 4px;overflow:hidden;flex-shrink:0}
+.dgc.hl .gbar span{display:block;height:100%;border-radius:99px;background:#E3A33B}
+.dgc.hl .gi:hover{background:rgba(227,163,59,.10)}
+.dgc.hl .gadd{border-color:#E7C88E;background:rgba(255,255,255,.6)}
 </style>
 </head>
 <body>
@@ -708,13 +731,14 @@ function vHomeDesk(){
   var head='<div class="dhead"><div class="gtxt"><div class="eyebrow">Monday, 16 November<span class="samp" title="Made-up example data. Ticks, goals and cover are saved on this device.">Sample data</span></div><div class="h1">'+greet()+', Mariama</div>'+(S.coverNote?'<div class="tiny">'+S.coverNote+'</div>':'')+'</div>'+
     '<div class="qa">'+[["task","Task"],["event","Event"],["expense","Expense"],["goal","Goal"]].map(function(q){return '<button class="qb" data-a="qa" data-v="'+q[0]+'"><span class="pl">+</span>'+q[1]+'</button>'}).join("")+'</div></div>';
   var gd=GOALS.filter(function(g){return g.done}).length;
-  var goals='<div class="dgc"><div class="sh"><div class="t">November goals</div><div class="r">'+gd+'/'+GOALS.length+'</div></div><div class="gl2">'+GOALS.map(function(g){
+  var gp=GOALS.length?Math.round(gd/GOALS.length*100):0;
+  var goals='<div class="dgc hl"><div class="sh"><span class="gico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/></svg></span><div class="t">November goals</div><div class="r">'+gd+'/'+GOALS.length+'</div></div><div class="gbar"><span style="width:'+gp+'%"></span></div><div class="gl2">'+GOALS.map(function(g){
       return '<div class="gi"><button class="check" data-a="goaltoggle" data-id="'+g.id+'" style="'+(g.done?'background:var(--text);border-color:var(--text);color:var(--bg)':'')+'">'+(g.done?'✓':'')+'</button>'+
       '<span class="gt'+(g.done?' done title':'')+'" data-a="goaltoggle" data-id="'+g.id+'" title="'+esc(g.text)+'">'+esc(g.text)+'</span><button class="del" data-a="goaldel" data-id="'+g.id+'" aria-label="Remove goal">✕</button></div>'}).join("")+'</div>'+
     '<input class="gadd" id="goalinput" placeholder="+ Add a goal" maxlength="80" enterkeyhint="done"></div>';
   var folders='<div class="dfold">'+CATS.map(function(k){var f=folderInfo(k);
-    return '<div class="vf" data-a="go" data-v="'+k.id+'" title="'+esc(f.x)+'" style="border-color:'+tint(k.color,"40")+'"><div class="vt" style="background:radial-gradient(circle at 78% 22%,rgba(255,255,255,.75),transparent 46%),linear-gradient(150deg,'+tint(k.color,"38")+' 0%,'+tint(k.color,"0F")+' 100%)"><span class="tb" style="background:'+k.color+'"></span>'+icon(k.id,30)+'</div>'+
-      '<div class="vl">'+dot(k.color)+'<span>'+k.label+'</span><span class="n">'+f.n+'</span></div></div>'}).join("")+'</div>';
+    return '<div class="vf" data-a="go" data-v="'+k.id+'" title="'+esc(f.x)+'" style="border-color:'+tint(k.color,"40")+'"><div class="vt" style="background:radial-gradient(circle at 78% 22%,rgba(255,255,255,.75),transparent 46%),linear-gradient(150deg,'+tint(k.color,"38")+' 0%,'+tint(k.color,"0F")+' 100%)"><span class="tb" style="background:'+k.color+'"></span>'+icon(k.id,40)+'</div>'+
+      '<div class="vl">'+dot(k.color)+'<span>'+k.label+'</span><span class="n">'+f.n+'</span></div><div class="vs">'+esc(f.s)+'</div></div>'}).join("")+'</div>';
   // side panel
   var sd=S.hday||TODAY,its=ITEMS.filter(function(i){return i.date===sd});
   its=its.filter(function(i){return i.start!=null}).sort(function(a,b){return a.start-b.start}).concat(its.filter(function(i){return i.start==null}));
