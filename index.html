@@ -445,6 +445,23 @@ body.deskhome .banner{display:none}
 .wd.today .wn{color:#2B2321;font-weight:700}
 .wd.past{opacity:.45}
 .wd .wk{position:absolute;right:-3px;bottom:-2px;width:13px;height:13px;border-radius:99px;background:#EF6F5E;color:#fff;font-size:8px;line-height:13px;text-align:center;font-weight:700;box-shadow:0 0 0 1.5px var(--card)}
+/* v25: Today page fitness card */
+.exc{font-family:'QuicksandFit',sans-serif;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:14px 16px 12px;display:flex;flex-direction:column;gap:9px}
+.exc .fbadge{width:50px!important;height:50px!important}
+.exc .fn1{font-size:24px!important}
+.exh{display:flex;align-items:center;gap:10px}
+.exh .fdiv{flex:1}
+.exc-n{font-size:12px;font-weight:700;color:#C9503F;background:#FDE7E3;border-radius:99px;padding:1px 8px}
+.exl{display:flex;flex-direction:column;gap:2px}
+.exr{display:flex;align-items:center;gap:10px;padding:6px 6px;border-radius:10px;cursor:pointer;user-select:none}
+.exr:hover{background:var(--subtle)}
+.ering{width:19px;height:19px;border-radius:99px;border:1.8px solid #EF6F5E;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:700;box-sizing:border-box}
+.exr.on .ering{background:#EF6F5E}
+.exr .en{flex:1;min-width:0;font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.exr .es{font-size:12.5px;font-weight:600;color:var(--text3);white-space:nowrap;font-variant-numeric:tabular-nums}
+.exr.on .en{text-decoration:line-through;color:var(--text3)}
+.exr.on{opacity:.65}
+.exnote{font-size:13px;color:var(--text2);line-height:1.45}
 /* v13 */
 .dgc .sh .t .hlt{background:#FCE3C4;border-radius:5px;padding:1px 6px;margin-left:-2px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 /* v12: square folders, natural-height page, highlighted goals */
@@ -568,6 +585,27 @@ function totals(){var s=0,b=0;SPEND.forEach(function(x){b+=x[1];s+=x[2]});return
 function byDay(d){return ITEMS.filter(function(i){return S.on[i.cat]&&i.date===d}).sort(function(a,b){return (a.start==null?-1:a.start)-(b.start==null?-1:b.start)})}
 function seg(key,opts,cur){return '<div class="seg">'+opts.map(function(o){return '<button data-a="'+key+'" data-v="'+o[0]+'" class="'+(cur===o[0]?'on':'')+'">'+o[1]+'</button>'}).join("")+'</div>'}
 
+var EXD=null;
+var EXL={
+ pilates:[["Hundreds","1 × 100"],["Roll-ups","3 × 10"],["Single-leg stretch","3 × 12 each"],["Leg circles","2 × 10 each"],["Plank","3 × 45s"],["Swan","3 × 8"]],
+ upper:[["Push-ups","3 × 12"],["Dumbbell rows","3 × 10 each"],["Shoulder press","3 × 10"],["Bicep curls","3 × 12"],["Tricep dips","3 × 12"],["Plank","3 × 45s"]],
+ lower:[["Squats","4 × 10"],["Lunges","3 × 10 each"],["RDLs","4 × 8"],["Glute bridges","3 × 15"],["Calf raises","3 × 20"]],
+ full:[["Goblet squats","3 × 12"],["Push-ups","3 × 10"],["Dumbbell rows","3 × 10 each"],["Glute bridges","3 × 15"],["Plank","3 × 45s"]],
+ run:[["Warm-up walk","5 min"],["5 km run","30 min"],["Cool-down stretch","10 min"]],
+ hike:[["Warm-up","5 min"],["Hike: Bukit Gasing","2 hr"],["Stretch","10 min"]],
+ yoga:[["Sun salutations","5 rounds"],["Warrior flow","10 min"],["Pigeon pose","2 × 1 min each"],["Hamstring stretch","5 min"]]};
+function exKey(i){var t=(i.title+" "+(i.tag||"")).toLowerCase();return /upper/.test(t)?"upper":/lower/.test(t)?"lower":/full/.test(t)?"full":/pilates/.test(t)?"pilates":/run|cardio/.test(t)?"run":/hike/.test(t)?"hike":/yoga|mobility/.test(t)?"yoga":"full"}
+function exCard(){
+  if(!EXD)EXD=LS.get("lm.ex.v1",{});
+  var now=iso(new Date()),ref=/^2026-11-/.test(now)?now:TODAY,dt=new Date(ref+"T12:00:00"),DN=["SUNDAY","MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY"];
+  var td=ITEMS.filter(function(i){return i.cat==="workout"&&i.date===ref}).sort(function(a,b){return (a.start||0)-(b.start||0)})[0];
+  var top='<span class="fpill hpill">TODAY · '+DN[dt.getDay()]+'</span>';
+  if(!td)return '<section class="exc">'+top+'<div class="fbig"><span class="fbadge" style="background:#F6B3A8">'+fic("rest","#fff",30)+'</span><div class="fnm"><div class="fn1">Rest day</div><div class="fn2">No workout planned</div></div></div><div class="fdiv"></div><div class="exnote">Recovery day: an easy walk, 10 minutes of stretching, plenty of water and an early night.</div></section>';
+  var L=EXL[exKey(td)],dn=L.filter(function(e,ix){return EXD[td.id+":"+ix]}).length;
+  return '<section class="exc">'+top+'<div class="fbig" data-a="open" data-id="'+td.id+'" style="cursor:pointer"><span class="fbadge">'+fic(wkType(td),"#fff",28)+'</span><div class="fnm"><div class="fn1">'+esc(wkName(td))+'</div><div class="fn2">'+(td.start!=null?tr(td):'Anytime')+'</div></div></div>'+
+    '<div class="exh"><span class="fdiv"></span><span class="exc-n">'+dn+'/'+L.length+'</span></div><div class="exl">'+
+    L.map(function(e,ix){var k=td.id+":"+ix,on=!!EXD[k];return '<div class="exr'+(on?' on':'')+'" data-a="extog" data-v="'+k+'"><span class="ering">'+(on?'✓':'')+'</span><span class="en">'+esc(e[0])+'</span><span class="es">'+esc(e[1])+'</span></div>'}).join("")+'</div></section>';
+}
 function vToday(){
   var timed=ITEMS.filter(function(i){return i.date===TODAY&&i.start!=null}).sort(function(a,b){return a.start-b.start});
   var ord={High:0,Medium:1,Low:2};
@@ -584,7 +622,7 @@ function vToday(){
    '<div class="grid2"><div class="col">'+
      card(ct("Schedule",'<span class="r">'+timed.length+' items</span>')+'<div class="list" style="gap:8px">'+sched+'</div>')+
      card(ct("Routine",'<span class="r">'+rd+' of '+ROUTINE.length+'</span>',CAT.routine.color)+bar(rd/ROUTINE.length,CAT.routine.color)+'<div class="label">Morning</div>'+steps("Morning")+'<div class="label">Evening</div>'+steps("Evening"))+
-   '</div><div class="col">'+
+   '</div><div class="col">'+exCard()+
      card(ct("Top to-dos",'<button class="link" data-a="go" data-v="todo">All →</button>',CAT.todo.color)+'<div class="list">'+todos.map(function(i){return row(i,true)}).join("")+'</div>')+
      card(ct("Errands today and tomorrow",'',CAT.errand.color)+'<div class="list">'+errs.map(function(i){return row(i,true)}).join("")+'</div>')+
      card(ct("Money this month",'<button class="link" data-a="go" data-v="budget">Budget →</button>',CAT.budget.color)+
@@ -972,6 +1010,7 @@ document.addEventListener("click",function(e){
   else if(a==="coveropen"){S.coverOpen=!S.coverOpen}
   else if(a==="preset"){setPreset(v)}
   else if(a==="hday"){if(VARIANT==="A"&&/^2026-11-/.test(v)){S.view="calendar";S.cal="month";S.day=v;S.sel=null;render();window.scrollTo(0,0);location.hash="calendar-month";return}S.hday=S.hday===v?null:v}
+  else if(a==="extog"){EXD[v]=!EXD[v];LS.set("lm.ex.v1",EXD)}
   else if(a==="cm"){S.cm=v==="0"?0:S.cm+parseInt(v,10);if(v==="0")S.hday=null}
   else if(a==="goaltoggle"){GOALS.forEach(function(g){if(g.id===id)g.done=!g.done});saveGoals()}
   else if(a==="goaldel"){GOALS=GOALS.filter(function(g){return g.id!==id});saveGoals()}
