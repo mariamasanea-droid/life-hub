@@ -232,7 +232,8 @@ body.deskhome .banner{display:none}
 .dh .cover{margin:0;height:clamp(56px,10vh,104px);border-radius:16px;flex-shrink:0}
 .dh .cover .coverbtn{bottom:10px;padding:5px 10px}
 .dhead{display:flex;align-items:flex-end;gap:14px;padding:0 18px;flex-shrink:0;margin-top:-26px;position:relative}
-.dhead .gtxt{padding-top:30px}
+.dhead{margin-top:0!important;padding:0 2px!important;align-items:center!important}
+.dhead .gtxt{padding-top:0}
 .dhead .icon{margin-top:0;width:52px;height:52px;font-size:24px;border-radius:14px;flex-shrink:0}
 .dhead .gtxt{flex:1;min-width:0;padding-bottom:2px}
 .dhead .eyebrow{font-size:12px}
@@ -296,8 +297,16 @@ body.deskhome .banner{display:none}
 .ev.more{color:var(--text2);font-weight:500;padding-left:4px}
 
 /* v5: goals column */
-.dmain{flex:1;min-height:0;display:grid;grid-template-columns:268px minmax(0,1fr);gap:10px}
-.dmain .dleft{gap:10px}
+.dmain{flex:1;min-height:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+.dmain .dleft{grid-column:span 1;gap:10px}
+.dmain .dright{grid-column:span 5}
+.dleft .dgc{max-height:52%}
+.dleft .sh .t{font-size:14px;white-space:nowrap}
+.dleft .srow{gap:7px;padding:5px 5px 5px 7px}
+.dleft .srow .st .b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dleft .sh{gap:4px;padding:0 2px}
+.dleft .sh .r{flex-shrink:0}
+.dleft .dgc .sh .t{font-size:13px;overflow:hidden;text-overflow:ellipsis}
 .dleft,.dright{display:flex;flex-direction:column;gap:12px;min-height:0;min-width:0}
 .dright .ac{flex:1}
 .dgc{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:10px 10px 8px;display:flex;flex-direction:column;gap:4px;min-height:0;flex:0 1 auto;max-height:42%}
@@ -691,7 +700,7 @@ function vHomeDesk(){
   var pick=S.coverOpen?'<div class="coverpick" data-a="stop2"><div class="label">Presets</div><div class="presets">'+PRESETS.map(function(p){return '<button class="preset'+(COVER.type==="preset"&&COVER.id===p.id?' on':'')+'" data-a="preset" data-v="'+p.id+'" title="'+p.name+'" style="background:'+p.bg.replace(/"/g,"&quot;")+'"></button>'}).join("")+'</div>'+
     '<label class="upl">＋ Upload a photo<input type="file" accept="image/*" id="coverfile"></label><div class="tiny">Photos stay on this device only.</div></div>':'';
   var cover='<div class="cover" style="background:'+coverBg().replace(/"/g,"&quot;")+'"><button class="coverbtn" data-a="coveropen">'+(S.coverOpen?'Done':'Change cover')+'</button>'+pick+'</div>';
-  var head='<div class="dhead"><div class="icon">M</div><div class="gtxt"><div class="eyebrow">Monday, 16 November<span class="samp" title="Made-up example data. Ticks, goals and cover are saved on this device.">Sample data</span></div><div class="h1">'+greet()+', Mariama</div>'+(S.coverNote?'<div class="tiny">'+S.coverNote+'</div>':'')+'</div>'+
+  var head='<div class="dhead"><div class="gtxt"><div class="eyebrow">Monday, 16 November<span class="samp" title="Made-up example data. Ticks, goals and cover are saved on this device.">Sample data</span></div><div class="h1">'+greet()+', Mariama</div>'+(S.coverNote?'<div class="tiny">'+S.coverNote+'</div>':'')+'</div>'+
     '<div class="qa">'+[["task","Task"],["event","Event"],["expense","Expense"],["goal","Goal"]].map(function(q){return '<button class="qb" data-a="qa" data-v="'+q[0]+'"><span class="pl">+</span>'+q[1]+'</button>'}).join("")+'</div></div>';
   var gd=GOALS.filter(function(g){return g.done}).length;
   var goals='<div class="dgc"><div class="sh"><div class="t">November goals</div><div class="r">'+gd+'/'+GOALS.length+'</div></div><div class="gl2">'+GOALS.map(function(g){
@@ -709,7 +718,7 @@ function vHomeDesk(){
     (sd!==TODAY?'<button class="link" style="align-self:flex-start;padding-left:4px" data-a="hday" data-v="'+sd+'">← Back to today</button>':'')+
     '<div class="sl">'+(its.length?its.map(function(i){var c=CAT[i.cat],d=!!S.done[i.id];
       return '<div class="srow'+(d?' done':'')+'" data-a="open" data-id="'+i.id+'" style="border-color:'+c.color+';background:'+tint(c.color,"10")+'">'+check(i.id,c.color)+
-        '<div class="st"><div class="a">'+esc(i.title)+'</div><div class="b">'+(i.start!=null?tr(i):(i.priority?i.priority+' priority':i.amount!=null?rm(i.amount):'Anytime'))+' · '+c.label+'</div></div></div>'}).join(""):'<div class="free" style="padding:4px">Nothing planned.</div>')+'</div></div>';
+        '<div class="st"><div class="a">'+esc(i.title)+'</div><div class="b">'+(i.start!=null?shortT(i.start)+(i.end!=null?'–'+shortT(i.end):''):(i.priority?i.priority+' priority':i.amount!=null?rm(i.amount):'Anytime'))+' · '+c.label+'</div></div></div>'}).join(""):'<div class="free" style="padding:4px">Nothing planned.</div>')+'</div></div>';
   // apple-style month
   var base=new Date(2026,10+S.cm,1),y=base.getFullYear(),m=base.getMonth();
   var off=(base.getDay()+6)%7,days=new Date(y,m+1,0).getDate(),rows=Math.ceil((off+days)/7);
