@@ -332,15 +332,18 @@ body.deskhome .banner{display:none}
 .vf .vl>span:nth-child(2){min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .vf .vl .n{font-size:11.5px}
 
-/* v14: goals between greeting and folders */
-.dh>.dgc{max-height:none;flex:none;padding:12px 14px 12px;gap:6px}
-.dh>.dgc .sh{padding:0 2px;gap:10px;align-items:center}
-.dh>.dgc .sh .t{flex:0 0 auto}
-.dh>.dgc .gl2{display:block;column-count:3;column-gap:28px;overflow:visible}
-.dh>.dgc .gi{break-inside:avoid;align-items:flex-start;gap:8px;padding:4px 4px}
-.dh>.dgc .gi .check{flex-shrink:0;margin-top:1px}
+/* v15: goals card between greeting and folders, left-column width, peach */
+.dh>.dgc{max-height:none;flex:none;align-self:flex-start;width:calc((100% - 50px) / 6 + 40px);box-sizing:border-box;padding:10px 9px 9px;gap:4px;background:#FDEEDC;border-color:#F1CFA6}
+.dh>.dgc .sh{padding:0 2px;gap:6px;align-items:center}
+.dh>.dgc .sh .t{white-space:nowrap}
+.dh>.dgc .sh .r{flex-shrink:0;color:#9A6A33}
+.dh>.dgc .sh .t .hlt{background:#F9D9B3}
+.dh>.dgc .gl2{overflow:visible}
+.dh>.dgc .gi{align-items:flex-start;gap:7px;padding:3px 2px}
+.dh>.dgc .gi:hover{background:rgba(241,207,166,.35)}
+.dh>.dgc .gi .check{width:16px;height:16px;line-height:13px;font-size:10px;flex-shrink:0;margin-top:1px;background:rgba(255,255,255,.7)}
 .dh>.dgc .gi .gt{white-space:normal;line-height:1.35}
-.dh>.dgc .gadd{width:260px;margin-top:2px}
+.dh>.dgc .gadd{border-color:#E9C291;background:rgba(255,255,255,.55)}
 /* v13 */
 .dgc .sh .t .hlt{background:#FCE3C4;border-radius:5px;padding:1px 6px;margin-left:-2px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 /* v12: square folders, natural-height page, highlighted goals */
@@ -733,7 +736,7 @@ function vHomeDesk(){
   var head='<div class="dhead"><div class="gtxt"><div class="eyebrow">Monday, 16 November<span class="samp" title="Made-up example data. Ticks, goals and cover are saved on this device.">Sample data</span></div><div class="h1">'+greet()+', Mariama</div>'+(S.coverNote?'<div class="tiny">'+S.coverNote+'</div>':'')+'</div>'+
     '<div class="qa">'+[["task","Task"],["event","Event"],["expense","Expense"],["goal","Goal"]].map(function(q){return '<button class="qb" data-a="qa" data-v="'+q[0]+'"><span class="pl">+</span>'+q[1]+'</button>'}).join("")+'</div></div>';
   var gd=GOALS.filter(function(g){return g.done}).length;
-  var goals='<div class="dgc"><div class="sh"><div class="t"><span class="hlt">November goals</span></div><div class="r">'+gd+'/'+GOALS.length+'</div></div><div class="gl2">'+GOALS.map(function(g){
+  var goals='<div class="dgc"><div class="sh"><div class="t"><span class="hlt">📌 November goals</span></div><div class="r">'+gd+'/'+GOALS.length+'</div></div><div class="gl2">'+GOALS.map(function(g){
       return '<div class="gi"><button class="check" data-a="goaltoggle" data-id="'+g.id+'" style="'+(g.done?'background:var(--text);border-color:var(--text);color:var(--bg)':'')+'">'+(g.done?'✓':'')+'</button>'+
       '<span class="gt'+(g.done?' done title':'')+'" data-a="goaltoggle" data-id="'+g.id+'" title="'+esc(g.text)+'">'+esc(g.text)+'</span><button class="del" data-a="goaldel" data-id="'+g.id+'" aria-label="Remove goal">✕</button></div>'}).join("")+'</div>'+
     '<input class="gadd" id="goalinput" placeholder="+ Add a goal" maxlength="80" enterkeyhint="done"></div>';
