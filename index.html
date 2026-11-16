@@ -297,9 +297,8 @@ body.deskhome .banner{display:none}
 .ev.more{color:var(--text2);font-weight:500;padding-left:4px}
 
 /* v5: goals column */
-.dmain{flex:1;min-height:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
-.dmain .dleft{grid-column:span 1}
-.dmain .dright{grid-column:span 5}
+.dmain{flex:1;min-height:0;display:grid;grid-template-columns:calc((100% - 50px) / 6 + 40px) minmax(0,1fr);gap:10px}
+.dleft .dgc .sh .t{white-space:nowrap}
 .dmain .dleft{gap:10px}
 .dleft,.dright{display:flex;flex-direction:column;gap:12px;min-height:0;min-width:0}
 .dright .ac{flex:1}
