@@ -333,17 +333,17 @@ body.deskhome .banner{display:none}
 .vf .vl .n{font-size:11.5px}
 
 /* v15: goals card between greeting and folders, left-column width, peach */
-.dh>.dgc{max-height:none;flex:none;align-self:flex-start;width:calc((100% - 50px) / 6 + 40px);box-sizing:border-box;padding:10px 9px 9px;gap:4px;background:#FDEEDC;border-color:#F1CFA6}
+.dh>.dgc{max-height:none;flex:none;align-self:flex-start;width:calc((100% - 50px) / 3 + 10px);box-sizing:border-box;padding:10px 12px 10px;gap:4px;background:#FDEEDC;border-color:#F1CFA6}
 .dh>.dgc .sh{padding:0 2px;gap:6px;align-items:center}
 .dh>.dgc .sh .t{white-space:nowrap}
 .dh>.dgc .sh .r{flex-shrink:0;color:#9A6A33}
 .dh>.dgc .sh .t .hlt{background:#F9D9B3}
-.dh>.dgc .gl2{overflow:visible}
+.dh>.dgc .gl2{overflow:visible;display:grid;grid-auto-flow:column;grid-template-rows:repeat(3,auto);grid-auto-columns:minmax(0,1fr);column-gap:14px;align-content:start}
 .dh>.dgc .gi{align-items:flex-start;gap:7px;padding:3px 2px}
 .dh>.dgc .gi:hover{background:rgba(241,207,166,.35)}
 .dh>.dgc .gi .check{width:16px;height:16px;line-height:13px;font-size:10px;flex-shrink:0;margin-top:1px;background:rgba(255,255,255,.7)}
 .dh>.dgc .gi .gt{white-space:normal;line-height:1.35}
-.dh>.dgc .gadd{border-color:#E9C291;background:rgba(255,255,255,.55)}
+.dh>.dgc .gadd{margin-top:2px;border-color:#E9C291;background:rgba(255,255,255,.55)}
 /* v13 */
 .dgc .sh .t .hlt{background:#FCE3C4;border-radius:5px;padding:1px 6px;margin-left:-2px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 /* v12: square folders, natural-height page, highlighted goals */
