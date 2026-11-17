@@ -462,6 +462,60 @@ body.deskhome .banner{display:none}
 .exr.on .en{text-decoration:line-through;color:var(--text3)}
 .exr.on{opacity:.65}
 .exnote{font-size:13px;color:var(--text2);line-height:1.45}
+/* v26: Today overview */
+.today2{display:flex;flex-direction:column;gap:14px}
+.tsub{font-size:16px;font-weight:600;color:var(--text2);margin-top:-6px}
+.rpill{display:inline-flex;align-items:center;gap:7px;height:32px;padding:0 14px 0 11px;border-radius:999px;background:#FDF0D2;color:#7A5200;font-size:13.5px;font-weight:700;border:1px solid #F6DFA6}
+.tsum{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.ttile{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:10px 12px;cursor:pointer;text-align:left;min-width:0;font:inherit;color:var(--text)}
+.ttile:hover{border-color:var(--border2)}
+.tic{width:36px;height:36px;border-radius:99px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.tv{display:flex;flex-direction:column;min-width:0}
+.tv b{font-size:18px;font-weight:700;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tv span{font-size:11.5px;color:var(--text2);font-weight:600;white-space:nowrap}
+.tgrid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:16px;align-items:start}
+.tcolA,.tcolB{display:flex;flex-direction:column;gap:16px;min-width:0}
+.tcard{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.tch{display:flex;align-items:center;gap:8px;min-height:21px}
+.tch .r{margin-left:auto;font-size:12px;color:var(--text3);font-weight:600}
+.tlabel{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);margin-top:2px}
+.tnote{font-size:12.5px;color:var(--text2)}
+.rcols{display:grid;grid-template-columns:1fr 1fr;gap:4px 18px}
+.tlv-list{display:flex;flex-direction:column}
+.tlv{display:grid;grid-template-columns:52px 18px minmax(0,1fr) 24px;column-gap:10px;align-items:center;min-height:50px}
+.tlv .tt{font-size:12px;font-weight:600;color:var(--text2);text-align:right;white-space:nowrap}
+.tlv .tdn{position:relative;align-self:stretch;display:flex;align-items:center;justify-content:center}
+.tlv .tdn::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:1.5px;margin-left:-.75px;background:var(--border2)}
+.tlv:first-child .tdn::before{top:50%}.tlv:last-child .tdn::before{bottom:50%}
+.tlv .dt{position:relative;width:11px;height:11px;border-radius:99px;box-shadow:0 0 0 3px var(--card)}
+.tlv .tb{border-radius:10px;padding:7px 11px;cursor:pointer;min-width:0;margin:3px 0}
+.tlv .tb .a{font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tlv .tb .a.dn{text-decoration:line-through;color:var(--text3)}
+.tlv .tb .m{font-size:12px;color:var(--text2);font-weight:500}
+.tlv.past{opacity:.55}
+.tlv.cur .tt{color:var(--text);font-weight:800}
+.tlv.now{min-height:30px}
+.tlv.now .tt{color:#E5484D;font-weight:700}
+.tlv .nd{position:relative;width:9px;height:9px;border-radius:99px;background:#E5484D;box-shadow:0 0 0 3px var(--card),0 0 0 5px rgba(229,72,77,.18)}
+.tlv.now .tb{cursor:default;padding:0}
+.nowl{font-size:12px;font-weight:700;color:#E5484D}
+.bstat{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.bstat>div{background:var(--subtle);border-radius:12px;padding:9px 12px;display:flex;flex-direction:column}
+.bstat b{font-size:18px;font-weight:700}
+.bstat span{font-size:11.5px;color:var(--text2);font-weight:600}
+.txr{display:flex;align-items:center;justify-content:space-between;font-size:13px;font-weight:600}
+.txr small{display:block;font-size:11px;color:var(--text3);font-weight:500}
+.txr b.pos{color:#3FA779}
+.o-fit .exc{border-radius:16px}
+@media (max-width:899px){
+  .tgrid{display:flex;flex-direction:column}
+  .tcolA,.tcolB{display:contents}
+  .o-sched{order:1}.o-fit{order:2}.o-todo{order:3}.o-err{order:4}.o-rout{order:5}.o-bud{order:6}
+  .tsum{display:flex;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:0 16px}
+  .tsum::-webkit-scrollbar{display:none}
+  .ttile{flex:0 0 auto;min-width:132px}
+}
+@media (max-width:420px){ .rcols{grid-template-columns:1fr} }
 /* v13 */
 .dgc .sh .t .hlt{background:#FCE3C4;border-radius:5px;padding:1px 6px;margin-left:-2px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 /* v12: square folders, natural-height page, highlighted goals */
@@ -606,29 +660,52 @@ function exCard(){
     '<div class="exh"><span class="fdiv"></span><span class="exc-n">'+dn+'/'+L.length+'</span></div><div class="exl">'+
     L.map(function(e,ix){var k=td.id+":"+ix,on=!!EXD[k];return '<div class="exr'+(on?' on':'')+'" data-a="extog" data-v="'+k+'"><span class="ering">'+(on?'✓':'')+'</span><span class="en">'+esc(e[0])+'</span><span class="es">'+esc(e[1])+'</span></div>'}).join("")+'</div></section>';
 }
+var REMINDERS=[{id:"rm-paper",text:"Reminder to get your paper today",date:"2026-11-16"}];
+function nextReminder(){return REMINDERS.filter(function(r){return !S.done[r.id]})[0]}
+function tcard(pill,col,right,body,cls){return '<section class="tcard'+(cls?' '+cls:'')+'"><div class="tch"><span class="hpill" style="background:'+col+'">'+pill+'</span>'+(right?'<span class="r">'+right+'</span>':'')+'</div>'+body+'</section>'}
 function vToday(){
   var timed=ITEMS.filter(function(i){return i.date===TODAY&&i.start!=null}).sort(function(a,b){return a.start-b.start});
   var ord={High:0,Medium:1,Low:2};
-  var todos=ITEMS.filter(function(i){return i.cat==="todo"&&i.date>=TODAY}).sort(function(a,b){return a.date<b.date?-1:a.date>b.date?1:ord[a.priority]-ord[b.priority]}).slice(0,4);
-  var errs=ITEMS.filter(function(i){return i.cat==="errand"&&(i.date===TODAY||i.date===d2(17))});
-  var t=totals();var nb=ITEMS.filter(function(i){return i.cat==="budget"&&i.date>=TODAY&&!S.done[i.id]}).sort(function(a,b){return a.date<b.date?-1:1})[0];
+  var tdTodos=ITEMS.filter(function(i){return i.cat==="todo"&&i.date===TODAY}).sort(function(a,b){return ord[a.priority]-ord[b.priority]});
+  var soonTodos=ITEMS.filter(function(i){return i.cat==="todo"&&i.date>TODAY&&!S.done[i.id]}).sort(function(a,b){return a.date<b.date?-1:a.date>b.date?1:ord[a.priority]-ord[b.priority]}).slice(0,2);
+  var tdErr=ITEMS.filter(function(i){return i.cat==="errand"&&i.date===TODAY}),tmErr=ITEMS.filter(function(i){return i.cat==="errand"&&i.date===d2(dn(TODAY)+1)});
+  var t=totals(),nb=ITEMS.filter(function(i){return i.cat==="budget"&&i.date>=TODAY&&!S.done[i.id]}).sort(function(a,b){return a.date<b.date?-1:1})[0];
+  var spentToday=TX.filter(function(x){return x[0]===dn(TODAY)&&x[3]<0}).reduce(function(a,x){return a-x[3]},0);
+  var txToday=TX.filter(function(x){return x[0]===dn(TODAY)});
   var rd=rdone();
-  var chips=CATS.map(function(k){var n=ITEMS.filter(function(i){return i.cat===k.id&&i.date===TODAY}).length+(k.id==="routine"?ROUTINE.length-1:0);if(k.id==="budget")n=ITEMS.filter(function(i){return i.cat==="budget"&&WEEK.indexOf(i.date)>=0}).length;
-    return '<button class="chip" data-a="go" data-v="'+k.id+'" style="background:'+tint(k.color,"12")+'">'+dot(k.color)+k.label+'<span class="n">'+n+'</span></button>'}).join("");
-  var sched=timed.map(function(i){var c=CAT[i.cat],d=!!S.done[i.id];
-    return '<div class="sched"><div class="tm">'+ft(i.start)+'</div><div class="blk" data-a="open" data-id="'+i.id+'" style="border-color:'+c.color+';background:'+tint(c.color,"14")+'"><div class="row-main" style="flex:1;min-width:0"><div class="'+(d?'done title':'')+'" style="font-size:14px;font-weight:500">'+esc(i.title)+'</div><div class="meta" style="font-size:12px;color:var(--text2);margin-top:2px">'+c.label+' · '+tr(i)+'</div></div>'+(CHECKABLE.indexOf(i.cat)>=0?check(i.id,c.color):'')+'</div></div>'}).join("");
-  return '<div><div class="eyebrow">Monday, 16 November</div><div class="h1">Good morning, Mariama</div></div>'+
-   '<div class="chips">'+chips+'</div>'+
-   '<div class="grid2"><div class="col">'+
-     card(ct("Schedule",'<span class="r">'+timed.length+' items</span>')+'<div class="list" style="gap:8px">'+sched+'</div>')+
-     card(ct("Routine",'<span class="r">'+rd+' of '+ROUTINE.length+'</span>',CAT.routine.color)+bar(rd/ROUTINE.length,CAT.routine.color)+'<div class="label">Morning</div>'+steps("Morning")+'<div class="label">Evening</div>'+steps("Evening"))+
-   '</div><div class="col">'+exCard()+
-     card(ct("Top to-dos",'<button class="link" data-a="go" data-v="todo">All →</button>',CAT.todo.color)+'<div class="list">'+todos.map(function(i){return row(i,true)}).join("")+'</div>')+
-     card(ct("Errands today and tomorrow",'',CAT.errand.color)+'<div class="list">'+errs.map(function(i){return row(i,true)}).join("")+'</div>')+
-     card(ct("Money this month",'<button class="link" data-a="go" data-v="budget">Budget →</button>',CAT.budget.color)+
-       '<div style="display:flex;justify-content:space-between;font-size:13px;color:var(--text2)"><span><b style="color:var(--text);font-weight:600">'+rm(t.s)+'</b> spent</span><span>of '+rm(t.b)+'</span></div>'+bar(t.s/t.b,CAT.budget.color,8)+
-       (nb?'<div style="font-size:13px;color:var(--text2)">Next bill: <span style="color:var(--text)">'+esc(nb.title.replace(" due",""))+'</span>, '+rm(nb.amount)+' on '+fdate(nb.date)+'</div>':''))+
-   '</div></div>';
+  var now=iso(new Date()),ref=/^2026-11-/.test(now)?now:TODAY;
+  var wo=ITEMS.filter(function(i){return i.cat==="workout"&&i.date===ref})[0];
+  var openTodos=tdTodos.filter(function(i){return !S.done[i.id]}).length,openErr=tdErr.filter(function(i){return !S.done[i.id]}).length;
+  var events=timed.filter(function(i){return i.cat==="work"||i.cat==="routine"}).length;
+  var rem=nextReminder();
+  var bell='<svg width="15" height="15" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0-6 6v3.6l-1.6 3A1 1 0 0 0 5.3 17h13.4a1 1 0 0 0 .9-1.4L18 12.6V9a6 6 0 0 0-6-6z" fill="#E3A33B"/><path d="M9.8 19a2.3 2.3 0 0 0 4.4 0z" fill="#E3A33B"/></svg>';
+  var head='<div><div class="eyebrow">Monday, 16 November</div><div class="h1">Good morning, Mariama</div></div>'+
+    '<div class="tsub">Here\u2019s what you have going on today.</div>'+
+    (rem?'<div><span class="rpill" title="Next reminder">'+bell+esc(rem.text)+'</span></div>':'');
+  function tile(k,val,lbl,go){return '<button class="ttile" data-a="go" data-v="'+go+'"><span class="tic" style="background:'+tint(CAT[k].color,"1F")+'">'+icon(k,20)+'</span><span class="tv"><b>'+val+'</b><span>'+lbl+'</span></span></button>'}
+  var sum='<div class="tsum">'+tile("work",events,events===1?"event":"events","calendar")+tile("todo",openTodos,"to-dos open","todo")+tile("errand",openErr,openErr===1?"errand":"errands","errand")+
+    tile("workout",wo?esc(wkName(wo)):"Rest","workout","workout")+tile("budget",rm(spentToday),"spent today","budget")+'</div>';
+  // timeline
+  var nh=nowH(),tl='',marked=timed.some(function(i){var e=i.end!=null?i.end:i.start+.5;return nh>=i.start&&nh<e});
+  timed.forEach(function(i){var c=CAT[i.cat],d=!!S.done[i.id],e=i.end!=null?i.end:i.start+.5,past=e<=nh,cur=nh>=i.start&&nh<e;
+    if(!marked&&i.start>nh){tl+='<div class="tlv now"><div class="tt">'+shortT(nh)+'</div><div class="tdn"><span class="nd"></span></div><div class="tb"><span class="nowl">Now</span></div><div></div></div>';marked=true}
+    tl+='<div class="tlv'+(past?' past':'')+(cur?' cur':'')+'"><div class="tt">'+shortT(i.start)+'</div><div class="tdn"><span class="dt" style="background:'+c.color+'"></span></div>'+
+      '<div class="tb" data-a="open" data-id="'+i.id+'" style="background:'+tint(c.color,cur?"1F":"0F")+'"><div class="a'+(d?' dn':'')+'">'+esc(i.title)+'</div><div class="m">'+tr(i)+' · '+c.label+(cur?' · <b>now</b>':'')+'</div></div>'+
+      (CHECKABLE.indexOf(i.cat)>=0?check(i.id,c.color):'<span></span>')+'</div>'});
+  if(!marked)tl+='<div class="tlv now"><div class="tt">'+shortT(nh)+'</div><div class="tdn"><span class="nd"></span></div><div class="tb"><span class="nowl">Now · nothing else scheduled</span></div><div></div></div>';
+  var sched=tcard("SCHEDULE","#5B6CF0",timed.length+" items",'<div class="tlv-list">'+tl+'</div>',"o-sched");
+  var todos=tcard("TO-DOS","#E3A33B",tdTodos.filter(function(i){return S.done[i.id]}).length+"/"+tdTodos.length+" done",
+    '<div class="list">'+tdTodos.map(function(i){return row(i,false)}).join("")+'</div>'+(soonTodos.length?'<div class="tlabel">Coming up</div><div class="list">'+soonTodos.map(function(i){return row(i,true)}).join("")+'</div>':'')+
+    '<button class="link" style="align-self:flex-start" data-a="go" data-v="todo">All to-dos →</button>',"o-todo");
+  var errs=tcard("ERRANDS","#3A9BD5",openErr+" today",'<div class="list">'+(tdErr.length?tdErr.map(function(i){return row(i,false)}).join(""):'<div class="free">No errands today.</div>')+'</div>'+
+    (tmErr.length?'<div class="tlabel">Tomorrow</div><div class="list">'+tmErr.map(function(i){return row(i,true)}).join("")+'</div>':''),"o-err");
+  var rout=tcard("ROUTINE","#A97CD6",rd+" of "+ROUTINE.length,bar(rd/ROUTINE.length,CAT.routine.color)+'<div class="rcols"><div><div class="tlabel">Morning</div>'+steps("Morning")+'</div><div><div class="tlabel">Evening</div>'+steps("Evening")+'</div></div>',"o-rout");
+  var bud=tcard("BUDGET TODAY","#3FA779",'<button class="link" data-a="go" data-v="budget">Budget →</button>',
+    '<div class="bstat"><div><b>'+rm(spentToday)+'</b><span>spent today</span></div><div><b>'+rm(t.b-t.s)+'</b><span>left this month</span></div></div>'+
+    (txToday.length?'<div class="list" style="gap:4px">'+txToday.map(function(x){return '<div class="txr"><span>'+esc(x[1])+'<small>'+esc(x[2])+'</small></span><b class="'+(x[3]<0?'':'pos')+'">'+(x[3]<0?'−':'+')+rm(Math.abs(x[3]))+'</b></div>'}).join("")+'</div>':'')+
+    '<div><div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text2);margin-bottom:5px"><span>'+rm(t.s)+' spent this month</span><span>of '+rm(t.b)+'</span></div>'+bar(t.s/t.b,CAT.budget.color,7)+'</div>'+
+    (nb?'<div class="tnote">Next bill: <b>'+esc(nb.title.replace(" due",""))+'</b>, '+rm(nb.amount)+' on '+fdate(nb.date)+'</div>':''),"o-bud");
+  return '<div class="today2">'+head+sum+'<div class="tgrid"><div class="tcolA">'+sched+rout+errs+'</div><div class="tcolB"><div class="o-fit">'+exCard()+'</div>'+todos+bud+'</div></div></div>';
 }
 function mini(i){var c=CAT[i.cat],d=!!S.done[i.id];
   return '<div class="mini" data-a="open" data-id="'+i.id+'" style="border-color:'+c.color+';background:'+tint(c.color,"16")+'"><div class="s">'+(i.start!=null?ft(i.start):i.amount!=null?rm(i.amount):"Due")+'</div><div class="x'+(d?' done title':'')+'">'+esc(i.title)+'</div></div>'}
