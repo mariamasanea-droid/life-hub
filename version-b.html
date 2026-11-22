@@ -1025,6 +1025,16 @@ body.glass.gdark .mockc .eyebrow,body.glass.gdark .mockc .tsub,body.glass.gdark 
 body.glass.gdark .mockc .pn{background:rgba(40,32,26,.36);border-color:rgba(255,255,255,.2)}
 body.glass.gdark .mockc .pn-tt small{color:#E3DAD2}
 @media (max-width:999px){.gcb{padding:6px 10px!important;font-size:11px!important}.gcb .cl{display:none}.gwel{min-width:0;flex:1;overflow:hidden}.gwel,.gwel small{white-space:nowrap;text-overflow:ellipsis;overflow:hidden}.gcov{margin-left:0}}
+
+/* v65: today list only, row 1 = Today | To-do | Fitness */
+.mockc .p-cal2 .pn-in{flex-direction:column!important;padding:12px 12px!important}
+.mockc .p-cal2 .tsl{border:none!important;padding:0!important;gap:2px}
+.mockc .p-cal2 .ts-r{padding:9px 10px}
+.mockc .r1>.p-todo{contain:size}
+.mockc .r1>.p-todo .pn-in{min-height:0;overflow:hidden;padding-top:6px;padding-bottom:6px}
+.mockc .r1>.p-todo .lst{overflow-y:auto;min-height:0;flex:1;scrollbar-width:thin;scrollbar-color:rgba(120,95,75,.3) transparent;-webkit-mask-image:linear-gradient(180deg,#000 calc(100% - 26px),transparent);mask-image:linear-gradient(180deg,#000 calc(100% - 26px),transparent);padding-bottom:18px}
+.mockc .p-work .wp-l{display:grid;grid-template-columns:1fr;gap:0}
+@media (max-width:999px){.mockc .r1>.p-todo{contain:none}.mockc .r1>.p-todo .lst{-webkit-mask-image:none;mask-image:none;padding-bottom:0}}
 /* v13 */
 .dgc .sh .t .hlt{background:#FCE3C4;border-radius:5px;padding:1px 6px;margin-left:-2px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 /* v12: square folders, natural-height page, highlighted goals */
@@ -1657,6 +1667,7 @@ document.addEventListener("click",function(e){var t=e.target.closest&&e.target.c
   else if(t.hasAttribute("data-cqa-save"))cqaSave(t.getAttribute("data-cqa-save"));
   else{CQA=null;render()}},true);
 document.addEventListener("keydown",function(e){if(!CQA)return;if(e.key==="Enter"&&e.target&&e.target.closest&&e.target.closest(".cqa")){e.preventDefault();e.stopPropagation();cqaSave(CQA)}else if(e.key==="Escape"){CQA=null;render()}},true);
+function realDay(long){var d=new Date(),W=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],M=["January","February","March","April","May","June","July","August","September","October","November","December"];return long?W[d.getDay()]+", "+d.getDate()+" "+M[d.getMonth()]:W[d.getDay()].slice(0,3)+" "+d.getDate()+" "+M[d.getMonth()].slice(0,3)}
 /* ===== Today mockup C (Intellecta-style) ===== */
 function vToday(){
   var timed=ITEMS.filter(function(i){return i.date===TODAY&&i.start!=null}).sort(function(a,b){return a.start-b.start});
@@ -1682,7 +1693,7 @@ function vToday(){
   var PCOL={"p-cal2":"#5B6CF0","p-fit":"#EF6F5E","p-todo":"#E3A33B","p-rout":"#A97CD6","p-work":"#5B6CF0","p-notes":"#9C8673","p-refl":"#E08A4F","p-lib":"#4F9A8E"};
   function panel(cls,title,sub,btns,inner){var qk=QAK[cls],qf=(qk&&CQA===qk)?cqaForm(qk):'';return '<section class="pn '+cls+(qf?' qa-open':'')+'"><div class="pn-h"><div class="pn-tt"><span class="hpill" style="background:'+(PCOL[cls]||"#9C8673")+'">'+title.toUpperCase()+'</span><small>'+sub+'</small></div>'+(btns?'<div class="pn-b">'+btns+'</div>':'')+'</div>'+qf+'<div class="pn-in">'+inner+'</div></section>'}
   function lc(id){var on=!!S.done[id];return '<button class="lc'+(on?' on':'')+'" data-a="toggle" data-id="'+id+'" aria-label="'+(on?'Mark not done':'Mark done')+'">'+(on?CHK:'')+'</button>'}
-  var head='<div class="ch-head"><div class="ch-l"><div class="eyebrow">Monday, 16 November</div><div class="h1">Good morning, Mariama</div>'+
+  var head='<div class="ch-head"><div class="ch-l"><div class="eyebrow">'+realDay(1)+'</div><div class="h1">Good morning, Mariama</div>'+
     '<div class="tsub">Here\u2019s what you have going on today.</div>'+(rem?'<div><span class="rpill" title="Next reminder">'+bell+esc(rem.text)+'</span></div>':'')+'</div>'+
     '<div class="ch-r"><small>Tasks done</small><div class="ch-n">'+dne+'<span>/ '+tot+'</span><i>'+ARR+'</i></div></div></div>';
 
@@ -1704,7 +1715,7 @@ function vToday(){
   // To-do list
   function row(i,sub,when){var d=!!S.done[i.id];return '<div class="lr'+(d?' done':'')+'"><div class="lr-x" data-a="open" data-id="'+i.id+'"><b>'+esc(i.title)+'</b><small><i style="background:'+CAT[i.cat].color+'"></i>'+sub+'</small><div class="lr-w"><em>'+when[0]+'</em>'+when[1]+'</div></div>'+lc(i.id)+'</div>'}
   var tdl=tdTodos.map(function(i){return row(i,(i.priority||'')+' priority',['Today',i.start!=null?shortT(i.start):'Anytime'])}).concat(soon.map(function(i){return row(i,(i.priority||'')+' priority',[fdate(i.date),'Anytime'])})).join("");
-  var todo=panel("p-todo","To-do list","Monday, 16 November · "+tdDone+"/"+tdTodos.length+" done",'<button class="ib qa'+(CQA==="todo"?' on':'')+'" data-cqa="todo" aria-label="Quick add to-do" title="Quick add to-do">+</button>'+ib("todo",ARR,"All to-dos"),'<div class="lst">'+tdl+'</div>');
+  var todo=panel("p-todo","To-do list",realDay(1)+" · "+tdDone+"/"+tdTodos.length+" done",'<button class="ib qa'+(CQA==="todo"?' on':'')+'" data-cqa="todo" aria-label="Quick add to-do" title="Quick add to-do">+</button>'+ib("todo",ARR,"All to-dos"),'<div class="lst">'+tdl+'</div>');
 
   // Habit tracker
   var DW=["M","T","W","T","F","S","S"];
@@ -1732,7 +1743,7 @@ function vToday(){
       return '<button class="mc-d'+(out?' out':'')+(d===TODAY?' td':'')+'" data-a="hday" data-v="'+d+'"><span class="n">'+dt.getDate()+'</span><span class="ds">'+(out?'':cs.slice(0,3).map(function(c){return '<i style="background:'+CAT[c].color+'"></i>'}).join(""))+'</span></button>'}).join("")+'</div>';
     var sl=timed.map(function(i){var c=CAT[i.cat],e=i.end!=null?i.end:i.start+.5,past=e<=nh,hot=i===curOrNext,d=!!S.done[i.id];
     return '<div class="ts-r'+(past?' past':'')+(hot?' hot':'')+'" data-a="open" data-id="'+i.id+'"><span class="t">'+shortT(i.start)+'</span><i style="background:'+c.color+'"></i><span class="x"><b class="'+(d?'dn':'')+'">'+esc(i.title)+'</b><small>'+tr(i)+' · '+c.label+'</small></span>'+(hot?'<span class="tg">'+(nh>=i.start?'Now':'Next')+'</span>':'')+'</div>'}).join("");
-  var calendar=panel("p-cal2","November 2026","Monday 16 · "+timed.length+" events today",'<button class="ib" data-a="go" data-v="calendar" aria-label="Previous">‹</button><button class="ib" data-a="go" data-v="calendar" aria-label="Next">›</button>'+'<button class="ib qa'+(CQA==="cal"?' on':'')+'" data-cqa="cal" aria-label="Quick add event" title="Quick add event">+</button>'+ib("calendar",ARR,"Open calendar"),'<div class="cal2">'+cal+'</div><div class="tsl"><h4><span>Today</span><span>'+timed.length+' items</span></h4>'+sl+'</div>');
+  var calendar=panel("p-cal2","Today",realDay(1)+" · "+timed.length+" items",'<button class="ib qa'+(CQA==="cal"?' on':'')+'" data-cqa="cal" aria-label="Quick add event" title="Quick add event">+</button>'+ib("calendar",ARR,"Open calendar"),'<div class="tsl">'+sl+'</div>');
 
   // Errands
   var eAll=tdErr.map(function(i){return [i,"Today"]}).concat(tmErr.map(function(i){return [i,"Tomorrow"]})).slice(0,4);
@@ -1774,9 +1785,9 @@ function vToday(){
     '<div class="wp-bar lb-gb"><i style="width:'+Math.round(gp*100)+'%;background:var(--lime)"></i></div>'+
     '<div class="lb-q">\u201CBetween life and death there is a library.\u201D</div>');
   return '<div class="today2 mockc"><div class="shell">'+head+
-    '<div class="cr cr1">'+calendar+fit+'</div>'+
+    '<div class="cr cr3 r1">'+calendar+todo+fit+'</div>'+
     '<div class="cr cr21">'+routine+refl+'</div>'+
-    '<div class="cr cr3">'+todo+work+'<div class="stk">'+lib+notes+'</div></div></div></div>';
+    '<div class="cr cr21">'+work+'<div class="stk">'+lib+notes+'</div></div></div></div>';
 }
 
 /* mockup C: notes / reflection / library handlers */
@@ -1799,7 +1810,7 @@ function glWrap(inner){
   var v=S.view,nav=[["home","Home"],["today","Today"],["calendar","Calendar"]];
   var side='<aside class="gside gglass">'+nav.map(function(n){return '<button class="gsb'+(v===n[0]?' on':'')+'" data-a="go" data-v="'+n[0]+'" aria-label="'+n[1]+'">'+GIC[n[0]]+'<span class="tip">'+n[1]+'</span></button>'}).join("")+'<span class="gsep"></span>'+
     CATS.map(function(k){return '<button class="gsb" data-a="go" data-v="'+k.id+'" aria-label="'+k.label+'">'+icon(k.id,22)+'<span class="tip">'+k.label+'</span></button>'}).join("")+'</aside>';
-  var top='<div class="gtop gglass"><span class="gav">M</span><div class="gwel">Welcome, Mariama<small>Monday, 16 November</small></div>'+
+  var top='<div class="gtop gglass"><span class="gav">M</span><div class="gwel">Welcome, Mariama<small>'+realDay(1)+'</small></div>'+
     '<label class="gsearch"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg><input placeholder="Search tasks, events, notes…" aria-label="Search"></label>'+
     '<span class="gcov"><button class="coverbtn gcb" data-a="coveropen">'+(S.coverOpen?'Done':'<span class="cl">Change </span>Cover')+'</button>'+(S.coverOpen?'<div class="coverpick" data-a="stop2"><div class="label">Presets</div><div class="presets">'+PRESETS.map(function(p){return '<button class="preset'+(COVER.type==="preset"&&COVER.id===p.id?' on':'')+'" data-a="preset" data-v="'+p.id+'" title="'+p.name+'" style="background:'+p.bg.replace(/"/g,"&quot;")+'"></button>'}).join("")+'</div><label class="upl">＋ Upload a photo<input type="file" accept="image/*" id="coverfile"></label><div class="tiny">Your photo becomes the blurred background. It stays on this device.</div></div>':'')+'</span>'+
     '<div class="gmode"><button class="'+(GDARK?'':'on')+'" data-gmode="0">☀<span class="ml"> Light</span></button><button class="'+(GDARK?'on':'')+'" data-gmode="1">☾<span class="ml"> Dark</span></button></div></div>';
