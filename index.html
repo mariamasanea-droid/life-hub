@@ -1752,6 +1752,25 @@ body.gdark .cx-gear{background:rgba(255,255,255,.12);color:#EDE6DF;border-color:
   body.glass .gwel{min-width:0;overflow:hidden}body.glass .gwel small{white-space:nowrap}
 }
 @media (max-width:480px){body.glass .gwel{display:none}}
+
+/* v81 pairing */
+.cx-pbig{height:48px!important;padding:0 20px!important;font-size:15px!important;border-radius:14px!important;display:inline-flex;align-items:center;gap:8px}
+.cx-pbig .cx-apple{opacity:1}
+.cx-sm{font-size:12px!important;margin-top:6px!important}
+.cx-link{background:none;border:0;padding:4px 0;margin-top:4px;font:inherit;font-size:12px;font-weight:700;color:var(--text2,#8A7B70);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.cx-adv{margin-top:8px;padding:12px;border-radius:14px;background:rgba(255,255,255,.35);border:1px dashed rgba(120,95,75,.25);display:flex;flex-direction:column;gap:10px}
+.cx-pair{margin-top:6px;padding:18px;border-radius:18px;background:rgba(255,255,255,.55);border:1px solid rgba(120,95,75,.16);display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px}
+.cx-pair .cx-row{width:100%}
+.cx-pl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text2,#8A7B70)}
+.cx-pc{font-size:40px;font-weight:700;letter-spacing:.18em;color:#2A2420;font-variant-numeric:tabular-nums;display:flex;align-items:center;padding-left:.18em;user-select:all}
+.cx-pc b{display:inline-block;width:.35em}
+.cx-pc.cx-exp{opacity:.35;text-decoration:line-through;font-size:30px}
+.cx-wait{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:#B07A1E}
+.cx-wait i{width:14px;height:14px;border-radius:50%;border:2px solid currentColor;border-right-color:transparent;animation:cxspin .9s linear infinite}
+@keyframes cxspin{to{transform:rotate(360deg)}}
+body.dark .cx-pair,body.gdark .cx-pair,.dark .cx-pair{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.12)}
+body.dark .cx-pc,body.gdark .cx-pc,.dark .cx-pc{color:#F4ECE4}
+@media(max-width:480px){.cx-pc{font-size:34px}.cx-pbig{width:100%;justify-content:center}}
 </style>
 </head>
 <body>
@@ -3166,12 +3185,13 @@ function cxDelete(id){var i=BYID[id];if(!i)return;if(!confirm('Delete “'+i.tit
 /* ---- Apple Calendar bridge client ---- */
 function cxApi(method,path,body){if(!cxOn())return Promise.reject(new Error("Apple Calendar isn't connected yet. Open Settings."));
   return fetch(CXC.url.replace(/\/+$/,"")+path,{method:method,headers:{"Authorization":"Bearer "+CXC.token,"Content-Type":"application/json"},body:body?JSON.stringify(body):undefined})
-   .then(function(r){return r.json().catch(function(){return {}}).then(function(j){if(!r.ok){var m={unauthorized:"The access token was not accepted.",apple_credentials_missing:"The server doesn't have your Apple ID and app-specific password yet.",caldav_login_failed:"iCloud rejected the Apple ID or app-specific password.",recurring_event:"Repeating events can only be changed in Apple Calendar.",conflict:"This event changed in Apple Calendar. Sync and try again.",origin_not_allowed:"This page isn't allowed to use the sync server."}[j.error];throw new Error(m||j.message||("Sync server error "+r.status))}return j})},
+   .then(function(r){return r.json().catch(function(){return {}}).then(function(j){if(!r.ok){var m={unauthorized:"This device isn\u2019t connected any more (access was removed). Tap Connect Apple Calendar to pair it again.",apple_credentials_missing:"The server doesn't have your Apple ID and app-specific password yet.",caldav_login_failed:"iCloud rejected the Apple ID or app-specific password.",recurring_event:"Repeating events can only be changed in Apple Calendar.",conflict:"This event changed in Apple Calendar. Sync and try again.",origin_not_allowed:"This page isn't allowed to use the sync server."}[j.error];throw new Error(m||j.message||("Sync server error "+r.status))}return j})},
      function(){throw new Error("Couldn't reach the sync server. Check the address and your connection.")})}
 function cxSetStatus(err){CXC.err=err||"";cxSaveCfg()}
 function cxLoadCals(){return cxApi("GET","/api/calendars").then(function(j){CXC.calList=j.calendars||[];var guess={work:/work|office|job|svelt|business/i,workout:/gym|fit|workout|sport|run|train/i,routine:/routine|habit|personal|home|family/i,errand:/errand|shop/i,budget:/bill|budget|money|finance/i,todo:/to.?do|task|remind/i};
-  CXC.calList.forEach(function(c){if(!CXC.cals[c.id]){var cat="";for(var k in guess)if(guess[k].test(c.name)){cat=k;break}CXC.cals[c.id]={name:c.name,color:c.color,cat:cat}}else{CXC.cals[c.id].name=c.name;CXC.cals[c.id].color=c.color}});
-  CATS.forEach(function(k){if(CXC.write[k.id]===undefined){var m=CXC.calList.filter(function(c){return CXC.cals[c.id].cat===k.id})[0];CXC.write[k.id]=m?m.id:""}});cxSaveCfg();return j})}
+  var named={"work":"work","home":"routine","meals":"routine","personal to do":"todo","boxing x pilates":"workout","haleem":"","calendar":""};
+  CXC.calList.forEach(function(c){if(!CXC.cals[c.id]){var cat="",nm=String(c.name||"").trim().toLowerCase();if(nm in named)cat=named[nm];else for(var k in guess)if(guess[k].test(c.name)){cat=k;break}CXC.cals[c.id]={name:c.name,color:c.color,cat:cat}}else{CXC.cals[c.id].name=c.name;CXC.cals[c.id].color=c.color}});
+  var wpref={work:"work",workout:"boxing x pilates",todo:"personal to do",routine:"home"};CATS.forEach(function(k){if(CXC.write[k.id]===undefined){var m=CXC.calList.filter(function(c){return wpref[k.id]&&String(c.name||"").trim().toLowerCase()===wpref[k.id]&&CXC.cals[c.id].cat===k.id})[0]||CXC.calList.filter(function(c){return CXC.cals[c.id].cat===k.id})[0];CXC.write[k.id]=m?m.id:""}});cxSaveCfg();return j})}
 function cxPull(quiet){if(!cxOn())return Promise.resolve();if(!(CXC.calList||[]).length&&!CXU._lc){CXU._lc=1;return cxLoadCals().then(function(){CXU._lc=0;return cxPull(quiet)},function(e){CXU._lc=0;cxSetStatus(e.message);render()})}var ids=cxMapped();CXU.busy=true;if(!quiet)render();
   var from=addD(TODAY,-35),to=addD(TODAY,120);
   var p=ids.length?cxApi("GET","/api/events?from="+from+"&to="+to+"&calendars="+encodeURIComponent(ids.join(","))):Promise.resolve({events:[]});
@@ -3194,20 +3214,44 @@ var _cxCq=cqaSave;cqaSave=function(k){var n=EXTRA.length;
   _cxCq(k);cxAfterCreate(n)};
 
 /* ---- Settings ---- */
-function cxSettings(){if(!CXU.set)return "";var st=!cxOn()?['Not connected','#9C8673']:CXC.err?['Needs attention','#D0503D']:CXC.last?['Connected','#3FA779']:['Not synced yet','#E3A33B'];
+function cxSettings(){if(!CXU.set)return "";var st=!cxOn()?(CXC.pair?['Waiting for approval','#E3A33B']:['Not connected','#9C8673']):CXC.err?['Needs attention','#D0503D']:CXC.last?['Connected','#3FA779']:['Not synced yet','#E3A33B'];
   var calRows=(CXC.calList||[]).map(function(c){var m=CXC.cals[c.id]||{};return '<div class="cx-cal"><i style="background:'+(c.color||"#9C8673").slice(0,7)+'"></i><span>'+esc(c.name)+'</span><select data-cxmap="'+esc(c.id)+'"><option value="">Don\u2019t show</option>'+CATS.map(function(k){return '<option value="'+k.id+'"'+(m.cat===k.id?' selected':'')+'>Show as '+k.label+'</option>'}).join("")+'</select></div>'}).join("");
   var wRows=CATS.map(function(k){return '<div class="cx-cal"><i style="background:'+k.color+'"></i><span>New '+k.label.toLowerCase()+'</span><select data-cxwrite="'+k.id+'"><option value="">Keep in this app only</option>'+(CXC.calList||[]).map(function(c){return '<option value="'+esc(c.id)+'"'+(CXC.write[k.id]===c.id?' selected':'')+'>Add to “'+esc(c.name)+'”</option>'}).join("")+'</select></div>'}).join("");
   return '<div class="cx-ov" data-cx="setclose"></div><div class="cx-set" role="dialog" aria-label="Settings"><div class="cx-sh"><span class="hpill" style="background:#7A6A5E">SETTINGS</span><button class="ib" data-cx="setclose" aria-label="Close">×</button></div>'+
    '<section><div class="cx-st"><h3><span class="cx-apple"></span> Apple Calendar</h3><span class="cx-chip" style="--c:'+st[1]+'">'+st[0]+'</span></div>'+
    '<p class="cx-p">Two-way sync with iCloud: your Apple events show in Today, Home and Calendar in the category colours you choose, and events you add here are saved to Apple Calendar.</p>'+
-   '<div class="cx-2"><label>Sync server<input id="cx-url" value="'+esc(CXC.url||"")+'" placeholder="'+CX_DEF_URL+'"></label><label>Access key<span class="cx-tk"><input id="cx-tok" type="'+(CXU.showTok?'text':'password')+'" value="'+esc(CXC.token||"")+'" placeholder="Paste the access key" autocomplete="off"><button data-cx="showtok" type="button">'+(CXU.showTok?'Hide':'Show')+'</button></span></label></div>'+
-   '<div class="cx-row"><button class="btn cx-pri" data-cx="connect">'+(cxOn()?'Save &amp; reconnect':'Connect')+'</button>'+(cxOn()?'<button class="btn" data-cx="sync">'+(CXU.busy?'Syncing…':'↻ Sync now')+'</button><button class="btn" data-cx="disconnect">Disconnect</button>':'')+'<span></span><small>'+(CXC.last?'Last synced '+cxAgo(CXC.last)+' · '+(CXCACHE.events||[]).length+' events':'')+'</small></div>'+
+   cxPairBlock()+
    (CXC.err?'<div class="cx-err">'+esc(CXC.err)+'</div>':'')+(CXU.setMsg?'<div class="cx-ok">'+esc(CXU.setMsg)+'</div>':'')+
    (calRows?'<h4>Show my Apple calendars as</h4><div class="cx-cals">'+calRows+'</div><h4>Where new items go</h4><div class="cx-cals">'+wRows+'</div><label class="cx-chk"><input type="checkbox" id="cx-auto"'+(CXC.auto?' checked':'')+'> Sync when the app opens and every 10 minutes</label>':'')+'</section>'+
    '<section><h3>Appearance</h3><div class="cx-row"><div class="seg"><button class="'+(GDARK?'':'on')+'" data-gmode="0">☀ Light</button><button class="'+(GDARK?'on':'')+'" data-gmode="1">☾ Dark</button></div><button class="btn" data-cx="cover">Change cover</button></div></section>'+
    '<section><h3>Your data</h3><p class="cx-p">Everything is stored on this device (no account). Projects, books, budget and this week\u2019s tasks start as sample data.</p><div class="cx-row"><button class="btn" data-cx="export">Download a backup</button><button class="btn cx-del" data-cx="reset">Reset to sample data</button></div></section></div>'}
+
+/* ---- device pairing (v81): no keys are typed or pasted; the owner approves a short code ---- */
+function cxDevName(){var u=navigator.userAgent,d=/iPhone/.test(u)?"iPhone":/iPad/.test(u)||(/Macintosh/.test(u)&&navigator.maxTouchPoints>1)?"iPad":/Android/.test(u)?"Android":/Mac/.test(u)?"Mac":/Windows/.test(u)?"Windows PC":/Linux|CrOS/.test(u)?"Computer":"Device",b=/Edg\//.test(u)?"Edge":/Firefox\//.test(u)?"Firefox":/CriOS|Chrome\//.test(u)?"Chrome":/Safari\//.test(u)?"Safari":"Browser";return d+" \u00b7 "+b}
+function cxPairLeft(){return CXC.pair?Math.max(0,Math.round((Date.parse(CXC.pair.exp)-Date.now())/60000)):0}
+function cxPairBlock(){var p=CXC.pair,url=esc(CXC.url||CX_DEF_URL);
+  var adv=CXU.adv?'<div class="cx-adv"><div class="cx-2"><label>Sync server<input id="cx-url" value="'+url+'" placeholder="'+CX_DEF_URL+'"></label><label>Access key (optional)<span class="cx-tk"><input id="cx-tok" type="'+(CXU.showTok?'text':'password')+'" value="" placeholder="'+(cxOn()?'Saved \u2014 leave empty to keep':'Only if you were given one')+'" autocomplete="off"><button data-cx="showtok" type="button">'+(CXU.showTok?'Hide':'Show')+'</button></span></label></div><div class="cx-row"><button class="btn" data-cx="connect">Save server settings</button></div></div>':'';
+  var advBtn='<button class="cx-link" data-cx="adv">'+(CXU.adv?'Hide advanced':'Advanced')+'</button>';
+  if(cxOn())return '<div class="cx-row"><button class="btn" data-cx="sync">'+(CXU.busy?'Syncing\u2026':'\u21bb Sync now')+'</button><button class="btn" data-cx="disconnect">Disconnect</button><span></span><small>'+(CXC.device?esc(CXC.device.name)+' \u00b7 ':'')+(CXC.last?'Last synced '+cxAgo(CXC.last)+' \u00b7 '+(CXCACHE.events||[]).length+' events':'')+'</small></div>'+advBtn+adv;
+  if(p){var left=cxPairLeft(),c=p.code;
+    if(!left)return '<div class="cx-pair"><div class="cx-pc cx-exp">'+esc(c.slice(0,3)+' '+c.slice(3))+'</div><p class="cx-p">This code expired before it was approved.</p><div class="cx-row"><button class="btn cx-pri" data-cx="pair">Get a new code</button><button class="btn" data-cx="paircancel">Cancel</button></div></div>';
+    return '<div class="cx-pair"><div class="cx-pl">Your pairing code</div><div class="cx-pc" aria-label="Pairing code '+esc(c.split("").join(" "))+'">'+esc(c.slice(0,3))+'<b></b>'+esc(c.slice(3))+'</div><div class="cx-wait"><i></i>Waiting for approval\u2026</div><p class="cx-p">Send this code to your Grok Bot assistant. As soon as it\u2019s approved, this device connects by itself \u2014 you don\u2019t need to type a password or key.</p><div class="cx-row"><small>Expires in '+left+' min</small><span></span><button class="btn" data-cx="paircancel">Cancel</button></div></div>';}
+  return '<div class="cx-row"><button class="btn cx-pri cx-pbig" data-cx="pair"'+(CXU.pairBusy?' disabled':'')+'><span class="cx-apple"></span> '+(CXU.pairBusy?'Requesting a code\u2026':'Connect Apple Calendar')+'</button></div><p class="cx-p cx-sm">You\u2019ll get a 6-character code to send to your assistant for approval. Each device gets its own access, which can be removed at any time.</p>'+advBtn+adv}
+function cxPairStart(){var url=(CXC.url||CX_DEF_URL).replace(/\/+$/,"");CXU.pairBusy=true;CXC.err="";CXU.setMsg="";render();
+  fetch(url+"/api/pair?a=start",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:cxDevName()})})
+   .then(function(r){return r.json().catch(function(){return {}}).then(function(j){if(!r.ok)throw new Error(j.message||("Sync server error "+r.status));return j})},function(){throw new Error("Couldn\u2019t reach the sync server. Check your connection.")})
+   .then(function(j){CXC.url=url;CXC.pair={code:j.code,secret:j.secret,exp:j.expiresAt};cxSaveCfg();cxPairPoll()})
+   .catch(function(e){cxSetStatus(e.message)}).then(function(){CXU.pairBusy=false;render()})}
+function cxPairPoll(){clearTimeout(CXU.pt);if(!CXC.pair||cxOn())return;if(!cxPairLeft()){render();return}
+  CXU.pt=setTimeout(function(){var p=CXC.pair;if(!p)return;
+    fetch(CXC.url.replace(/\/+$/,"")+"/api/pair?a=poll",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({code:p.code,secret:p.secret})})
+     .then(function(r){return r.json().catch(function(){return {}}).then(function(j){
+       if(r.status===200&&j.status==="approved"&&j.token){CXC.token=j.token;CXC.device={id:j.deviceId,name:j.name||cxDevName()};CXC.pair=null;CXC.cals={};CXC.write={};CXC.calList=[];CXC.err="";cxSaveCfg();CXU.setMsg="Connected! Your calendars are below \u2014 change how each one shows any time.";render();
+         return cxLoadCals().then(function(){return cxPull(true)}).catch(function(e){cxSetStatus(e.message)}).then(render)}
+       if(r.status===410||r.status===404||r.status===403){CXC.pair=null;cxSaveCfg();cxSetStatus(r.status===403?"That device wasn\u2019t approved.":"The code expired. Tap Connect Apple Calendar to get a new one.");render();return}
+       var lf=cxPairLeft();if(CXU.set&&lf!==CXU.lastLeft){CXU.lastLeft=lf;render()}cxPairPoll()})},function(){cxPairPoll()})},3000)}
 function cxOverlays(){var el=document.getElementById("cxset");if(!el){el=document.createElement("div");el.id="cxset";document.body.appendChild(el)}el.innerHTML=cxSettings();if(document.getElementById("cxsr"))cxSearchBox()}
-function cxReadSettings(){var u=document.getElementById("cx-url"),t=document.getElementById("cx-tok");if(u)CXC.url=u.value.trim().replace(/\/+$/,"");if(t)CXC.token=t.value.trim();cxSaveCfg()}
+function cxReadSettings(){var u=document.getElementById("cx-url"),t=document.getElementById("cx-tok");if(u)CXC.url=u.value.trim().replace(/\/+$/,"");if(t&&t.value.trim()){CXC.token=t.value.trim();CXC.device=null}cxSaveCfg()}
 document.addEventListener("change",function(e){var t=e.target;if(!t||!t.getAttribute)return;
   if(t.hasAttribute("data-cxmap")){var id=t.getAttribute("data-cxmap");CXC.cals[id]=CXC.cals[id]||{};CXC.cals[id].cat=t.value;cxSaveCfg();cxPull(true)}
   else if(t.hasAttribute("data-cxwrite")){CXC.write[t.getAttribute("data-cxwrite")]=t.value;cxSaveCfg()}
@@ -3263,12 +3307,15 @@ function cxQaFix(){var el=document.getElementById("qa");if(el&&el.parentNode!==d
 document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("[data-cx]");if(!b||b.getAttribute("data-cx")==="qtype")return;var a=b.getAttribute("data-cx"),v=b.getAttribute("data-v");e.stopPropagation();e.preventDefault();
   if(a==="settings"){CXU.set=true;CXU.setMsg="";if(cxOn()&&!(CXC.calList||[]).length)cxLoadCals().then(render,function(err){cxSetStatus(err.message);render()})}
   else if(a==="setclose"){CXU.set=false}
-  else if(a==="showtok"){cxReadSettings();CXU.showTok=!CXU.showTok}
-  else if(a==="connect"){cxReadSettings();if(!cxOn()){CXC.err="Add the sync server address and access key first.";render();return}CXU.setMsg="Connecting…";render();
+  else if(a==="showtok"){var tk=document.getElementById("cx-tok");CXU.tkv=tk?tk.value:"";CXU.showTok=!CXU.showTok;render();var t2=document.getElementById("cx-tok");if(t2)t2.value=CXU.tkv||"";return}
+  else if(a==="pair"){cxPairStart();return}
+  else if(a==="paircancel"){clearTimeout(CXU.pt);CXC.pair=null;CXC.err="";cxSaveCfg()}
+  else if(a==="adv"){CXU.adv=!CXU.adv}
+  else if(a==="connect"){cxReadSettings();if(!cxOn()){CXC.err="";CXU.setMsg="Server saved. Tap Connect Apple Calendar to pair this device.";render();return}CXU.setMsg="Connecting…";render();
     cxApi("GET","/api/health").then(function(h){if(!h.appleConfigured)throw new Error("Connected to the sync server, but it doesn't have your Apple ID and app-specific password yet.");return cxLoadCals()})
      .then(function(){CXU.setMsg="Connected. Choose how each calendar should show, then you're done.";return cxPull(true)}).catch(function(err){CXU.setMsg="";cxSetStatus(err.message)}).then(render);return}
   else if(a==="sync"){cxPull();return}
-  else if(a==="disconnect"){if(!confirm("Disconnect Apple Calendar? Events from Apple will disappear from this app (nothing is deleted in Apple Calendar)."))return;CXC.token="";CXC.last=null;CXC.err="";CXC.calList=[];CXCACHE={events:[],at:null};LS.set("lm.cal.cache.v1",CXCACHE);cxSaveCfg()}
+  else if(a==="disconnect"){if(!confirm("Disconnect Apple Calendar? Events from Apple will disappear from this app (nothing is deleted in Apple Calendar)."))return;CXC.token="";CXC.device=null;CXC.pair=null;CXC.last=null;CXC.err="";CXC.calList=[];CXC.cals={};CXC.write={};CXCACHE={events:[],at:null};LS.set("lm.cal.cache.v1",CXCACHE);cxSaveCfg()}
   else if(a==="cover"){CXU.set=false;S.coverOpen=true}
   else if(a==="export"){var o={};for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(/^lm\./.test(k)&&k!=="lm.cal.cfg.v1")o[k]=localStorage.getItem(k)}var u=URL.createObjectURL(new Blob([JSON.stringify(o,null,1)],{type:"application/json"}));var l=document.createElement("a");l.href=u;l.download="life-hub-backup-"+TODAY+".json";document.body.appendChild(l);l.click();l.remove();CXU.setMsg="Backup downloaded."}
   else if(a==="reset"){if(!confirm("Reset everything on this device to the sample data? Your Apple Calendar connection is kept."))return;var ks=[];for(var j=0;j<localStorage.length;j++){var kk=localStorage.key(j);if(/^lm\./.test(kk)&&kk!=="lm.cal.cfg.v1"&&kk!=="lm.cal.cache.v1")ks.push(kk)}ks.forEach(function(k){localStorage.removeItem(k)});location.reload();return}
@@ -3289,8 +3336,8 @@ document.addEventListener("click",function(e){var b=e.target.closest&&e.target.c
 /* week header click in desktop week view opens that day */
 var _cxDayA=null;
 /* auto sync */
-(function(){var h=location.hash.match(/^#connect=([A-Za-z0-9_\-]{20,})/);if(h){CXC.token=h[1];CXC.url=CXC.url||CX_DEF_URL;cxSaveCfg();history.replaceState(null,"",location.pathname+location.search+"#today");S.view="today";CXU.set=true;setTimeout(function(){cxLoadCals().then(function(){return cxPull(true)}).catch(function(err){cxSetStatus(err.message)}).then(render)},50)}
-  else if(cxOn()&&CXC.auto)setTimeout(function(){cxPull(true)},400);
+(function(){if(/^#connect=/.test(location.hash))history.replaceState(null,"",location.pathname+location.search+"#today");
+  if(cxOn()&&CXC.auto)setTimeout(function(){cxPull(true)},400);
   setInterval(function(){if(cxOn()&&CXC.auto&&!document.hidden)cxPull(true)},6e5)})();
 /* Work dashboard: clicking a task opens its project with the task panel */
 document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest('[data-pm="open"]');if(!b||PMU.page)return;var t=pmT(b.getAttribute("data-v"));if(!t)return;e.stopPropagation();PMU.page=t.pid;PMU.pid=t.pid;PMU.task=t.id;LS.set("lm.pm.pid",t.pid);render();window.scrollTo(0,0)},true);
@@ -3301,6 +3348,7 @@ document.addEventListener("click",function(e){var b=e.target.closest&&e.target.c
 
 
 render();
+if(CXC.pair&&!cxOn())cxPairPoll();
 
 })();
 </script>
