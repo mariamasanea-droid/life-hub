@@ -1332,6 +1332,233 @@ body.glass.gdark .mockc .pn-tt small{color:#E3DAD2}
   .wk-exh{display:none}.wk-exe{grid-template-columns:minmax(0,1fr) 44px 64px 30px}.wk-exe input:nth-child(4){display:none}
   .wk-edr{grid-template-columns:1fr 1fr}.wk-edr input:first-child{grid-column:1/-1}
 }
+/* ===== WORK v71 ===== */
+.pm-rm{--rl:190px}
+.pm-rmh{margin-left:var(--rl)}
+.pm-rr{grid-template-columns:var(--rl) minmax(0,1fr)}
+.pm-main{margin:0}
+.pm-open{border:1px solid rgba(91,108,240,.35);background:rgba(91,108,240,.08);color:#4352C9;font-family:inherit;font-weight:700;font-size:12.5px;border-radius:99px;padding:7px 14px;cursor:pointer;white-space:nowrap}
+.pm-open:hover{background:#5B6CF0;color:#fff}
+.pm-ck{width:22px;height:22px;flex:none}
+.pm-r3{grid-template-columns:minmax(0,2fr) minmax(0,1fr);align-items:stretch}
+.pm-r3>.pn{display:flex;flex-direction:column}.pm-r3>.pn>.pn-in{flex:1;display:flex;flex-direction:column}
+.pm-sumg{display:flex;align-items:center;gap:14px}
+.pm-sumg .pm-ring{flex:none}.pm-sumg .pm-ring svg{width:84px;height:84px}
+.pm-sumg .pm-cnt{flex:1;grid-template-columns:1fr 1fr;margin:0}
+.pm-next{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0 10px}
+.pm-sum .pm-new{margin-top:auto;align-self:flex-start}
+.pm-tr{padding:14px 6px}
+.pm-tn{cursor:pointer}
+.pm-card .pm-ct,.pm-bc .pm-ct{display:flex;gap:8px;align-items:flex-start}
+.pm-card .pm-ct .lc,.pm-bc .pm-ct .lc{width:20px;height:20px;margin-top:1px}
+.pm-card.done b,.pm-bc.done .pm-ct b{text-decoration:line-through;color:#A2958A}
+[data-pm=open]{cursor:pointer}
+b[data-pm=open]:hover{color:#4352C9}
+.pm-subc,.pm-comc{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:700;color:var(--mut);margin-left:6px}
+.pm-rtags .pm-subc{margin-left:2px}
+/* project page */
+.pmp .shell{gap:0}
+.pm-pg{display:grid;grid-template-columns:220px minmax(0,1fr);gap:16px;align-items:start}
+.pm-side{position:sticky;top:12px;background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.8);border-radius:24px;padding:14px 10px;display:flex;flex-direction:column;gap:3px;box-shadow:0 10px 26px -18px rgba(50,35,20,.35)}
+.pm-sh{font-size:10.5px;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:.06em;padding:8px 8px 4px}
+.pm-space{display:flex;align-items:center;gap:8px;font-weight:700;font-size:13.5px;padding:6px 8px}
+.pm-sic{width:24px;height:24px;border-radius:8px;background:rgba(91,108,240,.12);display:inline-flex;align-items:center;justify-content:center;font-size:12px;flex:none}
+.pm-sl2{display:flex;align-items:center;gap:8px;border:none;background:transparent;border-radius:12px;padding:8px 10px 8px 16px;font-family:inherit;font-size:13px;font-weight:600;color:var(--ink);cursor:pointer;text-align:left;width:100%}
+.pm-sl2 i{width:8px;height:8px;border-radius:99px;flex:none}
+.pm-sl2 span{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pm-sl2 em{font-style:normal;font-size:11px;color:var(--mut);font-weight:700}
+.pm-sl2:hover{background:rgba(255,255,255,.7)}
+.pm-sl2.on{background:#fff;box-shadow:0 2px 8px -4px rgba(50,35,20,.3);font-weight:700}
+.pm-sl2.add{color:var(--mut);padding-left:16px}
+.pm-side .pm-form{flex-direction:column;align-items:stretch}
+.pm-sbox{background:rgba(255,255,255,.7);border-radius:16px;padding:10px 12px;margin:0 4px 6px;display:flex;flex-direction:column;gap:6px}
+.pm-sbr{display:flex;justify-content:space-between;font-size:12px;font-weight:600;color:var(--mut)}
+.pm-sbr b{color:var(--ink)}.pm-sbr b.od{color:#D0503D}
+.pm-sbar{height:6px;border-radius:99px;background:rgba(120,95,75,.1);overflow:hidden;margin:0}
+.pm-sbar i{display:block;height:100%;border-radius:99px}
+.pm-pmain{display:flex;flex-direction:column;gap:14px;min-width:0}
+.pm-ph{display:flex;flex-direction:column;gap:12px}
+.pm-crumb{display:flex;align-items:center;gap:12px;font-size:12.5px;font-weight:600;color:var(--mut)}
+.pm-pt{display:flex;align-items:center;gap:14px}
+.pm-pt .h1{font-size:34px}
+.pm-pdot{width:16px;height:16px;border-radius:6px;flex:none}
+.pm-pt .lime{margin-left:auto}
+.pm-tabs{display:flex;gap:4px;border-bottom:1px solid rgba(120,95,75,.14);overflow-x:auto}
+.pm-tab{display:inline-flex;align-items:center;gap:6px;border:none;background:transparent;font-family:inherit;font-size:13.5px;font-weight:700;color:var(--mut);padding:9px 14px;border-bottom:2.5px solid transparent;cursor:pointer;white-space:nowrap}
+.pm-tab span{font-size:13px;opacity:.8}
+.pm-tab.on{color:var(--ink);border-bottom-color:#5B6CF0}
+.pm-tool{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.pm-tool .sp{flex:1}
+.pm-srch{display:flex;align-items:center;gap:6px;height:34px;border:1px solid rgba(120,95,75,.18);border-radius:99px;background:#fff;padding:0 12px;color:var(--mut)}
+.pm-srch input{border:none;outline:none;background:transparent;font-family:inherit;font-size:13px;font-weight:600;width:170px;color:var(--ink)}
+.pm-tsel{display:flex;align-items:center;gap:6px;height:34px;border:1px solid rgba(120,95,75,.18);border-radius:99px;background:#fff;padding:0 4px 0 12px;font-size:12px;font-weight:700;color:var(--mut)}
+.pm-tsel select{border:none;background:transparent;font-family:inherit;font-size:12.5px;font-weight:700;color:var(--ink);height:30px;outline:none}
+.pm-tg{height:34px;border:1px solid rgba(120,95,75,.18);border-radius:99px;background:#fff;padding:0 14px;font-family:inherit;font-size:12.5px;font-weight:700;color:var(--mut);cursor:pointer}
+.pm-tg.on{background:#5B6CF0;border-color:#5B6CF0;color:#fff}
+/* list table */
+.pm-lt{overflow-x:auto}
+.pm-lth,.pm-lr,.pm-lsub{display:grid;grid-template-columns:26px minmax(220px,1fr) 70px 80px 74px 74px 118px 86px minmax(120px,160px);gap:10px;align-items:center;min-width:960px}
+.pm-lth{font-size:10.5px;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:.05em;padding:4px 6px 8px;border-bottom:1px solid rgba(120,95,75,.12)}
+.pm-lg{margin-top:10px}
+.pm-lgh{display:flex;align-items:center;gap:8px;padding:6px 2px}
+.pm-chev{width:22px;height:22px;border:none;background:transparent;cursor:pointer;font-size:13px;color:var(--mut);transition:transform .15s;padding:0}
+.pm-chev.cl{transform:rotate(-90deg)}
+.pm-gp{display:inline-flex;align-items:center;height:22px;border-radius:7px;padding:0 10px;font-size:11px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}
+.pm-nt{border:none;background:transparent;font-family:inherit;font-size:12px;font-weight:700;color:var(--mut);cursor:pointer;padding:3px 8px;border-radius:8px}
+.pm-nt:hover{background:rgba(120,95,75,.08);color:var(--ink)}
+.pm-lr{padding:7px 6px;border-bottom:1px solid rgba(120,95,75,.08);font-size:13px}
+.pm-lr:hover{background:rgba(255,255,255,.6)}
+.pm-ln{display:flex;align-items:center;gap:4px;min-width:0}
+.pm-ln b{font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pm-lr.done .pm-ln b{text-decoration:line-through;color:#A2958A}
+.pm-att{font-size:11px;margin-left:6px;opacity:.7}
+.pm-av{width:24px;height:24px;border-radius:99px;background:linear-gradient(135deg,#F7B9A6,#C9A3E6);color:#fff;font-size:11px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;flex:none}
+.pm-cm .pm-comc{margin:0}.mut{color:var(--mut)}
+.pm-dt{font-size:12px;font-weight:600;color:#5A5048}.pm-dt.od{color:#D0503D;font-weight:700}
+.pm-scell{display:block;position:relative;background:var(--c);border-radius:8px;height:28px}
+.pm-scell select{appearance:none;-webkit-appearance:none;width:100%;height:28px;border:none;background:transparent;color:#fff;font-family:inherit;font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;padding:0 10px;cursor:pointer;outline:none}
+.pm-scell select option{color:#2A2420;text-transform:none}
+.pm-flag{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:700;color:var(--c);white-space:nowrap}
+.pm-lr .pm-rtags{margin:0;flex-wrap:nowrap;overflow:hidden}
+.pm-lsub{padding:4px 6px;font-size:12.5px;font-weight:600}
+.pm-lsub>span:nth-child(2){display:flex;align-items:center;gap:8px;padding-left:22px}
+.pm-lsub .lc,.pm-sr .lc{width:18px;height:18px;font-size:10px}
+.sd{text-decoration:line-through;color:#A2958A}
+.pm-addrow input{grid-column:span 5;height:32px;border:1px solid rgba(91,108,240,.4);border-radius:10px;padding:0 10px;font-family:inherit;font-size:13px;font-weight:600;background:#fff}
+.pm-addrow .wk-btn{justify-self:start}
+/* board */
+.pm-bd{display:grid;grid-template-columns:repeat(5,minmax(220px,1fr));gap:12px;overflow-x:auto;padding-bottom:6px;align-items:start}
+.pm-bcol{background:rgba(120,95,75,.05);border-radius:18px;padding:10px;display:flex;flex-direction:column;gap:10px;min-height:320px}
+.pm-bch{display:flex;align-items:center;gap:8px}
+.pm-bc{background:#fff;border-radius:16px;padding:10px 12px 10px;display:flex;flex-direction:column;gap:6px;box-shadow:0 1px 2px rgba(50,35,20,.06),0 8px 18px -12px rgba(50,35,20,.35);cursor:grab}
+.pm-bc input{height:32px;border:1px solid rgba(91,108,240,.4);border-radius:10px;padding:0 10px;font-family:inherit;font-size:13px}
+.pm-cov{height:82px;border-radius:12px;margin:-2px -4px 2px;display:flex;align-items:center;justify-content:center;font-size:30px}
+.pm-cov.big{height:120px;margin:0 0 12px;font-size:44px}
+.pm-bcrumb{font-size:10.5px;font-weight:600;color:var(--mut)}
+.pm-bc .pm-ct b{font-size:13.5px;line-height:1.3}
+.pm-meta{display:flex;gap:4px}.pm-meta .pm-subc{margin-left:0}
+.pm-bc .pm-cf{margin-top:0}
+.pm-asub{align-self:flex-start;border:none;background:transparent;font-family:inherit;font-size:11.5px;font-weight:700;color:var(--mut);cursor:pointer;padding:2px 0}
+.pm-asub:hover{color:#4352C9}
+/* calendar */
+.pm-calh{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.pm-calh b{font-size:17px;min-width:140px;text-align:center}
+.pm-lgd{margin-left:auto;display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:var(--mut);flex-wrap:wrap}
+.pm-lgd i{width:9px;height:9px;border-radius:3px;margin-left:8px}
+.pm-calg{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border-top:1px solid rgba(120,95,75,.12);border-left:1px solid rgba(120,95,75,.12);border-radius:14px;overflow:hidden}
+.pm-cw{font-size:10.5px;font-weight:700;color:var(--mut);text-transform:uppercase;padding:8px;border-right:1px solid rgba(120,95,75,.12);border-bottom:1px solid rgba(120,95,75,.12);background:rgba(255,255,255,.5)}
+.pm-cd{min-height:108px;padding:6px;border-right:1px solid rgba(120,95,75,.12);border-bottom:1px solid rgba(120,95,75,.12);display:flex;flex-direction:column;gap:3px;min-width:0;background:rgba(255,255,255,.35)}
+.pm-cd.out{background:rgba(120,95,75,.035)}.pm-cd.out .pm-cn{color:#C4B8AC}
+.pm-cn{font-size:12px;font-weight:700;width:24px;height:24px;display:flex;align-items:center;justify-content:center;border-radius:99px}
+.pm-cd.td .pm-cn{background:#EF6F5E;color:#fff}
+.pm-cc{display:block;font-size:11px;font-weight:700;background:color-mix(in srgb,var(--c) 14%,#fff);border-left:3px solid var(--c);border-radius:6px;padding:3px 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pm-cc.done{text-decoration:line-through;opacity:.6}
+.pm-cl{font-size:11px;font-weight:700;color:#fff;background:#E08A4F;border-radius:6px;padding:3px 6px}
+.pm-cms{font-size:10.5px;font-weight:700;color:#5B6CF0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pm-cmore{font-size:10.5px;font-weight:700;color:var(--mut)}
+/* timeline */
+.pm-tab-timeline .pm-rm{--rl:250px;overflow-x:auto}
+.pm-tab-timeline .pm-rmb,.pm-tab-timeline .pm-rmh{min-width:760px}
+.pm-rsec{font-size:10.5px;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:.06em;padding:12px 0 4px}
+.pm-rr.dn .pm-rn b{text-decoration:line-through;color:#A2958A}
+.pm-rn b[data-pm]{cursor:pointer}
+.pm-gb.tk{background:var(--c);box-shadow:none;top:17px;height:16px;opacity:.9}
+.pm-gb.tk.late{box-shadow:0 0 0 2px #D0503D}
+.pm-rr.dn .pm-gb.tk{opacity:.35}
+/* notes */
+.pm-notes{display:flex;flex-direction:column;gap:10px}
+.pm-ntb{display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding-bottom:10px;border-bottom:1px solid rgba(120,95,75,.12)}
+.pm-ntb button{height:32px;min-width:34px;border:1px solid rgba(120,95,75,.18);background:#fff;border-radius:10px;font-family:inherit;font-size:13px;font-weight:600;color:var(--ink);cursor:pointer;padding:0 10px}
+.pm-ntb button:hover{background:rgba(91,108,240,.08)}
+.pm-nsv{margin-left:auto;font-size:11.5px;font-weight:700;color:#3FA779}
+.pm-ned{min-height:420px;outline:none;font-size:14.5px;line-height:1.65;color:#2A2420;padding:6px 4px}
+.pm-ned h3{font-size:17px;margin:14px 0 4px}
+.pm-ned ul,.pm-ned ol{margin:4px 0;padding-left:22px}
+.pm-ned p{margin:4px 0}
+.pm-ned:empty::before{content:attr(data-ph);color:var(--mut)}
+/* drawer */
+.pm-ov{position:fixed;inset:0;background:rgba(40,30,25,.25);backdrop-filter:blur(2px);z-index:80}
+.pm-dr{position:fixed;top:12px;right:12px;bottom:12px;width:min(460px,calc(100vw - 24px));background:rgba(255,255,255,.96);border-radius:26px;box-shadow:0 30px 60px -20px rgba(40,30,25,.45);z-index:81;overflow-y:auto;padding:18px 20px;display:flex;flex-direction:column;gap:14px;box-sizing:border-box}
+.pm-drh{display:flex;align-items:center;justify-content:space-between}
+.pm-drt{display:flex;align-items:center;gap:10px}
+.pm-dti{flex:1;min-width:0;border:none;font-family:inherit;font-size:20px;font-weight:700;color:var(--ink);background:transparent;outline:none;border-bottom:1px dashed transparent}
+.pm-dti:focus{border-bottom-color:rgba(120,95,75,.3)}
+.pm-drg{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pm-drg label,.pm-drl{display:flex;flex-direction:column;gap:4px;font-size:11px;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:.04em}
+.pm-drg input,.pm-drg select,.pm-drl textarea,.pm-sadd input{height:34px;border:1px solid rgba(120,95,75,.2);border-radius:10px;background:#fff;font-family:inherit;font-size:13px;font-weight:600;color:var(--ink);padding:0 9px;text-transform:none;letter-spacing:0;box-sizing:border-box;min-width:0}
+.pm-drl textarea{height:auto;padding:8px 10px;resize:vertical}
+.pm-drg .pm-scell{height:34px}.pm-drg .pm-scell select{height:34px;color:#fff;border:none;background:transparent}
+.pm-drs{display:flex;flex-direction:column;gap:6px;border-top:1px solid rgba(120,95,75,.12);padding-top:12px}
+.pm-drs>b{font-size:14px}
+.pm-sr{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600}
+.pm-sr span{flex:1}
+.pm-sx{border:none;background:transparent;color:var(--mut);cursor:pointer;font-size:16px}
+.pm-sadd{display:flex;gap:6px}.pm-sadd input{flex:1}
+.pm-cmt{display:flex;gap:8px}
+.pm-cmt small{font-size:11px;color:var(--mut);font-weight:600}
+.pm-cmt p{margin:2px 0 0;font-size:13px;background:rgba(120,95,75,.06);border-radius:4px 12px 12px 12px;padding:7px 10px}
+.pm-drf{display:flex;justify-content:space-between;margin-top:auto;padding-top:6px}
+@media (max-width:999px){
+  .pm-r3{grid-template-columns:1fr}
+  .pm-pg{grid-template-columns:1fr}
+  .pm-side{position:static;flex-direction:row;flex-wrap:nowrap;overflow-x:auto;padding:8px;gap:6px;border-radius:20px}
+  .pm-side .pm-sh,.pm-side .pm-space,.pm-side .pm-sbox{display:none}
+  .pm-sl2{width:auto;flex:none;padding:8px 12px;background:rgba(255,255,255,.5)}
+  .pm-pt .h1{font-size:28px}
+  .pm-srch input{width:120px}
+  .pm-tool .sp{display:none}
+  .pm-lt{margin:0 -4px}
+  .pm-cd{min-height:70px;padding:3px}.pm-cc{font-size:9.5px;padding:2px 3px}.pm-cl{font-size:9px;padding:2px 3px}.pm-cms{display:none}
+  .pm-lgd{display:none}
+  .pm-drg{grid-template-columns:1fr}
+}
+.pm .wk-btn{flex:none!important;width:auto!important}
+.pm-sl2 .pm-sic{flex:none}
+.pm-ov{z-index:300}.pm-dr{z-index:301}
+.pm-pdot{align-self:flex-start;margin-top:12px}
+.pm-bd{grid-template-columns:repeat(5,minmax(165px,1fr))}
+.pm-lth,.pm-lr,.pm-lsub{grid-template-columns:26px minmax(190px,1fr) 58px 64px 58px 58px 108px 78px minmax(96px,130px);gap:9px;min-width:840px}
+@media (max-width:999px){.pm-bd{grid-template-columns:repeat(5,minmax(230px,1fr))}.pm-srch{flex:1 1 100%}.pm-srch input{width:100%}.pm-tsel,.pm-tg{height:32px}}
+
+/* v72 compact preview */
+.pm-prow{grid-template-columns:24px minmax(0,1fr) auto auto 92px;padding:8px 4px}
+.pm-prow .pm-rtags{margin-top:3px}
+.pm-prev .pm-row:first-child{border-top:none}
+.pm-pf{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px;padding-top:10px;border-top:1px solid rgba(120,95,75,.12);font-size:12px;font-weight:600;color:var(--mut)}
+.pm-dn{color:#3FA779}
+.pm-more{border:none;background:rgba(91,108,240,.1);color:#4352C9;font-family:inherit;font-weight:700;font-size:12.5px;border-radius:99px;padding:7px 14px;cursor:pointer;white-space:nowrap}
+.pm-more:hover{background:#5B6CF0;color:#fff}
+.pm-bprev .pm-col{min-height:0;gap:6px}
+.pm-bprev .pm-card{padding:8px 10px}
+.pm-bprev .pm-card b{font-size:12.5px}
+.pm-cmore2{border:1px dashed rgba(120,95,75,.3);background:transparent;border-radius:12px;padding:6px;font-family:inherit;font-size:11.5px;font-weight:700;color:var(--mut);cursor:pointer}
+.pm-cmore2:hover{background:rgba(255,255,255,.7);color:var(--ink)}
+.pm-rprev .pm-rr{min-height:40px}.pm-rprev .pm-rt2{height:40px}.pm-rprev .pm-gb{top:11px;height:18px}.pm-rprev .pm-gb.ms{top:8px}
+.pm-rprev .pm-rmf{margin-top:22px}
+@media (max-width:999px){.pm-prow{grid-template-columns:24px minmax(0,1fr) auto}.pm-prow .pm-st{display:none}.pm-prow .pm-due{grid-column:2}.pm-bprev{grid-template-columns:repeat(5,minmax(180px,1fr))}}
+
+/* v73: stacking fixes, no bottom dock, + in side dock */
+body.glass .gside{z-index:40}
+body.glass .gtop{position:relative;z-index:35}
+body.glass .gpanel{z-index:1}
+.gsb .tip{z-index:50;box-shadow:0 6px 16px -6px rgba(0,0,0,.4)}
+.gcov .coverpick{z-index:60}
+.gdock{display:none!important}
+.gsplus{background:#fff;color:#2A2420;font-size:24px;font-weight:600;line-height:1;box-shadow:0 4px 12px -4px rgba(50,35,20,.4)}
+.gsplus:hover{background:#fff;transform:scale(1.05)}
+body.glass.gdark .gsplus{color:#2A2420}
+@media (max-width:999px){
+  body.glass .gside{z-index:40}
+  .gsep2{display:none}
+  .gsplus{position:sticky;right:0;margin-left:auto}
+}
+
+body.glass .scrim{z-index:250;background:rgba(40,30,25,.28);backdrop-filter:blur(3px)}
+body.glass .sheet{background:rgba(255,255,255,.97);color:#2A2420;box-shadow:0 30px 60px -20px rgba(40,30,25,.5)}
+body.glass.gdark .sheet{background:rgba(42,36,32,.97);color:#FBF7F3}
+
+.wk-actl{color:#3FA779}
+.wk-viewing{background:#FFF1E3;border:1px solid #F7C9A0;border-radius:14px;padding:10px 12px;font-size:12.5px;font-weight:600;color:#6A3A12;margin-bottom:12px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 </style>
 </head>
 <body>
@@ -2091,13 +2318,13 @@ var GIC={home:gsvg('<path d="M3.5 10.6 12 3.6l8.5 7v8.9a1.5 1.5 0 0 1-1.5 1.5h-4
 function glWrap(inner){
   var v=S.view,nav=[["home","Home"],["today","Today"],["calendar","Calendar"]];
   var side='<aside class="gside gglass">'+nav.map(function(n){return '<button class="gsb'+(v===n[0]?' on':'')+'" data-a="go" data-v="'+n[0]+'" aria-label="'+n[1]+'">'+GIC[n[0]]+'<span class="tip">'+n[1]+'</span></button>'}).join("")+'<span class="gsep"></span>'+
-    CATS.map(function(k){return '<button class="gsb" data-a="go" data-v="'+k.id+'" aria-label="'+k.label+'">'+icon(k.id,22)+'<span class="tip">'+k.label+'</span></button>'}).join("")+'</aside>';
+    CATS.map(function(k){return '<button class="gsb'+(v===k.id?' on':'')+'" data-a="go" data-v="'+k.id+'" aria-label="'+k.label+'">'+icon(k.id,22)+'<span class="tip">'+k.label+'</span></button>'}).join("")+'<span class="gsep gsep2"></span><button class="gsb gsplus" data-a="qa" data-v="task" aria-label="Quick add">+<span class="tip">Quick add</span></button></aside>';
   var top='<div class="gtop gglass"><span class="gav">M</span><div class="gwel">Welcome, Mariama<small>'+realDay(1)+'</small></div>'+
     '<label class="gsearch"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg><input placeholder="Search tasks, events, notes…" aria-label="Search"></label>'+
     '<span class="gcov"><button class="coverbtn gcb" data-a="coveropen">'+(S.coverOpen?'Done':'<span class="cl">Change </span>Cover')+'</button>'+(S.coverOpen?'<div class="coverpick" data-a="stop2"><div class="label">Presets</div><div class="presets">'+PRESETS.map(function(p){return '<button class="preset'+(COVER.type==="preset"&&COVER.id===p.id?' on':'')+'" data-a="preset" data-v="'+p.id+'" title="'+p.name+'" style="background:'+p.bg.replace(/"/g,"&quot;")+'"></button>'}).join("")+'</div><label class="upl">＋ Upload a photo<input type="file" accept="image/*" id="coverfile"></label><div class="tiny">Your photo becomes the blurred background. It stays on this device.</div></div>':'')+'</span>'+
     '<div class="gmode"><button class="'+(GDARK?'':'on')+'" data-gmode="0">☀<span class="ml"> Light</span></button><button class="'+(GDARK?'on':'')+'" data-gmode="1">☾<span class="ml"> Dark</span></button></div></div>';
   var dock='<nav class="gdock gglass"><div class="gtabs">'+CATS.map(function(k){return '<button class="gdt" data-a="go" data-v="'+k.id+'"><i style="background:'+k.color+'"></i>'+k.label+'</button>'}).join("")+'</div><button class="gplus" data-a="qa" data-v="task" aria-label="Quick add">+</button></nav>';
-  return '<div class="gl">'+side+'<div class="gmain">'+top+'<div class="gpanel gglass">'+inner+'</div></div></div>'+dock}
+  return '<div class="gl">'+side+'<div class="gmain">'+top+'<div class="gpanel gglass">'+inner+'</div></div></div>'}
 vHomeDesk=function(){return glWrap(_vHomeDesk())};
 vHome=function(){return glWrap(_vHome())};
 var _vToday=vToday;vToday=function(){return glWrap(_vToday())};
@@ -2108,136 +2335,249 @@ document.addEventListener("click",function(e){var b=e.target.closest&&e.target.c
 
 
 /* ===== Work + Workouts pages (v68/v69) ===== */
-/* ===== WORK: project manager mockup (glass) ===== */
+/* ===== WORK: project manager v71 (dashboard + full project page) ===== */
 var PM_ST=[["todo","To do","#9C8673"],["progress","In progress","#5B6CF0"],["ready","Ready","#3A9BD5"],["review","Review","#A97CD6"],["done","Done","#3FA779"]];
 var PM_STC={};PM_ST.forEach(function(s){PM_STC[s[0]]=s});
-var PM_PR={High:"#EF6F5E",Medium:"#E3A33B",Low:"#3FA779"};
+var PM_PR={Urgent:"#D0503D",High:"#EF6F5E",Medium:"#E3A33B",Low:"#8FA0B5"},PM_PRO=["Urgent","High","Medium","Low"];
 var PM_TAGC=["#5B6CF0","#EF6F5E","#A97CD6","#E3A33B","#3A9BD5","#3FA779","#D9739B","#7A8C3A"];
-function pmSeed(){return {sample:true,projects:[
+var PM_COV={sand:["#F3E3CF","#E8C9A6","📸"],coral:["#FFD9CF","#F4A493","🖼️"],lilac:["#E9DDF6","#C6A9E6","✒️"],sky:["#D8ECF8","#9CCBEA","💻"],sage:["#DDEFE3","#A6D3B5","📦"],peach:["#FFE6CC","#F7B97E","📣"]};
+function _t(id,pid,title,status,pri,start,due,tags,o){var x={id:id,pid:pid,title:title,desc:"",status:status,priority:pri,start:start,due:due,tags:tags,subs:[],comments:[],cover:""};for(var k in (o||{}))x[k]=o[k];return x}
+function _s(a){return a.map(function(x){return {t:x.replace(/^\+/,""),done:x.charAt(0)==="+"}})}
+function _c(a){return a.map(function(x){return {t:x,at:"2026-11-20"}})}
+function pmSeed(){return {v:2,sample:true,projects:[
   {id:"p1",name:"SVELT launch",color:"#5B6CF0",desc:"Activewear brand launch",launch:"2026-12-12",sample:true},
   {id:"p2",name:"Pickleball",color:"#3FA779",desc:"Pickleball club & paddle line",launch:"2027-01-23",sample:true}],
  tags:{Branding:"#A97CD6",Product:"#EF6F5E",Marketing:"#E3A33B",Website:"#3A9BD5",Ops:"#7A8C3A",Content:"#D9739B",Community:"#3FA779",Finance:"#5B6CF0"},
  tasks:[
-  {id:"t1",pid:"p1",title:"Finalise logo & brand book",desc:"Colours, type, usage rules",status:"done",priority:"High",due:"2026-11-06",tags:["Branding"]},
-  {id:"t2",pid:"p1",title:"Approve product photos",desc:"Pick 24 hero shots for site",status:"review",priority:"High",due:"2026-11-16",tags:["Content","Website"]},
-  {id:"t3",pid:"p1",title:"Supplier call: fabric samples",desc:"Recycled nylon swatches",status:"progress",priority:"High",due:"2026-11-16",tags:["Product"]},
-  {id:"t4",pid:"p1",title:"Second sample round",desc:"Leggings + sports bra fit fixes",status:"progress",priority:"Medium",due:"2026-11-20",tags:["Product"]},
-  {id:"t5",pid:"p1",title:"Shopify theme setup",desc:"Home, collection, product pages",status:"ready",priority:"Medium",due:"2026-11-24",tags:["Website"]},
-  {id:"t6",pid:"p1",title:"Draft launch newsletter",desc:"Story + early-access code",status:"todo",priority:"High",due:"2026-11-19",tags:["Marketing","Content"]},
-  {id:"t7",pid:"p1",title:"Influencer seeding list",desc:"20 KL creators",status:"todo",priority:"Medium",due:"2026-11-27",tags:["Marketing","Community"]},
-  {id:"t8",pid:"p1",title:"Packaging order",desc:"Mailers + tissue, 500 units",status:"ready",priority:"Low",due:"2026-11-30",tags:["Ops"]},
-  {id:"t9",pid:"p1",title:"Pricing & margins sheet",desc:"",status:"review",priority:"Medium",due:"2026-11-12",tags:["Finance"]},
-  {id:"t10",pid:"p2",title:"Book court time for meet-ups",desc:"Saturdays, 8–10 AM",status:"progress",priority:"Medium",due:"2026-11-21",tags:["Community"]},
-  {id:"t11",pid:"p2",title:"Paddle supplier quotes",desc:"3 factories",status:"todo",priority:"High",due:"2026-11-25",tags:["Product"]},
-  {id:"t12",pid:"p2",title:"Club name & logo",desc:"",status:"review",priority:"Medium",due:"2026-11-18",tags:["Branding"]},
-  {id:"t13",pid:"p2",title:"Instagram page",desc:"Bio, 9 starter posts",status:"ready",priority:"Low",due:"2026-12-01",tags:["Marketing","Content"]}],
+  _t("t1","p1","Finalise logo & brand book","done","High","2026-10-19","2026-11-06",["Branding"],{desc:"Colours, type, usage rules",subs:_s(["+Logo lockups","+Colour palette","+Type scale"]),comments:_c(["Approved by Aïsha","Exported to Drive"]),cover:"lilac"}),
+  _t("t2","p1","Pricing & margins sheet","done","Medium","2026-11-02","2026-11-13",["Finance"],{desc:"Landed cost per SKU, retail + wholesale"}),
+  _t("t3","p1","Lookbook photoshoot","done","High","2026-11-09","2026-11-16",["Content"],{desc:"Studio day + outdoor run shots",subs:_s(["+Book photographer","+Shot list","+Models & styling"]),comments:_c(["Selects are in the shared folder"]),cover:"sand"}),
+  _t("t4","p1","Approve product photos","review","High","2026-11-17","2026-11-24",["Content","Website"],{desc:"Pick 24 hero shots for the site",subs:_s(["+First pass","+Colour correction","Final 24 picks","Alt text"]),comments:_c(["Need 2 more legging close-ups","Retouch batch 2 arrives Tue","Looks great so far"]),cover:"coral"}),
+  _t("t5","p1","Second sample round (fit fixes)","progress","Urgent","2026-11-10","2026-11-27",["Product"],{desc:"Leggings waistband + sports bra straps",subs:_s(["+Send fit notes","Receive samples","Wear test"]),comments:_c(["Factory confirmed ship date 25 Nov"])}),
+  _t("t6","p1","Supplier call: fabric quote","progress","High","2026-11-18","2026-11-21",["Product","Finance"],{desc:"Recycled nylon, 1,000 m minimum"}),
+  _t("t7","p1","Shopify theme setup","progress","Medium","2026-11-16","2026-11-30",["Website"],{desc:"Home, collection and product templates",subs:_s(["+Theme install","+Brand colours","Collection page","Product page","Checkout settings"]),comments:_c(["Using Dawn as base"]),cover:"sky"}),
+  _t("t8","p1","Size guide & care labels","ready","Medium","2026-11-18","2026-11-26",["Product"],{desc:"XS–XL chart, wash instructions"}),
+  _t("t9","p1","Packaging order","ready","Low","2026-11-20","2026-11-28",["Ops"],{desc:"Mailers + tissue, 500 units",subs:_s(["+Quote","Artwork upload"]),cover:"sage"}),
+  _t("t10","p1","Early-access waitlist page","ready","High","2026-11-23","2026-11-29",["Website","Marketing"],{desc:"Email capture + 10% code"}),
+  _t("t11","p1","Influencer seeding list","review","Medium","2026-11-19","2026-11-25",["Marketing","Community"],{desc:"20 KL creators, sizes + addresses",comments:_c(["Added 4 run-club leads"])}),
+  _t("t12","p1","Product page copy","todo","Medium","2026-11-25","2026-12-02",["Website","Content"],{desc:"6 SKUs, fit notes, fabric story",subs:_s(["Leggings","Sports bra","Shorts","Tee","Jacket","Socks"])}),
+  _t("t13","p1","Launch newsletter draft","todo","High","2026-11-26","2026-12-03",["Marketing","Content"],{desc:"Story + early-access code"}),
+  _t("t14","p1","Pre-launch teaser campaign","todo","High","2026-12-01","2026-12-10",["Marketing"],{desc:"3 reels + countdown stories",subs:_s(["Storyboard","Shoot reels","Schedule posts"]),cover:"peach"}),
+  _t("t15","p1","Pop-up launch event venue","todo","Medium","2026-11-30","2026-12-08",["Community","Ops"],{desc:"Bangsar, ~60 guests"}),
+  _t("t16","p1","Launch day checklist","todo","Low","2026-12-09","2026-12-12",["Ops"],{desc:"Go-live, stock, support inbox"}),
+  _t("t20","p2","Club name & logo","review","Medium","2026-11-16","2026-11-26",["Branding"],{}),
+  _t("t21","p2","Book court time for meet-ups","progress","Medium","2026-11-20","2026-11-28",["Community"],{desc:"Saturdays, 8–10 AM"}),
+  _t("t22","p2","Paddle supplier quotes","todo","High","2026-11-25","2026-12-05",["Product"],{desc:"3 factories"}),
+  _t("t23","p2","Instagram page","ready","Low","2026-11-24","2026-12-01",["Marketing","Content"],{desc:"Bio, 9 starter posts"}),
+  _t("t24","p2","Tournament rules & sign-up form","todo","Medium","2026-12-07","2026-12-20",["Community"],{})],
  miles:[
   {id:"m1",pid:"p1",title:"Branding",start:"2026-10-19",end:"2026-11-06",done:true},
-  {id:"m2",pid:"p1",title:"Samples",start:"2026-10-26",end:"2026-11-22",done:false},
-  {id:"m3",pid:"p1",title:"Photoshoot",start:"2026-11-02",end:"2026-11-16",done:false},
-  {id:"m4",pid:"p1",title:"Website",start:"2026-11-16",end:"2026-11-30",done:false},
-  {id:"m5",pid:"p1",title:"Pre-launch",start:"2026-11-23",end:"2026-12-10",done:false},
+  {id:"m2",pid:"p1",title:"Samples",start:"2026-10-26",end:"2026-11-27",done:false},
+  {id:"m3",pid:"p1",title:"Photoshoot",start:"2026-11-09",end:"2026-11-16",done:true},
+  {id:"m4",pid:"p1",title:"Website",start:"2026-11-16",end:"2026-12-02",done:false},
+  {id:"m5",pid:"p1",title:"Pre-launch",start:"2026-11-30",end:"2026-12-11",done:false},
   {id:"m6",pid:"p1",title:"Launch",start:"2026-12-12",end:"2026-12-12",done:false},
-  {id:"m7",pid:"p2",title:"Club setup",start:"2026-11-02",end:"2026-11-28",done:false},
-  {id:"m8",pid:"p2",title:"Paddle sourcing",start:"2026-11-16",end:"2026-12-20",done:false},
+  {id:"m7",pid:"p2",title:"Club setup",start:"2026-11-16",end:"2026-12-05",done:false},
+  {id:"m8",pid:"p2",title:"Paddle sourcing",start:"2026-11-25",end:"2026-12-31",done:false},
   {id:"m9",pid:"p2",title:"First tournament",start:"2027-01-23",end:"2027-01-23",done:false}]}}
-var PM=LS.get("lm.pm.v1",null)||pmSeed();function pmSave(){LS.set("lm.pm.v1",PM)}
-var PMU={pid:LS.get("lm.pm.pid",null)||"p1",view:LS.get("lm.pm.view","list"),tag:null,form:null,sel:null};
+var PM=LS.get("lm.pm.v2",null);
+if(!PM){PM=pmSeed();var _old=LS.get("lm.pm.v1",null);if(_old&&_old.projects){_old.projects.forEach(function(p){if(!p.sample){PM.projects.push(p);(_old.tasks||[]).forEach(function(t){if(t.pid===p.id){t.start=t.start||t.due;t.subs=t.subs||[];t.comments=t.comments||[];t.cover=t.cover||"";PM.tasks.push(t)}});(_old.miles||[]).forEach(function(m){if(m.pid===p.id)PM.miles.push(m)})}});for(var _g in (_old.tags||{}))if(!PM.tags[_g])PM.tags[_g]=_old.tags[_g]}}
+function pmSave(){LS.set("lm.pm.v2",PM)}
+var PMN=LS.get("lm.pm.notes.v1",{p1:"<h3>Launch plan</h3><p>Soft launch to the waitlist on <b>Thu 10 Dec</b>, public launch <b>Sat 12 Dec</b> with the Bangsar pop-up.</p><h3>Key messages</h3><ul><li>Made from recycled nylon, squat-proof</li><li>Designed in KL for heat and humidity</li><li>Sizes XS–XL, inclusive fit notes</li></ul><h3>Open questions</h3><ul><li>Free shipping threshold: RM 150 or RM 200?</li><li>Do we offer a launch bundle?</li></ul><p><i>Supplier contact: Mei Ling (fabric), WhatsApp group “SVELT samples”.</i></p>",p2:"<h3>Club ideas</h3><ul><li>Saturday social games, beginners welcome</li><li>Paddle line: 2 models (control / power)</li></ul>"});
+var PMU={pid:LS.get("lm.pm.pid",null)||"p1",view:LS.get("lm.pm.view","list"),tag:null,form:null,page:null,tab:LS.get("lm.pm.tab","list"),q:"",ftag:"",fpri:"",group:"status",subs:false,col:{},task:null,calM:0,addIn:null,qf:false};
 if(!PM.projects.some(function(p){return p.id===PMU.pid}))PMU.pid=PM.projects[0]&&PM.projects[0].id;
+var PM_M3=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],PM_MF=["January","February","March","April","May","June","July","August","September","October","November","December"];
 function pmToday(){return iso(new Date())}
-function pmFd(s){if(!s)return "No date";var d=new Date(s+"T12:00:00");return ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"][d.getDay()]+" "+d.getDate()+" "+["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][d.getMonth()]}
+function pmFd(s){if(!s)return "No date";var d=new Date(s+"T12:00:00");return ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"][d.getDay()]+" "+d.getDate()+" "+PM_M3[d.getMonth()]}
+function pmSd(s){if(!s)return "–";var d=new Date(s+"T12:00:00");return d.getDate()+" "+PM_M3[d.getMonth()]}
 function pmDays(s){return Math.round((new Date(s+"T12:00:00")-new Date(pmToday()+"T12:00:00"))/864e5)}
+function pmP(id){return PM.projects.filter(function(p){return p.id===id})[0]}
+function pmT(id){return PM.tasks.filter(function(t){return t.id===id})[0]}
 function pmProg(pid){var t=PM.tasks.filter(function(x){return x.pid===pid});return t.length?Math.round(t.filter(function(x){return x.status==="done"}).length/t.length*100):0}
-function pmTag(t,sm){var c=PM.tags[t]||"#9C8673";return '<button class="pm-tag'+(PMU.tag===t?' on':'')+'" data-pm="tagf" data-v="'+esc(t)+'" style="--c:'+c+'">'+esc(t)+'</button>'}
+function pmOd(t){return t.status!=="done"&&t.due&&t.due<pmToday()}
+function pmTag(t,act){var c=PM.tags[t]||"#9C8673";return '<button class="pm-tag'+(PMU.tag===t&&!act?' on':'')+'" data-pm="'+(act||"tagf")+'" data-v="'+esc(t)+'" style="--c:'+c+'">'+esc(t)+'</button>'}
+function pmFlag(p){return '<span class="pm-flag" style="--c:'+PM_PR[p]+'" title="'+p+' priority"><svg width="12" height="12" viewBox="0 0 24 24"><path d="M5 21V4h11l-1.6 4L16 12H7v9z" fill="'+PM_PR[p]+'"/></svg>'+p+'</span>'}
 function pmPri(p){return '<span class="pm-pri" style="--c:'+PM_PR[p]+'">'+p+'</span>'}
 function pmStat(s){var x=PM_STC[s];return '<span class="pm-st" style="--c:'+x[2]+'">'+x[1]+'</span>'}
+function pmChk(t){var d=t.status==="done";return '<button class="lc pm-ck'+(d?' on':'')+'" data-pm="done" data-v="'+t.id+'" aria-label="'+(d?'Mark not done':'Mark done')+'">'+(d?'✓':'')+'</button>'}
 function pmCard(cls,pill,col,sub,btns,inner){return '<section class="pn '+cls+'"><div class="pn-h"><div class="pn-tt"><span class="hpill" style="background:'+col+'">'+pill+'</span>'+(sub?'<small>'+sub+'</small>':'')+'</div>'+(btns?'<div class="pn-b">'+btns+'</div>':'')+'</div><div class="pn-in">'+inner+'</div></section>'}
 function pmBtn(act,v,txt,lbl){return '<button class="ib'+(txt==="+"?' qa':'')+'" data-pm="'+act+'"'+(v!=null?' data-v="'+v+'"':'')+' aria-label="'+lbl+'" title="'+lbl+'">'+txt+'</button>'}
+function pmToggle(t){if(t.status==="done"){t.status=t.prev&&t.prev!=="done"?t.prev:"todo"}else{t.prev=t.status;t.status="done"}pmSave()}
+function pmSubC(t){return t.subs&&t.subs.length?'<span class="pm-subc" title="Subtasks"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 3v12a3 3 0 0 0 3 3h9M6 9h12"/></svg>'+t.subs.filter(function(s){return s.done}).length+'/'+t.subs.length+'</span>':''}
+function pmComC(t){return t.comments&&t.comments.length?'<span class="pm-comc" title="Comments"><svg width="12" height="12" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z" fill="currentColor"/></svg>'+t.comments.length+'</span>':''}
 function pmForm(kind,v){var f="";
   if(kind==="proj")f='<input id="pf1" placeholder="Project name (e.g. Pickleball)"><input id="pf2" type="date" value="2027-01-31" title="Launch date"><input id="pf3" placeholder="Short description">';
-  if(kind==="task")f='<input id="pf1" placeholder="Task title"><select id="pf2">'+PM_ST.map(function(s){return '<option value="'+s[0]+'"'+(v===s[0]?' selected':'')+'>'+s[1]+'</option>'}).join("")+'</select><select id="pf3"><option>High</option><option selected>Medium</option><option>Low</option></select><input id="pf4" type="date" value="'+pmToday()+'"><input id="pf5" placeholder="Tags, comma separated (e.g. Website, Content)"><input id="pf6" placeholder="Short description (optional)">';
+  if(kind==="task")f='<input id="pf1" placeholder="Task title"><select id="pf2">'+PM_ST.map(function(s){return '<option value="'+s[0]+'"'+(v===s[0]?' selected':'')+'>'+s[1]+'</option>'}).join("")+'</select><select id="pf3">'+PM_PRO.map(function(p){return '<option'+(p==="Medium"?' selected':'')+'>'+p+'</option>'}).join("")+'</select><input id="pf7" type="date" value="'+pmToday()+'" title="Start date"><input id="pf4" type="date" value="'+pmToday()+'" title="Due date"><input id="pf5" placeholder="Tags, comma separated (e.g. Website, Content)"><input id="pf6" placeholder="Short description (optional)">';
   if(kind==="mile")f='<input id="pf1" placeholder="Step / milestone (e.g. Pop-up event)"><input id="pf2" type="date" value="'+pmToday()+'" title="Start"><input id="pf3" type="date" value="'+pmToday()+'" title="End">';
   return '<div class="cqa pm-form">'+f+'<button class="cqa-ok" data-pm="save" data-v="'+kind+'">Add</button><button class="cqa-x" data-pm="cancel" aria-label="Cancel">×</button><div class="cqa-e" id="pferr"></div></div>'}
-function vWorkPM(){
-  var P=PM.projects.filter(function(p){return p.id===PMU.pid})[0],td=pmToday();
-  var all=PM.tasks,open=all.filter(function(t){return t.status!=="done"});
+/* roadmap (shared by dashboard + timeline) */
+function pmGantt(P,rows,withTasks){var td=pmToday(),M=PM.miles.filter(function(m){return m.pid===P.id}).sort(function(a,b){return a.start<b.start?-1:1});
+  var all=M.map(function(m){return [m.start,m.end]}).concat(withTasks?rows.map(function(t){return [t.start||t.due,t.due||t.start]}):[]).filter(function(x){return x[0]});
+  var lo=td,hi=P.launch;all.forEach(function(x){if(x[0]<lo)lo=x[0];if(x[1]>hi)hi=x[1]});
+  var d0=new Date(lo+"T12:00:00");d0.setDate(d0.getDate()-((d0.getDay()+6)%7));var d1=new Date(hi+"T12:00:00");d1.setDate(d1.getDate()+7);
+  var span=Math.max(7,Math.round((d1-d0)/864e5)),pc=function(s){return Math.max(0,Math.min(100,(new Date(s+"T12:00:00")-d0)/864e5/span*100))};
+  var wks='';for(var k=0;k<span;k+=7){var dd=new Date(d0);dd.setDate(d0.getDate()+k);wks+='<span style="left:'+(k/span*100)+'%">'+dd.getDate()+' '+PM_M3[dd.getMonth()]+'</span>'}
+  function bar(l,r,cls,c,lab){var ms=l===r&&cls.indexOf("ms")>=0,L=pc(l),W=Math.max(1.6,pc(r)-L+100/span);return '<span class="pm-gb '+cls+'" style="left:'+L+'%;width:'+(ms?0:W)+'%;--c:'+c+'">'+(lab||'')+'</span>'}
+  var mrows=M.map(function(m){var ms=m.start===m.end,st=m.done?"done":m.end<td?"late":m.start<=td?"now":"next";
+    return '<div class="pm-rr"><div class="pm-rn"><button class="lc'+(m.done?' on':'')+'" data-pm="mdone" data-v="'+m.id+'">'+(m.done?'✓':'')+'</button><span><b>'+esc(m.title)+'</b><small>'+pmFd(m.start)+(ms?'':' → '+pmFd(m.end))+'</small></span></div><div class="pm-rt2">'+bar(m.start,m.end,st+(ms?' ms':''),P.color,ms?'🚀':'')+'</div></div>'}).join("");
+  var trows=withTasks?'<div class="pm-rsec">Tasks</div>'+rows.map(function(t){var s=PM_STC[t.status];return '<div class="pm-rr'+(t.status==="done"?' dn':'')+'"><div class="pm-rn">'+pmChk(t)+'<span><b data-pm="open" data-v="'+t.id+'">'+esc(t.title)+'</b><small>'+pmSd(t.start)+' → '+pmSd(t.due)+'</small></span></div><div class="pm-rt2">'+(t.start||t.due?bar(t.start||t.due,t.due||t.start,"tk"+(pmOd(t)?" late":""),s[2],''):'')+'</div></div>'}).join(""):'';
+  return '<div class="pm-rm"><div class="pm-rmh">'+wks+'</div><div class="pm-rmb">'+(withTasks?'<div class="pm-rsec">Roadmap steps</div>':'')+mrows+trows+
+    '<div class="pm-today" style="left:calc(var(--rl) + (100% - var(--rl)) * '+(pc(td)/100)+')"><span>Today</span></div><div class="pm-launch" style="left:calc(var(--rl) + (100% - var(--rl)) * '+(pc(P.launch)/100)+')"><span>Launch · '+pmFd(P.launch)+'</span></div></div>'+
+    '<div class="pm-rmf"><button class="pm-new sm" data-pm="form" data-v="mile">+ Add step</button><span>'+M.filter(function(m){return m.done}).length+' of '+M.length+' steps done · '+(pmDays(P.launch)>=0?pmDays(P.launch)+' days to launch':'launched')+'</span></div></div>'}
+/* ---------- dashboard ---------- */
+function vWorkDash(){
+  var P=pmP(PMU.pid),td=pmToday(),all=PM.tasks,open=all.filter(function(t){return t.status!=="done"});
   var overdue=open.filter(function(t){return t.due&&t.due<td}).length,wk=open.filter(function(t){var n=t.due?pmDays(t.due):99;return n>=0&&n<=7}).length;
   function stat(lbl,n,sub,c){return '<div class="pm-stat"><span class="pm-sl"><i style="background:'+c+'"></i>'+lbl+'</span><b>'+n+'</b><small>'+sub+'</small></div>'}
   var head='<div class="ch-head"><div class="ch-l"><div class="eyebrow">'+realDay(1)+'</div><div class="h1">Welcome back, Mariama</div><div class="tsub">Your work projects, from first step to launch.</div></div>'+
     '<div class="ch-r"><button class="pm-new" data-pm="form" data-v="proj">+ New project</button></div></div>'+(PMU.form==="proj"?pmForm("proj"):'');
   var stats='<div class="pm-stats">'+stat("Total projects",PM.projects.length,PM.projects.map(function(p){return esc(p.name)}).join(" · "),"#5B6CF0")+stat("Active tasks",open.length,all.length+" tasks in total","#3A9BD5")+stat("Overdue",overdue,overdue?"need attention":"all on time","#EF6F5E")+stat("Due this week",wk,"next 7 days","#E3A33B")+'</div>';
-  var sw='<div class="pm-sw">'+PM.projects.map(function(p){var pr=pmProg(p.id);return '<button class="pm-chip'+(p.id===PMU.pid?' on':'')+'" data-pm="pick" data-v="'+p.id+'"><i style="background:'+p.color+'"></i>'+esc(p.name)+'<span>'+pr+'%</span></button>'}).join("")+'<button class="pm-chip add" data-pm="form" data-v="proj">+ Project</button>'+(PM.sample?'<span class="lime soft">Sample projects</span>':'')+'</div>';
-  if(!P)return '<div class="today2 mockc pm"><div class="shell">'+head+stats+sw+'</div></div>';
+  var sw='<div class="pm-sw">'+PM.projects.map(function(p){return '<button class="pm-chip'+(p.id===PMU.pid?' on':'')+'" data-pm="pick" data-v="'+p.id+'"><i style="background:'+p.color+'"></i>'+esc(p.name)+'<span>'+pmProg(p.id)+'%</span></button>'}).join("")+'<button class="pm-chip add" data-pm="form" data-v="proj">+ Project</button>'+(PM.sample?'<span class="lime soft">Sample projects</span>':'')+'</div>';
+  if(!P)return head+stats+sw;
   var T=PM.tasks.filter(function(t){return t.pid===P.id&&(!PMU.tag||t.tags.indexOf(PMU.tag)>=0)});
   var ptags=[];PM.tasks.forEach(function(t){if(t.pid===P.id)t.tags.forEach(function(g){if(ptags.indexOf(g)<0)ptags.push(g)})});
-  var views=[["list","List"],["board","Board"],["roadmap","Roadmap"]];
-  var bar='<div class="pm-bar"><div class="seg pm-seg">'+views.map(function(v){return '<button class="'+(PMU.view===v[0]?'on':'')+'" data-pm="view" data-v="'+v[0]+'">'+v[1]+'</button>'}).join("")+'</div>'+
+  var bar='<div class="pm-bar"><div class="seg pm-seg">'+[["list","List"],["board","Board"],["roadmap","Roadmap"]].map(function(v){return '<button class="'+(PMU.view===v[0]?'on':'')+'" data-pm="view" data-v="'+v[0]+'">'+v[1]+'</button>'}).join("")+'</div>'+
     '<div class="pm-tags"><span class="pm-tl">Tags</span>'+ptags.map(function(g){return pmTag(g)}).join("")+(PMU.tag?'<button class="pm-clear" data-pm="tagf" data-v="">Clear</button>':'')+'</div></div>';
-  function trow(t){var d=t.status==="done",od=!d&&t.due&&t.due<td;return '<div class="pm-row'+(d?' done':'')+'"><button class="lc'+(d?' on':'')+'" data-pm="done" data-v="'+t.id+'" aria-label="Done">'+(d?'✓':'')+'</button><div class="pm-rt"><b>'+esc(t.title)+'</b>'+(t.desc?'<small>'+esc(t.desc)+'</small>':'')+'<div class="pm-rtags">'+t.tags.map(function(g){return pmTag(g)}).join("")+'</div></div>'+pmPri(t.priority)+'<span class="pm-due'+(od?' od':'')+'">'+pmFd(t.due)+'</span><select class="pm-ss" data-pmsel="'+t.id+'" aria-label="Status">'+PM_ST.map(function(s){return '<option value="'+s[0]+'"'+(t.status===s[0]?' selected':'')+'>'+s[1]+'</option>'}).join("")+'</select></div>'}
-  var body;
-  if(PMU.view==="list"){
-    body=["progress","ready","review","todo","done"].map(function(k){var L=T.filter(function(t){return t.status===k});var s=PM_STC[k];
-      return '<div class="pm-grp"><div class="pm-gh"><span class="pm-st" style="--c:'+s[2]+'">'+s[1]+'</span><span class="pm-n">'+L.length+'</span><button class="pm-plus" data-pm="form" data-v="task:'+k+'" aria-label="Add task to '+s[1]+'">+</button></div>'+(L.length?L.map(trow).join(""):'<div class="pm-empty">Nothing here yet</div>')+'</div>'}).join("");
+  function trow(t){var d=t.status==="done";return '<div class="pm-row'+(d?' done':'')+'">'+pmChk(t)+'<div class="pm-rt"><b data-pm="open" data-v="'+t.id+'">'+esc(t.title)+'</b>'+(t.desc?'<small>'+esc(t.desc)+'</small>':'')+'<div class="pm-rtags">'+t.tags.map(function(g){return pmTag(g)}).join("")+pmSubC(t)+pmComC(t)+'</div></div>'+pmPri(t.priority)+'<span class="pm-due'+(pmOd(t)?' od':'')+'">'+pmFd(t.due)+'</span><select class="pm-ss" data-pmsel="'+t.id+'" aria-label="Status">'+PM_ST.map(function(s){return '<option value="'+s[0]+'"'+(t.status===s[0]?' selected':'')+'>'+s[1]+'</option>'}).join("")+'</select></div>'}
+  var body,ORD={progress:0,review:1,ready:2,todo:3},openT=T.filter(function(t){return t.status!=="done"}).sort(function(a,b){return ORD[a.status]-ORD[b.status]||((a.due||"9")<(b.due||"9")?-1:1)}),doneN=T.length-openT.length;
+  function more(n,lbl){return '<button class="pm-more" data-pm="page" data-v="'+P.id+'" data-tab="'+PMU.view+'">'+lbl+' →</button>'}
+  if(PMU.view==="list"){var sh=openT.slice(0,5);
+    body='<div class="pm-prev">'+sh.map(function(t){return '<div class="pm-row pm-prow">'+pmChk(t)+'<div class="pm-rt"><b data-pm="open" data-v="'+t.id+'">'+esc(t.title)+'</b><div class="pm-rtags">'+t.tags.slice(0,2).map(function(g){return pmTag(g)}).join("")+pmSubC(t)+pmComC(t)+'</div></div>'+pmStat(t.status)+pmPri(t.priority)+'<span class="pm-due'+(pmOd(t)?' od':'')+'">'+pmFd(t.due)+'</span></div>'}).join("")+(sh.length?'':'<div class="pm-empty">All tasks done 🎉</div>')+
+      '<div class="pm-pf"><span>'+(openT.length>5?'+'+(openT.length-5)+' more open · ':'')+'<b class="pm-dn">✓ '+doneN+' done</b></span>'+more(0,'See all '+T.length+' tasks')+'</div></div>';
   }else if(PMU.view==="board"){
-    body='<div class="pm-board">'+PM_ST.map(function(s){var L=T.filter(function(t){return t.status===s[0]}),ix=PM_ST.indexOf(s);
-      return '<div class="pm-col" data-col="'+s[0]+'"><div class="pm-ch"><i style="background:'+s[2]+'"></i><b>'+s[1]+'</b><span class="pm-n">'+L.length+'</span><button class="pm-plus" data-pm="form" data-v="task:'+s[0]+'" aria-label="Add task">+</button></div>'+
-        L.map(function(t){var od=t.status!=="done"&&t.due&&t.due<td;return '<div class="pm-card" draggable="true" data-tid="'+t.id+'"><b>'+esc(t.title)+'</b>'+(t.desc?'<small>'+esc(t.desc)+'</small>':'')+'<div class="pm-rtags">'+t.tags.map(function(g){return pmTag(g)}).join("")+'</div><div class="pm-cf">'+pmPri(t.priority)+'<span class="pm-due'+(od?' od':'')+'">'+pmFd(t.due)+'</span><span class="pm-mv">'+(ix>0?'<button data-pm="mv" data-v="'+t.id+':-1" aria-label="Move left">‹</button>':'')+(ix<PM_ST.length-1?'<button data-pm="mv" data-v="'+t.id+':1" aria-label="Move right">›</button>':'')+'</span></div></div>'}).join("")+'</div>'}).join("")+'</div>';
-  }else{
-    var M=PM.miles.filter(function(m){return m.pid===P.id}).sort(function(a,b){return a.start<b.start?-1:1});
-    var lo=M.length?M[0].start:td,hi=P.launch;M.forEach(function(m){if(m.end>hi)hi=m.end});if(td<lo)lo=td;
-    var d0=new Date(lo+"T12:00:00");d0.setDate(d0.getDate()-((d0.getDay()+6)%7));var d1=new Date(hi+"T12:00:00");d1.setDate(d1.getDate()+7);
-    var span=Math.max(7,Math.round((d1-d0)/864e5)),pc=function(s){return Math.max(0,Math.min(100,(new Date(s+"T12:00:00")-d0)/864e5/span*100))};
-    var wks='';for(var k=0;k<span;k+=7){var dd=new Date(d0);dd.setDate(d0.getDate()+k);wks+='<span style="left:'+(k/span*100)+'%">'+dd.getDate()+' '+["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][dd.getMonth()]+'</span>'}
-    body='<div class="pm-rm"><div class="pm-rmh">'+wks+'</div><div class="pm-rmb">'+M.map(function(m){var l=pc(m.start),w=Math.max(1.6,pc(m.end)-l+100/span),ms=m.start===m.end,st=m.done?"done":m.end<td?"late":m.start<=td?"now":"next";
-      return '<div class="pm-rr"><div class="pm-rn"><button class="lc'+(m.done?' on':'')+'" data-pm="mdone" data-v="'+m.id+'">'+(m.done?'✓':'')+'</button><span><b>'+esc(m.title)+'</b><small>'+pmFd(m.start)+(ms?'':' → '+pmFd(m.end))+'</small></span></div><div class="pm-rt2"><span class="pm-gb '+st+(ms?' ms':'')+'" style="left:'+l+'%;width:'+(ms?0:w)+'%;--c:'+P.color+'">'+(ms?'🚀':'')+'</span></div></div>'}).join("")+
-      '<div class="pm-today" style="left:calc(190px + (100% - 190px) * '+(pc(td)/100)+')"><span>Today</span></div><div class="pm-launch" style="left:calc(190px + (100% - 190px) * '+(pc(P.launch)/100)+')"><span>Launch · '+pmFd(P.launch)+'</span></div></div>'+
-      '<div class="pm-rmf"><button class="pm-new sm" data-pm="form" data-v="mile">+ Add step</button><span>'+M.filter(function(m){return m.done}).length+' of '+M.length+' steps done · '+(pmDays(P.launch)>=0?pmDays(P.launch)+' days to launch':'launched')+'</span></div></div>';
-  }
-  var addBtn=PMU.view==="roadmap"?pmBtn("form","mile","+","Add step"):pmBtn("form","task:todo","+","Add task");
+    body='<div class="pm-board pm-bprev">'+PM_ST.map(function(s){var L=T.filter(function(t){return t.status===s[0]}),ix=PM_ST.indexOf(s);
+      return '<div class="pm-col" data-col="'+s[0]+'"><div class="pm-ch"><i style="background:'+s[2]+'"></i><b>'+s[1]+'</b><span class="pm-n">'+L.length+'</span></div>'+
+        L.slice(0,2).map(function(t){return '<div class="pm-card'+(t.status==="done"?' done':'')+'" draggable="true" data-tid="'+t.id+'"><div class="pm-ct">'+pmChk(t)+'<b data-pm="open" data-v="'+t.id+'">'+esc(t.title)+'</b></div><div class="pm-cf">'+pmPri(t.priority)+'<span class="pm-due'+(pmOd(t)?' od':'')+'">'+pmSd(t.due)+'</span><span class="pm-mv">'+(ix>0?'<button data-pm="mv" data-v="'+t.id+':-1" aria-label="Move left">‹</button>':'')+(ix<PM_ST.length-1?'<button data-pm="mv" data-v="'+t.id+':1" aria-label="Move right">›</button>':'')+'</span></div></div>'}).join("")+
+        (L.length>2?'<button class="pm-cmore2" data-pm="page" data-v="'+P.id+'">+'+(L.length-2)+' more</button>':'')+(L.length?'':'<div class="pm-empty">Empty</div>')+'</div>'}).join("")+'</div><div class="pm-pf"><span>'+T.length+' tasks · '+doneN+' done</span>'+more(0,'Open full board')+'</div>';
+  }else body='<div class="pm-rprev">'+pmGantt(P,[],false)+'</div><div class="pm-pf"><span>Roadmap steps for '+esc(P.name)+'</span>'+more(0,'Open timeline')+'</div>';
+  var addBtn='<button class="pm-open" data-pm="page" data-v="'+P.id+'">Open project ↗</button>'+(PMU.view==="roadmap"?pmBtn("form","mile","+","Add step"):pmBtn("form","task:todo","+","Add task"));
   var form=PMU.form&&PMU.form!=="proj"?pmForm(PMU.form.split(":")[0],PMU.form.split(":")[1]):'';
   var main=pmCard("pm-main",esc(P.name).toUpperCase(),P.color,esc(P.desc||"")+' · Launch '+pmFd(P.launch)+' · '+pmProg(P.id)+'% done',addBtn,bar+form+body);
-  // right column: mini calendar + summary
-  var now=new Date(),y=now.getFullYear(),mo=now.getMonth(),first=new Date(y,mo,1),off=(first.getDay()+6)%7,cells=[];for(var q=0;q<42;q++)cells.push(new Date(y,mo,1-off+q));
-  var cal='<div class="cg pm-cg">'+["Mo","Tu","We","Th","Fr","Sa","Su"].map(function(w){return '<span class="mc-w">'+w+'</span>'}).join("")+cells.map(function(dt){var d=iso(dt),out=dt.getMonth()!==mo,cs=[];
-    PM.tasks.forEach(function(t){if(t.due===d&&t.status!=="done"){var c=(PM.projects.filter(function(p){return p.id===t.pid})[0]||{}).color;if(c&&cs.indexOf(c)<0)cs.push(c)}});PM.miles.forEach(function(m){if(m.end===d){var c=(PM.projects.filter(function(p){return p.id===m.pid})[0]||{}).color;if(c&&cs.indexOf(c)<0)cs.push(c)}});
-    var lau=PM.projects.some(function(p){return p.launch===d});
-    return '<span class="mc-d'+(out?' out':'')+(d===td?' td':'')+'"><span class="n">'+(lau?'🚀':dt.getDate())+'</span><span class="ds">'+cs.slice(0,3).map(function(c){return '<i style="background:'+c+'"></i>'}).join("")+'</span></span>'}).join("")+'</div>';
-  var MN=["January","February","March","April","May","June","July","August","September","October","November","December"];
-  var calC=pmCard("pm-cal","DEADLINES","#5B6CF0",MN[mo]+" "+y,"",cal);
-  var PT=PM.tasks.filter(function(t){return t.pid===P.id}),pr=pmProg(P.id),R=34,C=2*Math.PI*R;
-  var cnt=function(s){return PT.filter(function(t){return t.status===s}).length};
-  var sum=pmCard("pm-sum","SUMMARY","#A97CD6",esc(P.name),"",'<div class="pm-ring"><svg width="96" height="96" viewBox="0 0 96 96"><circle cx="48" cy="48" r="'+R+'" fill="none" stroke="rgba(120,95,75,.12)" stroke-width="10"/><circle cx="48" cy="48" r="'+R+'" fill="none" stroke="'+P.color+'" stroke-width="10" stroke-linecap="round" stroke-dasharray="'+(C*pr/100)+' '+C+'" transform="rotate(-90 48 48)"/></svg><div><b>'+pr+'%</b><small>complete</small></div></div>'+
-    '<div class="pm-cnt">'+[["Total",PT.length],["Done",cnt("done")],["In review",cnt("review")],["Overdue",PT.filter(function(t){return t.status!=="done"&&t.due&&t.due<td}).length]].map(function(x){return '<div><b>'+x[1]+'</b><small>'+x[0]+'</small></div>'}).join("")+'</div>'+
-    '<div class="pm-next"><small>Next step</small><b>'+esc(((PM.miles.filter(function(m){return m.pid===P.id&&!m.done}).sort(function(a,b){return a.start<b.start?-1:1})[0])||{title:"All steps done"}).title)+'</b></div><button class="pm-new sm" data-pm="view" data-v="roadmap">View roadmap →</button>');
-  // projects table
-  var tbl=pmCard("pm-tbl","ALL PROJECTS","#5B6CF0",PM.projects.length+" projects","",'<div class="pm-table"><div class="pm-th"><span>Project</span><span>Status</span><span>Progress</span><span>Open tasks</span><span>Launch</span><span></span></div>'+PM.projects.map(function(p){var pr2=pmProg(p.id),opn=PM.tasks.filter(function(t){return t.pid===p.id&&t.status!=="done"}).length,od=PM.tasks.some(function(t){return t.pid===p.id&&t.status!=="done"&&t.due&&t.due<td}),dl=pmDays(p.launch);
+  var PT=PM.tasks.filter(function(t){return t.pid===P.id}),pr=pmProg(P.id),R=34,C=2*Math.PI*R,cnt=function(s){return PT.filter(function(t){return t.status===s}).length};
+  var nxt=(PM.miles.filter(function(m){return m.pid===P.id&&!m.done}).sort(function(a,b){return a.start<b.start?-1:1})[0])||{title:"All steps done"};
+  var sum=pmCard("pm-sum","SUMMARY","#A97CD6",esc(P.name),"",'<div class="pm-sumg"><div class="pm-ring"><svg width="96" height="96" viewBox="0 0 96 96"><circle cx="48" cy="48" r="'+R+'" fill="none" stroke="rgba(120,95,75,.12)" stroke-width="10"/><circle cx="48" cy="48" r="'+R+'" fill="none" stroke="'+P.color+'" stroke-width="10" stroke-linecap="round" stroke-dasharray="'+(C*pr/100)+' '+C+'" transform="rotate(-90 48 48)"/></svg><div><b>'+pr+'%</b><small>complete</small></div></div>'+
+    '<div class="pm-cnt">'+[["Total",PT.length],["Done",cnt("done")],["In review",cnt("review")],["Overdue",PT.filter(pmOd).length]].map(function(x){return '<div><b>'+x[1]+'</b><small>'+x[0]+'</small></div>'}).join("")+'</div></div>'+
+    '<div class="pm-next"><div><small>Next step</small><b>'+esc(nxt.title)+'</b></div><div><small>Launch</small><b>'+pmFd(P.launch)+' · '+Math.max(0,pmDays(P.launch))+' days</b></div></div><button class="pm-new sm" data-pm="page" data-v="'+P.id+'">Open project ↗</button>');
+  var tbl=pmCard("pm-tbl","ALL PROJECTS","#5B6CF0",PM.projects.length+" projects","",'<div class="pm-table"><div class="pm-th"><span>Project</span><span>Status</span><span>Progress</span><span>Open tasks</span><span>Launch</span><span></span></div>'+PM.projects.map(function(p){var pr2=pmProg(p.id),opn=PM.tasks.filter(function(t){return t.pid===p.id&&t.status!=="done"}).length,od=PM.tasks.some(function(t){return t.pid===p.id&&pmOd(t)}),dl=pmDays(p.launch);
     var st=pr2===100?["Completed","#3FA779"]:od?["At risk","#EF6F5E"]:dl<=30?["On track","#3A9BD5"]:["Planning","#9C8673"];
-    return '<div class="pm-tr'+(p.id===PMU.pid?' on':'')+'"><span class="pm-tn"><i style="background:'+p.color+'"></i><b>'+esc(p.name)+'</b></span><span><span class="pm-st" style="--c:'+st[1]+'">'+st[0]+'</span></span><span class="pm-tp"><span class="wp-bar"><i style="width:'+pr2+'%;background:'+p.color+'"></i></span>'+pr2+'%</span><span>'+opn+'</span><span>'+pmFd(p.launch)+'</span><span><button class="pm-view" data-pm="pick" data-v="'+p.id+'">View</button></span></div>'}).join("")+'</div>');
-  return '<div class="today2 mockc pm"><div class="shell">'+head+stats+sw+'<div class="cr pm-grid'+(PMU.view==="board"?' wide':'')+'">'+main+'<div class="stk">'+sum+calC+'</div></div>'+tbl+'</div></div>';
+    return '<div class="pm-tr'+(p.id===PMU.pid?' on':'')+'"><span class="pm-tn" data-pm="pick" data-v="'+p.id+'"><i style="background:'+p.color+'"></i><b>'+esc(p.name)+'</b></span><span><span class="pm-st" style="--c:'+st[1]+'">'+st[0]+'</span></span><span class="pm-tp"><span class="wp-bar"><i style="width:'+pr2+'%;background:'+p.color+'"></i></span>'+pr2+'%</span><span>'+opn+'</span><span>'+pmFd(p.launch)+'</span><span><button class="pm-view" data-pm="page" data-v="'+p.id+'">View</button></span></div>'}).join("")+'</div>');
+  return head+stats+sw+main+'<div class="cr pm-r3">'+tbl+sum+'</div>';
 }
+/* ---------- full project page ---------- */
+function pmFilt(P){var q=PMU.q.toLowerCase();return PM.tasks.filter(function(t){return t.pid===P.id&&(!q||(t.title+" "+(t.desc||"")+" "+t.tags.join(" ")).toLowerCase().indexOf(q)>=0)&&(!PMU.ftag||t.tags.indexOf(PMU.ftag)>=0)&&(!PMU.fpri||t.priority===PMU.fpri)})}
+function pmGroups(T){var g=PMU.group,G=[];
+  if(g==="status")G=PM_ST.map(function(s){return {k:"s:"+s[0],label:s[1],c:s[2],set:{status:s[0]},L:T.filter(function(t){return t.status===s[0]})}});
+  else{var open=T.filter(function(t){return t.status!=="done"});
+    if(g==="priority")G=PM_PRO.map(function(p){return {k:"p:"+p,label:p,c:PM_PR[p],set:{priority:p},L:open.filter(function(t){return t.priority===p})}});
+    else{var tags=[];open.forEach(function(t){t.tags.forEach(function(x){if(tags.indexOf(x)<0)tags.push(x)})});tags.sort();G=tags.map(function(x){return {k:"t:"+x,label:x,c:PM.tags[x]||"#9C8673",set:{tags:[x]},L:open.filter(function(t){return t.tags[0]===x||(t.tags.indexOf(x)>=0&&!tags.some(function(y){return y<x&&t.tags.indexOf(y)>=0}))})}});var nt=open.filter(function(t){return !t.tags.length});if(nt.length)G.push({k:"t:",label:"No tag",c:"#9C8673",set:{},L:nt})}
+    G.push({k:"s:done",label:"Done",c:"#3FA779",set:{status:"done"},L:T.filter(function(t){return t.status==="done"})})}
+  return G}
+function pmStatSel(t){var s=PM_STC[t.status];return '<label class="pm-scell" style="--c:'+s[2]+'"><select data-pmsel="'+t.id+'" aria-label="Status">'+PM_ST.map(function(x){return '<option value="'+x[0]+'"'+(t.status===x[0]?' selected':'')+'>'+x[1]+'</option>'}).join("")+'</select></label>'}
+function pmList(P){var T=pmFilt(P),G=pmGroups(T);
+  return '<div class="pm-lt"><div class="pm-lth"><span></span><span>Task name</span><span>Assignee</span><span>Comments</span><span>Start date</span><span>Due date</span><span>Status</span><span>Priority</span><span>Tags</span></div>'+G.map(function(g){var cl=!!PMU.col[g.k];
+    return '<div class="pm-lg"><div class="pm-lgh"><button class="pm-chev'+(cl?' cl':'')+'" data-pm="col" data-v="'+esc(g.k)+'" aria-label="Collapse group">▾</button><span class="pm-gp" style="background:'+g.c+'">'+esc(g.label)+'</span><span class="pm-n">'+g.L.length+'</span><button class="pm-nt" data-pm="addin" data-v="'+esc(g.k)+'">+ New task</button></div>'+
+    (cl?'':g.L.map(function(t){var d=t.status==="done";return '<div class="pm-lr'+(d?' done':'')+'">'+pmChk(t)+'<span class="pm-ln"><b data-pm="open" data-v="'+t.id+'">'+esc(t.title)+'</b>'+pmSubC(t)+(t.cover?'<span class="pm-att" title="Cover image">🖼</span>':'')+'</span><span><span class="pm-av">M</span></span><span class="pm-cm">'+(t.comments.length?pmComC(t):'<span class="mut">–</span>')+'</span><span class="pm-dt">'+pmSd(t.start)+'</span><span class="pm-dt'+(pmOd(t)?' od':'')+'">'+pmSd(t.due)+'</span>'+pmStatSel(t)+'<span>'+pmFlag(t.priority)+'</span><span class="pm-rtags">'+t.tags.map(function(x){return pmTag(x,"ftag")}).join("")+'</span></div>'+
+      (PMU.subs&&t.subs.length?t.subs.map(function(s,i){return '<div class="pm-lsub"><span></span><span><button class="lc'+(s.done?' on':'')+'" data-pm="sub" data-v="'+t.id+':'+i+'">'+(s.done?'✓':'')+'</button><span class="'+(s.done?'sd':'')+'">'+esc(s.t)+'</span></span></div>'}).join(""):'')}).join("")+
+      (PMU.addIn===g.k?'<div class="pm-lr pm-addrow"><span></span><input id="pmnew" placeholder="Task name, press Enter" data-g="'+esc(g.k)+'"><button class="wk-btn sm" data-pm="addsave">Save</button><button class="wk-btn sm" data-pm="addcancel">Cancel</button></div>':(g.L.length?'':'<div class="pm-empty">No tasks</div>')))+'</div>'}).join("")+'</div>'}
+function pmBoard(P){var T=pmFilt(P);
+  return '<div class="pm-bd">'+PM_ST.map(function(s){var L=T.filter(function(t){return t.status===s[0]});
+    return '<div class="pm-bcol" data-col="'+s[0]+'"><div class="pm-bch"><span class="pm-gp" style="background:'+s[2]+'">'+s[1]+'</span><span class="pm-n">'+L.length+'</span><button class="pm-plus" data-pm="addin" data-v="s:'+s[0]+'" aria-label="Add task">+</button></div>'+
+    (PMU.addIn==="s:"+s[0]?'<div class="pm-bc"><input id="pmnew" placeholder="Task name, press Enter" data-g="s:'+s[0]+'"><div class="pm-cf"><button class="wk-btn sm" data-pm="addsave">Save</button><button class="wk-btn sm" data-pm="addcancel">Cancel</button></div></div>':'')+
+    L.map(function(t){var cv=PM_COV[t.cover],d=t.status==="done";return '<div class="pm-bc'+(d?' done':'')+'" draggable="true" data-tid="'+t.id+'">'+(cv?'<div class="pm-cov" style="background:linear-gradient(135deg,'+cv[0]+','+cv[1]+')"><span>'+cv[2]+'</span></div>':'')+
+      '<div class="pm-bcrumb">Work › '+esc(P.name)+'</div><div class="pm-ct">'+pmChk(t)+'<b data-pm="open" data-v="'+t.id+'">'+esc(t.title)+'</b></div>'+(t.subs.length||t.comments.length?'<div class="pm-meta">'+pmSubC(t)+pmComC(t)+'</div>':'')+
+      '<div class="pm-cf">'+pmFlag(t.priority)+'<span class="pm-due'+(pmOd(t)?' od':'')+'">'+pmSd(t.due)+'</span></div><div class="pm-rtags">'+t.tags.map(function(x){return pmTag(x,"ftag")}).join("")+'</div><button class="pm-asub" data-pm="open" data-v="'+t.id+'">+ Add subtask</button></div>'}).join("")+'</div>'}).join("")+'</div>'}
+function pmCalendar(P){var T=pmFilt(P),now=new Date(),b=new Date(now.getFullYear(),now.getMonth()+PMU.calM,1),y=b.getFullYear(),mo=b.getMonth(),off=(b.getDay()+6)%7,td=pmToday(),cells='';
+  for(var q=0;q<42;q++){var dt=new Date(y,mo,1-off+q),d=iso(dt),L=T.filter(function(t){return t.due===d}),ms=PM.miles.filter(function(m){return m.pid===P.id&&m.end===d});
+    if(q===35&&dt.getMonth()!==mo)break;
+    cells+='<div class="pm-cd'+(dt.getMonth()!==mo?' out':'')+(d===td?' td':'')+'"><span class="pm-cn">'+dt.getDate()+'</span>'+(P.launch===d?'<span class="pm-cl">🚀 Launch</span>':'')+ms.filter(function(m){return m.start!==m.end}).map(function(m){return '<span class="pm-cms">◆ '+esc(m.title)+' ends</span>'}).join("")+
+      L.slice(0,3).map(function(t){var s=PM_STC[t.status];return '<span class="pm-cc'+(t.status==="done"?' done':'')+'" style="--c:'+s[2]+'" data-pm="open" data-v="'+t.id+'">'+esc(t.title)+'</span>'}).join("")+(L.length>3?'<span class="pm-cmore">+'+(L.length-3)+' more</span>':'')+'</div>'}
+  return '<div class="pm-calh"><button class="ib" data-pm="calm" data-v="-1" aria-label="Previous month">‹</button><b>'+PM_MF[mo]+' '+y+'</b><button class="ib" data-pm="calm" data-v="1" aria-label="Next month">›</button><button class="wk-btn sm" data-pm="calm" data-v="0">Today</button><span class="pm-lgd">'+PM_ST.map(function(s){return '<i style="background:'+s[2]+'"></i>'+s[1]}).join("")+'</span></div><div class="pm-calg">'+["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].map(function(w){return '<span class="pm-cw">'+w+'</span>'}).join("")+cells+'</div>'}
+function pmNotes(P){var h=PMN[P.id]||"";return '<div class="pm-notes"><div class="pm-ntb">'+[["bold","<b>B</b>","Bold"],["italic","<i>I</i>","Italic"],["h3","H","Heading"],["insertUnorderedList","• List","Bulleted list"],["insertOrderedList","1. List","Numbered list"],["check","☐ To-do","Checklist item"]].map(function(x){return '<button data-pm="fmt" data-v="'+x[0]+'" title="'+x[2]+'">'+x[1]+'</button>'}).join("")+'<span class="pm-nsv" id="pmnsv">Saved</span></div><div class="pm-ned" id="pmned" contenteditable="true" data-pid="'+P.id+'" data-ph="Write notes for '+esc(P.name)+'…">'+h+'</div></div>'}
+function pmDrawer(){var t=pmT(PMU.task);if(!t)return '';var P=pmP(t.pid);
+  return '<div class="pm-ov" data-pm="close"></div><aside class="pm-dr" role="dialog" aria-label="Task details"><div class="pm-drh"><span class="pm-bcrumb">Work › '+esc(P?P.name:"")+'</span><button class="ib" data-pm="close" aria-label="Close">×</button></div>'+
+  (PM_COV[t.cover]?'<div class="pm-cov big" style="background:linear-gradient(135deg,'+PM_COV[t.cover][0]+','+PM_COV[t.cover][1]+')"><span>'+PM_COV[t.cover][2]+'</span></div>':'')+
+  '<div class="pm-drt">'+pmChk(t)+'<input class="pm-dti" data-tf="title" value="'+esc(t.title)+'"></div>'+
+  '<div class="pm-drg"><label>Status'+pmStatSel(t)+'</label><label>Priority<select data-tf="priority">'+PM_PRO.map(function(p){return '<option'+(t.priority===p?' selected':'')+'>'+p+'</option>'}).join("")+'</select></label><label>Start date<input type="date" data-tf="start" value="'+(t.start||"")+'"></label><label>Due date<input type="date" data-tf="due" value="'+(t.due||"")+'"></label><label>Tags<input data-tf="tags" value="'+esc(t.tags.join(", "))+'" placeholder="Website, Content"></label><label>Cover<select data-tf="cover"><option value="">None</option>'+Object.keys(PM_COV).map(function(k){return '<option value="'+k+'"'+(t.cover===k?' selected':'')+'>'+PM_COV[k][2]+' '+k+'</option>'}).join("")+'</select></label></div>'+
+  '<label class="pm-drl">Description<textarea data-tf="desc" rows="3" placeholder="Add details">'+esc(t.desc||"")+'</textarea></label>'+
+  '<div class="pm-drs"><b>Subtasks <span class="pm-n">'+t.subs.filter(function(s){return s.done}).length+'/'+t.subs.length+'</span></b>'+t.subs.map(function(s,i){return '<div class="pm-sr"><button class="lc'+(s.done?' on':'')+'" data-pm="sub" data-v="'+t.id+':'+i+'">'+(s.done?'✓':'')+'</button><span class="'+(s.done?'sd':'')+'">'+esc(s.t)+'</span><button class="pm-sx" data-pm="subdel" data-v="'+i+'" aria-label="Remove subtask">×</button></div>'}).join("")+'<div class="pm-sadd"><input id="pmsub" placeholder="+ Add subtask, press Enter"><button class="wk-btn sm" data-pm="subadd">Add</button></div></div>'+
+  '<div class="pm-drs"><b>Comments <span class="pm-n">'+t.comments.length+'</span></b>'+t.comments.map(function(c){return '<div class="pm-cmt"><span class="pm-av">M</span><div><small>'+pmFd(c.at)+'</small><p>'+esc(c.t)+'</p></div></div>'}).join("")+'<div class="pm-sadd"><input id="pmcom" placeholder="Write a comment, press Enter"><button class="wk-btn sm" data-pm="comadd">Send</button></div></div>'+
+  '<div class="pm-drf"><button class="wk-btn" data-pm="tdel">Delete task</button><button class="wk-btn pri" data-pm="close">Done</button></div></aside>'}
+function vProject(P){var td=pmToday(),PT=PM.tasks.filter(function(t){return t.pid===P.id}),pr=pmProg(P.id),tab=PMU.tab;
+  var side='<aside class="pm-side"><div class="pm-sh">Spaces</div><div class="pm-space"><span class="pm-sic">'+cic({cat:"work"},"#5B6CF0",14)+'</span>Work</div>'+PM.projects.map(function(p){var o=PM.tasks.filter(function(t){return t.pid===p.id&&t.status!=="done"}).length;return '<button class="pm-sl2'+(p.id===P.id?' on':'')+'" data-pm="page" data-v="'+p.id+'"><i style="background:'+p.color+'"></i><span>'+esc(p.name)+'</span><em>'+o+'</em></button>'}).join("")+
+    (PMU.form==="proj"?pmForm("proj"):'<button class="pm-sl2 add" data-pm="form" data-v="proj">+ New project</button>')+
+    '<div class="pm-sh">This project</div><div class="pm-sbox"><div class="pm-sbr"><span>Progress</span><b>'+pr+'%</b></div><div class="wp-bar pm-sbar"><i style="width:'+pr+'%;background:'+P.color+'"></i></div><div class="pm-sbr"><span>Open tasks</span><b>'+PT.filter(function(t){return t.status!=="done"}).length+'</b></div><div class="pm-sbr"><span>Overdue</span><b class="'+(PT.filter(pmOd).length?'od':'')+'">'+PT.filter(pmOd).length+'</b></div><div class="pm-sbr"><span>Launch</span><b>'+pmSd(P.launch)+'</b></div><div class="pm-sbr"><span>Days left</span><b>'+Math.max(0,pmDays(P.launch))+'</b></div></div>'+
+    '<button class="pm-sl2'+(tab==="notes"?' on':'')+'" data-pm="tab" data-v="notes"><span class="pm-sic">📝</span><span>Project notes</span></button></aside>';
+  var tabs=[["list","List"],["board","Board"],["calendar","Calendar"],["timeline","Timeline"],["notes","Notes"]];
+  var ic={list:'☰',board:'▦',calendar:'▣',timeline:'≡',notes:'✎'};
+  var top='<div class="pm-ph"><div class="pm-crumb"><button class="wk-btn sm" data-pm="back">← Work</button><span>Work › <b>'+esc(P.name)+'</b></span></div><div class="pm-pt"><span class="pm-pdot" style="background:'+P.color+'"></span><div><div class="h1">'+esc(P.name)+'</div><div class="tsub">'+esc(P.desc||"")+' · Launch '+pmFd(P.launch)+' · '+pr+'% done</div></div>'+(P.sample?'<span class="lime soft">Sample data</span>':'')+'</div>'+
+    '<div class="pm-tabs">'+tabs.map(function(x){return '<button class="pm-tab'+(tab===x[0]?' on':'')+'" data-pm="tab" data-v="'+x[0]+'"><span>'+ic[x[0]]+'</span>'+x[1]+'</button>'}).join("")+'</div></div>';
+  var tags=Object.keys(PM.tags).filter(function(g){return PT.some(function(t){return t.tags.indexOf(g)>=0})});
+  var tool=tab==="notes"?'':'<div class="pm-tool"><label class="pm-srch"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="pmq" value="'+esc(PMU.q)+'" placeholder="Search tasks"></label>'+
+    '<label class="pm-tsel">Filter<select data-pmf="ftag"><option value="">All tags</option>'+tags.map(function(g){return '<option'+(PMU.ftag===g?' selected':'')+'>'+esc(g)+'</option>'}).join("")+'</select></label>'+
+    '<label class="pm-tsel">Priority<select data-pmf="fpri"><option value="">Any</option>'+PM_PRO.map(function(p){return '<option'+(PMU.fpri===p?' selected':'')+'>'+p+'</option>'}).join("")+'</select></label>'+
+    (tab==="list"?'<label class="pm-tsel">Group by<select data-pmf="group">'+[["status","Status"],["tag","Tag"],["priority","Priority"]].map(function(g){return '<option value="'+g[0]+'"'+(PMU.group===g[0]?' selected':'')+'>'+g[1]+'</option>'}).join("")+'</select></label><button class="pm-tg'+(PMU.subs?' on':'')+'" data-pm="subs">Subtasks</button>':'')+
+    ((PMU.q||PMU.ftag||PMU.fpri)?'<button class="pm-clear" data-pm="clearf">Clear filters</button>':'')+'<span class="sp"></span><button class="pm-new sm" data-pm="addin" data-v="s:todo">+ Task</button></div>';
+  var body=tab==="board"?pmBoard(P):tab==="calendar"?pmCalendar(P):tab==="timeline"?pmGantt(P,pmFilt(P).sort(function(a,b){return (a.start||a.due)<(b.start||b.due)?-1:1}),true):tab==="notes"?pmNotes(P):pmList(P);
+  var form=PMU.form==="mile"?pmForm("mile"):'';
+  return '<div class="pm-page"><div class="pm-pg">'+side+'<div class="pm-pmain">'+top+'<section class="pn pm-pbody pm-tab-'+tab+'"><div class="pn-in">'+tool+form+body+'</div></section></div></div></div>'}
+function vWorkPM(){var P=PMU.page&&pmP(PMU.page);return '<div class="today2 mockc pm'+(P?' pmp':'')+'"><div class="shell">'+(P?vProject(P):vWorkDash())+'</div></div>'}
 function pmV(id){var e=document.getElementById(id);return e?e.value.trim():""}
-document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("[data-pm]");if(!b)return;e.stopPropagation();var a=b.getAttribute("data-pm"),v=b.getAttribute("data-v");
+function pmAddFromGroup(k,title){var t=_t("t"+Date.now(),PMU.page||PMU.pid,title,"todo","Medium",pmToday(),pmToday(),[],{});var p=k.split(":");if(p[0]==="s")t.status=p[1];if(p[0]==="p")t.priority=p[1];if(p[0]==="t"&&p[1])t.tags=[p[1]];PM.tasks.push(t);pmSave();return t}
+function pmNoteSave(){var e=document.getElementById("pmned");if(!e)return;PMN[e.getAttribute("data-pid")]=e.innerHTML;LS.set("lm.pm.notes.v1",PMN);var s=document.getElementById("pmnsv");if(s)s.textContent="Saved"}
+document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("[data-pm]");if(!b)return;var a=b.getAttribute("data-pm"),v=b.getAttribute("data-v");if(a==="fmt"){e.preventDefault()}e.stopPropagation();var top=false,keep=false;
   if(a==="pick"){PMU.pid=v;LS.set("lm.pm.pid",v);PMU.tag=null;PMU.form=null}
   else if(a==="view"){PMU.view=v;LS.set("lm.pm.view",v);PMU.form=null}
   else if(a==="tagf"){PMU.tag=(v&&PMU.tag!==v)?v:null}
+  else if(a==="ftag"){PMU.ftag=PMU.ftag===v?"":v}
   else if(a==="form"){PMU.form=PMU.form===v?null:v}
   else if(a==="cancel"){PMU.form=null}
-  else if(a==="done"){var t=PM.tasks.filter(function(x){return x.id===v})[0];if(t){t.status=t.status==="done"?"todo":"done";pmSave()}}
+  else if(a==="page"){var tb=b.getAttribute("data-tab");if(tb){PMU.tab=tb==="roadmap"?"timeline":tb;LS.set("lm.pm.tab",PMU.tab)}PMU.page=v;PMU.pid=v;LS.set("lm.pm.pid",v);PMU.form=null;PMU.addIn=null;PMU.q="";PMU.ftag="";PMU.fpri="";top=true}
+  else if(a==="back"){PMU.page=null;PMU.form=null;PMU.task=null;top=true}
+  else if(a==="tab"){PMU.tab=v;LS.set("lm.pm.tab",v);PMU.addIn=null;PMU.form=null}
+  else if(a==="col"){PMU.col[v]=!PMU.col[v]}
+  else if(a==="subs"){PMU.subs=!PMU.subs}
+  else if(a==="clearf"){PMU.q="";PMU.ftag="";PMU.fpri=""}
+  else if(a==="calm"){PMU.calM=v==="0"?0:PMU.calM+(+v)}
+  else if(a==="addin"){if(PMU.tab==="calendar"||PMU.tab==="timeline"||PMU.tab==="notes"){PMU.tab="list";LS.set("lm.pm.tab","list")}PMU.addIn=v;var gk=v.split(":");if(gk[0]==="s")PMU.col[v]=false}
+  else if(a==="addcancel"){PMU.addIn=null}
+  else if(a==="addsave"){var n=pmV("pmnew");if(n)pmAddFromGroup(PMU.addIn,n);PMU.addIn=null}
+  else if(a==="open"){PMU.task=v}
+  else if(a==="close"){PMU.task=null}
+  else if(a==="done"){var t=pmT(v);if(t)pmToggle(t)}
   else if(a==="mdone"){var m=PM.miles.filter(function(x){return x.id===v})[0];if(m){m.done=!m.done;pmSave()}}
-  else if(a==="mv"){var p=v.split(":"),t2=PM.tasks.filter(function(x){return x.id===p[0]})[0];if(t2){var i=PM_ST.map(function(s){return s[0]}).indexOf(t2.status)+(+p[1]);if(PM_ST[i]){t2.status=PM_ST[i][0];pmSave()}}}
-  else if(a==="save"){var n=pmV("pf1");if(!n){var er=document.getElementById("pferr");if(er)er.textContent="Give it a name first.";return}
-    if(v==="proj"){var id="p"+Date.now();PM.projects.push({id:id,name:n,color:PM_TAGC[PM.projects.length%PM_TAGC.length],desc:pmV("pf3"),launch:pmV("pf2")||"2027-01-31"});PMU.pid=id;LS.set("lm.pm.pid",id)}
+  else if(a==="mv"){var p=v.split(":"),t2=pmT(p[0]);if(t2){var i=PM_ST.map(function(s){return s[0]}).indexOf(t2.status)+(+p[1]);if(PM_ST[i]){if(PM_ST[i][0]==="done")t2.prev=t2.status;t2.status=PM_ST[i][0];pmSave()}}}
+  else if(a==="sub"){var q=v.split(":"),t3=pmT(q[0]);if(t3){t3.subs[+q[1]].done=!t3.subs[+q[1]].done;pmSave()}}
+  else if(a==="subdel"){var t4=pmT(PMU.task);t4.subs.splice(+v,1);pmSave()}
+  else if(a==="subadd"){var t5=pmT(PMU.task),s=pmV("pmsub");if(s){t5.subs.push({t:s,done:false});pmSave()}keep="pmsub"}
+  else if(a==="comadd"){var t6=pmT(PMU.task),c=pmV("pmcom");if(c){t6.comments.push({t:c,at:pmToday()});pmSave()}keep="pmcom"}
+  else if(a==="tdel"){PM.tasks=PM.tasks.filter(function(x){return x.id!==PMU.task});PMU.task=null;pmSave()}
+  else if(a==="fmt"){var ed=document.getElementById("pmned");if(ed){ed.focus();if(v==="h3")document.execCommand("formatBlock",false,"h3");else if(v==="check")document.execCommand("insertHTML",false,"<p>☐ </p>");else document.execCommand(v,false,null);pmNoteSave()}return}
+  else if(a==="save"){var nm=pmV("pf1");if(!nm){var er=document.getElementById("pferr");if(er)er.textContent="Give it a name first.";return}
+    if(v==="proj"){var id="p"+Date.now();PM.projects.push({id:id,name:nm,color:PM_TAGC[PM.projects.length%PM_TAGC.length],desc:pmV("pf3"),launch:pmV("pf2")||"2027-01-31"});PMU.pid=id;LS.set("lm.pm.pid",id);if(PMU.page)PMU.page=id}
     if(v==="task"){var tags=pmV("pf5").split(",").map(function(x){return x.trim()}).filter(Boolean);tags.forEach(function(g){if(!PM.tags[g])PM.tags[g]=PM_TAGC[Object.keys(PM.tags).length%PM_TAGC.length]});
-      PM.tasks.push({id:"t"+Date.now(),pid:PMU.pid,title:n,desc:pmV("pf6"),status:pmV("pf2")||"todo",priority:pmV("pf3")||"Medium",due:pmV("pf4"),tags:tags})}
-    if(v==="mile"){var s1=pmV("pf2")||pmToday(),s2=pmV("pf3")||s1;if(s2<s1)s2=s1;PM.miles.push({id:"m"+Date.now(),pid:PMU.pid,title:n,start:s1,end:s2,done:false})}
+      PM.tasks.push(_t("t"+Date.now(),PMU.pid,nm,pmV("pf2")||"todo",pmV("pf3")||"Medium",pmV("pf7")||pmV("pf4"),pmV("pf4"),tags,{desc:pmV("pf6")}))}
+    if(v==="mile"){var s1=pmV("pf2")||pmToday(),s2=pmV("pf3")||s1;if(s2<s1)s2=s1;PM.miles.push({id:"m"+Date.now(),pid:PMU.page||PMU.pid,title:nm,start:s1,end:s2,done:false})}
     pmSave();PMU.form=null}
-  render();if(a==="form"){var f=document.getElementById("pf1");if(f)f.focus()}},true);
-document.addEventListener("change",function(e){var s=e.target;if(!s||!s.getAttribute||!s.getAttribute("data-pmsel"))return;var t=PM.tasks.filter(function(x){return x.id===s.getAttribute("data-pmsel")})[0];if(t){t.status=s.value;pmSave();render()}});
-document.addEventListener("keydown",function(e){if(e.key==="Enter"&&e.target&&e.target.closest&&e.target.closest(".pm-form")){e.preventDefault();var b=e.target.closest(".pm-form").querySelector("[data-pm=save]");if(b)b.click()}});
-document.addEventListener("dragstart",function(e){var c=e.target.closest&&e.target.closest(".pm-card");if(c){e.dataTransfer.setData("text/plain",c.getAttribute("data-tid"));c.classList.add("drag")}});
-document.addEventListener("dragover",function(e){if(e.target.closest&&e.target.closest(".pm-col"))e.preventDefault()});
-document.addEventListener("drop",function(e){var col=e.target.closest&&e.target.closest(".pm-col");if(!col)return;e.preventDefault();var id=e.dataTransfer.getData("text/plain"),t=PM.tasks.filter(function(x){return x.id===id})[0];if(t){t.status=col.getAttribute("data-col");pmSave();render()}});
+  render();if(top)window.scrollTo(0,0);
+  var f=document.getElementById(keep||(a==="addin"?"pmnew":a==="form"?"pf1":""));if(f)f.focus()},true);
+document.addEventListener("change",function(e){var s=e.target;if(!s||!s.getAttribute)return;var sel=s.getAttribute("data-pmsel"),pf=s.getAttribute("data-pmf"),tf=s.getAttribute("data-tf");
+  if(sel){var t=pmT(sel);if(t){if(s.value==="done"&&t.status!=="done")t.prev=t.status;t.status=s.value;pmSave();render()}return}
+  if(pf){PMU[pf]=s.value;render();return}
+  if(tf){var t2=pmT(PMU.task);if(!t2)return;if(tf==="tags"){t2.tags=s.value.split(",").map(function(x){return x.trim()}).filter(Boolean);t2.tags.forEach(function(g){if(!PM.tags[g])PM.tags[g]=PM_TAGC[Object.keys(PM.tags).length%PM_TAGC.length]})}else t2[tf]=s.value.trim();if(tf==="title"&&!t2.title)t2.title="Untitled task";pmSave();render()}});
+document.addEventListener("input",function(e){var t=e.target;if(t&&t.id==="pmq"){PMU.q=t.value;var pos=t.selectionStart;render();var n=document.getElementById("pmq");if(n){n.focus();n.setSelectionRange(pos,pos)}}
+  if(t&&t.id==="pmned"){var s=document.getElementById("pmnsv");if(s)s.textContent="Saving…";clearTimeout(window._pmnT);window._pmnT=setTimeout(pmNoteSave,400)}});
+document.addEventListener("keydown",function(e){var t=e.target;if(e.key==="Escape"&&PMU.task){PMU.task=null;render();return}if(e.key!=="Enter"||!t||!t.closest)return;
+  if(t.closest(".pm-form")){e.preventDefault();var b=t.closest(".pm-form").querySelector("[data-pm=save]");if(b)b.click()}
+  else if(t.id==="pmnew"){e.preventDefault();var n=t.value.trim();if(n){pmAddFromGroup(PMU.addIn,n);render();var f=document.getElementById("pmnew");if(f)f.focus()}}
+  else if(t.id==="pmsub"){e.preventDefault();document.querySelector("[data-pm=subadd]").click()}
+  else if(t.id==="pmcom"){e.preventDefault();document.querySelector("[data-pm=comadd]").click()}});
+document.addEventListener("dragstart",function(e){var c=e.target.closest&&e.target.closest("[data-tid]");if(c){e.dataTransfer.setData("text/plain",c.getAttribute("data-tid"));c.classList.add("drag")}});
+document.addEventListener("dragover",function(e){if(e.target.closest&&e.target.closest("[data-col]"))e.preventDefault()});
+document.addEventListener("drop",function(e){var col=e.target.closest&&e.target.closest("[data-col]");if(!col)return;e.preventDefault();var t=pmT(e.dataTransfer.getData("text/plain"));if(t){var ns=col.getAttribute("data-col");if(ns==="done"&&t.status!=="done")t.prev=t.status;t.status=ns;pmSave();render()}});
+var _rPM=render;render=function(){_rPM();var el=document.getElementById("pmdrw");if(!el){el=document.createElement("div");el.id="pmdrw";document.body.appendChild(el)}el.innerHTML=(S.view==="work"&&PMU.page&&PMU.task)?'<div class="pm mockc">'+pmDrawer()+'</div>':"";document.documentElement.style.overflow=el.innerHTML?"hidden":""};
+var _rSC=render;render=function(){var o=document.querySelectorAll('body>.scrim');o.forEach(function(x){x.remove()});_rSC();document.querySelectorAll('.gl .scrim, .gpanel .scrim').forEach(function(x){document.body.appendChild(x)})};
 var _vListPM=_vList;_vList=function(c){return c==="work"?vWorkPM():_vListPM(c)};
+
 /* ===== WORKOUTS tracker v69: programs & splits, log page, history page, weight ===== */
 function _e(n,s,r,rest){return {n:n,s:s,r:r,rest:rest||""}}
 function wkSeed(){return {active:"pg1",sample:true,programs:[
@@ -2324,7 +2664,8 @@ function vWkPrograms(ref){var P=PG.programs.filter(function(p){return p.id===WKU
   var list=pmCard("wk-pl","PROGRAMS","#EF6F5E",PG.programs.length+" programs · 1 active","",'<div class="wk-pgs">'+PG.programs.map(function(p){var n=0;for(var k in p.days)if(p.days[k])n++;return '<div class="wk-pg'+(p.id===P.id?' on':'')+'" data-wk="pick" data-v="'+p.id+'"><div><b>'+esc(p.name)+'</b><small>'+p.workouts.length+' workouts · '+n+' days/week'+(p.sample?' · sample':'')+'</small></div>'+(p.id===PG.active?'<span class="wk-act">Active</span>':'<button class="wk-btn sm" data-wk="activate" data-v="'+p.id+'">Set active</button>')+'</div>'}).join("")+'</div>'+
     (WKU.newp?'<div class="cqa pm-form"><input id="pgn" placeholder="Program name (e.g. Marathon block)"><button class="cqa-ok" data-wk="pgsave">Add</button><button class="cqa-x" data-wk="pgcancel" aria-label="Cancel">×</button></div>':'<button class="wk-add" data-wk="pgnew">+ New program</button>'));
   var order=[1,2,3,4,5,6,0];
-  var split=pmCard("wk-sp","WEEKLY SPLIT","#EF6F5E",esc(P.name)+(P.id===PG.active?' · active':''),"",'<div class="wk-split">'+order.map(function(k,i){var w=pgW(P,P.days[k]);return '<div class="wk-sd"><span class="wk-dn">'+WDS[i]+'</span><span class="wk-c'+(w?'':' rest')+'">'+fic(w?w.type:"rest",w?"#EF6F5E":"#A2958A",20)+'</span><select data-wsplit="'+k+'" aria-label="'+WD[k]+' workout"><option value="">Rest</option>'+P.workouts.map(function(x){return '<option value="'+x.id+'"'+(P.days[k]===x.id?' selected':'')+'>'+esc(x.name)+'</option>'}).join("")+'</select></div>'}).join("")+'</div><p class="wk-hint">Pick a workout for each day. The week strip and today\'s workout follow the <b>active</b> program.</p>');
+  var isA=P.id===PG.active,AP=pgA();
+  var split=pmCard("wk-sp","WEEKLY SPLIT","#EF6F5E",isA?'<b class="wk-actl">✓ Active</b> '+esc(P.name)+' · drives your week, today &amp; up next':'Viewing '+esc(P.name)+' · not active',isA?"":'<button class="wk-btn sm pri" data-wk="activate" data-v="'+P.id+'">Set active</button>',(isA?'':'<div class="wk-viewing">You\'re editing <b>'+esc(P.name)+'</b>. Your week currently follows <b>'+esc(AP?AP.name:"–")+'</b>. <button class="wk-btn sm" data-wk="pick" data-v="'+(AP?AP.id:"")+'">Show active split</button></div>')+'<div class="wk-split">'+order.map(function(k,i){var w=pgW(P,P.days[k]);return '<div class="wk-sd"><span class="wk-dn">'+WDS[i]+'</span><span class="wk-c'+(w?'':' rest')+'">'+fic(w?w.type:"rest",w?"#EF6F5E":"#A2958A",20)+'</span><select data-wsplit="'+k+'" aria-label="'+WD[k]+' workout"><option value="">Rest</option>'+P.workouts.map(function(x){return '<option value="'+x.id+'"'+(P.days[k]===x.id?' selected':'')+'>'+esc(x.name)+'</option>'}).join("")+'</select></div>'}).join("")+'</div><p class="wk-hint">Pick a workout for each day. The week strip and today\'s workout follow the <b>active</b> program.</p>');
   var cards=P.workouts.map(function(w){if(WKU.edit===w.id)return '<section class="pn wk-wcard ed"><div class="pn-in">'+wkEditor(WKU.draft,"prog")+'</div></section>';
     return '<section class="pn wk-wcard"><div class="pn-in"><div class="wk-wch"><span class="wk-hi">'+fic(w.type,"#EF6F5E",18)+'</span><div><b>'+esc(w.name)+'</b><small>'+(w.min||45)+' min · '+w.ex.length+' exercises</small></div><button class="ib" data-wk="wedit" data-v="'+w.id+'" aria-label="Edit workout">✎</button></div>'+w.ex.map(function(e){return '<div class="wk-wce"><span>'+esc(e.n)+'</span><span>'+esc(exT(e))+'</span></div>'}).join("")+'</div></section>'}).join("")+
     (WKU.edit==="new"?'<section class="pn wk-wcard ed"><div class="pn-in">'+wkEditor(WKU.draft,"prog")+'</div></section>':'<button class="wk-newc" data-wk="wnew">+ New workout</button>');
@@ -2349,7 +2690,7 @@ function vWorkoutT(){var ref=wkRef(),v=WKU.view,body=v==="programs"?vWkPrograms(
 function wkDraftSync(){document.querySelectorAll("[data-we]").forEach(function(el){var k=el.getAttribute("data-we").split(":"),dr=WKU.draft;if(!dr)return;if(k[0]==="ex"){var e=dr.ex[+k[1]];if(e)e[k[2]]=k[2]==="s"?(parseInt(el.value)||1):el.value.trim()}else dr[k[0]]=k[0]==="min"?(parseInt(el.value)||0):el.value.trim()})}
 document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("[data-wk]");if(!b)return;e.stopPropagation();var a=b.getAttribute("data-wk"),v=b.getAttribute("data-v"),ref=wkRef(),top=false;
   if(WKU.draft)wkDraftSync();
-  if(a==="go"){WKU.view=v;WKU.edit=null;WKU.draft=null;top=true}
+  if(a==="go"){WKU.view=v;WKU.edit=null;WKU.draft=null;top=true;if(v==="programs"){WKU.pg=PG.active;WKU.newp=false}}
   else if(a==="g"){var p=v.split(":");WG[p[0]]=Math.max(1,WG[p[0]]+(+p[1]));LS.set("lm.wgoal.v1",WG)}
   else if(a==="tedit"||a==="tadd"){var cur=wkFor(ref);WKU.edit="today";WKU.draft=cur?wkClone(cur):{id:"o"+Date.now(),name:"Extra workout",type:"lift",min:45,ex:[]};if(a==="tadd"||!WKU.draft.ex.length)WKU.draft.ex.push(_e("",3,"10","60s"))}
   else if(a==="exadd"){WKU.draft.ex.push(_e("",3,"10","60s"))}
@@ -2376,6 +2717,19 @@ document.addEventListener("click",function(e){var b=e.target.closest&&e.target.c
 document.addEventListener("change",function(e){var t=e.target;if(!t||!t.getAttribute)return;var k=t.getAttribute("data-wkin"),sp=t.getAttribute("data-wsplit"),ref=wkRef();
   if(sp!=null){var P=PG.programs.filter(function(p){return p.id===WKU.pg})[0];P.days[sp]=t.value;pgSave();render();return}
   if(!k)return;var q=k.split(":"),tw=wkFor(ref);if(!tw)return;exSets(ref,tw.ex[+q[0]])[+q[1]][q[2]]=t.value.trim();wlSave();render()});
+
+/* ===== v74: one source of truth — active split drives workout items app-wide ===== */
+function wkTag(ty){return ty==="lift"?"Strength":ty==="run"?"Cardio":ty==="hike"?"Outdoors":"Class"}
+function syncSplit(){var ref=wkRef(),rd=wkD(ref),mon=new Date(rd);mon.setDate(rd.getDate()-((rd.getDay()+6)%7));var from=iso(mon),end=new Date(mon);end.setDate(mon.getDate()+41);var to=iso(end);
+  var keep=[];for(var i=ITEMS.length-1;i>=0;i--){var it=ITEMS[i];if(it.cat==="workout"&&it.date>=from&&it.date<=to){if(!it.sp&&S.done[it.id])S.done["sp"+it.date]=true;delete BYID[it.id];ITEMS.splice(i,1)}}
+  for(var k in EXL)if(k.indexOf("sp:")===0)delete EXL[k];
+  var dt=new Date(mon);for(var q=0;q<42;q++){var d=iso(dt),w=wkFor(d);if(w){var t=w.t!=null?w.t:7,x={id:"sp"+d,cat:"workout",title:w.name,date:d,start:t,end:t+(w.min||45)/60,tag:wkTag(w.type),sp:true,wtype:w.type};
+    if(WL[d]&&WL[d].done!=null){if(WL[d].done)S.done[x.id]=true;else delete S.done[x.id]}
+    EXL["sp:"+d]=(w.ex||[]).map(function(e){return [e.n,exT(e)]});ITEMS.push(x);BYID[x.id]=x}dt.setDate(dt.getDate()+1)}}
+var _exKeyO=exKey;exKey=function(i){return i&&i.sp?"sp:"+i.date:_exKeyO(i)};
+var _wkTypeO=wkType;wkType=function(i){return i&&i.wtype?i.wtype:_wkTypeO(i)};
+var _wkNameO=wkName;wkName=function(i){return i&&i.sp?i.title:_wkNameO(i)};
+var _rSP=render;render=function(){syncSplit();_rSP()};
 var _vListWK=_vList;_vList=function(c){return c==="workout"?vWorkoutT():_vListWK(c)};
 
 render();
