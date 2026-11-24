@@ -1796,6 +1796,283 @@ body.gdark .cx-cta{background:#F4ECE4;color:#2A2420}
 .fpl{height:21px!important;font-size:10.5px!important;padding:0 10px!important;max-width:100%;overflow:hidden;text-overflow:ellipsis}
 .folder .fl{margin-bottom:2px}
 .vf .vl{gap:6px}
+/* ===================== v87 ===================== */
+:root{--sat:env(safe-area-inset-top,0px);--sab:env(safe-area-inset-bottom,0px);--sal:env(safe-area-inset-left,0px);--sar:env(safe-area-inset-right,0px)}
+/* ---- 1. folder icons inline in the pill ---- */
+.fpl .pic{flex:none;margin-left:-3px;width:14px;height:14px}
+.fpl{gap:5px!important}
+.vt.vt87{flex-direction:column;align-items:flex-start!important;justify-content:space-between!important;padding:9px 11px;box-sizing:border-box;gap:2px;text-align:left}
+.vt87 .vtn{font-size:clamp(20px,2.1vw,28px);font-weight:700;line-height:1;color:#2A2420;letter-spacing:-.01em}
+.vt87 .vtx{font-size:11.5px;line-height:1.3;color:#6B5D52;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;max-width:100%}
+body.glass.gdark .vt87 .vtn{color:#FBF7F3}body.glass.gdark .vt87 .vtx{color:#CDBFB3}
+/* ---- 4. fitness card: content fills the card at any row height (no empty band at the bottom) ---- */
+.fitc{display:flex!important;flex-direction:column!important;box-sizing:border-box}
+.fitc>.fpill{flex:none}
+.fitc>.fbig{flex:1 1 auto;display:flex;align-items:center;min-height:0}
+.fitc>.fdiv{flex:none}
+.fitc>.wstrip{flex:none;margin-top:auto}
+.fitc>.cx-cta{margin-top:auto!important;align-self:flex-start}
+.dtop>.fitc{height:100%;min-height:0}
+.fit87{margin:0}
+.view.home .dcol>.fitc{padding:14px 16px 12px;gap:8px}
+/* ---- 2. to-do sections ---- */
+.td87st{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+.td87bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:2px 0 12px}
+.td87new{margin-left:auto;height:40px;padding:0 16px;border-radius:999px;border:0;background:#2A2420;color:#fff;font:inherit;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 6px 16px -8px rgba(42,36,32,.5)}
+.td87g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start}
+.tds{background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.75);border-radius:22px;padding:12px 12px 10px;box-shadow:0 10px 26px -18px rgba(50,35,20,.35);min-width:0}
+.tdsh{display:flex;align-items:center;gap:9px;padding:0 2px 8px;border-bottom:1px solid color-mix(in srgb,var(--sc) 22%,transparent);margin-bottom:6px}
+.tdsdot{width:12px;height:12px;border-radius:50%;background:var(--sc);box-shadow:0 0 0 4px color-mix(in srgb,var(--sc) 18%,transparent);flex:none}
+.tdsh b{font-size:16px;font-weight:700;color:#2A2420}
+.tdsn{font-size:12px;color:#8A7B70;font-weight:600}
+.tdadd{margin-left:auto;width:36px;height:36px;border-radius:50%;border:0;background:var(--sc);color:#fff;font-size:22px;font-weight:600;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 5px 12px -6px var(--sc);position:relative}
+.tdadd::after{content:"";position:absolute;inset:-4px}
+.tdsl{display:flex;flex-direction:column;gap:2px}
+.td87r{display:flex;align-items:flex-start;gap:11px;padding:9px 6px;border-radius:12px;cursor:pointer;min-height:44px;box-sizing:border-box}
+.td87r:hover{background:rgba(255,255,255,.7)}
+.td87r .check{flex:none;margin-top:1px;position:relative}
+.td87r .check::after{content:"";position:absolute;inset:-10px}
+.tdm{flex:1;min-width:0}
+.tdt{font-size:14.5px;font-weight:600;color:#2A2420;line-height:1.3;overflow-wrap:anywhere}
+.tdl{font-size:12px;color:#8A7B70;line-height:1.4;margin-top:2px}
+.tdl .od{color:#D0503D;font-weight:700}.tdl .rp{color:color-mix(in srgb,var(--sc) 80%,#000);font-weight:600}.tdl .ap{font-weight:600}
+.td87r.dn .tdt{text-decoration:line-through;color:#A2958B}
+.td87r .prio{flex:none;margin-top:1px}
+.tdemp{display:flex;justify-content:space-between;align-items:center;width:100%;border:1.5px dashed color-mix(in srgb,var(--sc) 35%,transparent);background:transparent;border-radius:12px;padding:12px;font:inherit;font-size:13px;color:#8A7B70;cursor:pointer;min-height:44px}
+.tdemp span{color:var(--sc);font-weight:700}
+body.glass.gdark .tds{background:rgba(40,32,26,.5);border-color:rgba(255,255,255,.14)}body.glass.gdark .tdsh b,body.glass.gdark .tdt{color:#FBF7F3}
+/* ---- shared sheet (to-do + event editors) ---- */
+#td87m .scrim,#ce87m .scrim{position:fixed;inset:0;z-index:260;display:flex;align-items:center;justify-content:center;padding:max(16px,var(--sat)) max(16px,var(--sar)) max(16px,var(--sab)) max(16px,var(--sal));background:rgba(40,30,25,.28);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
+.sheet.m87{position:relative;width:min(520px,100%);max-height:calc(100dvh - 32px);display:flex;flex-direction:column;border-radius:24px;overflow:hidden;background:rgba(255,255,255,.98);color:#2A2420;box-shadow:0 30px 60px -20px rgba(40,30,25,.5);margin:0;transform:none;left:auto;right:auto;bottom:auto;top:auto}
+.sheet.m87 .stripe{height:5px;flex:none}
+.m87in{padding:16px 18px 18px;overflow-y:auto;display:flex;flex-direction:column;gap:12px;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+.m87h{display:flex;align-items:center;gap:10px}.m87h b{flex:1;font-size:18px;font-weight:700}.m87dot{width:12px;height:12px;border-radius:50%}
+.m87h .close{width:36px;height:36px}
+.m87f,.m87two label{display:flex;flex-direction:column;gap:6px;font-size:12.5px;font-weight:700;color:#6B5D52;min-width:0}
+.m87two label em{font-style:normal;font-weight:500;color:#A2958B}
+.m87 input:not([type=checkbox]),.m87 select,.m87 textarea{font:inherit;font-size:16px;font-weight:500;color:#2A2420;background:#F6F3F0;border:1px solid #E6DFD8;border-radius:12px;padding:0 12px;min-height:44px;box-sizing:border-box;width:100%;outline:none}
+.m87 textarea{padding:10px 12px;resize:vertical;min-height:64px}
+.m87 input:focus,.m87 select:focus,.m87 textarea:focus{border-color:#B9A99B;background:#fff}
+.m87 input:disabled,.m87 select:disabled,.m87 textarea:disabled{opacity:.6}
+.m87two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.m87hint{font-size:12px;color:#8A7B70;font-weight:500;line-height:1.4}.m87next{color:#3E7A55;font-weight:600}.m87dest{margin-top:-6px}
+.m87seg{display:flex;width:100%}.m87seg button{flex:1;min-height:40px;font-size:14px}
+.tdsecs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.tdsec{min-height:44px;border-radius:12px;border:1.5px solid #E6DFD8;background:#fff;font:inherit;font-size:13.5px;font-weight:700;color:#4A3F37;display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;padding:0 6px}
+.tdsec i{width:9px;height:9px;border-radius:50%;background:var(--sc);flex:none}
+.tdsec.on{border-color:var(--sc);background:color-mix(in srgb,var(--sc) 14%,#fff);color:#2A2420}
+.tddays{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px}
+.tdday{min-height:44px;border-radius:12px;border:1.5px solid #E6DFD8;background:#fff;font:inherit;font-size:13.5px;font-weight:700;color:#4A3F37;cursor:pointer;padding:0}
+.tdday.on{background:#2A2420;border-color:#2A2420;color:#fff}
+.m87sw{display:flex!important;flex-direction:row!important;align-items:center;justify-content:space-between;cursor:pointer;min-height:36px;font-size:14px!important;color:#2A2420!important}
+.m87sw input{position:absolute;opacity:0;pointer-events:none}
+.m87sw i{display:block;width:46px;height:28px;border-radius:999px;background:#E2DCD6;position:relative;transition:background .15s;flex:none}
+.m87sw i::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .15s}
+.m87sw input:checked+i{background:#34C759}.m87sw input:checked+i::after{transform:translateX(18px)}
+.m87act{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.m87act span{flex:1}
+.m87act .btn{min-height:44px;padding:0 16px;font-size:15px}
+.m87save{color:#fff!important;border:0}
+#t87{position:fixed;left:50%;bottom:calc(22px + var(--sab));transform:translate(-50%,20px);opacity:0;z-index:300;background:rgba(30,26,24,.92);color:#fff;font-size:14px;font-weight:600;padding:11px 18px;border-radius:999px;pointer-events:none;transition:opacity .2s,transform .2s;max-width:calc(100vw - 32px);text-align:center}
+#t87.on{opacity:1;transform:translate(-50%,0)}
+@media (max-width:759px){
+  #td87m .scrim,#ce87m .scrim{align-items:flex-end;padding:0}
+  .sheet.m87{width:100%;border-radius:24px 24px 0 0;max-height:calc(100dvh - var(--sat) - 12px)}
+  .m87in{padding-bottom:calc(18px + var(--sab))}
+  .tdsec{font-size:12.5px}
+}
+/* ---- 3. calendar (Apple-style, white) ---- */
+
+
+
+
+.c87{--gut:54px;--line:#E9E9EC;--line2:#F3F3F5;--red:#FF3B30;--ink:#1D1D1F;--ink2:#86868B;color:var(--ink);font-family:'Quicksand',system-ui,sans-serif;display:flex;flex-direction:column;gap:10px;min-width:0}
+.c87h{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.c87t{font-size:26px;font-weight:500;letter-spacing:-.01em;margin-right:auto;white-space:nowrap}.c87t b{font-weight:700}.c87dw{font-size:16px;color:var(--ink2);font-weight:600;margin-left:6px}
+.c87seg{display:flex;background:#EEEEF0;border-radius:9px;padding:2px;gap:2px}
+.c87seg button{border:0;background:transparent;font:inherit;font-size:13.5px;font-weight:600;color:var(--ink);padding:0 14px;min-height:32px;border-radius:7px;cursor:pointer}
+.c87seg button.on{background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.14),0 0 0 .5px rgba(0,0,0,.04)}
+.c87nav{display:flex;align-items:center;gap:2px}
+.c87nav button{border:0;background:transparent;font:inherit;font-size:22px;line-height:1;color:var(--ink);min-width:36px;min-height:36px;border-radius:8px;cursor:pointer}
+.c87nav .c87today{font-size:13.5px;font-weight:600;border:1px solid #DCDCE0;padding:0 12px;min-height:30px;margin:0 2px}
+.c87nav button:hover,.c87seg button:hover{background:rgba(0,0,0,.05)}.c87seg button.on:hover{background:#fff}
+.c87add{width:36px;height:36px;border-radius:50%;border:0;background:var(--red);color:#fff;font-size:24px;line-height:1;cursor:pointer;box-shadow:0 4px 12px -4px rgba(255,59,48,.6)}
+.c87b{display:flex;gap:16px;min-height:0;min-width:0}
+.c87main{flex:1;min-width:0;display:flex;flex-direction:column}
+.c87side{width:212px;flex:none;display:flex;flex-direction:column;gap:16px}
+.c87mini .c87mh{display:flex;align-items:center;gap:2px;margin-bottom:6px}.c87mini .c87mh b{flex:1;font-size:14px}
+.c87mini .c87mh button{border:0;background:transparent;font-size:18px;width:30px;height:30px;border-radius:8px;cursor:pointer;color:var(--ink)}
+.c87mg{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;text-align:center}
+.c87mg .w{font-size:10.5px;color:var(--ink2);font-weight:700;padding:2px 0}
+.c87md{border:0;background:transparent;font:inherit;font-size:12.5px;font-weight:600;color:var(--ink);aspect-ratio:1;border-radius:50%;cursor:pointer;padding:0;max-width:30px;justify-self:center;width:100%}
+.c87md.out{color:#C4C4C8}.c87md.inr{background:#F2F2F4;border-radius:6px}.c87md.td{color:var(--red);font-weight:800}.c87md.sel{background:var(--ink);color:#fff;border-radius:50%}.c87md.sel.td{background:var(--red)}
+.c87ch{font-size:12px;font-weight:700;color:var(--ink2);margin-bottom:4px;text-transform:uppercase;letter-spacing:.04em}
+.c87cal{display:flex;align-items:center;gap:9px;width:100%;border:0;background:transparent;font:inherit;font-size:13.5px;font-weight:600;color:var(--ink);padding:5px 4px;border-radius:8px;cursor:pointer;min-height:32px}
+.c87cal i{width:16px;height:16px;border-radius:5px;border:2px solid var(--ec);font-style:normal;font-size:11px;line-height:12px;color:#fff;text-align:center;box-sizing:border-box}.c87cal.on i{background:var(--ec)}
+.c87cal:hover{background:#F4F4F6}
+.c87sc{overflow-y:auto;overflow-x:hidden;position:relative;border-top:1px solid var(--line);-webkit-overflow-scrolling:touch;overscroll-behavior:contain;min-height:280px;scrollbar-width:thin}
+.c87top{position:sticky;top:0;z-index:6;background:#fff;box-shadow:0 1px 0 var(--line)}
+.c87hd{display:grid;align-items:end}
+.c87dh{border:0;background:transparent;font:inherit;display:flex;align-items:center;justify-content:center;gap:6px;padding:8px 0 6px;cursor:pointer;color:var(--ink);min-width:0}
+.c87dh .w{font-size:13px;font-weight:600;color:var(--ink2)}.c87dh .n{font-size:18px;font-weight:600;min-width:30px;height:30px;line-height:30px;border-radius:50%;text-align:center}
+.c87dh.td .w{color:var(--red)}.c87dh.td .n{background:var(--red);color:#fff;font-weight:700}
+.c87ad{display:grid;align-items:start;border-top:1px solid var(--line2);min-height:26px}
+.c87adl{font-size:10.5px;color:var(--ink2);font-weight:600;padding:6px 6px 0 0;text-align:right}
+.c87adc{display:flex;flex-direction:column;gap:2px;padding:3px 2px;border-left:1px solid var(--line);min-width:0}
+.c87ac,.c87acm{border:0;font:inherit;font-size:11.5px;font-weight:700;text-align:left;padding:3px 6px;border-radius:5px;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:color-mix(in srgb,var(--ec) 22%,#fff);color:color-mix(in srgb,var(--ec) 62%,#000);min-height:20px}
+.c87ac.dn{opacity:.55;text-decoration:line-through}.c87acm{background:transparent;color:var(--ink2);font-weight:600}
+.c87g{display:grid;position:relative;--hh:48px}
+.c87gut{position:relative}
+.c87gut span{position:absolute;right:8px;transform:translateY(-50%);font-size:11px;color:var(--ink2);font-weight:600;white-space:nowrap}
+.c87gut .c87nowl{color:var(--red);font-weight:800;background:#fff;padding:0 2px;z-index:3;font-size:11px}
+.c87col{position:relative;border-left:1px solid var(--line);background-image:repeating-linear-gradient(to bottom,var(--line) 0,var(--line) 1px,transparent 1px,transparent var(--hh));cursor:crosshair;touch-action:pan-y}
+.c87col.we{background-color:#FBFBFC}
+.c87now{position:absolute;left:-1px;right:0;height:2px;background:var(--red);z-index:4;pointer-events:none}
+.c87now::before{content:"";position:absolute;left:-5px;top:-4px;width:10px;height:10px;border-radius:50%;background:var(--red)}
+.c87ev{position:absolute;box-sizing:border-box;border-radius:6px;background:color-mix(in srgb,var(--ec) 20%,#fff);border-left:3px solid var(--ec);color:color-mix(in srgb,var(--ec) 58%,#000);padding:3px 6px 2px 6px;overflow:hidden;cursor:grab;z-index:2;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;touch-action:pan-y;transition:box-shadow .12s}
+.c87ev:hover{box-shadow:0 2px 8px -2px rgba(0,0,0,.18);z-index:3}
+.c87et{font-size:12px;font-weight:700;line-height:1.25;overflow:hidden;text-overflow:ellipsis}.c87ev.sm .c87et{white-space:nowrap}
+.c87em{font-size:11px;font-weight:600;opacity:.85;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.c87ev.sm .c87em{display:inline;font-weight:600}
+.c87ev.dn{opacity:.55}.c87ev.dn .c87et{text-decoration:line-through}
+.c87ev.lock{cursor:pointer}
+.c87rs{position:absolute;left:0;right:0;bottom:0;height:8px;cursor:ns-resize}
+.c87ev.lock .c87rs{display:none}
+.c87ev.lift{box-shadow:0 10px 24px -6px rgba(0,0,0,.35);z-index:8;opacity:.95;cursor:grabbing;transform:scale(1.02)}
+.c87gh{background:color-mix(in srgb,var(--ec) 30%,#fff);border-left-color:var(--ec);box-shadow:0 6px 18px -6px rgba(0,0,0,.3);z-index:7;pointer-events:none}
+body.c87drag,body.c87drag *{cursor:grabbing!important}
+body.c87drag .c87sc{overflow-y:hidden}
+/* month */
+.c87mo{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.c87mw{display:grid;grid-template-columns:repeat(7,minmax(0,1fr))}.c87mw span{font-size:12px;font-weight:700;color:var(--ink2);text-align:right;padding:6px 8px}
+.c87mb{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));grid-template-rows:repeat(var(--rows),minmax(0,1fr));border-top:1px solid var(--line);min-height:420px}
+.c87mc{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:4px 4px 2px;display:flex;flex-direction:column;gap:2px;min-width:0;overflow:hidden;cursor:pointer}
+.c87mc:nth-child(7n){border-right:0}.c87mc.we{background:#FBFBFC}.c87mc.out .c87mn{color:#C4C4C8}
+.c87mn{align-self:flex-end;font-size:13px;font-weight:600;min-width:24px;height:24px;line-height:24px;text-align:center;border-radius:50%}
+.c87mn.td{background:var(--red);color:#fff;font-weight:700}
+.c87mt{display:flex;align-items:center;gap:4px;font-size:11px;font-weight:600;white-space:nowrap;overflow:hidden;min-width:0;color:var(--ink)}
+.c87mt i{width:6px;height:6px;border-radius:50%;background:var(--ec);flex:none}.c87mt span{overflow:hidden;text-overflow:ellipsis;flex:1;min-width:0}.c87mt em{font-style:normal;color:var(--ink2);flex:none}
+.c87mt.ad{background:color-mix(in srgb,var(--ec) 22%,#fff);color:color-mix(in srgb,var(--ec) 62%,#000);border-radius:4px;padding:1px 5px;font-weight:700;display:block;text-overflow:ellipsis}
+.c87more{font-size:11px;color:var(--ink2);font-weight:600;padding-left:4px}
+.c87dots{display:flex;gap:3px;justify-content:center;flex-wrap:wrap}.c87dots i{width:6px;height:6px;border-radius:50%}
+/* phone day strip */
+.c87strip{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;padding:2px 0 6px}
+.c87sd{border:0;background:transparent;font:inherit;display:flex;flex-direction:column;align-items:center;gap:3px;min-height:52px;cursor:pointer;color:var(--ink);padding:2px 0}
+.c87sd .w{font-size:11px;font-weight:700;color:var(--ink2)}.c87sd .n{font-size:17px;font-weight:600;width:34px;height:34px;line-height:34px;border-radius:50%;text-align:center}
+.c87sd.td .n{color:var(--red);font-weight:800}.c87sd.sel .n{background:var(--ink);color:#fff}.c87sd.sel.td .n{background:var(--red);color:#fff}
+
+
+body.glass.gdark .c87{--line:#2C2C2E;--line2:#232325;--ink:#F5F5F7;--ink2:#98989D}
+body.glass.gdark .c87top,body.glass.gdark .c87gut .c87nowl{background:#1C1C1E}body.glass.gdark .c87col.we,body.glass.gdark .c87mc.we{background-color:#202022}
+body.glass.gdark .c87seg{background:#2C2C2E}body.glass.gdark .c87seg button.on{background:#636366}
+body.glass.gdark .c87ev{background:color-mix(in srgb,var(--ec) 30%,#1C1C1E);color:color-mix(in srgb,var(--ec) 55%,#fff)}
+/* phone */
+@media (max-width:759px){
+  .c87{--gut:44px;gap:6px}
+  .c87h{gap:8px}.c87t{font-size:22px;flex:1}
+  .c87seg{order:5;width:100%}.c87seg button{flex:1;min-height:36px}
+  .c87nav button{min-width:44px;min-height:44px}.c87nav .c87today{min-height:36px}
+  .c87add{width:44px;height:44px}
+  .c87gut span{right:5px;font-size:10px}
+  .c87dh{flex-direction:column;gap:1px;padding:4px 0}.c87dh .w{font-size:10.5px}.c87dh .n{font-size:15px;min-width:26px;height:26px;line-height:26px}
+  .c87et{font-size:12.5px}
+  .c87mw span{text-align:center;padding:4px 0}.c87mc{padding:3px 1px;align-items:center}.c87mn{align-self:center;font-size:14px;min-width:30px;height:30px;line-height:30px}
+  .c87mb{min-height:300px}
+  body.glass.c87on .gpanel{padding:10px 8px}
+}
+/* ---- 5. iPhone Duo: closed (outer screen, portrait ~466x678) and open (inner, landscape ~890x626) ---- */
+body.glass .app{padding-left:max(12px,var(--sal));padding-right:max(12px,var(--sar))}
+body.glass .gl{padding-top:max(14px,calc(var(--sat) + 6px))}
+@media (max-width:999px){
+  input,select,textarea{font-size:16px!important}
+  .gsb{width:44px!important;height:44px!important}
+  .check{position:relative}.check::after{content:"";position:absolute;inset:-10px}
+  body.glass .app{padding-bottom:calc(24px + var(--sab))}
+}
+@media (max-width:759px){
+  .td87st{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .td87g{grid-template-columns:1fr;gap:12px}
+  .td87new{height:44px}
+  .tds{padding:10px 10px 8px;border-radius:20px}
+  .view.home .dgrid .dcol>.fitc{margin-bottom:2px}
+}
+/* open: side rail instead of the top bar, two-column layouts, compact chrome so the 626px height is used for content */
+@media (min-width:760px) and (max-width:999px){
+  body.glass .app{padding-top:0}
+  .gl{grid-template-columns:56px minmax(0,1fr)!important;gap:12px!important}
+  .gside{position:sticky!important;top:max(8px,var(--sat))!important;flex-direction:column!important;overflow-y:auto!important;overflow-x:hidden!important;max-height:calc(100dvh - 16px);padding:6px 0!important;align-items:center!important;justify-content:flex-start!important;border-radius:28px}
+  .gsep{width:24px!important;height:1px!important;margin:3px 0!important}
+  .gsplus{position:static!important;margin:4px 0 0!important}
+  .gtop{padding:6px 10px!important}
+  .gmain{gap:10px}
+  body.glass .banner{font-size:12.5px;padding:6px 12px;margin-bottom:6px}
+  .gpanel{padding:14px!important}
+  .view.home .folders{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .view.home .dgrid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start}
+  .view.home .dgrid>.dcol,.view.home .dgrid>.full{grid-column:auto;min-width:0;display:flex;flex-direction:column;gap:14px}
+  .view.home .dgrid>.full{grid-column:1 / -1}
+  .td87g{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .c87side{width:190px}
+  .c87t{font-size:22px}
+  .c87h{gap:8px}
+  .c87seg button{padding:0 11px;min-height:34px}
+  .c87nav button{min-width:40px;min-height:40px}
+  .c87add{width:40px;height:40px}
+}
+@media (min-width:760px) and (max-width:999px) and (max-height:700px){
+  .c87side .c87cals{display:none}
+  .c87b{gap:12px}
+}
+.c87gut .c87hid{visibility:hidden}
+
+/* v87 header layouts */
+@media (max-width:759px){
+  .c87h{display:grid;grid-template-columns:minmax(0,1fr) auto auto;grid-template-areas:"t td add" "seg seg nav";align-items:center;gap:8px 6px}
+  .c87t{grid-area:t;overflow:hidden;text-overflow:ellipsis}.c87add{grid-area:add}.c87seg{grid-area:seg;width:auto}
+  .c87nav{display:contents}.c87nav .c87today{grid-area:td}
+  .c87nav button[data-v="-1"],.c87nav button[data-v="1"]{display:none}
+}
+@media (min-width:760px) and (max-width:999px){
+  .c87t{margin-right:0;font-size:20px}.c87nav{margin-right:auto}
+  body.fold-open.c87on .banner{display:none}
+  body.fold-open .gtop .gwel small{display:none}
+  body.fold-open .gtop .gav{width:36px;height:36px}
+}
+@media (min-width:760px) and (max-width:999px){
+  .c87nav{order:2}.c87seg{order:3}.c87add{order:4}
+  .view.home .hello .qa{justify-content:flex-end}
+}
+
+/* ---- v88: glass calendar page, white embedded calendar card ---- */
+body.glass.c87on .c87h .c87t{color:var(--text,#2A2420)}
+body.glass.c87on .c87seg{background:rgba(255,255,255,.42);border:1px solid rgba(255,255,255,.7);border-radius:999px;padding:3px;box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 6px 18px -12px rgba(50,35,20,.35);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+body.glass.c87on .c87seg button{border-radius:999px;color:var(--text2,#5A4E45)}
+body.glass.c87on .c87seg button.on{background:rgba(255,255,255,.95);color:#2A2420;box-shadow:0 2px 8px -3px rgba(50,35,20,.35)}
+body.glass.c87on .c87seg button:hover{background:rgba(255,255,255,.5)}body.glass.c87on .c87seg button.on:hover{background:#fff}
+body.glass.c87on .c87nav button{background:rgba(255,255,255,.45);border:1px solid rgba(255,255,255,.75);border-radius:999px;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+body.glass.c87on .c87nav button:hover{background:rgba(255,255,255,.75)}
+/* sidebar: glass card */
+body.glass.c87on .c87side{background:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.75);border-radius:22px;padding:14px 12px;box-shadow:0 10px 26px -18px rgba(50,35,20,.35);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);align-self:flex-start;box-sizing:border-box}
+body.glass.c87on .c87md.inr{background:rgba(255,255,255,.55)}
+body.glass.c87on .c87md.out{color:rgba(90,78,69,.4)}
+/* the embedded calendar: solid white card */
+body.glass.c87on .c87main{background:#fff;border-radius:20px;border:1px solid rgba(0,0,0,.05);box-shadow:0 1px 2px rgba(0,0,0,.04),0 18px 40px -24px rgba(40,28,18,.38);overflow:hidden;padding:4px 0 0;min-width:0}
+body.glass.c87on .c87main .c87sc{border-top:0}
+body.glass.c87on .c87main .c87mo{border-top:0}
+body.glass.c87on .c87main .c87strip{border-bottom:1px solid var(--line);padding:4px 4px 6px}
+/* dark mode: glass stays dark glass, calendar card becomes solid graphite */
+body.glass.gdark.c87on .c87h .c87t{color:#FBF7F3}
+body.glass.gdark.c87on .c87seg{background:rgba(40,32,26,.5);border-color:rgba(255,255,255,.14);box-shadow:none}
+body.glass.gdark.c87on .c87seg button{color:#CDBFB3}body.glass.gdark.c87on .c87seg button.on{background:rgba(255,255,255,.18);color:#fff}
+body.glass.gdark.c87on .c87nav button{background:rgba(40,32,26,.5);border-color:rgba(255,255,255,.14);color:#FBF7F3}
+body.glass.gdark.c87on .c87side{background:rgba(40,32,26,.5);border-color:rgba(255,255,255,.14);color:#FBF7F3}
+body.glass.gdark.c87on .c87side{--ink:#FBF7F3;--ink2:#CDBFB3}
+body.glass.gdark.c87on .c87md.inr{background:rgba(255,255,255,.1)}body.glass.gdark.c87on .c87md.sel:not(.td){background:#FBF7F3;color:#2A2420}
+body.glass.gdark.c87on .c87main{background:#1C1C1E;border-color:rgba(255,255,255,.08);box-shadow:0 18px 40px -24px rgba(0,0,0,.7)}
+@media (max-width:759px){body.glass.c87on .c87main{border-radius:16px}}
+/* v88: three to-do sections */
+.tdsecs{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (min-width:1000px){.td87g{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (min-width:760px) and (max-width:999px){.td87g{grid-template-areas:"p h" "p w"}.td87g>.tds-personal{grid-area:p}.td87g>.tds-home{grid-area:h}.td87g>.tds-work{grid-area:w}}
 </style>
 </head>
 <body>
@@ -1864,13 +2141,20 @@ var ITEMS=[
  I("x5","workout","Hike: Bukit Gasing",d2(21),{start:8,end:10,tag:"Outdoors"}),
  I("x6","workout","Yoga and stretch",d2(22),{start:10,end:11,tag:"Mobility"}),
  I("rc22","routine","Sunday reset",d2(22),{start:17,end:18,tag:"Weekly",note:"Laundry, meal plan, look over next week."}),
- I("t0","todo","Send invoice to retailer",d2(13),{priority:"High",done:true}),
- I("t1","todo","Reply to collab emails",d2(16),{priority:"High"}),
- I("t2","todo","Approve product photos",d2(16),{priority:"High"}),
- I("t3","todo","Renew gym membership",d2(17),{priority:"Medium"}),
- I("t4","todo","Book dentist appointment",d2(18),{priority:"Medium"}),
- I("t5","todo","Draft newsletter for winter drop",d2(19),{priority:"High"}),
- I("t6","todo","Update app wishlist",d2(20),{priority:"Low"}),
+ I("t0","todo","Send invoice to retailer",d2(13),{sec:"work",priority:"High",done:true}),
+ I("t1","todo","Reply to collab emails",d2(16),{sec:"work",priority:"High",start:9,end:9.5,rep:{t:"weekdays"}}),
+ I("t2","todo","Approve product photos",d2(16),{sec:"work",priority:"High"}),
+ I("t3","todo","Renew gym membership",d2(17),{sec:"personal",priority:"Medium"}),
+ I("t4","todo","Book dentist appointment",d2(18),{sec:"personal",priority:"Medium",start:12.5}),
+ I("t5","todo","Draft newsletter for winter drop",d2(19),{sec:"work",priority:"High"}),
+ I("t6","todo","Update app wishlist",d2(20),{sec:"personal",priority:"Low"}),
+ I("t7","todo","Water the plants",d2(18),{sec:"home",priority:"Low",rep:{t:"weekly",days:[3,6]},anchor:d2(18)}),
+ I("t8","todo","Take out the recycling",d2(17),{sec:"home",priority:"Medium",start:20,rep:{t:"weekly",days:[2]},anchor:d2(17)}),
+ I("t9","todo","Deep-clean the fridge",d2(21),{sec:"home",priority:"Low",rep:{t:"monthly"},anchor:d2(21)}),
+ I("t10","todo","Statistics problem set 6",d2(19),{sec:"personal",priority:"High",start:19,end:21}),
+ I("t11","todo","Read chapter 4: consumer behaviour",d2(17),{sec:"personal",priority:"Medium",rep:{t:"custom",n:2,u:"d"},anchor:d2(17)}),
+ I("t12","todo","Spanish vocab practice",d2(17),{sec:"personal",priority:"Low",start:20.5,end:20.75,rep:{t:"daily"},anchor:d2(17)}),
+ I("t13","todo","Call Mum",d2(22),{sec:"personal",priority:"Medium",start:18,rep:{t:"weekly",days:[0]},anchor:d2(22)}),
  I("e0","errand","Car service",d2(12),{tag:"Workshop",done:true}),
  I("e1","errand","Pick up dry cleaning",d2(16),{start:17.5,end:18,tag:"Bangsar"}),
  I("e2","errand","Post office: return parcel",d2(17),{tag:"Mid Valley"}),
@@ -2163,7 +2447,7 @@ function vHome(){
     '<div class="qa">'+[["task","Task"],["event","Event"],["expense","Expense"],["goal","Goal"]].map(function(q){return '<button class="qb" data-a="qa" data-v="'+q[0]+'"><span class="pl">+</span>'+q[1]+'</button>'}).join("")+'</div></div>';
   var folders='<div class="folders">'+CATS.map(function(k){var f=folderInfo(k);
     return '<div class="folder" data-a="go" data-v="'+k.id+'" style="border-color:'+tint(k.color,"55")+';background:linear-gradient('+tint(k.color,"14")+','+tint(k.color,"14")+'),var(--card)"><span class="tabt" style="background:'+k.color+'"></span>'+
-      '<div class="fl"><span class="hpill fpl" style="background:'+k.color+'">'+k.label.toUpperCase()+'</span></div><div class="fn">'+f.n+'</div><div class="fs">'+f.s+'</div><div class="fx">'+esc(f.x)+'</div></div>'}).join("")+'</div>';
+      '<div class="fl"><span class="hpill fpl" style="background:'+k.color+'">'+picon(k.id,14)+k.label.toUpperCase()+'</span></div><div class="fn">'+f.n+'</div><div class="fs">'+f.s+'</div><div class="fx">'+esc(f.x)+'</div></div>'}).join("")+'</div>';
   var tsum=card(ct("Today",'<span class="r">'+dn_+' of '+list.length+' done</span>')+bar(list.length?dn_/list.length:0,"var(--text)",4)+
     '<div class="list">'+list.map(function(i){var c=CAT[i.cat],d=!!S.done[i.id];
       return '<div class="tsum"><div class="tm">'+(i.start!=null?ft(i.start):'Anytime')+'</div><div class="row'+(d?' done':'')+'" data-a="open" data-id="'+i.id+'" style="border-color:'+c.color+';background:'+tint(c.color,"10")+'">'+check(i.id,c.color)+
@@ -2192,7 +2476,7 @@ function vHome(){
         its.slice(0,3).map(function(i){var c=CAT[i.cat].color;return '<div class="mt'+(S.done[i.id]?' dn':'')+'" style="border-color:'+c+';background:'+tint(c,"1C")+'">'+esc(i.title)+'</div>'}).join("")+
         (its.length>3?'<div class="more">+'+(its.length-3)+' more</div>':'')+'</div>'}).join("")+'</div></div>'+
     (S.hday?'<div class="list"><div class="dateh'+(S.hday===TODAY?' today':'')+'">'+fdate(S.hday)+'</div>'+(hi.length?hi.map(function(i){return row(i,false)}).join(""):'<div class="free">Nothing planned.</div>')+'</div>':'<div class="free">Tap a day to see what\'s on.</div>'));
-  return cover+hello+folders+'<div class="dgrid"><div class="dcol wide">'+tsum+'</div><div class="dcol">'+goals+clock+'</div><div class="dcol">'+week+money+'</div><div class="full">'+month+'</div></div>';
+  return cover+hello+folders+'<div class="dgrid"><div class="dcol wide">'+tsum+'</div><div class="dcol">'+fitCard()+goals+clock+'</div><div class="dcol">'+week+money+'</div><div class="full">'+month+'</div></div>';
 }
 
 /* ---------- quick add ---------- */
@@ -2328,8 +2612,8 @@ function vHomeDesk(){
       '<span class="gt'+(g.done?' done title':'')+'" data-a="goaltoggle" data-id="'+g.id+'" title="'+esc(g.text)+'">'+esc(g.text)+'</span><button class="del" data-a="goaldel" data-id="'+g.id+'" aria-label="Remove goal">✕</button></div>'}).join("")+'</div>'+
     '<input class="gadd" id="goalinput" placeholder="+ Add a goal" maxlength="80" enterkeyhint="done"></div>';
   var folders='<div class="dfold">'+CATS.map(function(k){var f=folderInfo(k);
-    return '<div class="vf" data-a="go" data-v="'+k.id+'" title="'+esc(f.x)+'" style="border-color:'+tint(k.color,"40")+'"><div class="vt" style="background:radial-gradient(circle at 78% 22%,rgba(255,255,255,.75),transparent 46%),linear-gradient(150deg,'+tint(k.color,"38")+' 0%,'+tint(k.color,"0F")+' 100%)"><span class="tb" style="background:'+k.color+'"></span>'+icon(k.id,40)+'</div>'+
-      '<div class="vl"><span class="hpill fpl" style="background:'+k.color+'">'+k.label.toUpperCase()+'</span><span class="n">'+f.n+'</span></div><div class="vs">'+esc(f.s)+'</div></div>'}).join("")+'</div>';
+    return '<div class="vf" data-a="go" data-v="'+k.id+'" title="'+esc(f.x)+'" style="border-color:'+tint(k.color,"40")+'"><div class="vt vt87" style="background:radial-gradient(circle at 78% 22%,rgba(255,255,255,.75),transparent 46%),linear-gradient(150deg,'+tint(k.color,"38")+' 0%,'+tint(k.color,"0F")+' 100%)"><span class="tb" style="background:'+k.color+'"></span>'+'<span class="vtn">'+f.n+'</span><span class="vtx">'+esc(f.x)+'</span></div>'+
+      '<div class="vl"><span class="hpill fpl" style="background:'+k.color+'">'+picon(k.id,14)+k.label.toUpperCase()+'</span></div><div class="vs">'+esc(f.s)+'</div></div>'}).join("")+'</div>';
   // side panel
   var sd=S.hday||TODAY,its=ITEMS.filter(function(i){return i.date===sd});
   its=its.filter(function(i){return i.start!=null}).sort(function(a,b){return a.start-b.start}).concat(its.filter(function(i){return i.start==null}));
@@ -3418,6 +3702,303 @@ var _cx82=render;render=function(){_cx82();try{cxEmpties()}catch(e){}};
 document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest('[data-c82="addbill"],[data-c82="adderr"],[data-c82="routadd"]');if(!b)return;e.stopPropagation();e.preventDefault();var a=b.getAttribute("data-c82");
   if(a==="routadd"){var n=(document.getElementById("cxr-n")||{}).value||"";n=n.trim();if(!n){var i0=document.getElementById("cxr-n");if(i0)i0.focus();return}var r=["ru"+Date.now(),(document.getElementById("cxr-p")||{}).value||"Morning",n],RX=LS.get("lm.routine.x.v1",[]);RX.push(r);LS.set("lm.routine.x.v1",RX);ROUTINE.push(r);render();var i1=document.getElementById("cxr-n");if(i1)i1.focus();return}
   S.add="event";render();var sp=document.getElementById("qa4");if(sp)sp.value=a==="addbill"?"budget":"errand"},true);
+
+/* ===================== v87: folder icons, to-do sections + repeats, Apple-style calendar, foldable layout ===================== */
+var M87={mode:null};
+function mode87(){var w=window.innerWidth;return w<760?"phone":w<1000?"open":"desk"}
+function toast87(t){var el=document.getElementById("t87");if(!el){el=document.createElement("div");el.id="t87";document.body.appendChild(el)}el.textContent=t;el.className="on";clearTimeout(toast87._t);toast87._t=setTimeout(function(){el.className=""},2600)}
+/* white category icon for the folder pills */
+function picon(k,s){var c=CAT[k].color;return '<svg class="pic" width="'+s+'" height="'+s+'" viewBox="0 0 40 40" fill="none" aria-hidden="true">'+ICONS[k].replace(/="#fff"/gi,'="'+c+'"').replace(/="C"/g,'="#fff"')+'</svg>'}
+
+/* ---------------- TO-DOS: sections, days, times, repeats ---------------- */
+var TSEC=[["personal","Personal","#E3A33B"],["home","Home","#E0784F"],["work","Work","#5B6CF0"]],TSECC={};TSEC.forEach(function(s){TSECC[s[0]]=s});
+var TDSEC=LS.get("lm.tdsec.v1",{});
+var WD3=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],WDORD=[1,2,3,4,5,6,0];
+CAT.todo.blurb="Personal, home and work, with days, times and repeats.";
+function tdSec(i){if(i.ic){if(TDSEC[i.id])return TDSEC[i.id];var n=String(i.tag||"").toLowerCase();return /work|job|office|svelt/.test(n)?"work":/home|house/.test(n)?"home":"personal"}return i.sec&&TSECC[i.sec]?i.sec:"personal"}
+/* migrate: to-dos made before v87 go to Personal */
+(function(){var ch=false;EXTRA.forEach(function(i){if(i.cat==="todo"&&(!i.sec||i.sec==="school")){i.sec="personal";ch=true}});if(ch)LS.set("lm.items.v1",EXTRA);var c2=false;Object.keys(CXE).forEach(function(k){if(CXE[k]&&CXE[k].sec==="school"){CXE[k].sec="personal";c2=true}});if(c2)LS.set("lm.itemedits.v1",CXE);var c3=false;Object.keys(TDSEC).forEach(function(k){if(TDSEC[k]==="school"){TDSEC[k]="personal";c3=true}});if(c3)LS.set("lm.tdsec.v1",TDSEC);ITEMS.forEach(function(i){if(i.sec==="school")i.sec="personal"})})();
+function dO(s){return new Date(s+"T12:00:00")}
+function wkS(s){return addD(s,-((dO(s).getDay()+6)%7))}
+function nextOcc(i,from){var r=i.rep||{t:"none"},t=r.t||"none",wd=(i.wd&&i.wd.length)?i.wd:null,a=i.anchor||i.date,d,k;
+  if(t==="none"){if(!wd)return null;var end=addD(wkS(a),6);for(d=addD(from,1);d<=end;d=addD(d,1))if(wd.indexOf(dO(d).getDay())>=0)return d;return null}
+  if(t==="daily")return addD(from,1);
+  if(t==="weekdays"){d=addD(from,1);while(dO(d).getDay()===0||dO(d).getDay()===6)d=addD(d,1);return d}
+  if(t==="weekly"||(t==="custom"&&r.u==="w")){var days=(r.days&&r.days.length)?r.days:wd||[dO(a).getDay()],n=t==="weekly"?1:Math.max(1,r.n||1),a0=wkS(a);
+    for(k=1;k<=7*n+7;k++){d=addD(from,k);var wi=Math.round((dO(wkS(d))-dO(a0))/6048e5);if(((wi%n)+n)%n===0&&days.indexOf(dO(d).getDay())>=0)return d}return null}
+  if(t==="monthly"){var dom=dO(a).getDate(),f=dO(from),y=f.getFullYear(),m=f.getMonth()+1;return _iso(new Date(y,m,Math.min(dom,new Date(y,m+1,0).getDate())))}
+  if(t==="custom")return addD(from,Math.max(1,r.n||1));
+  return null}
+function isRep87(i){return !i.ic&&((i.rep&&i.rep.t&&i.rep.t!=="none")||(i.wd&&i.wd.length>0))}
+function ord87(n){var s=["th","st","nd","rd"],v=n%100;return n+(s[(v-20)%10]||s[v]||s[0])}
+function dayList(a){return WDORD.filter(function(d){return a.indexOf(d)>=0}).map(function(d){return WD3[d]}).join(", ")}
+function repText(i){if(i.ic)return i.ic.rec?"Repeats (set in Apple Calendar)":"";var r=i.rep||{t:"none"},wd=(i.wd&&i.wd.length)?i.wd:null;
+  switch(r.t){case "daily":return "Every day";case "weekdays":return "Every weekday";
+    case "weekly":return "Weekly on "+dayList((r.days&&r.days.length)?r.days:wd||[dO(i.anchor||i.date).getDay()]);
+    case "monthly":return "Monthly on the "+ord87(dO(i.anchor||i.date).getDate());
+    case "custom":var n=Math.max(1,r.n||1);return r.u==="w"?"Every "+(n===1?"week":n+" weeks")+((r.days&&r.days.length)||wd?" on "+dayList((r.days&&r.days.length)?r.days:wd):""):"Every "+(n===1?"day":n+" days");
+    default:return wd?"This week: "+dayList(wd):""}}
+function schedLine(i){var dn_=!!S.done[i.id],p=[];
+  p.push((i.date<TODAY&&!dn_?'<b class="od">Overdue · </b>':'')+fdate(i.date));
+  if(i.start!=null)p.push(i.end!=null?ft(i.start)+" – "+ft(i.end):ft(i.start));
+  var rt=repText(i);if(rt)p.push('<span class="rp">↻ '+esc(rt)+'</span>');
+  if(i.ic)p.push('<span class="ap">Apple</span>');
+  return p.join(" · ")}
+function td87Persist(i){if(i.ic||i.pm)return;if(cxIsExtra(i)){cxSaveExtra();return}
+  var keep={};["title","date","note","cat","priority","amount","start","end","sec","rep","wd","anchor","hist","lastDone"].forEach(function(k){if(i[k]!==undefined)keep[k]=i[k]});
+  if(i.start==null){keep.start=null;keep.end=null}CXE[i.id]=keep;LS.set("lm.itemedits.v1",CXE)}
+/* checking off a repeating to-do moves it to its next date */
+document.addEventListener("click",function(e){var t=e.target.closest&&e.target.closest('[data-a="toggle"]');if(!t)return;var i=BYID[t.getAttribute("data-id")];
+  if(!i||i.cat!=="todo"||!isRep87(i)||S.done[i.id])return;var nd=nextOcc(i,i.date);if(!nd)return;
+  e.stopPropagation();e.preventDefault();(i.hist=i.hist||[]).push(i.date);if(i.hist.length>60)i.hist=i.hist.slice(-60);i.lastDone=i.date;i.date=nd;td87Persist(i);
+  toast87("Done ✓  Next: "+fdate(nd));render()},true);
+
+function vTodo87(){var k=CAT.todo,show=S.show.todo||"upcoming";
+  var all=ITEMS.filter(function(i){return i.cat==="todo"});
+  var isD=function(i){return !!S.done[i.id]};
+  var list=all.filter(function(i){return show==="all"||(show==="done"?isD(i):!isD(i))}).sort(function(a,b){return (isD(a)-isD(b))||(a.date<b.date?-1:a.date>b.date?1:(a.start==null?99:a.start)-(b.start==null?99:b.start))});
+  var stats=[["Open",all.filter(function(i){return !isD(i)}).length],["Due today",all.filter(function(i){return !isD(i)&&i.date<=TODAY}).length],["Repeating",all.filter(isRep87).length],["Done",all.filter(isD).length]];
+  var h=phead(k,stats,"td87st");
+  h+='<div class="td87bar">'+seg("show",[["upcoming","Upcoming"],["done","Done"],["all","All"]],show)+'<button class="td87new" data-td87="new" data-v="personal">+ New to-do</button></div>';
+  h+='<div class="td87g h87">'+TSEC.map(function(s){var its=list.filter(function(i){return tdSec(i)===s[0]}),open=all.filter(function(i){return tdSec(i)===s[0]&&!isD(i)}).length;
+    return '<section class="tds tds-'+s[0]+'" style="--sc:'+s[2]+'"><div class="tdsh"><span class="tdsdot"></span><b>'+s[1]+'</b><span class="tdsn">'+open+' open</span><button class="tdadd" data-td87="new" data-v="'+s[0]+'" aria-label="Add a '+s[1]+' to-do" title="Add a '+s[1]+' to-do">+</button></div>'+
+     '<div class="tdsl">'+(its.length?its.map(function(i){var d=isD(i);
+       return '<div class="td87r'+(d?' dn':'')+'" data-td87="edit" data-v="'+i.id+'">'+check(i.id,s[2])+'<div class="tdm"><div class="tdt">'+esc(i.title)+'</div><div class="tdl">'+schedLine(i)+'</div></div>'+(i.priority&&!d?'<span class="prio p-'+i.priority+'">'+i.priority+'</span>':'')+'</div>'}).join("")
+       :'<button class="tdemp" data-td87="new" data-v="'+s[0]+'">'+(show==="done"?"Nothing done here yet":"Nothing here yet")+' <span>+ Add</span></button>')+'</div></section>'}).join("")+'</div>';
+  return h}
+var _vListTD87=_vList;_vList=function(c){return c==="todo"?vTodo87():_vListTD87(c)};
+
+/* to-do editor */
+var TDU=null;
+function hhmm(h){return h==null?"":cxClock(h)}
+function tdOpen(id,sec){var i=id?BYID[id]:null;
+  if(i){var r=i.rep||{t:"none"};TDU={id:i.id,ic:!!i.ic,d:{title:i.title,sec:tdSec(i),mode:(i.wd&&i.wd.length)?"wd":"date",date:i.date,wd:(i.wd||[]).slice(),timed:i.start!=null,start:hhmm(i.start)||"09:00",end:i.end!=null&&i.start!=null?hhmm(Math.min(i.end,23.99)):"",rep:r.t||"none",n:r.n||2,u:r.u||"w",days:(r.days||[]).slice(),priority:i.priority||"Medium",note:i.ic?"":(i.note||"")}}}
+  else TDU={id:null,d:{title:"",sec:sec||"personal",mode:"date",date:TODAY,wd:[],timed:false,start:"09:00",end:"",rep:"none",n:2,u:"w",days:[],priority:"Medium",note:""}};
+  S.sel=null;TDU.err="";tdDraw(true)}
+function tdRead(){if(!TDU)return;var g=function(id){var e=document.getElementById(id);return e?e.value:null},d=TDU.d;
+  var v;if((v=g("tdf-t"))!=null)d.title=v;if((v=g("tdf-date"))!=null&&v)d.date=v;if((v=g("tdf-s"))!=null&&v)d.start=v;if((v=g("tdf-e"))!=null)d.end=v;
+  if((v=g("tdf-rep"))!=null)d.rep=v;if((v=g("tdf-n"))!=null)d.n=Math.max(1,parseInt(v,10)||1);if((v=g("tdf-u"))!=null)d.u=v;if((v=g("tdf-p"))!=null)d.priority=v;if((v=g("tdf-note"))!=null)d.note=v}
+function dayChips(sel,name,dis){return '<div class="tddays">'+WDORD.map(function(d){var on=sel.indexOf(d)>=0;return '<button type="button" class="tdday'+(on?' on':'')+'" data-tdf="'+name+'" data-v="'+d+'"'+(dis?' disabled':'')+' aria-pressed="'+on+'">'+WD3[d].slice(0,2)+'</button>'}).join("")+'</div>'}
+function tdDraw(focus){var el=document.getElementById("td87m");if(!el){el=document.createElement("div");el.id="td87m";document.body.appendChild(el)}var ae=document.activeElement;if(ae&&el.contains(ae)&&ae.blur)ae.blur();
+  if(!TDU){el.innerHTML="";document.body.classList.remove("m87");return}document.body.classList.add("m87");
+  var d=TDU.d,ic=TDU.ic,sc=TSECC[d.sec][2],reps=[["none","Never"],["daily","Every day"],["weekdays","Every weekday (Mon–Fri)"],["weekly","Weekly"],["monthly","Monthly"],["custom","Custom…"]];
+  var repDis=ic,wdDis=ic;
+  var f='<div class="m87h"><span class="m87dot" style="background:'+sc+'"></span><b>'+(TDU.id?"Edit to-do":"New to-do")+'</b><button class="close" data-tdx="close" aria-label="Close">✕</button></div>'+
+   '<label class="m87f">Title<input id="tdf-t" value="'+esc(d.title)+'" placeholder="What needs doing?" autocomplete="off" enterkeyhint="done"></label>'+
+   '<div class="m87f">Section<div class="tdsecs">'+TSEC.map(function(s){return '<button type="button" class="tdsec'+(d.sec===s[0]?' on':'')+'" data-tdf="sec" data-v="'+s[0]+'" style="--sc:'+s[2]+'"><i></i>'+s[1]+'</button>'}).join("")+'</div></div>'+
+   '<div class="m87f">Days<div class="seg m87seg"><button type="button" class="'+(d.mode==="date"?'on':'')+'" data-tdf="mode" data-v="date">One date</button><button type="button" class="'+(d.mode==="wd"?'on':'')+'" data-tdf="mode" data-v="wd"'+(wdDis?' disabled':'')+'>Pick weekdays</button></div>'+
+     (d.mode==="date"?'<input id="tdf-date" type="date" value="'+d.date+'">':dayChips(d.wd,"wd",false)+'<small class="m87hint">Shows on these days, starting this week.</small>')+'</div>'+
+   '<div class="m87f"><label class="m87sw"><span>Time</span><input type="checkbox" data-tdf="timed"'+(d.timed?' checked':'')+'><i></i></label>'+
+     (d.timed?'<div class="m87two"><label>Starts<input id="tdf-s" type="time" value="'+d.start+'"></label><label>Ends <em>(optional)</em><input id="tdf-e" type="time" value="'+d.end+'"></label></div>':'<small class="m87hint">Anytime that day.</small>')+'</div>'+
+   '<div class="m87f">Repeat<select id="tdf-rep" data-tdf="rep"'+(repDis?' disabled':'')+'>'+reps.map(function(r){return '<option value="'+r[0]+'"'+(d.rep===r[0]?' selected':'')+'>'+r[1]+'</option>'}).join("")+'</select>'+
+     (ic?'<small class="m87hint">This to-do comes from Apple Calendar. Repeats are set there.</small>':'')+
+     (d.rep==="weekly"&&d.mode==="date"?dayChips(d.days.length?d.days:[dO(d.date).getDay()],"days",false):'')+
+     (d.rep==="weekly"&&d.mode==="wd"?'<small class="m87hint">Every week on the days above.</small>':'')+
+     (d.rep==="custom"?'<div class="m87two m87cus"><label>Every<input id="tdf-n" type="number" min="1" max="99" inputmode="numeric" value="'+d.n+'"></label><label>&nbsp;<select id="tdf-u" data-tdf="u"><option value="d"'+(d.u==="d"?' selected':'')+'>days</option><option value="w"'+(d.u==="w"?' selected':'')+'>weeks</option></select></label></div>'+(d.u==="w"&&d.mode==="date"?dayChips(d.days.length?d.days:[dO(d.date).getDay()],"days",false):''):'')+
+     (d.rep!=="none"?'<small class="m87hint m87next">'+esc(tdPreview())+'</small>':'')+'</div>'+
+   '<div class="m87two"><label>Priority<select id="tdf-p">'+["High","Medium","Low"].map(function(p){return '<option'+(d.priority===p?' selected':'')+'>'+p+'</option>'}).join("")+'</select></label><span></span></div>'+
+   (ic?'':'<label class="m87f">Notes<textarea id="tdf-note" rows="2" placeholder="Optional">'+esc(d.note)+'</textarea></label>')+
+   '<div class="cx-err">'+esc(TDU.err||"")+'</div>'+
+   '<div class="m87act">'+(TDU.id?'<button class="btn cx-del" data-tdx="del">Delete</button>':'')+'<span></span><button class="btn" data-tdx="close">Cancel</button><button class="btn pri m87save" data-tdx="save" style="background:'+sc+'">'+(TDU.id?"Save":"Add to-do")+'</button></div>';
+  var st=el.querySelector(".m87in")?el.querySelector(".m87in").scrollTop:0;
+  el.innerHTML='<div class="scrim m87scrim" data-tdx="close"><div class="sheet m87" data-tdx="stop" role="dialog" aria-label="'+(TDU.id?"Edit to-do":"New to-do")+'"><div class="stripe" style="background:'+sc+'"></div><div class="in m87in">'+f+'</div></div></div>';
+  var inn=el.querySelector(".m87in");if(inn)inn.scrollTop=st;
+  if(focus){var t=document.getElementById("tdf-t");if(t&&!TDU.id)setTimeout(function(){t.focus()},40)}}
+function tdBuild(){var d=TDU.d,o={title:d.title.trim(),sec:d.sec,priority:d.priority,note:d.note.trim()};
+  if(d.mode==="wd"){if(!d.wd.length)return {err:"Pick at least one weekday."};var x=TODAY;for(var k=0;k<7;k++){if(d.wd.indexOf(dO(x).getDay())>=0)break;x=addD(x,1)}o.date=x;o.wd=d.wd.slice()}else{o.date=d.date||TODAY;o.wd=null}
+  if(d.timed){var s=hrs(d.start||""),e=d.end?hrs(d.end):null;if(s==null)return {err:"Pick a start time."};if(e!=null&&e<=s)return {err:"End time must be after the start."};o.start=s;o.end=e}else{o.start=null;o.end=null}
+  var r={t:d.rep};if(d.rep==="weekly"){r.days=d.mode==="wd"?d.wd.slice():(d.days.length?d.days.slice():[dO(o.date).getDay()])}
+  if(d.rep==="custom"){r.n=Math.max(1,d.n||1);r.u=d.u;if(d.u==="w")r.days=d.mode==="wd"?d.wd.slice():(d.days.length?d.days.slice():[dO(o.date).getDay()])}
+  o.rep=d.rep==="none"?null:r;o.anchor=o.date;return o}
+function tdPreview(){var o=tdBuild();if(o.err)return "";var f={id:"x",date:o.date,anchor:o.date,rep:o.rep,wd:o.wd},n1=nextOcc(f,o.date),n2=n1?nextOcc(f,n1):null;return "Next: "+fdate(o.date)+(n1?", then "+fdate(n1):"")+(n2?", "+fdate(n2):"")}
+function tdSave(){tdRead();var d=TDU.d;if(!d.title.trim()){TDU.err="Give it a title.";tdDraw();return}var o=tdBuild();if(o.err){TDU.err=o.err;tdDraw();return}
+  if(!TDU.id){var n0=EXTRA.length,it={id:"u"+Date.now(),cat:"todo",title:o.title,date:o.date,sec:o.sec,priority:o.priority,anchor:o.anchor};if(o.note)it.note=o.note;if(o.start!=null){it.start=o.start;if(o.end!=null)it.end=o.end}if(o.rep)it.rep=o.rep;if(o.wd)it.wd=o.wd;
+    ITEMS.push(it);BYID[it.id]=it;EXTRA.push(it);cxSaveExtra();TDU=null;tdDraw();toast87("Added to "+TSECC[o.sec][1]);cxAfterCreate(n0);render();return}
+  var i=BYID[TDU.id];if(!i){TDU=null;tdDraw();render();return}
+  if(i.ic){TDSEC[i.id]=o.sec;LS.set("lm.tdsec.v1",TDSEC);var ch=o.title!==i.title||o.date!==i.date||o.start!=i.start||(o.start!=null&&o.end!=i.end);
+    TDU=null;tdDraw();if(ch)c87Commit(i,{title:o.title,date:o.date,start:o.start,end:o.start!=null?(o.end!=null?o.end:o.start+1):null});else render();return}
+  ["title","date","sec","priority","anchor"].forEach(function(k){i[k]=o[k]});if(o.note)i.note=o.note;else delete i.note;
+  if(o.start!=null){i.start=o.start;if(o.end!=null)i.end=o.end;else delete i.end}else{delete i.start;delete i.end}
+  if(o.rep)i.rep=o.rep;else delete i.rep;if(o.wd)i.wd=o.wd;else delete i.wd;
+  td87Persist(i);TDU=null;tdDraw();toast87("Saved");render()}
+document.addEventListener("click",function(e){var t=e.target.closest&&e.target.closest("[data-tdf],[data-tdx],[data-td87]");if(!t)return;
+  if(t.hasAttribute("data-td87")){if(e.target.closest('[data-a="toggle"]'))return;e.stopPropagation();tdOpen(t.getAttribute("data-td87")==="edit"?t.getAttribute("data-v"):null,t.getAttribute("data-v"));return}
+  if(t.hasAttribute("data-tdx")){var x=t.getAttribute("data-tdx");if(x==="stop"&&e.target.closest("[data-tdx]")===t)return;if(x==="stop")return;e.stopPropagation();
+    if(x==="close"){TDU=null;tdDraw();return}if(x==="save"){tdSave();return}if(x==="del"){var id=TDU.id;TDU=null;tdDraw();cxDelete(id);return}return}
+  var k=t.getAttribute("data-tdf"),v=t.getAttribute("data-v");if(k==="timed"||k==="rep"||k==="u")return;e.stopPropagation();e.preventDefault();tdRead();var d=TDU.d;
+  if(k==="sec")d.sec=v;else if(k==="mode"){d.mode=v;if(v==="wd"&&!d.wd.length)d.wd=[dO(d.date).getDay()];if(v==="wd"&&d.rep==="none")d.rep="weekly"}
+  else if(k==="wd"||k==="days"){var a=d[k];if(k==="days"&&!a.length)a.push(dO(d.date).getDay());var n=+v,ix=a.indexOf(n);if(ix>=0){if(a.length>1||k==="wd")a.splice(ix,1)}else a.push(n)}
+  tdDraw()},true);
+document.addEventListener("change",function(e){if(!TDU||!e.target.closest||!e.target.closest("#td87m"))return;var k=e.target.getAttribute("data-tdf");
+  if(k==="timed"){tdRead();TDU.d.timed=e.target.checked;tdDraw()}else if(k==="rep"||k==="u"||e.target.id==="tdf-date"||e.target.id==="tdf-n"){tdRead();tdDraw()}});
+document.addEventListener("keydown",function(e){if(!TDU)return;if(e.key==="Escape"){TDU=null;tdDraw()}else if(e.key==="Enter"&&e.target&&e.target.id==="tdf-t"&&!e.isComposing){e.preventDefault();tdSave()}});
+/* open the to-do editor from the sidebar +, quick add Task, and the item sheet's Edit */
+document.addEventListener("click",function(e){var t=e.target.closest&&e.target.closest('[data-a="qa"][data-v="task"],[data-cx="edit"]');if(!t)return;
+  if(t.getAttribute("data-a")==="qa"){e.stopPropagation();tdOpen(null,"personal");return}
+  var i=BYID[t.getAttribute("data-v")];if(i&&i.cat==="todo"&&!i.pm){e.stopPropagation();S.sel=null;render();tdOpen(i.id)}},true);
+
+/* ---------------- CALENDAR: Apple-style day / week / month with time blocking ---------------- */
+var C87={d:TODAY,pick:{},mm:null,scroll:null};
+var C87N=["January","February","March","April","May","June","July","August","September","October","November","December"];
+function c87HH(){var m=mode87();return m==="phone"?52:m==="open"?42:48}
+function c87Views(){return mode87()==="open"?[["day","Day"],["3day","3 Days"],["week","Week"],["month","Month"]]:[["day","Day"],["week","Week"],["month","Month"]]}
+function c87View(){var m=mode87(),v=C87.pick[m]||(m==="phone"?"day":"week");if(v==="3day"&&m!=="open")v=m==="phone"?"day":"week";return v}
+function c87Days(){var v=c87View(),d=C87.d;if(v==="day")return [d];if(v==="3day")return [d,addD(d,1),addD(d,2)];var s=wkS(d);return [0,1,2,3,4,5,6].map(function(k){return addD(s,k)})}
+function c87Its(d){return ITEMS.filter(function(i){return i.date===d&&S.on[i.cat]})}
+function c87Col(i){return CAT[i.cat].color}
+function c87Lay(list){list=list.slice().sort(function(a,b){return a.start-b.start||(b.end-b.start)-(a.end-a.start)});var out=[],cl=[],cEnd=-1;
+  function flush(){var cols=[];cl.forEach(function(x){var e=x.i.end!=null?x.i.end:x.i.start+1;for(var c=0;c<cols.length;c++){if(cols[c]<=x.i.start+0.001){x.c=c;cols[c]=e;return}}x.c=cols.length;cols.push(e)});cl.forEach(function(x){x.n=cols.length;out.push(x)});cl=[]}
+  list.forEach(function(i){var e=i.end!=null?i.end:i.start+1;if(cl.length&&i.start>=cEnd-0.001)flush();cl.push({i:i});cEnd=Math.max(cEnd,e)});flush();return out}
+function c87Time(i){return i.start==null?"All day":ft(i.start).replace(":00","")+(i.end!=null?" – "+ft(Math.min(i.end,24)%24===0&&i.end>=24?0:i.end).replace(":00",""):"")}
+function c87Ev(x,HH){var i=x.i,c=c87Col(i),e=i.end!=null?i.end:i.start+1,h=Math.max((e-i.start)*HH,20),sm=h<34,dn_=!!S.done[i.id];
+  return '<div class="c87ev'+(sm?' sm':'')+(dn_?' dn':'')+(i.ic?' ic':'')+(i.ic&&i.ic.rec||i.pm?' lock':'')+'" data-id="'+i.id+'" style="--ec:'+c+';top:'+(i.start*HH)+'px;height:'+(h-1)+'px;left:calc('+(x.c/x.n*100)+'% + 1px);width:calc('+(100/x.n)+'% - 3px)" title="'+esc(i.title)+'">'+
+   '<div class="c87et">'+esc(i.title)+(sm?'<span class="c87em"> '+c87Time(i)+'</span>':'')+'</div>'+(sm?'':'<div class="c87em">'+c87Time(i)+'</div>')+'<div class="c87rs" aria-hidden="true"></div></div>'}
+function c87Mini(){var base=C87.mm||C87.d.slice(0,7),y=+base.slice(0,4),m=+base.slice(5,7)-1,first=new Date(y,m,1),off=(first.getDay()+6)%7,days=c87Days(),v=c87View();
+  var cells=[];for(var k=0;k<42;k++)cells.push(_iso(new Date(y,m,1-off+k)));
+  return '<div class="c87mini"><div class="c87mh"><b>'+C87N[m]+' '+y+'</b><button data-c87="mm" data-v="-1" aria-label="Previous month">‹</button><button data-c87="mm" data-v="1" aria-label="Next month">›</button></div>'+
+   '<div class="c87mg">'+["M","T","W","T","F","S","S"].map(function(w){return '<span class="w">'+w+'</span>'}).join("")+cells.map(function(d){var cls=(+d.slice(5,7)-1!==m?' out':'')+(d===TODAY?' td':'')+(d===C87.d?' sel':'')+(v!=="day"&&days.indexOf(d)>=0?' inr':'');
+     return '<button class="c87md'+cls+'" data-c87="go" data-v="'+d+'">'+dn(d)+'</button>'}).join("")+'</div></div>'+
+   '<div class="c87cals"><div class="c87ch">Calendars</div>'+CATS.map(function(k){var on=S.on[k.id];return '<button class="c87cal'+(on?' on':'')+'" data-c87="cal" data-v="'+k.id+'" style="--ec:'+k.color+'"><i>'+(on?'✓':'')+'</i>'+k.label+'</button>'}).join("")+'</div>'}
+function vCal87(){var m=mode87();
+  if(S.cal==="month"){C87.d=S.day||TODAY;C87.pick[m]=S.day&&S.day!==TODAY?"day":"month";S.cal="week"}
+  var v=c87View(),days=c87Days(),HH=c87HH(),d0=dO(days[0]),d1=dO(days[days.length-1]);
+  var title=v==="month"?'<b>'+C87N[dO(C87.d).getMonth()]+'</b> '+dO(C87.d).getFullYear():v==="day"?'<b>'+dn(C87.d)+' '+C87N[dO(C87.d).getMonth()]+'</b> '+dO(C87.d).getFullYear()+(m==="phone"?'':' <span class="c87dw">'+["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][dO(C87.d).getDay()]+'</span>'):
+    '<b>'+C87N[d0.getMonth()]+(d0.getMonth()!==d1.getMonth()?' – '+C87N[d1.getMonth()]:'')+'</b> '+d1.getFullYear();
+  var head='<div class="c87h"><div class="c87t">'+title+'</div><div class="c87seg" role="tablist">'+c87Views().map(function(x){return '<button role="tab" class="'+(v===x[0]?'on':'')+'" data-c87="view" data-v="'+x[0]+'" aria-selected="'+(v===x[0])+'">'+x[1]+'</button>'}).join("")+'</div>'+
+    '<div class="c87nav"><button data-c87="nav" data-v="-1" aria-label="Previous">‹</button><button class="c87today" data-c87="nav" data-v="0">Today</button><button data-c87="nav" data-v="1" aria-label="Next">›</button></div><button class="c87add" data-c87="new" aria-label="New event" title="New event">+</button></div>';
+  var body;
+  if(v==="month"){var y=dO(C87.d).getFullYear(),mo=dO(C87.d).getMonth(),first=new Date(y,mo,1),off=(first.getDay()+6)%7,rows=Math.ceil((off+new Date(y,mo+1,0).getDate())/7),cells=[];for(var k=0;k<rows*7;k++)cells.push(_iso(new Date(y,mo,1-off+k)));
+    body='<div class="c87mo" style="--rows:'+rows+'"><div class="c87mw">'+["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].map(function(w){return '<span>'+(m==="phone"?w.charAt(0):w)+'</span>'}).join("")+'</div><div class="c87mb" id="c87fill">'+cells.map(function(d,ix){var its=c87Its(d).sort(function(a,b){return (a.start==null?-1:a.start)-(b.start==null?-1:b.start)}),out=+d.slice(5,7)-1!==mo;
+      return '<div class="c87mc'+(out?' out':'')+(ix%7>4?' we':'')+'" data-c87="day" data-v="'+d+'"><span class="c87mn'+(d===TODAY?' td':'')+'">'+dn(d)+'</span>'+(m==="phone"?'<span class="c87dots">'+its.slice(0,4).map(function(i){return '<i style="background:'+c87Col(i)+'"></i>'}).join("")+'</span>':its.slice(0,4).map(function(i){var c=c87Col(i);return i.start==null?'<div class="c87mt ad" style="--ec:'+c+'">'+esc(i.title)+'</div>':'<div class="c87mt" style="--ec:'+c+'"><i></i><span>'+esc(i.title)+'</span><em>'+shortT(i.start)+'</em></div>'}).join("")+(its.length>4?'<div class="c87more">'+(its.length-4)+' more</div>':''))+'</div>'}).join("")+'</div></div>'}
+  else{var cols='grid-template-columns:var(--gut) repeat('+days.length+',minmax(0,1fr))';
+    var hd='<div class="c87hd" style="'+cols+'"><span></span>'+days.map(function(d){var o=dO(d);return '<button class="c87dh'+(d===TODAY?' td':'')+(o.getDay()%6===0?' we':'')+'" data-c87="day" data-v="'+d+'"><span class="w">'+WD3[o.getDay()]+'</span><span class="n">'+o.getDate()+'</span></button>'}).join("")+'</div>';
+    var ads=days.map(function(d){return c87Its(d).filter(function(i){return i.start==null})}),mx=Math.max.apply(null,ads.map(function(a){return a.length}));
+    var cap=m==="desk"?3:2,ad='<div class="c87ad" style="'+cols+'"><span class="c87adl">all-day</span>'+ads.map(function(a,ix){return '<div class="c87adc" data-d="'+days[ix]+'">'+a.slice(0,cap).map(function(i){return '<button class="c87ac'+(S.done[i.id]?' dn':'')+'" data-c87="open" data-v="'+i.id+'" style="--ec:'+c87Col(i)+'">'+esc(i.title)+'</button>'}).join("")+(a.length>cap?'<button class="c87acm" data-c87="day" data-v="'+days[ix]+'">+'+(a.length-cap)+' more</button>':'')+'</div>'}).join("")+'</div>';
+    var nowH=new Date().getHours()+new Date().getMinutes()/60;
+    var gut='<div class="c87gut">'+Array.apply(null,Array(24)).map(function(_,h){var near=days.indexOf(TODAY)>=0&&Math.abs(h-nowH)<0.3;return '<span'+(near?' class="c87hid"':'')+' style="top:'+(h*HH)+'px">'+(h===0?'':(((h+11)%12)+1)+' '+(h<12?'AM':'PM'))+'</span>'}).join("")+(days.indexOf(TODAY)>=0?'<span class="c87nowl" id="c87nowl" style="top:'+(nowH*HH)+'px">'+ft(nowH).replace(/ [AP]M$/,"")+'</span>':'')+'</div>';
+    var grid='<div class="c87g" style="'+cols+';height:'+(24*HH)+'px;--hh:'+HH+'px">'+gut+days.map(function(d){var t=c87Its(d).filter(function(i){return i.start!=null});
+      return '<div class="c87col'+(d===TODAY?' td':'')+(dO(d).getDay()%6===0?' we':'')+'" data-d="'+d+'">'+c87Lay(t).map(function(x){return c87Ev(x,HH)}).join("")+(d===TODAY?'<div class="c87now" id="c87now" style="top:'+(nowH*HH)+'px"></div>':'')+'</div>'}).join("")+'</div>';
+    var strip=m==="phone"?'<div class="c87strip">'+[0,1,2,3,4,5,6].map(function(k){var d=addD(wkS(C87.d),k),o=dO(d);return '<button class="c87sd'+(d===C87.d?' sel':'')+(d===TODAY?' td':'')+'" data-c87="go" data-v="'+d+'"><span class="w">'+"SMTWTFS".charAt(o.getDay())+'</span><span class="n">'+o.getDate()+'</span></button>'}).join("")+'</div>':'';
+    body=strip+'<div class="c87sc" id="c87sc"><div class="c87top">'+(v==="day"&&m==="phone"?'':hd)+ad+'</div>'+grid+'</div>'}
+  var side=m!=="phone"&&v!=="month"?'<aside class="c87side">'+c87Mini()+'</aside>':'';
+  return '<div class="c87 m-'+m+' v-'+v+'">'+head+'<div class="c87b">'+side+'<div class="c87main">'+body+'</div></div></div>'}
+_vCal=vCal87;
+function c87Fit(){var sc=document.getElementById("c87sc")||document.getElementById("c87fill");if(!sc)return;var r=sc.getBoundingClientRect(),sb=parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--sab"))||0;
+  var H=Math.floor(window.innerHeight-(r.top+window.scrollY-Math.min(window.scrollY,0))-(mode87()==="phone"?14:18)-sb);sc.style.height=Math.max(mode87()==="phone"?300:320,H)+"px"}
+function c87After(){if(S.view!=="calendar")return;c87Fit();var sc=document.getElementById("c87sc");if(!sc)return;
+  if(C87.scroll!=null)sc.scrollTop=C87.scroll;else{var HH=c87HH(),nh=new Date().getHours();var tgt=c87Days().indexOf(TODAY)>=0?Math.max(0,Math.min(nh-1.5,24)):7;sc.scrollTop=Math.max(0,tgt*HH-4);C87.scroll=sc.scrollTop}
+  sc.onscroll=function(){C87.scroll=sc.scrollTop}}
+setInterval(function(){var n=document.getElementById("c87now");if(!n)return;var HH=c87HH(),h=new Date().getHours()+new Date().getMinutes()/60;n.style.top=h*HH+"px";var l=document.getElementById("c87nowl");if(l){l.style.top=h*HH+"px";l.textContent=ft(h).replace(/ [AP]M$/,"")}},30000);
+document.addEventListener("click",function(e){var t=e.target.closest&&e.target.closest("[data-c87]");if(!t)return;e.stopPropagation();var k=t.getAttribute("data-c87"),v=t.getAttribute("data-v"),m=mode87();
+  if(k==="view"){C87.pick[m]=v;C87.scroll=null}
+  else if(k==="nav"){var vw=c87View();if(v==="0"){C87.d=TODAY;C87.mm=null}else{var n=+v;if(vw==="month"){var o=dO(C87.d);C87.d=_iso(new Date(o.getFullYear(),o.getMonth()+n,1))}else C87.d=addD(C87.d,n*(vw==="week"?7:vw==="3day"?3:1));C87.mm=null}}
+  else if(k==="go"){C87.d=v;C87.mm=null}
+  else if(k==="day"){C87.d=v;C87.pick[m]="day";C87.scroll=null}
+  else if(k==="mm"){var b=C87.mm||C87.d.slice(0,7),y=+b.slice(0,4),mo=+b.slice(5,7)-1+(+v),dd=new Date(y,mo,1);C87.mm=_iso(dd).slice(0,7)}
+  else if(k==="cal"){S.on[v]=!S.on[v]}
+  else if(k==="new"){var st=Math.min(22,Math.max(8,new Date().getHours()+1));ceOpen(null,{date:C87.d,start:st,end:st+1});return}
+  else if(k==="open"){ceOpen(v);return}
+  render()},true);
+
+/* drag to create / move / resize (mouse: press and drag; touch: long-press then drag) */
+var DR=null,TL=null,SW=null;
+function c87Slot(col,y){var r=col.getBoundingClientRect(),HH=c87HH();return Math.max(0,Math.min(24,Math.round((y-r.top)/HH*4)/4))}
+function c87ColAt(x,y){var el=document.elementFromPoint(x,y);var c=el&&el.closest&&el.closest(".c87col");if(c)return c;var cs=[].slice.call(document.querySelectorAll(".c87col"));for(var k=0;k<cs.length;k++){var r=cs[k].getBoundingClientRect();if(x>=r.left&&x<r.right)return cs[k]}return null}
+function c87Begin(t,x,y,touch){var ev=t.closest(".c87ev"),col=t.closest(".c87col");if(!ev&&!col)return null;
+  if(ev){var i=BYID[ev.getAttribute("data-id")];if(!i)return null;var c0=ev.parentNode,s=c87Slot(c0,y);return {kind:t.closest(".c87rs")&&!touch||(touch&&y>ev.getBoundingClientRect().bottom-16)?"resize":"move",el:ev,i:i,x0:x,y0:y,off:s-i.start,dur:(i.end!=null?i.end:i.start+1)-i.start,col:c0,touch:touch,dragged:false}}
+  var s0=Math.floor(c87Slot(col,y)*2)/2;return {kind:"new",col:col,s0:s0,x0:x,y0:y,touch:touch,dragged:false}}
+function c87Ghost(col,a,b){var g=document.getElementById("c87ghost"),HH=c87HH();if(!g){g=document.createElement("div");g.id="c87ghost";g.className="c87ev c87gh"}if(g.parentNode!==col)col.appendChild(g);
+  g.style.cssText="--ec:"+CAT[C87.lastCat||"work"].color+";top:"+a*HH+"px;height:"+Math.max(18,(b-a)*HH-1)+"px;left:1px;width:calc(100% - 3px)";g.innerHTML='<div class="c87et">New event</div><div class="c87em">'+ft(a)+" – "+ft(b)+'</div>'}
+function c87Move(x,y){if(!DR)return;if(!DR.dragged){if(Math.abs(x-DR.x0)<4&&Math.abs(y-DR.y0)<4)return;DR.dragged=true;document.body.classList.add("c87drag");if(DR.el)DR.el.classList.add("lift")}
+  var HH=c87HH();
+  if(DR.kind==="new"){var s=c87Slot(DR.col,y),a=Math.min(DR.s0,s),b=Math.max(DR.s0+0.25,s);if(b-a<0.25)b=a+0.25;DR.a=a;DR.b=b;c87Ghost(DR.col,a,b)}
+  else if(DR.kind==="move"){var col=c87ColAt(x,y)||DR.col,ns=Math.round((c87Slot(col,y)-DR.off)*4)/4;ns=Math.max(0,Math.min(24-DR.dur,ns));if(col!==DR.el.parentNode)col.appendChild(DR.el);
+    DR.el.style.top=ns*HH+"px";DR.el.style.left="1px";DR.el.style.width="calc(100% - 3px)";DR.nd=col.getAttribute("data-d");DR.ns=ns;var em=DR.el.querySelector(".c87em");if(em)em.textContent=ft(ns)+" – "+ft(ns+DR.dur)}
+  else{var ne=Math.max(DR.i.start+0.25,Math.min(24,c87Slot(DR.el.parentNode,y)));DR.ne=ne;DR.el.style.height=Math.max(18,(ne-DR.i.start)*HH-1)+"px";var em2=DR.el.querySelector(".c87em");if(em2)em2.textContent=ft(DR.i.start)+" – "+ft(ne)}
+  if(DR.touch){var sc=document.getElementById("c87sc"),r=sc&&sc.getBoundingClientRect();if(r){if(y<r.top+40)sc.scrollTop-=8;else if(y>r.bottom-40)sc.scrollTop+=8}}}
+function c87End(){var d=DR;DR=null;document.body.classList.remove("c87drag");if(!d)return;var g=document.getElementById("c87ghost");
+  if(d.kind==="new"){var date=d.col.getAttribute("data-d");if(d.dragged){if(g)g.remove();ceOpen(null,{date:date,start:d.a,end:d.b})}else{var a=d.s0;if(g)g.remove();ceOpen(null,{date:date,start:a,end:Math.min(24,a+1)})}return}
+  if(!d.dragged){if(d.el)d.el.classList.remove("lift");ceOpen(d.i.id);return}
+  if(d.kind==="move")c87Commit(d.i,{date:d.nd||d.i.date,start:d.ns,end:d.ns+d.dur});else c87Commit(d.i,{end:d.ne})}
+document.addEventListener("pointerdown",function(e){if(e.pointerType==="touch"||e.button!==0||!e.target.closest||!e.target.closest(".c87g"))return;var b=c87Begin(e.target,e.clientX,e.clientY,false);if(!b)return;
+  if(b.i&&(b.i.pm||(b.i.ic&&b.i.ic.rec))){b.kind="tap"}DR=b;e.preventDefault()});
+document.addEventListener("pointermove",function(e){if(DR&&!DR.touch&&DR.kind!=="tap")c87Move(e.clientX,e.clientY)});
+document.addEventListener("pointerup",function(e){if(!DR||DR.touch)return;if(DR.kind==="tap"){var i=DR.i;DR=null;ceOpen(i.id);return}c87End()});
+document.addEventListener("touchstart",function(e){if(e.touches.length!==1||!e.target.closest)return;var p=e.touches[0];
+  if(e.target.closest(".c87sc,.c87strip,.c87mo"))SW={x:p.clientX,y:p.clientY,t:Date.now()};else SW=null;
+  if(!e.target.closest(".c87g"))return;var t=e.target;TL={x:p.clientX,y:p.clientY,lx:p.clientX,ly:p.clientY,t:t,armed:false};
+  TL.timer=setTimeout(function(){if(!TL)return;var b=c87Begin(t,TL.x,TL.y,true);if(!b){TL=null;return}if(b.i&&(b.i.pm||(b.i.ic&&b.i.ic.rec))){TL=null;toast87(b.i.pm?"Change work tasks in their project.":"Repeating events can only be changed in Apple Calendar.");return}
+    TL.armed=true;SW=null;DR=b;if(navigator.vibrate)navigator.vibrate(8);document.body.classList.add("c87drag");if(b.el)b.el.classList.add("lift");if(b.kind==="new"){b.dragged=true;b.a=b.s0;b.b=Math.min(24,b.s0+1);c87Ghost(b.col,b.a,b.b);b.dragged=false;b.ghost=true}},380)},{passive:true});
+document.addEventListener("touchmove",function(e){if(!TL)return;var p=e.touches[0];TL.lx=p.clientX;TL.ly=p.clientY;
+  if(!TL.armed){if(Math.abs(p.clientX-TL.x)>8||Math.abs(p.clientY-TL.y)>8){clearTimeout(TL.timer);TL=null}return}
+  e.preventDefault();if(DR&&DR.kind==="new"&&DR.ghost&&!DR.dragged&&Math.abs(p.clientY-DR.y0)<6)return;c87Move(p.clientX,p.clientY)},{passive:false});
+document.addEventListener("touchend",function(e){var sw=SW;SW=null;
+  if(TL){clearTimeout(TL.timer);var tl=TL;TL=null;
+    if(tl.armed){e.preventDefault();if(DR&&DR.kind==="new"&&DR.ghost&&!DR.dragged){var g=document.getElementById("c87ghost");if(g)g.remove();var d0=DR;DR=null;document.body.classList.remove("c87drag");ceOpen(null,{date:d0.col.getAttribute("data-d"),start:d0.a,end:d0.b});return}c87End();return}
+    if(Math.abs(tl.lx-tl.x)<8&&Math.abs(tl.ly-tl.y)<8){var ev=tl.t.closest(".c87ev"),col=tl.t.closest(".c87col");e.preventDefault();
+      if(ev){ceOpen(ev.getAttribute("data-id"));return}if(col){var s=Math.floor(c87Slot(col,tl.y)*2)/2;ceOpen(null,{date:col.getAttribute("data-d"),start:s,end:Math.min(24,s+1)});return}}}
+  if(sw&&e.changedTouches&&e.changedTouches[0]&&S.view==="calendar"){var p=e.changedTouches[0],dx=p.clientX-sw.x,dy=p.clientY-sw.y;if(Math.abs(dx)>70&&Math.abs(dy)<40&&Date.now()-sw.t<700){var vw=c87View(),n=dx<0?1:-1;
+    if(vw==="month"){var o=dO(C87.d);C87.d=_iso(new Date(o.getFullYear(),o.getMonth()+n,1))}else C87.d=addD(C87.d,n*(vw==="week"?7:vw==="3day"?3:1));render()}}});
+document.addEventListener("touchcancel",function(){if(TL){clearTimeout(TL.timer);TL=null}if(DR){DR=null;document.body.classList.remove("c87drag");render()}});
+document.addEventListener("contextmenu",function(e){if(e.target.closest&&e.target.closest(".c87g"))e.preventDefault()});
+
+/* write-through: local items save on this device; Apple events go through the existing two-way sync (PUT /api/events) */
+function c87Commit(i,ch){if(i.pm){toast87("Change work tasks in their project.");render();return}
+  if(i.ic){if(i.ic.rec){toast87("Repeating events can only be changed in Apple Calendar.");render();return}
+    var ev=(CXCACHE.events||[]).filter(function(x){return x.url===i.ic.url})[0];if(!ev){render();return}var old={title:ev.title,start:ev.start,end:ev.end,allDay:ev.allDay};
+    var date=ch.date||i.date,st=ch.start!==undefined?ch.start:i.start,en=ch.end!==undefined?ch.end:i.end,title=ch.title||i.title;
+    var body={url:i.ic.url,etag:ev.etag||i.ic.etag,title:title,notes:ev.notes||""};if(st==null){body.allDay=true;body.start=date;body.end=addD(date,1)}else{body.allDay=false;body.start=cxLocalISO(date,st);body.end=cxLocalISO(date,en!=null?en:st+1)}
+    ev.title=title;ev.allDay=body.allDay;ev.start=body.start;ev.end=body.end;LS.set("lm.cal.cache.v1",CXCACHE);render();
+    cxApi("PUT","/api/events",body).then(function(r){ev.etag=(r&&r.etag)||ev.etag;LS.set("lm.cal.cache.v1",CXCACHE);toast87("Saved to Apple Calendar")})
+     .catch(function(err){ev.title=old.title;ev.start=old.start;ev.end=old.end;ev.allDay=old.allDay;LS.set("lm.cal.cache.v1",CXCACHE);render();toast87(err.message)});return}
+  for(var k in ch){if(ch[k]==null)delete i[k];else i[k]=ch[k]}if(i.start==null){delete i.start;delete i.end}td87Persist(i);render();toast87(ch.date&&ch.start!=null?fdate(i.date)+" · "+ft(i.start)+" – "+ft(i.end):"Saved")}
+
+/* calendar event editor */
+var CE=null;
+function ceOpen(id,pre){var i=id?BYID[id]:null;if(i&&i.cat==="todo"&&!i.pm){tdOpen(i.id);return}
+  if(i)CE={id:i.id,d:{title:i.title,cat:i.cat,date:i.date,allDay:i.start==null,start:hhmm(i.start)||"09:00",end:i.end!=null?hhmm(Math.min(i.end,23.99)):hhmm(i.start!=null?Math.min(23.5,i.start+1):10),note:i.ic?((CXCACHE.events||[]).filter(function(x){return x.url===i.ic.url})[0]||{}).notes||"":(i.note||"")}};
+  else CE={id:null,d:{title:"",cat:C87.lastCat||"work",date:pre.date,allDay:false,start:hhmm(pre.start),end:hhmm(Math.min(pre.end,23.99)),note:""}};
+  CE.err="";ceDraw(true)}
+function ceRead(){if(!CE)return;var g=function(id){var e=document.getElementById(id);return e?(e.type==="checkbox"?e.checked:e.value):null},d=CE.d,v;
+  if((v=g("cef-t"))!=null)d.title=v;if((v=g("cef-c"))!=null)d.cat=v;if((v=g("cef-d"))!=null&&v)d.date=v;if((v=g("cef-ad"))!=null)d.allDay=v;if((v=g("cef-s"))!=null&&v)d.start=v;if((v=g("cef-e"))!=null&&v)d.end=v;if((v=g("cef-n"))!=null)d.note=v}
+function ceDraw(focus){var el=document.getElementById("ce87m");if(!el){el=document.createElement("div");el.id="ce87m";document.body.appendChild(el)}var ae=document.activeElement;if(ae&&el.contains(ae)&&ae.blur)ae.blur();
+  if(!CE){el.innerHTML="";document.body.classList.remove("m87");return}document.body.classList.add("m87");
+  var d=CE.d,i=CE.id?BYID[CE.id]:null,lock=i&&(i.pm||(i.ic&&i.ic.rec)),c=CAT[d.cat].color,w=cxOn()&&CXC.write&&CXC.write[d.cat],wn=w?((CXC.calList||[]).filter(function(x){return x.id===w})[0]||{}).name:"";
+  var dest=i&&i.ic?'<span class="cx-apple"></span>Apple Calendar · '+esc(i.tag||""):w?'Saves to Apple Calendar “'+esc(wn||"")+'”':'Saved on this device'+(cxOn()?'':' · connect Apple Calendar in Settings to sync');
+  var f='<div class="m87h"><span class="m87dot" style="background:'+c+'"></span><b>'+(CE.id?(lock?"Event":"Edit event"):"New event")+'</b><button class="close" data-cex="close" aria-label="Close">✕</button></div>'+
+   '<label class="m87f">Title<input id="cef-t" value="'+esc(d.title)+'" placeholder="Title" autocomplete="off" enterkeyhint="done"'+(lock?' disabled':'')+'></label>'+
+   '<div class="m87two"><label>Calendar<select id="cef-c" data-cef="c"'+(i&&(i.ic||i.pm)?' disabled':'')+'>'+CATS.map(function(k){return '<option value="'+k.id+'"'+(k.id===d.cat?' selected':'')+'>'+k.label+'</option>'}).join("")+'</select></label><label>Date<input id="cef-d" type="date" value="'+d.date+'"'+(lock?' disabled':'')+'></label></div>'+
+   '<small class="m87hint m87dest">'+dest+'</small>'+
+   '<div class="m87f"><label class="m87sw"><span>All day</span><input id="cef-ad" type="checkbox" data-cef="ad"'+(d.allDay?' checked':'')+(lock?' disabled':'')+'><i></i></label>'+
+   (d.allDay?'':'<div class="m87two"><label>Starts<input id="cef-s" type="time" step="900" value="'+d.start+'"'+(lock?' disabled':'')+'></label><label>Ends<input id="cef-e" type="time" step="900" value="'+d.end+'"'+(lock?' disabled':'')+'></label></div>')+'</div>'+
+   '<label class="m87f">Notes<textarea id="cef-n" rows="2" placeholder="Optional"'+(lock?' disabled':'')+'>'+esc(d.note)+'</textarea></label>'+
+   (lock?'<small class="m87hint">'+(i.pm?'This is a work project task. Change it in the project.':'Repeating events can only be changed in Apple Calendar.')+'</small>':'')+
+   '<div class="cx-err">'+esc(CE.err||"")+'</div><div class="m87act">'+(CE.id&&!(i&&i.ic&&i.ic.rec)?'<button class="btn cx-del" data-cex="del">Delete</button>':'')+(i&&i.pm?'<button class="btn" data-cx="proj" data-v="'+i.pm.pid+'" data-task="'+i.pm.tid+'">Open project</button>':'')+'<span></span><button class="btn" data-cex="close">'+(lock?"Close":"Cancel")+'</button>'+(lock?'':'<button class="btn pri m87save" data-cex="save" style="background:'+c+'">'+(CE.id?"Save":"Add")+'</button>')+'</div>';
+  el.innerHTML='<div class="scrim m87scrim" data-cex="close"><div class="sheet m87" data-cex="stop" role="dialog" aria-label="'+(CE.id?"Edit event":"New event")+'"><div class="stripe" style="background:'+c+'"></div><div class="in m87in">'+f+'</div></div></div>';
+  if(focus&&!CE.id){var t=document.getElementById("cef-t");if(t)setTimeout(function(){t.focus()},40)}}
+function ceSave(){ceRead();var d=CE.d,t=d.title.trim();if(!t){CE.err="Give it a title.";ceDraw();return}var st=d.allDay?null:hrs(d.start||""),en=d.allDay?null:hrs(d.end||"");
+  if(!d.allDay&&(st==null||en==null)){CE.err="Pick a start and end time.";ceDraw();return}if(!d.allDay&&en<=st){CE.err="End time must be after the start.";ceDraw();return}
+  C87.lastCat=d.cat;
+  if(!CE.id){var n0=EXTRA.length,it={id:"u"+Date.now(),cat:d.cat,title:t,date:d.date};if(st!=null){it.start=st;it.end=en}if(d.note.trim())it.note=d.note.trim();if(d.cat==="todo"){it.sec="personal";it.priority="Medium"}
+    ITEMS.push(it);BYID[it.id]=it;EXTRA.push(it);cxSaveExtra();CE=null;ceDraw();C87.d=it.date;render();toast87("Added · "+fdate(it.date)+(st!=null?" · "+ft(st):""));cxAfterCreate(n0);return}
+  var i=BYID[CE.id];CE=null;ceDraw();if(!i){render();return}
+  if(i.ic){c87Commit(i,{title:t,date:d.date,start:st,end:en});return}
+  i.title=t;i.cat=d.cat;if(d.note.trim())i.note=d.note.trim();else delete i.note;c87Commit(i,{date:d.date,start:st,end:en})}
+document.addEventListener("click",function(e){var t=e.target.closest&&e.target.closest("[data-cex]");if(!t)return;var x=t.getAttribute("data-cex");if(x==="stop")return;e.stopPropagation();
+  if(x==="close"){CE=null;ceDraw();render()}else if(x==="save")ceSave();else if(x==="del"){var id=CE.id;CE=null;ceDraw();cxDelete(id)}},true);
+document.addEventListener("change",function(e){if(!CE||!e.target.closest||!e.target.closest("#ce87m"))return;var k=e.target.getAttribute("data-cef");if(k==="ad"||k==="c"){ceRead();ceDraw()}});
+document.addEventListener("keydown",function(e){if(!CE)return;if(e.key==="Escape"){CE=null;ceDraw();render()}else if(e.key==="Enter"&&e.target&&e.target.id==="cef-t"&&!e.isComposing){e.preventDefault();ceSave()}});
+
+/* ---------------- foldable / responsive layout ---------------- */
+function hinge87(){var m=mode87();document.querySelectorAll(".h87").forEach(function(g){g.style.gridTemplateColumns="";g.style.columnGap="";if(m!=="open")return;
+  var r=g.getBoundingClientRect(),mid=window.innerWidth/2,gap=30,left=mid-r.left-gap/2,right=r.right-mid-gap/2;
+  if(left>200&&right>200){g.style.gridTemplateColumns=Math.round(left)+"px minmax(0,1fr)";g.style.columnGap=gap+"px"}})}
+var _r87=render;render=function(){_r87();var b=document.body,m=mode87();M87.mode=m;b.classList.toggle("c87on",S.view==="calendar");b.classList.toggle("fold-open",m==="open");b.classList.toggle("fold-phone",m==="phone");
+  var dg=document.querySelector(".view.home .dgrid");if(dg)dg.classList.add("h87");hinge87();c87After();
+  if(TDU&&!document.querySelector("#td87m .m87"))tdDraw();if(CE&&!document.querySelector("#ce87m .m87"))ceDraw()};
+var _rz87;window.addEventListener("resize",function(){clearTimeout(_rz87);_rz87=setTimeout(function(){var m=mode87();
+  if(m!==M87.mode){tdRead();ceRead();render()}else{hinge87();if(S.view==="calendar"){if(C87._w!==window.innerWidth){C87._w=window.innerWidth;render()}else c87Fit()}}},140)});
+window.addEventListener("orientationchange",function(){setTimeout(function(){tdRead();ceRead();render()},250)});
 
 render();
 if(CXC.pair&&!cxOn())cxPairPoll();
