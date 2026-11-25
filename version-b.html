@@ -3492,6 +3492,50 @@ body.gdark .h109main .pm-lth,body.gdark .h109main .pm-cd,body.gdark .h109main .p
 body.gdark .h110cl{background:#262220;border-color:#38332F}
 @media (min-width:1000px) and (max-width:1279px){.h110{grid-template-columns:minmax(0,1fr) 280px;gap:14px}}
 /* v111: strip without progress */
+/* ===== v112: Projects page - header controls in the bottom dock; panel aligned with board ===== */
+.h112t{display:flex;align-items:center;gap:6px;flex:none}
+.h93dock .h112hub{display:inline-flex;flex:none;margin:0;background:#EFECE8;border:1px solid #EAE6E1}
+.h93dock .h112hub button span{display:none!important}
+.h93dock .h112hub button{padding:0!important;width:38px;height:36px;min-height:0!important;justify-content:center}
+.h93dock .h112ib{position:relative;width:44px;height:44px;border-radius:15px;flex:none;background:transparent!important;border:0!important;display:grid;place-items:center;color:inherit;cursor:pointer}
+.h93dock .h112ib:hover{background:rgba(120,100,90,.1)!important}
+.h93dock .h112ib .q-bd{position:absolute;top:4px;right:4px}
+.h93dock .h112ib .tip{display:none}
+@media (hover:hover){.h93dock .h112ib:hover .tip{display:block}}
+.h93dock .h112tg{flex:none;margin:0 4px}
+.h93dock .h112s{display:flex!important;align-items:center;flex:none;width:44px!important;max-width:none!important;height:44px!important;margin:0!important;padding:0 12px!important;gap:8px;border-radius:15px!important;
+ background:transparent!important;border:1px solid transparent!important;box-shadow:none!important;cursor:pointer;transition:width .2s ease,background .2s ease;overflow:hidden;box-sizing:border-box}
+.h93dock .h112s svg{flex:none}
+.h93dock .h112s input{width:100%;min-width:0;border:0;background:transparent;outline:0;font:inherit;font-size:14px;color:#2A2420;opacity:0;padding:0}
+.h93dock .h112s:hover{background:rgba(120,100,90,.1)!important}
+.h93dock .h112s:focus-within,.h93dock .h112s.h112q{width:min(240px,46vw)!important;background:#fff!important;border-color:#EEE9E4!important;cursor:text}
+.h93dock .h112s:focus-within input,.h93dock .h112s.h112q input{opacity:1}
+body.gdark .h93dock .h112hub{background:#2A2624;border-color:#34302C}
+body.gdark .h93dock .h112s:focus-within,body.gdark .h93dock .h112s.h112q{background:#262220!important;border-color:#34302C!important}
+body.gdark .h93dock .h112s input{color:#F2ECE6}
+@media (min-width:760px){
+ body.h93.h108p .h93dock.h112dock.h112ov{overflow-x:auto;scrollbar-width:none}
+ body.h93.h108p .h93dock.h112dock::-webkit-scrollbar{display:none}}
+@media (min-width:1000px){
+ .h110>.h110r,.h110>.h110rail{margin-top:var(--h112t,6px)!important;height:var(--h112h,calc(100dvh - 220px))!important}}
+/* phones: the dock bar scrolls sideways */
+@media (max-width:759px){
+ body.h93 .h93dock.h112dock{overflow-x:auto!important;overflow-y:hidden!important;scrollbar-width:none;justify-content:flex-start!important;-webkit-overflow-scrolling:touch}
+ body.h93 .h93dock.h112dock::-webkit-scrollbar{display:none}
+ body.h93 .h93dock.h112dock>*{flex-shrink:0}
+ body.h93 .h93dock.h112dock .h93items{flex:none!important;overflow:visible!important;-webkit-mask-image:none!important;mask-image:none!important}
+ body.h93 .h93dock.h112dock .h112s{order:0!important}
+ .h93dock .h112s:focus-within,.h93dock .h112s.h112q{width:200px!important}}
+/* Hustle Hub home without the right panel: main content takes the full width */
+.h93home.hz{grid-template-columns:minmax(0,1fr)!important;grid-template-areas:"a" "w"!important}
+.h93home.hz>.h93r{display:none!important}
+/* Workout card (Today flip card, back side): rows never squash; the list scrolls inside the card */
+.h96wo .h96exl{min-height:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;padding-top:2px;overscroll-behavior:contain}
+.h96wo .h96exl>.h96ex{flex:0 0 auto!important;min-height:44px!important;box-sizing:border-box;align-items:center}
+.h96wo .h96ex .q-l{gap:2px}
+.h96wo .h96ex .q-l b,.h96wo .h96ex .q-l small{display:block;line-height:1.3}
+.h96wo .h96ex .q-s{flex-wrap:nowrap}
+.h97today .h96wo .h96exl{scrollbar-color:rgba(255,255,255,.5) transparent}
 </style>
 </head>
 <body>
@@ -6327,6 +6371,35 @@ var _ns110=pmNoteSave;pmNoteSave=function(){_ns110();var r=document.querySelecto
 
 /* ===== v111: no progress % / bar in the Projects top strip (panel Overview keeps it) ===== */
 var _vw111=vWorkPM;vWorkPM=function(){return _vw111().replace(/<div class="pm89pr"[^>]*><div class="pm89pb"><i [^>]*><\/i><\/div><span>\d+%<\/span><\/div>/,'')};
+
+/* ===== v112: Projects page - top header moved into the bottom dock; panel aligned with the board ===== */
+function h112On(){return S.view==="work"}
+var _hd112=h93Head;h93Head=function(){return h112On()?'':_hd112()};
+function h112Tools(){var on=cxOn()&&CXC.auto,od=HUB==="hustle"?PM.tasks.filter(pmOd).length:h92Overdue();
+  return '<span class="h93sp h112sp"></span><span class="h112t">'+h92Hub("h112hub")+
+   h92Search("b").replace('class="gsearch h92s q-b"','class="gsearch h92s q-b h112s'+(CXU.q?' h112q':'')+'" title="Search"')+
+   '<button class="q-ib h112ib" '+(HUB==="hustle"?'data-h92="scroll" data-v="hzmt"':'data-a="go" data-v="todo"')+' aria-label="Overdue">'+h92ic("bell",20)+(od?'<i class="q-bd">'+od+'</i>':'')+'<span class="tip">Overdue</span></button>'+
+   '<button class="q-ib h112ib" data-cx="settings" aria-label="Settings">'+h92ic("settings",20)+'<span class="tip">Settings</span></button>'+
+   '<button class="h92tg h112tg'+(on?' on':'')+'" data-h92="auto" aria-label="Auto-sync Apple Calendar" title="Auto-sync Apple Calendar"><i></i></button></span>'}
+var _dk112=h93Dock;h93Dock=function(){var h=_dk112();if(!h112On())return h;
+  return h.replace('<nav class="h92 h93dock"','<nav class="h92 h93dock h112dock"').replace('<span class="h93sp"></span>',h112Tools()+'<span class="h93sp"></span>')};
+/* search results open above the dock */
+var _sb112=cxSearchBox;cxSearchBox=function(){_sb112();var el=document.getElementById("cxsr"),inp=document.getElementById("gq");
+  if(!el||!inp||el.style.display==="none"||!inp.closest(".h93dock"))return;var r=inp.closest(".gsearch").getBoundingClientRect(),w=Math.min(380,innerWidth-16);
+  el.style.width=w+"px";el.style.left=Math.max(8,Math.min(r.left,innerWidth-w-8))+"px";el.style.top="auto";el.style.bottom=(innerHeight-r.top+10)+"px";el.style.maxHeight=Math.max(200,r.top-24)+"px";el.style.overflowY="auto"};
+document.addEventListener("input",function(e){if(e.target&&e.target.id==="gq"){var l=e.target.closest(".h112s");if(l){l.classList.toggle("h112q",!!e.target.value);setTimeout(h112Ov,250)}}});
+document.addEventListener("focusin",function(e){if(e.target&&e.target.id==="gq"&&e.target.closest(".h112s"))setTimeout(h112Ov,250)});
+document.addEventListener("focusout",function(e){if(e.target&&e.target.id==="gq"){var el=document.getElementById("cxsr");setTimeout(function(){if(el&&el.style.display==="none"){el.style.bottom="";el.style.maxHeight=""}},200)}});
+/* right panel starts at the board's top edge */
+function h112Ov(){var d=document.querySelector(".h93dock.h112dock");if(!d)return;d.classList.remove("h112ov");if(innerWidth<760)return;var R=d.getBoundingClientRect(),w=0;[].forEach.call(d.children,function(c){var cs=getComputedStyle(c);if(cs.display!=="none"&&cs.position!=="absolute")w+=c.getBoundingClientRect().width});var g=parseFloat(getComputedStyle(d).columnGap)||0,pd=parseFloat(getComputedStyle(d).paddingLeft)+parseFloat(getComputedStyle(d).paddingRight);if(w+g*(d.children.length-1)+pd>innerWidth-40)d.classList.add("h112ov")}
+function h112Fit(){h112Ov();var g=document.querySelector(".h110");if(!g)return;var s=g.querySelector(".h110r,.h110rail");if(!s)return;
+  if(innerWidth<1000){g.style.removeProperty("--h112t");g.style.removeProperty("--h112h");return}
+  var c=g.querySelector(".h110m .pm-pbody");if(!c)return;
+  var off=Math.max(0,Math.round(c.getBoundingClientRect().top-g.getBoundingClientRect().top));g.style.setProperty("--h112t",off+"px");
+  var top=g.getBoundingClientRect().top+scrollY+off;g.style.setProperty("--h112h",Math.max(420,Math.round(innerHeight-top-98))+"px")}
+var _r112=render;render=function(){_r112();try{h112Fit()}catch(e){}};window.addEventListener("resize",function(){try{h112Fit()}catch(e){}});
+/* Hustle Hub home: drop the right profile / schedule / milestones panel */
+var _rt112=h93Right;h93Right=function(cal){if(S.view==="home"&&HUB==="hustle")return '';return _rt112(cal)};
 
 render();
 if(CXC.pair&&!cxOn())cxPairPoll();
