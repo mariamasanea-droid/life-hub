@@ -2052,7 +2052,7 @@ body.glass.c87on .c87nav button{background:rgba(255,255,255,.45);border:1px soli
 body.glass.c87on .c87nav button:hover{background:rgba(255,255,255,.75)}
 /* sidebar: glass card */
 body.glass.c87on .c87side{background:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.75);border-radius:22px;padding:14px 12px;box-shadow:0 10px 26px -18px rgba(50,35,20,.35);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);align-self:flex-start;box-sizing:border-box}
-body.glass.c87on .c87md.inr{background:rgba(255,255,255,.55)}
+body.glass.c87on .c87md.inr:not(.sel){background:rgba(255,255,255,.55)}
 body.glass.c87on .c87md.out{color:rgba(90,78,69,.4)}
 /* the embedded calendar: solid white card */
 body.glass.c87on .c87main{background:#fff;border-radius:20px;border:1px solid rgba(0,0,0,.05);box-shadow:0 1px 2px rgba(0,0,0,.04),0 18px 40px -24px rgba(40,28,18,.38);overflow:hidden;padding:4px 0 0;min-width:0}
@@ -2066,13 +2066,133 @@ body.glass.gdark.c87on .c87seg button{color:#CDBFB3}body.glass.gdark.c87on .c87s
 body.glass.gdark.c87on .c87nav button{background:rgba(40,32,26,.5);border-color:rgba(255,255,255,.14);color:#FBF7F3}
 body.glass.gdark.c87on .c87side{background:rgba(40,32,26,.5);border-color:rgba(255,255,255,.14);color:#FBF7F3}
 body.glass.gdark.c87on .c87side{--ink:#FBF7F3;--ink2:#CDBFB3}
-body.glass.gdark.c87on .c87md.inr{background:rgba(255,255,255,.1)}body.glass.gdark.c87on .c87md.sel:not(.td){background:#FBF7F3;color:#2A2420}
+body.glass.gdark.c87on .c87md.inr:not(.sel){background:rgba(255,255,255,.1)}body.glass.gdark.c87on .c87md.sel:not(.td){background:#FBF7F3;color:#2A2420}
 body.glass.gdark.c87on .c87main{background:#1C1C1E;border-color:rgba(255,255,255,.08);box-shadow:0 18px 40px -24px rgba(0,0,0,.7)}
 @media (max-width:759px){body.glass.c87on .c87main{border-radius:16px}}
 /* v88: three to-do sections */
 .tdsecs{grid-template-columns:repeat(3,minmax(0,1fr))}
 @media (min-width:1000px){.td87g{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (min-width:760px) and (max-width:999px){.td87g{grid-template-areas:"p h" "p w"}.td87g>.tds-personal{grid-area:p}.td87g>.tds-home{grid-area:h}.td87g>.tds-work{grid-area:w}}
+/* ===================== v89 ===================== */
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* 1. calendar fills the viewport */
+body.glass.c87on:not(.fold-phone) .banner{display:none}
+body.glass.c87on:not(.fold-phone) .app{padding-bottom:0!important}
+body.glass.c87on .c87b{align-items:flex-start}
+body.glass.c87on .c87side{overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}
+body.glass.c87on:not(.fold-phone) .gpanel{padding-bottom:12px!important}
+@media (min-width:1000px) and (max-height:820px){body.glass.c87on .c87{gap:8px}body.glass.c87on .c87t{font-size:22px}body.glass.c87on .c87seg button{min-height:30px}body.glass.c87on .c87side{padding:10px}body.glass.c87on .c87cals{display:none}body.glass.c87on .c87dh{padding-top:4px;padding-bottom:4px}}
+/* 2. notes */
+.nb{display:grid;gap:14px;align-items:start;min-width:0}
+.nb.nb-desk{grid-template-columns:220px 300px minmax(0,1fr)}
+.nb.nb-open{grid-template-columns:200px minmax(0,1fr)}
+.nb.nb-open .nb-ed{display:none}.nb.nb-open.has-ed .nb-list{display:none}.nb.nb-open.has-ed .nb-ed{display:flex}
+.nb.nb-phone{grid-template-columns:1fr}.nb.nb-phone .nb-ed{display:none}.nb.nb-phone.has-ed .nb-list{display:none}.nb.nb-phone.has-ed .nb-ed{display:flex}
+.nb-side,.nb-list,.nb-ed{background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.8);border-radius:22px;box-shadow:0 10px 26px -18px rgba(50,35,20,.35);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);min-width:0}
+.nb-side{padding:12px 8px;display:flex;flex-direction:column;gap:2px;position:sticky;top:12px}
+.nb-sh{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#8A7B70;padding:8px 10px 4px}
+.nb-fr{display:flex;align-items:center;border-radius:12px;position:relative}
+.nb-fr.on{background:rgba(255,255,255,.85);box-shadow:0 2px 8px -4px rgba(50,35,20,.3)}.nb-fr.ov{outline:2px dashed #5B6CF0;background:rgba(91,108,240,.08)}
+.nb-f{flex:1;display:flex;align-items:center;gap:10px;min-height:42px;padding:0 10px;border:0;background:transparent;font:inherit;font-size:14.5px;font-weight:600;color:#2A2420;cursor:pointer;text-align:left;min-width:0;border-radius:12px}
+.nb-f i{width:10px;height:10px;border-radius:4px;flex:none}.nb-f span{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.nb-f em{font-style:normal;font-size:12px;font-weight:700;color:#8A7B70;background:rgba(0,0,0,.05);border-radius:999px;padding:1px 8px}
+.nb-fm{width:32px;height:32px;border:0;background:transparent;border-radius:10px;cursor:pointer;color:#8A7B70;font-size:16px;opacity:0;flex:none}
+.nb-fr:hover .nb-fm,.nb-fr.on .nb-fm,.nb-fm:focus{opacity:1}.nb-fm:hover{background:rgba(0,0,0,.06)}
+@media (hover:none){.nb-fm{opacity:1;width:40px;height:40px}}
+.nb-add{border:1px dashed rgba(90,78,69,.35);background:transparent;border-radius:12px;min-height:40px;font:inherit;font-size:13.5px;font-weight:700;color:#6B5D52;cursor:pointer;margin:6px 4px 0}
+.nb-pj{display:flex;align-items:center;gap:10px;min-height:38px;padding:0 10px;border:0;background:transparent;font:inherit;font-size:13.5px;font-weight:600;color:#4A3F37;cursor:pointer;border-radius:12px;text-align:left}
+.nb-pj:hover,.nb-f:hover{background:rgba(255,255,255,.6)}.nb-pj i{width:8px;height:8px;border-radius:50%}.nb-pj span{flex:1}.nb-pj em{font-style:normal;color:#A2958B}
+.nb-list{padding:12px;display:flex;flex-direction:column;gap:8px}
+.nb-lh{display:flex;align-items:center;gap:10px;padding:2px 4px 6px}.nb-lh div{flex:1;min-width:0}.nb-lh b{font-size:17px;display:block}.nb-lh small{color:#8A7B70;font-size:12px;font-weight:600}
+.nb-new{min-height:38px;padding:0 14px;border-radius:999px;border:0;background:#2A2420;color:#fff;font:inherit;font-size:13.5px;font-weight:700;cursor:pointer}
+.nb-rows{display:flex;flex-direction:column;gap:6px}
+.nb-row{display:flex;flex-direction:column;align-items:flex-start;gap:3px;text-align:left;border:1px solid transparent;background:rgba(255,255,255,.55);border-radius:14px;padding:10px 12px;font:inherit;color:#2A2420;cursor:pointer;min-height:44px;min-width:0}
+.nb-row:hover{background:rgba(255,255,255,.85)}.nb-row.on{background:#fff;border-color:rgba(0,0,0,.06);box-shadow:0 4px 14px -8px rgba(50,35,20,.4)}
+.nb-row b{font-size:14.5px;font-weight:700;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.nb-row small{font-size:12.5px;color:#7A6C61;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nb-pin{font-size:10.5px;font-weight:700;color:#8A6B2E;background:rgba(227,163,59,.18);border-radius:999px;padding:1px 7px;margin-left:4px;vertical-align:1px}
+.nb-tag{font-size:11px;font-weight:700;color:color-mix(in srgb,var(--c) 70%,#000);background:color-mix(in srgb,var(--c) 16%,transparent);border-radius:999px;padding:1px 8px}
+.nb-empty{color:#8A7B70;font-size:13.5px;text-align:center;padding:28px 10px;line-height:1.6}
+.nb-ed{padding:14px 16px;display:flex;flex-direction:column;gap:10px;min-height:420px;border-top:4px solid var(--c)}
+.nb-ed.nb-none{align-items:center;justify-content:center;border-top-color:transparent}
+.nb-back{align-self:flex-start;border:0;background:rgba(255,255,255,.7);border-radius:999px;min-height:40px;padding:0 14px;font:inherit;font-weight:700;color:#4A3F37;cursor:pointer}
+.nb-et{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.nb-et input{flex:1;min-width:180px;font:inherit;font-size:22px;font-weight:700;color:#2A2420;border:0;background:transparent;padding:4px 0;min-height:44px;outline:none}
+.nb-mv{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:#8A7B70}
+.nb-mv select{font:inherit;font-size:16px;font-weight:600;color:#2A2420;background:rgba(255,255,255,.85);border:1px solid #E6DFD8;border-radius:999px;min-height:40px;padding:0 12px}
+.nb-ed textarea{flex:1;min-height:320px;font:inherit;font-size:16px;line-height:1.6;color:#2A2420;border:1px solid rgba(0,0,0,.05);background:rgba(255,255,255,.7);border-radius:14px;padding:12px 14px;resize:vertical;outline:none}
+.nb-ef{display:flex;align-items:center;gap:10px;font-size:12.5px;color:#8A7B70;font-weight:600}.nb-ef span{flex:1}
+.nb-del{border:0;background:transparent;color:#C2453B;font:inherit;font-weight:700;min-height:40px;padding:0 10px;border-radius:10px;cursor:pointer}
+.nb-chips{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 10px;scrollbar-width:none;-webkit-overflow-scrolling:touch}.nb-chips::-webkit-scrollbar{display:none}
+.nb-chip,.nb-dr{flex:none;display:flex;align-items:center;gap:6px;min-height:40px;padding:0 14px;border-radius:999px;border:1px solid rgba(255,255,255,.8);background:rgba(255,255,255,.55);font:inherit;font-size:14px;font-weight:700;color:#4A3F37;cursor:pointer}
+.nb-chip i{width:8px;height:8px;border-radius:50%}.nb-chip em{font-style:normal;color:#8A7B70;font-size:12px}.nb-chip.on{background:#2A2420;color:#fff;border-color:#2A2420}.nb-chip.on em{color:#D9CFC6}
+.nb-dr{background:#fff}
+.nb-drw{display:flex;flex-direction:column;gap:2px}
+.nb-cols{display:flex;flex-wrap:wrap;gap:8px}.nb-col{width:36px;height:36px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.1);cursor:pointer}.nb-col.on{box-shadow:0 0 0 2px #2A2420}
+body.glass.gdark .nb-side,body.glass.gdark .nb-list,body.glass.gdark .nb-ed{background:rgba(40,32,26,.5);border-color:rgba(255,255,255,.14);color:#FBF7F3}
+body.glass.gdark .nb-f,body.glass.gdark .nb-row,body.glass.gdark .nb-et input,body.glass.gdark .nb-pj{color:#FBF7F3}body.glass.gdark .nb-row{background:rgba(255,255,255,.06)}body.glass.gdark .nb-row.on,body.glass.gdark .nb-fr.on{background:rgba(255,255,255,.16)}
+body.glass.gdark .nb-ed textarea{background:rgba(0,0,0,.2);color:#FBF7F3}body.glass.gdark .nb-row small{color:#CDBFB3}
+/* 3. project page */
+.pm89 .pm-pg{grid-template-columns:minmax(0,1fr)!important}
+.pm89bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.85);border-radius:20px;padding:8px 12px;box-shadow:0 10px 26px -18px rgba(50,35,20,.35);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);margin-bottom:10px}
+.pm89back{width:40px;height:40px;border-radius:50%;border:0;background:#fff;font-size:24px;line-height:1;cursor:pointer;color:#2A2420;box-shadow:0 2px 8px -4px rgba(0,0,0,.3);flex:none}
+.pm89bar .pm-pdot{width:12px;height:12px;border-radius:50%;flex:none}
+.pm89nm{min-width:0;flex:0 1 auto;max-width:260px}.pm89nm b{display:block;font-size:18px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.pm89nm small{display:block;font-size:12px;color:#8A7B70;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pm89pr{display:flex;align-items:center;gap:8px;flex:1 1 120px;min-width:110px;max-width:240px}.pm89pb{flex:1;height:8px;border-radius:999px;background:rgba(0,0,0,.07);overflow:hidden}.pm89pb i{display:block;height:100%;border-radius:999px}.pm89pr span{font-weight:800;font-size:14px}
+.pm89st{display:flex;gap:14px}.pm89st span{display:flex;align-items:baseline;gap:4px;font-size:12px;color:#8A7B70;font-weight:600;white-space:nowrap}.pm89st b{font-size:16px;color:#2A2420}.pm89st .od b{color:#D9534F}
+.pm89pick select{font:inherit;font-size:14px;font-weight:700;color:#2A2420;background:#fff;border:1px solid #E6DFD8;border-radius:999px;min-height:40px;padding:0 12px;max-width:200px}
+.pm89notes{min-height:40px;padding:0 14px;border-radius:999px;border:1px solid #E6DFD8;background:#fff;font:inherit;font-size:13.5px;font-weight:700;color:#2A2420;cursor:pointer;white-space:nowrap}.pm89notes.on{background:#2A2420;color:#fff;border-color:#2A2420}
+.pm89f{margin-bottom:10px}
+.pm89 .pm-ph{padding-top:0}
+@media (max-width:999px){.pm89pick select{font-size:16px}}
+@media (max-width:759px){.pm89bar{gap:8px 10px;padding:10px}.pm89nm{flex:1 1 0;max-width:none}.pm89pr{order:5;flex:1 1 100%;max-width:none}.pm89st{order:6;flex:1 1 100%;justify-content:space-between}.pm89pick{order:7;flex:1}.pm89pick select{width:100%;max-width:none}.pm89notes{order:8}}
+body.glass.gdark .pm89bar{background:rgba(40,32,26,.5);border-color:rgba(255,255,255,.14)}body.glass.gdark .pm89st b,body.glass.gdark .pm89nm b{color:#FBF7F3}
+/* 4. workouts: past days */
+.wk89nav{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.8);border-radius:20px;padding:8px 10px;margin:0 0 12px;box-shadow:0 10px 26px -18px rgba(50,35,20,.35);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
+.wk89nav.past{background:rgba(255,244,236,.75);border-color:rgba(239,111,94,.35)}
+.wk89a{width:44px;height:44px;border-radius:50%;border:0;background:#fff;font-size:24px;line-height:1;cursor:pointer;color:#2A2420;box-shadow:0 2px 8px -4px rgba(0,0,0,.3)}.wk89a:disabled{opacity:.35;cursor:default}
+.wk89d{min-width:118px;text-align:center}.wk89d b{display:block;font-size:17px}.wk89d small{font-size:12px;color:#8A7B70;font-weight:600}
+.wk89pick input{font:inherit;font-size:16px;font-weight:600;min-height:44px;border-radius:12px;border:1px solid #E6DFD8;background:#fff;padding:0 10px;color:#2A2420}
+.wk89t{min-height:40px;border:0;background:transparent;font:inherit;font-weight:700;color:#C2453B;cursor:pointer;padding:0 6px}
+.wk89nav .sp{flex:1}.wk89log{min-height:44px}
+.wk-day[data-wk89]{cursor:pointer;border-radius:14px}.wk-day[data-wk89]:hover{background:rgba(255,255,255,.5)}.wk-day.fut{cursor:default;opacity:.55}.wk-day.fut:hover{background:none}
+.wk-day.now:not(.td) .wk-dd{color:#EF6F5E;font-weight:800}
+@media (max-width:759px){.wk89nav{gap:8px}.wk89d{flex:1}.wk89pick{order:5;flex:1}.wk89pick input{width:100%}.wk89nav .sp{display:none}.wk89log{order:6;flex:1}.wk89t{order:4}}
+.m89w{width:min(620px,100%)}
+.wl9h,.wl9set{display:grid;grid-template-columns:34px minmax(0,1fr) minmax(0,1fr) 44px;gap:8px;align-items:center}
+.wl9h{font-size:11.5px;font-weight:800;color:#8A7B70;text-transform:uppercase;letter-spacing:.05em;padding:0 2px}
+.wl9list{display:flex;flex-direction:column;gap:12px}
+.wl9ex{background:#FAF7F4;border:1px solid #EFE8E2;border-radius:14px;padding:10px;display:flex;flex-direction:column;gap:6px}
+.wl9eh{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}.wl9eh b{font-size:15px}.wl9eh small{color:#8A7B70;font-size:12px;font-weight:600}
+.wl9set span{text-align:center;font-weight:700;color:#8A7B70}.wl9set.ok input{background:#EEF8F1!important;border-color:#BFE3CB!important}
+.wl9set .lc{width:44px;height:44px;border-radius:12px;border:1.5px solid #E6DFD8;background:#fff;font-size:18px;font-weight:800;color:#DDD3CB;cursor:pointer}.wl9set .lc.on{color:#fff}.wl9set .lc.on{background:#34C759;border-color:#34C759}
+.wl9add{align-self:flex-start;border:0;background:transparent;font:inherit;font-weight:700;color:#EF6F5E;min-height:36px;cursor:pointer}
+/* 5. goals */
+.wk89g .pn-b .wk89edit{white-space:nowrap;min-height:36px;padding:0 14px;border-radius:999px;border:1px solid #E6DFD8;background:#fff;font:inherit;font-size:13px;font-weight:700;cursor:pointer;color:#2A2420}
+.wk89st{font-size:13.5px;font-weight:700;border-radius:12px;padding:7px 12px;margin-bottom:8px;background:rgba(0,0,0,.04);color:#6B5D52}.wk89st.ok{background:rgba(63,167,121,.13);color:#24774F}.wk89st.bad{background:rgba(217,83,79,.12);color:#B03A35}.wk89st small{font-weight:600;opacity:.85}
+.wk89gw{display:flex;align-items:center;gap:16px;flex-wrap:wrap}.wk89gw .wk-ring{flex:none}
+.wk89gl{flex:1;min-width:200px;display:flex;flex-direction:column;gap:6px}
+.wk89gl div{display:flex;align-items:center;gap:8px;font-size:13px;color:#6B5D52;font-weight:600}.wk89gl span{flex:1}.wk89gl b{color:#2A2420;font-size:13.5px;white-space:nowrap}
+.wk89gl i{width:10px;height:10px;border-radius:50%;flex:none}.wk89gl i.o{background:transparent;border:2px solid #CFE9DB}
+.wk89gl .sec{border-top:1px dashed rgba(0,0,0,.1);padding-top:6px;margin-top:2px}
+.wk89pv{font-size:13px;border-radius:12px;padding:9px 12px;background:rgba(63,167,121,.1);color:#24774F;line-height:1.45}.wk89pv.warn{background:rgba(227,163,59,.15);color:#8A5A12}
+body.glass.gdark .wk89nav{background:rgba(40,32,26,.5);border-color:rgba(255,255,255,.14)}body.glass.gdark .wk89gl b{color:#FBF7F3}body.glass.gdark .wk89gl div{color:#CDBFB3}
+@media (min-width:760px) and (max-width:999px){body.glass .gside{max-height:calc(100dvh - 44px);overflow-y:auto;scrollbar-width:none}body.glass .gside::-webkit-scrollbar{display:none}}
+@media (min-width:760px) and (max-height:700px){body.glass .gside{gap:2px!important}}
+/* ===================== v90: full-width calendar, mini-month in a popover ===================== */
+body.glass.c87on .c87{position:relative}
+body.glass.c87on .c87main{flex:1 1 auto;width:100%}
+.c87tog{width:40px;height:40px;flex:none;border-radius:12px;border:1px solid rgba(255,255,255,.8);background:rgba(255,255,255,.5);display:flex;align-items:center;justify-content:center;cursor:pointer;color:#2A2420;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:0 4px 12px -8px rgba(50,35,20,.4)}
+.c87tog:hover{background:rgba(255,255,255,.8)}.c87tog.on{background:#2A2420;color:#fff;border-color:#2A2420;position:relative;z-index:41}
+.c87pop-bg{position:fixed;inset:0;z-index:38;background:transparent}
+body.glass.c87on .c87side.c87pop{position:absolute;top:56px;left:0;z-index:40;width:260px;max-width:calc(100% - 8px);background:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.95);box-shadow:0 24px 50px -20px rgba(40,28,18,.45),0 2px 6px rgba(0,0,0,.06);-webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px);overflow-y:auto;animation:c90in .14s ease-out}
+body.glass.c87on .c87pop .c87cals{display:block!important}
+@keyframes c90in{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+@media (max-width:759px){
+  .c87h{grid-template-columns:auto minmax(0,1fr) auto auto!important;grid-template-areas:"tog t td add" "seg seg seg nav"!important}
+  .c87tog{grid-area:tog;width:44px;height:44px}
+  body.glass.c87on .c87side.c87pop{top:112px;width:min(300px,calc(100% - 4px))}
+}
+body.glass.gdark .c87tog{background:rgba(40,32,26,.5);border-color:rgba(255,255,255,.14);color:#FBF7F3}
+body.glass.gdark.c87on .c87side.c87pop{background:rgba(36,30,26,.94);border-color:rgba(255,255,255,.14)}
 </style>
 </head>
 <body>
@@ -3057,8 +3177,7 @@ function vProject(P){var td=pmToday(),PT=PM.tasks.filter(function(t){return t.pi
     '<button class="pm-sl2'+(tab==="notes"?' on':'')+'" data-pm="tab" data-v="notes"><span class="pm-sic">📝</span><span>Project notes</span></button></aside>';
   var tabs=[["list","List"],["board","Board"],["calendar","Calendar"],["timeline","Timeline"],["notes","Notes"]];
   var ic={list:'☰',board:'▦',calendar:'▣',timeline:'≡',notes:'✎'};
-  var top='<div class="pm-ph"><div class="pm-crumb"><button class="wk-btn sm" data-pm="back">← Work</button><span>Work › <b>'+esc(P.name)+'</b></span></div><div class="pm-pt"><span class="pm-pdot" style="background:'+P.color+'"></span><div><div class="h1">'+esc(P.name)+'</div><div class="tsub">'+esc(P.desc||"")+' · Launch '+pmFd(P.launch)+' · '+pr+'% done</div></div>'+(P.sample?'<span class="lime soft">Sample data</span>':'')+'</div>'+
-    '<div class="pm-tabs">'+tabs.map(function(x){return '<button class="pm-tab'+(tab===x[0]?' on':'')+'" data-pm="tab" data-v="'+x[0]+'"><span>'+ic[x[0]]+'</span>'+x[1]+'</button>'}).join("")+'</div></div>';
+  var top='<div class="pm-ph">'+'<div class="pm-tabs">'+tabs.map(function(x){return '<button class="pm-tab'+(tab===x[0]?' on':'')+'" data-pm="tab" data-v="'+x[0]+'"><span>'+ic[x[0]]+'</span>'+x[1]+'</button>'}).join("")+'</div></div>';
   var tags=Object.keys(PM.tags).filter(function(g){return PT.some(function(t){return t.tags.indexOf(g)>=0})});
   var tool=tab==="notes"?'':'<div class="pm-tool"><label class="pm-srch"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="pmq" value="'+esc(PMU.q)+'" placeholder="Search tasks"></label>'+
     '<label class="pm-tsel">Filter<select data-pmf="ftag"><option value="">All tags</option>'+tags.map(function(g){return '<option'+(PMU.ftag===g?' selected':'')+'>'+esc(g)+'</option>'}).join("")+'</select></label>'+
@@ -3067,7 +3186,7 @@ function vProject(P){var td=pmToday(),PT=PM.tasks.filter(function(t){return t.pi
     ((PMU.q||PMU.ftag||PMU.fpri)?'<button class="pm-clear" data-pm="clearf">Clear filters</button>':'')+'<span class="sp"></span><button class="pm-new sm" data-pm="addin" data-v="s:todo">+ Task</button></div>';
   var body=tab==="board"?pmBoard(P):tab==="calendar"?pmCalendar(P):tab==="timeline"?pmGantt(P,pmFilt(P).sort(function(a,b){return (a.start||a.due)<(b.start||b.due)?-1:1}),true):tab==="notes"?pmNotes(P):pmList(P);
   var form=PMU.form==="mile"?pmForm("mile"):'';
-  return '<div class="pm-page"><div class="pm-pg">'+side+'<div class="pm-pmain">'+top+'<section class="pn pm-pbody pm-tab-'+tab+'"><div class="pn-in">'+tool+form+body+'</div></section></div></div></div>'}
+  return '<div class="pm-page pm89"><div class="pm-pg"><div class="pm-pmain">'+pmBar89(P,PT,pr,tab)+(PMU.form==="proj"?'<div class="pm89f">'+pmForm("proj")+'</div>':'')+top+'<section class="pn pm-pbody pm-tab-'+tab+'"><div class="pn-in">'+tool+form+body+'</div></section></div></div></div>'}
 function vWorkPM(){var P=PMU.page&&pmP(PMU.page);return '<div class="today2 mockc pm'+(P?' pmp':'')+'"><div class="shell">'+(P?vProject(P):vWorkDash())+'</div></div>'}
 function pmV(id){var e=document.getElementById(id);return e?e.value.trim():""}
 function pmAddFromGroup(k,title){var t=_t("t"+Date.now(),PMU.page||PMU.pid,title,"todo","Medium",pmToday(),pmToday(),[],{});var p=k.split(":");if(p[0]==="s")t.status=p[1];if(p[0]==="p")t.priority=p[1];if(p[0]==="t"&&p[1])t.tags=[p[1]];PM.tasks.push(t);pmSave();return t}
@@ -3246,7 +3365,7 @@ function pgA(){return PG.programs.filter(function(p){return p.id===PG.active})[0
 function pgW(p,id){return p&&id?p.workouts.filter(function(w){return w.id===id})[0]:null}
 function wkFor(d){if(WOV[d]!==undefined)return WOV[d];var p=pgA();return p?pgW(p,p.days[wkD(d).getDay()])||null:null}
 function wkItem(d){return ITEMS.filter(function(i){return i.cat==="workout"&&!i.ic&&i.date===d})[0]}
-function wkDoneD(d){var L=WL[d];if(L&&L.done!=null)return L.done;if(d>=wkRef())return false;var it=wkItem(d);return !!(it&&S.done[it.id])}
+function wkDoneD(d){var L=WL[d];if(L&&L.done!=null)return L.done;if(d>=iso(new Date()))return false;var it=wkItem(d);return !!(it&&S.done[it.id])}
 function wkName2(d){var L=WL[d];if(L&&L.name)return L.name;var it=wkItem(d);if(it)return wkName(it);var w=wkFor(d);return w?w.name:"Workout"}
 function wkTy2(d){var L=WL[d];if(L&&L.type)return L.type;var it=wkItem(d);if(it)return wkType(it);var w=wkFor(d);return w?w.type:"lift"}
 function wkMin2(d){var L=WL[d];if(L&&L.min)return L.min;var it=wkItem(d);if(it)return Math.round((it.end-it.start)*60);var w=wkFor(d);return w?w.min:45}
@@ -3268,16 +3387,14 @@ function wkRing(r,sw,pct,col){var C=2*Math.PI*r;return '<circle cx="80" cy="80" 
 function vWkMain(ref){
   var rd=wkD(ref),mon=new Date(rd);mon.setDate(rd.getDate()-((rd.getDay()+6)%7));var week=[];for(var k=0;k<7;k++){var x=new Date(mon);x.setDate(mon.getDate()+k);week.push(x)}
   var done=0,planned=0,wmin=0,wvol=0;
-  var strip='<div class="wk-week">'+week.map(function(dt,ix){var d=iso(dt),w=wkFor(d),dn=wkDoneD(d),isT=d===ref,past=d<ref;if(w){planned++}if(dn){done++;wmin+=wkMin2(d)}wvol+=wkVol(d);
+  var strip='<div class="wk-week">'+week.map(function(dt,ix){var d=iso(dt),w=wkFor(d),dn=wkDoneD(d),isT=d===ref,past=d<iso(new Date());if(w){planned++}if(dn){done++;wmin+=wkMin2(d)}wvol+=wkVol(d);
     var ty=w?w.type:dn?wkTy2(d):"rest",ic=fic(ty,isT?"#fff":dn?"#EF6F5E":ty==="rest"?"#A2958A":"#5A5048",ty==="rest"?18:20);
-    return '<div class="wk-day'+(isT?' td':'')+(past?' past':'')+(dn?' ok':'')+(w&&!dn&&past?' miss':'')+'"><span class="wk-dn">'+WDS[ix]+'</span><span class="wk-dd">'+dt.getDate()+'</span><span class="wk-c">'+ic+(dn?'<i class="wk-tick">✓</i>':'')+'</span><span class="wk-nm">'+(w?esc(w.name):dn?esc(wkName2(d)):'Rest')+'</span></div>'}).join("")+'</div>';
-  var mo=rd.getMonth(),hist=wkHist(ref),mdone=hist.filter(function(d){return wkD(d).getMonth()===mo}).length,streak=wkStreak(ref),P=pgA();
+    return '<div data-wk89="day" data-v="'+d+'" class="wk-day'+(d>iso(new Date())?' fut':'')+(d===iso(new Date())?' now':'')+(isT?' td':'')+(past?' past':'')+(dn?' ok':'')+(w&&!dn&&past?' miss':'')+'"><span class="wk-dn">'+WDS[ix]+'</span><span class="wk-dd">'+dt.getDate()+'</span><span class="wk-c">'+ic+(dn?'<i class="wk-tick">✓</i>':'')+'</span><span class="wk-nm">'+(w?esc(w.name):dn?esc(wkName2(d)):'Rest')+'</span></div>'}).join("")+'</div>';
+  var mo=rd.getMonth(),hist=wkHist(ref),mdone=hist.filter(function(d){return wkD(d).getMonth()===mo}).length,streak=wkStreak(iso(new Date())),P=pgA();
   var head=wkHead("Let's move, Mariama","Your week of training at a glance.",'<div class="wk-acts"><button class="wk-btn" data-wk="go" data-v="programs">'+fic("lift","#5A5048",15)+' Programs &amp; splits</button><button class="wk-btn" data-wk="go" data-v="history">History</button></div><div class="wk-strk"><b>'+streak+'</b><span>🔥</span><small>workout streak</small></div>');
   var wkC=pmCard("wk-wc","THIS WEEK","#EF6F5E",(P?esc(P.name)+' split · ':'')+done+" of "+planned+" done","",strip+
     '<div class="wk-mini"><div><b>'+done+'/'+planned+'</b><small>workouts</small></div><div><b>'+wmin+'</b><small>minutes</small></div><div><b>'+(wvol?Math.round(wvol).toLocaleString():"0")+'</b><small>kg lifted</small></div><div><b>'+streak+'</b><small>streak</small></div></div>');
-  var gC=pmCard("wk-gc","GOALS","#EF6F5E","Week and month","",'<div class="wk-ring"><svg viewBox="0 0 160 160" width="150" height="150">'+wkRing(68,14,done/WG.week,"#EF6F5E")+wkRing(46,12,mdone/WG.month,"#A97CD6")+'</svg><div class="wk-rc"><b>'+Math.round(Math.min(1,done/WG.week)*100)+'%</b><small>weekly goal</small></div></div>'+
-    '<div class="wk-gl"><div><i style="background:#EF6F5E"></i><span>This week</span><b>'+done+' / '+WG.week+'</b><span class="wk-st"><button data-wk="g" data-v="week:-1" aria-label="Lower weekly goal">−</button><button data-wk="g" data-v="week:1" aria-label="Raise weekly goal">+</button></span></div>'+
-    '<div><i style="background:#A97CD6"></i><span>'+WMO[mo]+'</span><b>'+mdone+' / '+WG.month+'</b><span class="wk-st"><button data-wk="g" data-v="month:-1" aria-label="Lower monthly goal">−</button><button data-wk="g" data-v="month:1" aria-label="Raise monthly goal">+</button></span></div></div>');
+  var gC=gCard89(done);
   // today list
   var tw=wkFor(ref),ov=WOV[ref]!==undefined,inner,btns=pmBtn("x",null,"✎","Edit today's workout").replace('data-pm="x"','data-wk="tedit"')+pmBtn("x",null,"+","Add exercise or workout for today").replace('data-pm="x"','data-wk="tadd"');
   if(WKU.edit==="today")inner=wkEditor(WKU.draft,"today");
@@ -3289,7 +3406,7 @@ function vWkMain(ref){
   else{var nx=null,dt2=wkD(ref);for(var q=1;q<8&&!nx;q++){dt2.setDate(dt2.getDate()+1);if(wkFor(iso(dt2)))nx=iso(dt2)}
     inner='<div class="wk-th"><span class="fbadge">'+fic("rest","#fff",28)+'</span><div><b>Rest day</b><small>Recover: walk, stretch, sleep 8 hours, hydrate.</small></div></div><div class="wk-restbox">Feel like training anyway? Tap <b>+</b> to add a workout just for today.</div>'+(nx?'<div class="wk-next"><small>Up next</small><b>'+esc(wkFor(nx).name)+'</b><span>'+pmFd(nx)+'</span></div>':'')}
   if(!PG.programs.length&&WKU.edit!=="today"){inner=cxEmpty("No workout split yet","Create your split once: name it, add your workouts and pick one for each day. It then drives this page, Today and Home. Apple Calendar classes stay on your calendar and never change your split.",'<button class="cx-cta" data-wk="start">+ Create your split</button>');btns=""}
-  var tC=pmCard("wk-tc","TODAY · "+WD[rd.getDay()].toUpperCase(),"#EF6F5E",tw?"From your split":PG.programs.length?"Rest day":"No split yet",btns,inner);
+  var tC=pmCard("wk-tc",(ref===iso(new Date())?"TODAY · "+WD[rd.getDay()].toUpperCase():WD[rd.getDay()].toUpperCase()+" · "+pmSd(ref).toUpperCase()),"#EF6F5E",tw?"From your split":PG.programs.length?"Rest day":"No split yet",btns,inner);
   // weight
   var W=WT.slice().sort(function(a,b){return a.d<b.d?-1:1}),last=W[W.length-1],prev=W[W.length-2],ch=last&&prev?Math.round((last.kg-prev.kg)*10)/10:0;
   var pts=W.slice(-10),lo=Math.min.apply(null,pts.map(function(p){return p.kg}))-.3,hi=Math.max.apply(null,pts.map(function(p){return p.kg}))+.3,PW=220,PH=56;
@@ -3300,7 +3417,7 @@ function vWkMain(ref){
     '<div class="wk-wf"><input id="wtkg" inputmode="decimal" placeholder="kg"><input id="wtd" type="date" value="'+ref+'"><button class="wk-btn pri" data-wk="wlog">Log</button></div><div class="cqa-e" id="wterr"></div>');
   var up=[],dt3=wkD(ref);for(var u=1;u<14&&up.length<3;u++){dt3.setDate(dt3.getDate()+1);var dd=iso(dt3),ww=wkFor(dd);if(ww)up.push([dd,ww])}
   var uC=pmCard("wk-uc","UP NEXT","#EF6F5E","From your split","",'<div class="wk-hist">'+(up.length?up.map(function(x){return '<div class="wk-hr"><span class="wk-hi">'+fic(x[1].type,"#EF6F5E",18)+'</span><div><b>'+esc(x[1].name)+'</b><small>'+pmFd(x[0])+(x[1].t!=null?' · '+ft(x[1].t):'')+' · '+(x[1].min||45)+' min</small></div></div>'}).join(""):'<small>Nothing planned yet</small>')+'</div>');
-  return head+'<div class="cr wk-r1">'+wkC+gC+'</div><div class="cr wk-r2">'+tC+'<div class="stk">'+wC+uC+'</div></div>';
+  return head+wkNav89(ref)+'<div class="cr wk-r1">'+wkC+gC+'</div><div class="cr wk-r2">'+tC+'<div class="stk">'+wC+uC+'</div></div>';
 }
 function vWkPrograms(ref){var P=PG.programs.filter(function(p){return p.id===WKU.pg})[0]||pgA();if(!P)return wkBack("Programs &amp; splits")+wkHead("Create your split","Name a program, add your workouts, then pick one for each day of the week.","")+pmCard("wk-pl","NEW PROGRAM","#EF6F5E","Step 1 of 3","",'<div class="cqa pm-form"><input id="pgn" placeholder="Program name (e.g. Boxing &amp; Pilates)"><button class="cqa-ok" data-wk="pgsave">Create</button></div><div class="cx-empty"><b>How it works</b><span>1. Create a program · 2. Add workouts (exercises, sets, reps) · 3. Assign a workout or rest to each day. The active split then drives Today, Home and this page.</span></div>');WKU.pg=P.id;
   var list=pmCard("wk-pl","PROGRAMS","#EF6F5E",PG.programs.length+" programs · 1 active","",'<div class="wk-pgs">'+PG.programs.map(function(p){var n=0;for(var k in p.days)if(p.days[k])n++;return '<div class="wk-pg'+(p.id===P.id?' on':'')+'" data-wk="pick" data-v="'+p.id+'"><div><b>'+esc(p.name)+'</b><small>'+p.workouts.length+' workouts · '+n+' days/week'+(p.sample?' · sample':'')+'</small></div>'+(p.id===PG.active?'<span class="wk-act">Active</span>':'<button class="wk-btn sm" data-wk="activate" data-v="'+p.id+'">Set active</button>')+'</div>'}).join("")+'</div>'+
@@ -3864,7 +3981,7 @@ function vCal87(){var m=mode87();
   var v=c87View(),days=c87Days(),HH=c87HH(),d0=dO(days[0]),d1=dO(days[days.length-1]);
   var title=v==="month"?'<b>'+C87N[dO(C87.d).getMonth()]+'</b> '+dO(C87.d).getFullYear():v==="day"?'<b>'+dn(C87.d)+' '+C87N[dO(C87.d).getMonth()]+'</b> '+dO(C87.d).getFullYear()+(m==="phone"?'':' <span class="c87dw">'+["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][dO(C87.d).getDay()]+'</span>'):
     '<b>'+C87N[d0.getMonth()]+(d0.getMonth()!==d1.getMonth()?' – '+C87N[d1.getMonth()]:'')+'</b> '+d1.getFullYear();
-  var head='<div class="c87h"><div class="c87t">'+title+'</div><div class="c87seg" role="tablist">'+c87Views().map(function(x){return '<button role="tab" class="'+(v===x[0]?'on':'')+'" data-c87="view" data-v="'+x[0]+'" aria-selected="'+(v===x[0])+'">'+x[1]+'</button>'}).join("")+'</div>'+
+  var head='<div class="c87h"><button class="c87tog'+(C87.side?' on':'')+'" data-c90="tog" aria-label="Mini calendar and calendars" title="Mini calendar and calendars" aria-expanded="'+(C87.side?'true':'false')+'"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16" rx="3"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/><path d="M7.5 13.5h2M11 13.5h2M14.5 13.5h2M7.5 17h2M11 17h2"/></svg></button><div class="c87t">'+title+'</div><div class="c87seg" role="tablist">'+c87Views().map(function(x){return '<button role="tab" class="'+(v===x[0]?'on':'')+'" data-c87="view" data-v="'+x[0]+'" aria-selected="'+(v===x[0])+'">'+x[1]+'</button>'}).join("")+'</div>'+
     '<div class="c87nav"><button data-c87="nav" data-v="-1" aria-label="Previous">‹</button><button class="c87today" data-c87="nav" data-v="0">Today</button><button data-c87="nav" data-v="1" aria-label="Next">›</button></div><button class="c87add" data-c87="new" aria-label="New event" title="New event">+</button></div>';
   var body;
   if(v==="month"){var y=dO(C87.d).getFullYear(),mo=dO(C87.d).getMonth(),first=new Date(y,mo,1),off=(first.getDay()+6)%7,rows=Math.ceil((off+new Date(y,mo+1,0).getDate())/7),cells=[];for(var k=0;k<rows*7;k++)cells.push(_iso(new Date(y,mo,1-off+k)));
@@ -3873,14 +3990,14 @@ function vCal87(){var m=mode87();
   else{var cols='grid-template-columns:var(--gut) repeat('+days.length+',minmax(0,1fr))';
     var hd='<div class="c87hd" style="'+cols+'"><span></span>'+days.map(function(d){var o=dO(d);return '<button class="c87dh'+(d===TODAY?' td':'')+(o.getDay()%6===0?' we':'')+'" data-c87="day" data-v="'+d+'"><span class="w">'+WD3[o.getDay()]+'</span><span class="n">'+o.getDate()+'</span></button>'}).join("")+'</div>';
     var ads=days.map(function(d){return c87Its(d).filter(function(i){return i.start==null})}),mx=Math.max.apply(null,ads.map(function(a){return a.length}));
-    var cap=m==="desk"?3:2,ad='<div class="c87ad" style="'+cols+'"><span class="c87adl">all-day</span>'+ads.map(function(a,ix){return '<div class="c87adc" data-d="'+days[ix]+'">'+a.slice(0,cap).map(function(i){return '<button class="c87ac'+(S.done[i.id]?' dn':'')+'" data-c87="open" data-v="'+i.id+'" style="--ec:'+c87Col(i)+'">'+esc(i.title)+'</button>'}).join("")+(a.length>cap?'<button class="c87acm" data-c87="day" data-v="'+days[ix]+'">+'+(a.length-cap)+' more</button>':'')+'</div>'}).join("")+'</div>';
+    var cap=m==="desk"&&window.innerHeight>=760?3:2,ad='<div class="c87ad" style="'+cols+'"><span class="c87adl">all-day</span>'+ads.map(function(a,ix){return '<div class="c87adc" data-d="'+days[ix]+'">'+a.slice(0,cap).map(function(i){return '<button class="c87ac'+(S.done[i.id]?' dn':'')+'" data-c87="open" data-v="'+i.id+'" style="--ec:'+c87Col(i)+'">'+esc(i.title)+'</button>'}).join("")+(a.length>cap?'<button class="c87acm" data-c87="day" data-v="'+days[ix]+'">+'+(a.length-cap)+' more</button>':'')+'</div>'}).join("")+'</div>';
     var nowH=new Date().getHours()+new Date().getMinutes()/60;
     var gut='<div class="c87gut">'+Array.apply(null,Array(24)).map(function(_,h){var near=days.indexOf(TODAY)>=0&&Math.abs(h-nowH)<0.3;return '<span'+(near?' class="c87hid"':'')+' style="top:'+(h*HH)+'px">'+(h===0?'':(((h+11)%12)+1)+' '+(h<12?'AM':'PM'))+'</span>'}).join("")+(days.indexOf(TODAY)>=0?'<span class="c87nowl" id="c87nowl" style="top:'+(nowH*HH)+'px">'+ft(nowH).replace(/ [AP]M$/,"")+'</span>':'')+'</div>';
     var grid='<div class="c87g" style="'+cols+';height:'+(24*HH)+'px;--hh:'+HH+'px">'+gut+days.map(function(d){var t=c87Its(d).filter(function(i){return i.start!=null});
       return '<div class="c87col'+(d===TODAY?' td':'')+(dO(d).getDay()%6===0?' we':'')+'" data-d="'+d+'">'+c87Lay(t).map(function(x){return c87Ev(x,HH)}).join("")+(d===TODAY?'<div class="c87now" id="c87now" style="top:'+(nowH*HH)+'px"></div>':'')+'</div>'}).join("")+'</div>';
     var strip=m==="phone"?'<div class="c87strip">'+[0,1,2,3,4,5,6].map(function(k){var d=addD(wkS(C87.d),k),o=dO(d);return '<button class="c87sd'+(d===C87.d?' sel':'')+(d===TODAY?' td':'')+'" data-c87="go" data-v="'+d+'"><span class="w">'+"SMTWTFS".charAt(o.getDay())+'</span><span class="n">'+o.getDate()+'</span></button>'}).join("")+'</div>':'';
     body=strip+'<div class="c87sc" id="c87sc"><div class="c87top">'+(v==="day"&&m==="phone"?'':hd)+ad+'</div>'+grid+'</div>'}
-  var side=m!=="phone"&&v!=="month"?'<aside class="c87side">'+c87Mini()+'</aside>':'';
+  var side=C87.side?'<div class="c87pop-bg" data-c90="close"></div><aside class="c87side c87pop" id="c87pop" role="dialog" aria-label="Mini calendar and calendars">'+c87Mini()+'</aside>':'';
   return '<div class="c87 m-'+m+' v-'+v+'">'+head+'<div class="c87b">'+side+'<div class="c87main">'+body+'</div></div></div>'}
 _vCal=vCal87;
 function c87Fit(){var sc=document.getElementById("c87sc")||document.getElementById("c87fill");if(!sc)return;var r=sc.getBoundingClientRect(),sb=parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--sab"))||0;
@@ -3892,7 +4009,7 @@ setInterval(function(){var n=document.getElementById("c87now");if(!n)return;var 
 document.addEventListener("click",function(e){var t=e.target.closest&&e.target.closest("[data-c87]");if(!t)return;e.stopPropagation();var k=t.getAttribute("data-c87"),v=t.getAttribute("data-v"),m=mode87();
   if(k==="view"){C87.pick[m]=v;C87.scroll=null}
   else if(k==="nav"){var vw=c87View();if(v==="0"){C87.d=TODAY;C87.mm=null}else{var n=+v;if(vw==="month"){var o=dO(C87.d);C87.d=_iso(new Date(o.getFullYear(),o.getMonth()+n,1))}else C87.d=addD(C87.d,n*(vw==="week"?7:vw==="3day"?3:1));C87.mm=null}}
-  else if(k==="go"){C87.d=v;C87.mm=null}
+  else if(k==="go"){C87.d=v;C87.mm=null;if(t.closest("#c87pop"))C87.side=false}
   else if(k==="day"){C87.d=v;C87.pick[m]="day";C87.scroll=null}
   else if(k==="mm"){var b=C87.mm||C87.d.slice(0,7),y=+b.slice(0,4),mo=+b.slice(5,7)-1+(+v),dd=new Date(y,mo,1);C87.mm=_iso(dd).slice(0,7)}
   else if(k==="cal"){S.on[v]=!S.on[v]}
@@ -3999,6 +4116,211 @@ var _r87=render;render=function(){_r87();var b=document.body,m=mode87();M87.mode
 var _rz87;window.addEventListener("resize",function(){clearTimeout(_rz87);_rz87=setTimeout(function(){var m=mode87();
   if(m!==M87.mode){tdRead();ceRead();render()}else{hinge87();if(S.view==="calendar"){if(C87._w!==window.innerWidth){C87._w=window.innerWidth;render()}else c87Fit()}}},140)});
 window.addEventListener("orientationchange",function(){setTimeout(function(){tdRead();ceRead();render()},250)});
+
+/* ===================== v89 ===================== */
+function td89(){return iso(new Date())}
+/* ---------- shared sheet ---------- */
+var M89=null;
+function m89Draw(focus){var el=document.getElementById("m89m");if(!el){el=document.createElement("div");el.id="m89m";document.body.appendChild(el)}var ae=document.activeElement;if(ae&&el.contains(ae)&&ae.blur)ae.blur();
+  if(!M89){el.innerHTML="";if(!CE&&!TDU)document.body.classList.remove("m87");return}document.body.classList.add("m87");
+  var B=M89B[M89.k](),col=B.c||"#2A2420";
+  el.innerHTML='<div class="scrim m87scrim" data-m9="close"><div class="sheet m87 m89'+(B.wide?' m89w':'')+'" data-m9="stop" role="dialog" aria-label="'+esc(B.t)+'"><div class="stripe" style="background:'+col+'"></div><div class="in m87in"><div class="m87h"><span class="m87dot" style="background:'+col+'"></span><b>'+B.t+'</b><button class="close" data-m9="close" aria-label="Close">✕</button></div>'+B.h+'<div class="cx-err">'+esc(M89.err||"")+'</div></div></div></div>';
+  if(focus){var f=el.querySelector("[data-m9focus]");if(f)setTimeout(function(){f.focus()},40)}}
+function m89Open(k,o){M89=o||{};M89.k=k;M89.err="";m89Draw(true)}
+function m89Close(){M89=null;m89Draw()}
+var M89B={},M89A={};
+document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("[data-m9]");if(!b||!M89)return;var a=b.getAttribute("data-m9");if(a==="stop")return;e.preventDefault();e.stopPropagation();
+  if(a==="close"){m89Close();return}var f=M89A[M89.k+":"+a]||M89A[a];if(f)f(b.getAttribute("data-v"),b)});
+document.addEventListener("keydown",function(e){if(M89&&e.key==="Escape"){m89Close()}});
+document.addEventListener("change",function(e){var t=e.target;if(M89&&t.closest&&t.closest("#m89m")&&t.hasAttribute("data-m9ch")){var f=M89A[M89.k+":ch"];if(f)f(t)}});
+function v89(id){var e=document.getElementById(id);return e?e.value:""}
+
+/* ---------- 1. calendar: fill the viewport, taller hours ---------- */
+c87HH=function(){var m=mode87(),h=window.innerHeight;return m==="phone"?52:m==="open"?48:h<820?50:56};
+c87Fit=function(){var sc=document.getElementById("c87sc")||document.getElementById("c87fill");if(!sc)return;var m=mode87(),sb=parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--sab"))||0;
+  var pn=document.querySelector(".gpanel"),pb=pn?(parseFloat(getComputedStyle(pn).paddingBottom)||0):0;
+  var B=window.innerHeight-sb-(m==="phone"?12:pb+12),top=sc.getBoundingClientRect().top+window.scrollY;
+  sc.style.height=Math.max(m==="phone"?320:260,Math.floor(B-top))+"px";
+  var sd=document.querySelector(".c87side");if(sd){sd.style.maxHeight=Math.max(160,Math.floor(B-(sd.getBoundingClientRect().top+window.scrollY)))+"px"}};
+
+/* ---------- 2. notes with folders ---------- */
+var NBF0=[["personal","Personal","#E3A33B"],["work","Work","#5B6CF0"],["svelt","SVELT","#C98B5A"],["ideas","Ideas","#A97CD6"],["journal","Journal","#D9739B"]];
+var NBCOL=["#E3A33B","#E0784F","#D9739B","#A97CD6","#5B6CF0","#3A9BD5","#3E9A8B","#3FA779","#C98B5A","#8A7B70"];
+function nbSeed(){var d=function(n){return addD(TODAY,-n)};return {sample:true,qf:"personal",folders:NBF0.map(function(f){return {id:f[0],name:f[1],color:f[2]}}),notes:[
+  {id:"n1",f:"personal",t:"Weekend plans",b:"Saturday: farmers market, then pickleball at 4.\nSunday: meal prep and call Mum at 6.",u:d(1)},
+  {id:"n2",f:"personal",t:"Gift ideas",b:"Fatou: ceramic mug set\nDad: running belt\nMum: silk scarf",u:d(6)},
+  {id:"n3",f:"work",t:"1:1 talking points",b:"- Q1 content calendar\n- Freelance photographer budget\n- Ask about the March conference",u:d(2)},
+  {id:"n4",f:"work",t:"Supplier call: fabric samples",b:"Recycled nylon samples arrive Friday. Ask about minimum order and lead time.",u:d(3)},
+  {id:"n5",f:"svelt",t:"Launch shot list",b:"Hero: leggings + sports bra at the pop-up\nDetail: waistband, seams\nFlat lays x6",u:d(1)},
+  {id:"n6",f:"svelt",t:"Launch email draft",b:"Subject: SVELT is here\nOpen with the squat-proof story, link to the lookbook.",u:d(4)},
+  {id:"n7",f:"ideas",t:"App idea: outfit planner",b:"Plan outfits per calendar event, weather aware.",u:d(9)},
+  {id:"n8",f:"ideas",t:"Content ideas",b:"Behind the scenes of the shoot\nOne set styled 3 ways",u:d(5)},
+  {id:"n9",f:"journal",t:"Sunday reflection",b:"Good week. 4 of 4 workouts, slept better. Phone out of the bedroom.",u:d(3)},
+  {id:"n10",f:"journal",t:"Grateful for",b:"Morning runs, Aïcha's visit, finishing the brand book.",u:d(8)}]}}
+var NB=LS.get("lm.notebook.v1",null)||nbSeed();function nbSave(){LS.set("lm.notebook.v1",NB)}
+var NBU={f:"all",id:null};
+function nbF(id){return NB.folders.filter(function(f){return f.id===id})[0]||null}
+function nbQuick(){return {id:"quick",f:NB.qf===undefined?"personal":NB.qf,t:"Quick notes",b:LS.get("lm.notes.v1",NOTE0)||"",u:LS.get("lm.notes.u89",TODAY),quick:true}}
+function nbAll(){return [nbQuick()].concat(NB.notes.slice().sort(function(a,b){return a.u<b.u?1:a.u>b.u?-1:0}))}
+function nbIn(fid){return nbAll().filter(function(n){return fid==="all"||(fid==="none"?!nbF(n.f):n.f===fid)})}
+function nbGet(id){return nbAll().filter(function(n){return n.id===id})[0]||null}
+function nbFirst(t){return (t||"").split("\n").filter(function(x){return x.trim()})[0]||""}
+function nbFolderBtn(id,name,col,n,on,menu){return '<div class="nb-fr'+(on?' on':'')+'"'+(id!=="all"?' data-nbdrop="'+id+'"':'')+'><button class="nb-f" data-nb="f" data-v="'+id+'"><i style="background:'+col+'"></i><span>'+esc(name)+'</span><em>'+n+'</em></button>'+(menu?'<button class="nb-fm" data-nb="fedit" data-v="'+id+'" aria-label="Rename or delete '+esc(name)+'">⋯</button>':'')+'</div>'}
+function nbFolders(){var un=nbIn("none").length;return nbFolderBtn("all","All notes","#2A2420",nbAll().length,NBU.f==="all",false)+NB.folders.map(function(f){return nbFolderBtn(f.id,f.name,f.color,nbIn(f.id).length,NBU.f===f.id,true)}).join("")+(un?nbFolderBtn("none","No folder","#B8ADA4",un,NBU.f==="none",false):'')}
+function vNotes89(){var m=mode87();if(NBU.f!=="all"&&NBU.f!=="none"&&!nbF(NBU.f))NBU.f="all";
+  var seg='<div class="seg cx-nseg"><button class="on" data-a="go" data-v="notes">Notes</button><button class="" data-a="go" data-v="reflection">Reflection</button></div>';
+  var head='<div class="ch-head"><div class="ch-l"><div class="eyebrow">'+realDay(1)+'</div><div class="h1">Notes</div><div class="tsub">Your notes in folders, plus your project notes.</div></div>'+seg+'</div>';
+  var proj=(typeof PM!=="undefined"?PM.projects:[]).map(function(p){return '<button class="nb-pj" data-cx="pnotes" data-v="'+p.id+'"><i style="background:'+(p.color||"#5B6CF0")+'"></i><span>'+esc(p.name)+'</span><em>→</em></button>'}).join("");
+  var side='<aside class="nb-side"><div class="nb-sh">Folders</div>'+nbFolders()+'<button class="nb-add" data-nb="fnew">+ New folder</button>'+(proj?'<div class="nb-sh">Project notes</div>'+proj:'')+'</aside>';
+  var F=NBU.f==="all"?{name:"All notes"}:NBU.f==="none"?{name:"No folder"}:nbF(NBU.f),L=nbIn(NBU.f);
+  if(m==="desk"&&!NBU.id&&L.length)NBU.id=L[0].id;var cur=NBU.id&&nbGet(NBU.id);if(NBU.id&&!cur)NBU.id=null;
+  var chips=m==="phone"?'<div class="nb-chips"><button class="nb-dr" data-nb="drawer" aria-label="All folders">☰ Folders</button>'+[["all","All notes","#2A2420"]].concat(NB.folders.map(function(f){return [f.id,f.name,f.color]})).map(function(x){return '<button class="nb-chip'+(NBU.f===x[0]?' on':'')+'" data-nb="f" data-v="'+x[0]+'"><i style="background:'+x[2]+'"></i>'+esc(x[1])+' <em>'+nbIn(x[0]).length+'</em></button>'}).join("")+'</div>':'';
+  var rows=L.map(function(n){var f=nbF(n.f);return '<button class="nb-row'+(n.id===NBU.id?' on':'')+'" data-nb="open" data-v="'+n.id+'" draggable="true" data-nbdrag="'+n.id+'"><b>'+esc(n.t||"Untitled")+(n.quick?' <span class="nb-pin">Shared with Today</span>':'')+'</b><small>'+esc(pmFd(n.u))+' · '+esc(nbFirst(n.b).slice(0,80)||"No text")+'</small>'+(NBU.f==="all"&&f?'<span class="nb-tag" style="--c:'+f.color+'">'+esc(f.name)+'</span>':'')+'</button>'}).join("");
+  var list='<section class="nb-list"><div class="nb-lh"><div><b>'+esc(F.name)+'</b><small>'+L.length+' note'+(L.length===1?'':'s')+'</small></div><button class="nb-new" data-nb="new">+ Note</button></div><div class="nb-rows">'+(rows||'<div class="nb-empty">No notes here yet.<br>Tap <b>+ Note</b> to add one'+(m==="desk"?', or drag a note in from another folder':'')+'.</div>')+'</div></section>';
+  var ed;if(cur){var fo=nbF(cur.f);ed='<section class="nb-ed" style="--c:'+(fo?fo.color:"#B8ADA4")+'">'+(m!=="desk"?'<button class="nb-back" data-nb="back">‹ '+esc(F.name)+'</button>':'')+
+      '<div class="nb-et"><input id="nb-t" value="'+esc(cur.t)+'" placeholder="Title" autocomplete="off"'+(cur.quick?' disabled':'')+'><label class="nb-mv"><span>Folder</span><select id="nb-f">'+NB.folders.map(function(f){return '<option value="'+f.id+'"'+(f.id===cur.f?' selected':'')+'>'+esc(f.name)+'</option>'}).join("")+'<option value=""'+(fo?'':' selected')+'>No folder</option></select></label></div>'+
+      '<textarea id="nb-b" placeholder="Start writing…">'+esc(cur.b)+'</textarea><div class="nb-ef"><span id="nb-s">'+(cur.quick?'Same quick notes as the Today page':'Saved · '+pmFd(cur.u))+'</span>'+(cur.quick?'':'<button class="nb-del" data-nb="del">Delete note</button>')+'</div></section>'}
+  else ed='<section class="nb-ed nb-none"><div class="nb-empty">Pick a note, or tap <b>+ Note</b>.</div></section>';
+  return '<div class="cx-page mockc nbpage"><div class="shell">'+head+chips+'<div class="nb nb-'+m+(cur?' has-ed':'')+'">'+(m==="phone"?'':side)+list+ed+'</div></div></div>'}
+var _vList89=_vList;_vList=function(c){return c==="notes"?vNotes89():_vList89(c)};
+function nbMove(id,f){if(id==="quick"){NB.qf=f||null;nbSave();return}var n=NB.notes.filter(function(x){return x.id===id})[0];if(n){n.f=f||null;nbSave()}}
+document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("[data-nb]");if(!b)return;e.preventDefault();e.stopPropagation();var a=b.getAttribute("data-nb"),v=b.getAttribute("data-v");
+  if(a==="f"){NBU.f=v;NBU.id=null;if(M89&&M89.k==="folders")m89Close()}
+  else if(a==="open"){NBU.id=v}
+  else if(a==="back"){NBU.id=null}
+  else if(a==="new"){var f=NBU.f!=="all"&&NBU.f!=="none"?NBU.f:(nbF("personal")?"personal":(NB.folders[0]||{}).id||null),n={id:"n"+Date.now(),f:f,t:"",b:"",u:td89()};NB.notes.push(n);nbSave();NBU.id=n.id;render();var t=document.getElementById("nb-t");if(t)t.focus();return}
+  else if(a==="del"){var cn=nbGet(NBU.id);if(cn)m89Open("ndel",{id:cn.id});return}
+  else if(a==="fnew"){m89Open("folder",{id:null,name:"",color:NBCOL[NB.folders.length%NBCOL.length]});return}
+  else if(a==="fedit"){var fo=nbF(v);if(fo)m89Open("folder",{id:fo.id,name:fo.name,color:fo.color});return}
+  else if(a==="drawer"){m89Open("folders",{});return}
+  render()});
+document.addEventListener("input",function(e){var t=e.target;if(!t||(t.id!=="nb-t"&&t.id!=="nb-b")||!NBU.id)return;var id=NBU.id,now=td89();
+  if(id==="quick"){if(t.id==="nb-b"){LS.set("lm.notes.v1",t.value);LS.set("lm.notes.u89",now)}}
+  else{var n=NB.notes.filter(function(x){return x.id===id})[0];if(!n)return;if(t.id==="nb-t")n.t=t.value;else n.b=t.value;n.u=now;nbSave()}
+  var row=document.querySelector('.nb-row[data-v="'+id+'"]');if(row){var g=nbGet(id);row.querySelector("b").firstChild.textContent=(g.t||"Untitled")+(g.quick?" ":"");row.querySelector("small").textContent=pmFd(g.u)+" · "+(nbFirst(g.b).slice(0,80)||"No text")}
+  var s=document.getElementById("nb-s");if(s&&id!=="quick")s.textContent="Saved · "+pmFd(now)});
+document.addEventListener("change",function(e){if(e.target&&e.target.id==="nb-f"&&NBU.id){var f=e.target.value,fo=nbF(f);nbMove(NBU.id,f);toast87("Moved to "+(fo?fo.name:"No folder"));render()}});
+document.addEventListener("dragstart",function(e){var r=e.target.closest&&e.target.closest("[data-nbdrag]");if(!r)return;e.dataTransfer.setData("text/nb",r.getAttribute("data-nbdrag"));e.dataTransfer.effectAllowed="move";document.body.classList.add("nbdrag")});
+document.addEventListener("dragend",function(){document.body.classList.remove("nbdrag");document.querySelectorAll(".nb-fr.ov").forEach(function(x){x.classList.remove("ov")})});
+document.addEventListener("dragover",function(e){var r=e.target.closest&&e.target.closest("[data-nbdrop]");if(!r||!document.body.classList.contains("nbdrag"))return;e.preventDefault();document.querySelectorAll(".nb-fr.ov").forEach(function(x){if(x!==r)x.classList.remove("ov")});r.classList.add("ov")});
+document.addEventListener("drop",function(e){var r=e.target.closest&&e.target.closest("[data-nbdrop]");if(!r)return;e.preventDefault();var id=e.dataTransfer.getData("text/nb"),f=r.getAttribute("data-nbdrop");if(!id)return;if(f==="none")f="";nbMove(id,f);var fo=nbF(f);toast87("Moved to "+(fo?fo.name:"No folder"));document.body.classList.remove("nbdrag");render()});
+M89B.folder=function(){var o=M89,n=o.id?nbIn(o.id).length:0;return {t:o.id?"Edit folder":"New folder",c:o.color,h:'<label class="m87f">Name<input id="m9-fn" value="'+esc(o.name)+'" placeholder="e.g. Recipes" maxlength="40" data-m9focus autocomplete="off"></label>'+
+  '<div class="m87f"><span>Colour</span><div class="nb-cols">'+NBCOL.map(function(c){return '<button class="nb-col'+(c===o.color?' on':'')+'" data-m9="col" data-v="'+c+'" style="background:'+c+'" aria-label="Colour '+c+'"></button>'}).join("")+'</div></div>'+
+  (o.id?'<small class="m87hint">'+n+' note'+(n===1?'':'s')+' in this folder. Deleting the folder keeps them under “No folder”.</small>':'')+
+  '<div class="m87act">'+(o.id?'<button class="btn cx-del" data-m9="fdel">Delete folder</button>':'')+'<span></span><button class="btn" data-m9="close">Cancel</button><button class="btn pri m87save" data-m9="fsave" style="background:'+o.color+'">'+(o.id?'Save':'Create')+'</button></div>'}};
+M89A["folder:col"]=function(v){M89.name=v89("m9-fn");M89.color=v;m89Draw()};
+M89A["folder:fsave"]=function(){var nm=v89("m9-fn").trim();if(!nm){M89.err="Give the folder a name.";M89.name="";m89Draw(true);return}
+  if(NB.folders.some(function(f){return f.id!==M89.id&&f.name.toLowerCase()===nm.toLowerCase()})){M89.err="You already have a folder called “"+nm+"”.";M89.name=nm;m89Draw();return}
+  if(M89.id){var f=nbF(M89.id);f.name=nm;f.color=M89.color;toast87("Folder saved")}else{var id="f"+Date.now();NB.folders.push({id:id,name:nm,color:M89.color});NBU.f=id;NBU.id=null;toast87("Folder “"+nm+"” created")}
+  nbSave();m89Close();render()};
+M89A["folder:fdel"]=function(){var id=M89.id;NB.folders=NB.folders.filter(function(f){return f.id!==id});NB.notes.forEach(function(n){if(n.f===id)n.f=null});if(NB.qf===id)NB.qf=null;nbSave();if(NBU.f===id)NBU.f="all";m89Close();toast87("Folder deleted · its notes are under No folder");render()};
+M89B.ndel=function(){var n=nbGet(M89.id);return {t:"Delete note?",c:"#D9534F",h:'<p class="m87hint">“'+esc(n&&n.t||"Untitled")+'” will be removed from this device.</p><div class="m87act"><span></span><button class="btn" data-m9="close">Cancel</button><button class="btn pri m87save" data-m9="go" style="background:#D9534F">Delete</button></div>'}};
+M89A["ndel:go"]=function(){var id=M89.id;NB.notes=NB.notes.filter(function(n){return n.id!==id});nbSave();NBU.id=null;m89Close();toast87("Note deleted");render()};
+M89B.folders=function(){return {t:"Folders",h:'<div class="nb-drw">'+nbFolders()+'</div><button class="nb-add" data-nb="fnew">+ New folder</button>'}};
+
+/* ---------- 3. project page: full-width board, compact bar ---------- */
+function pmBar89(P,PT,pr,tab){var open=PT.filter(function(t){return t.status!=="done"}).length,od=PT.filter(pmOd).length,dl=Math.max(0,pmDays(P.launch));
+  return '<div class="pm89bar"><button class="pm89back" data-pm="back" aria-label="Back to Work">‹</button><span class="pm-pdot" style="background:'+P.color+'"></span><div class="pm89nm"><b>'+esc(P.name)+'</b><small>'+(P.desc?esc(P.desc)+' · ':'')+'Launch '+pmSd(P.launch)+'</small></div>'+
+   '<div class="pm89pr" title="'+pr+'% done"><div class="pm89pb"><i style="width:'+pr+'%;background:'+P.color+'"></i></div><span>'+pr+'%</span></div>'+
+   '<div class="pm89st"><span><b>'+open+'</b>open</span><span class="'+(od?'od':'')+'"><b>'+od+'</b>overdue</span><span><b>'+dl+'</b>days left</span></div>'+
+   '<label class="pm89pick"><span class="sr">Switch project</span><select data-pm89="pick" aria-label="Switch project">'+PM.projects.map(function(p){return '<option value="'+p.id+'"'+(p.id===P.id?' selected':'')+'>'+esc(p.name)+'</option>'}).join("")+'<option value="__new">+ New project…</option></select></label>'+
+   '<button class="pm89notes'+(tab==="notes"?' on':'')+'" data-pm="tab" data-v="notes">📝 Project notes</button></div>'}
+document.addEventListener("change",function(e){var s=e.target;if(!s||s.getAttribute("data-pm89")!=="pick")return;var v=s.value;
+  if(v==="__new"){PMU.form="proj";render();return}PMU.page=v;PMU.pid=v;LS.set("lm.pm.pid",v);PMU.form=null;PMU.addIn=null;PMU.q="";PMU.ftag="";PMU.fpri="";render()});
+
+/* ---------- 4. workouts: past days ---------- */
+var WSEL89=null;
+wkRef=function(){var t=td89();return S.view==="workout"&&WSEL89&&WSEL89<t?WSEL89:t};
+function wkNav89(ref){var t=td89(),isT=ref===t,dt=wkD(ref);
+  return '<div class="wk89nav'+(isT?'':' past')+'"><button class="wk89a" data-wk89="prev" aria-label="Previous day">‹</button><div class="wk89d"><b>'+(isT?'Today':WD[dt.getDay()])+'</b><small>'+(isT?WD[dt.getDay()]+' '+pmSd(ref):pmSd(ref)+' · past day')+'</small></div><button class="wk89a" data-wk89="next" aria-label="Next day"'+(isT?' disabled':'')+'>›</button>'+
+   '<label class="wk89pick"><span class="sr">Pick a day</span><input type="date" data-wk89="pick" max="'+t+'" value="'+ref+'" aria-label="Pick a day"></label>'+(isT?'':'<button class="wk89t" data-wk89="today">Back to today</button>')+'<span class="sp"></span><button class="wk-btn pri wk89log" data-wk89="log">'+(WL[ref]&&WL[ref].done?'✓ Edit log':'Log this day')+'</button></div>'}
+function wk89Go(d){var t=td89();if(d>t){toast87("You can't log a future day.");return}WSEL89=d===t?null:d;render()}
+document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("[data-wk89]");if(!b)return;var a=b.getAttribute("data-wk89");if(a==="pick")return;e.preventDefault();e.stopPropagation();var ref=wkRef();
+  if(a==="prev")wk89Go(addD(ref,-1));else if(a==="next")wk89Go(addD(ref,1));else if(a==="today")wk89Go(td89());else if(a==="day")wk89Go(b.getAttribute("data-v"));else if(a==="log")wl89Open(ref);else if(a==="goal")gl89Open()});
+document.addEventListener("change",function(e){var t=e.target;if(t&&t.getAttribute&&t.getAttribute("data-wk89")==="pick"&&t.value){if(t.value>td89()){t.value=wkRef();toast87("You can't log a future day.");return}wk89Go(t.value)}});
+document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest('[data-wk="go"][data-v="log"]');if(!b||S.view!=="workout")return;e.preventDefault();e.stopPropagation();wl89Open(wkRef())},true);
+function wl89Opts(d){var P=pgA(),ws=P?P.workouts.slice():[],cur=wkFor(d);if(cur&&!ws.some(function(w){return w.id===cur.id}))ws.unshift(cur);return ws}
+function wl89Open(d){if(d>td89()){toast87("You can't log a future day.");return}var w=wkFor(d),L=WL[d]||{},sets={};if(L.sets)for(var k in L.sets)sets[k]=L.sets[k].map(function(s){return {r:s.r,w:s.w,ok:s.ok}});
+  m89Open("wlog",{d:d,wid:w?w.id:"",min:L.min||(w?w.min||45:45),done:L.done!=null?L.done:wkDoneD(d),sets:sets,note:L.note||""})}
+function wl89W(){var o=M89;return o.wid?wl89Opts(o.d).filter(function(w){return w.id===o.wid})[0]||null:null}
+function wl89Read(){var o=M89;if(!o)return;var m=document.getElementById("m9-min");if(m)o.min=parseInt(m.value)||0;var dn=document.getElementById("m9-done");if(dn)o.done=dn.checked;var n=document.getElementById("m9-note");if(n)o.note=n.value;
+  document.querySelectorAll("#m89m [data-m9set]").forEach(function(el){var k=el.getAttribute("data-m9set").split("|"),S2=o.sets[k[0]];if(S2&&S2[+k[1]])S2[+k[1]][k[2]]=el.value})}
+M89B.wlog=function(){var o=M89,w=wl89W(),dt=wkD(o.d),planned=wkFor(o.d),isT=o.d===td89();
+  if(w)w.ex.forEach(function(e){if(!o.sets[e.n]){o.sets[e.n]=[];for(var j=0;j<Math.max(1,e.s);j++)o.sets[e.n].push({r:"",w:"",ok:false})}});
+  var ex=w?w.ex.map(function(e){var S2=o.sets[e.n];return '<div class="wl9ex"><div class="wl9eh"><b>'+esc(e.n)+'</b><small>Target '+esc(exT(e))+'</small></div>'+S2.map(function(s,si){return '<div class="wl9set'+(s.ok?' ok':'')+'"><span>'+(si+1)+'</span><input inputmode="decimal" data-m9set="'+esc(e.n)+'|'+si+'|r" value="'+esc(s.r)+'" placeholder="'+esc(String(e.r).replace(/ each$/,""))+'" aria-label="Reps set '+(si+1)+'"><input inputmode="decimal" data-m9set="'+esc(e.n)+'|'+si+'|w" value="'+esc(s.w)+'" placeholder="kg" aria-label="kg set '+(si+1)+'"><button class="lc'+(s.ok?' on':'')+'" data-m9="ok" data-v="'+esc(e.n)+'|'+si+'" aria-label="Set '+(si+1)+' done" aria-pressed="'+(s.ok?'true':'false')+'">✓</button></div>'}).join("")+'<button class="wl9add" data-m9="addset" data-v="'+esc(e.n)+'">+ Set</button></div>'}).join(""):'<div class="m87hint">No workout picked: this day is logged as a rest day.</div>';
+  var ws=wl89Opts(o.d);
+  return {t:'Log · '+(isT?'Today':WD[dt.getDay()]+' '+pmSd(o.d)),c:"#EF6F5E",wide:true,h:
+   '<div class="m87two"><label>Workout<select id="m9-w" data-m9ch="1">'+ws.map(function(x){return '<option value="'+x.id+'"'+(x.id===o.wid?' selected':'')+'>'+esc(x.name)+(planned&&planned.id===x.id?' (planned)':'')+'</option>'}).join("")+'<option value=""'+(o.wid?'':' selected')+'>Rest / no workout</option></select></label><label>Duration (min)<input id="m9-min" type="number" inputmode="numeric" min="0" max="600" value="'+(o.min||"")+'"'+(w?'':' disabled')+'></label></div>'+
+   '<label class="m87sw"><span>Workout done</span><input id="m9-done" type="checkbox"'+(o.done&&w?' checked':'')+(w?'':' disabled')+'><i></i></label>'+
+   '<div class="wl9list">'+ex+'</div>'+
+   '<label class="m87f">Notes<textarea id="m9-note" rows="2" placeholder="How did it feel?">'+esc(o.note)+'</textarea></label>'+
+   '<div class="m87act">'+(WL[o.d]?'<button class="btn cx-del" data-m9="clear">Clear log</button>':'')+'<span></span><button class="btn" data-m9="close">Cancel</button><button class="btn pri m87save" data-m9="save" style="background:#EF6F5E">Save</button></div>'}};
+M89A["wlog:ch"]=function(t){if(t.id==="m9-w"){wl89Read();M89.wid=t.value;var w=wl89W();if(w&&!M89.min)M89.min=w.min||45;m89Draw()}};
+M89A["wlog:ok"]=function(v){wl89Read();var k=v.split("|"),s=M89.sets[k[0]][+k[1]];s.ok=!s.ok;var all=[];for(var n in M89.sets)all=all.concat(M89.sets[n]);if(s.ok&&all.every(function(x){return x.ok}))M89.done=true;m89Draw()};
+M89A["wlog:addset"]=function(v){wl89Read();var S2=M89.sets[v],l=S2[S2.length-1]||{};S2.push({r:l.r||"",w:l.w||"",ok:false});m89Draw()};
+M89A["wlog:clear"]=function(){var d=M89.d;delete WL[d];wlSave();m89Close();toast87("Log cleared for "+pmFd(d));render()};
+M89A["wlog:save"]=function(){wl89Read();var o=M89,d=o.d;if(d>td89()){M89.err="You can't log a future day.";m89Draw();return}var w=wl89W(),planned=wkFor(d);
+  if(!w){if(planned){WOV[d]=null;wovSave()}var L0=WL[d]||{};L0.done=false;L0.note=o.note;L0.sets={};WL[d]=L0;wlSave();m89Close();toast87("Logged "+pmFd(d)+" as a rest day");render();return}
+  if(o.min<1||o.min>600){M89.err="Duration should be between 1 and 600 minutes.";m89Draw();return}
+  if(!planned||planned.id!==w.id){WOV[d]=wkClone(w);wovSave()}
+  var sets={};w.ex.forEach(function(e){if(o.sets[e.n])sets[e.n]=o.sets[e.n]});
+  WL[d]={name:w.name,type:w.type,min:o.min,done:!!o.done,sets:sets,note:o.note};wlSave();m89Close();toast87((o.done?"✓ Logged ":"Saved ")+w.name+" · "+pmFd(d));render()};
+
+/* ---------- 5. goals: target weight by a date ---------- */
+var GL89=LS.get("lm.wtgoal.v1",null);if(!GL89&&WT.length&&WT[0].sample)GL89={start:63.8,startDate:"2026-10-19",target:60,date:"2027-02-28",week:WG.week,sample:true};
+function gl89Save(){LS.set("lm.wtgoal.v1",GL89)}
+function gl89Calc(){var g=GL89;if(!g)return null;var t=td89(),W=WT.slice().sort(function(a,b){return a.d<b.d?-1:1}),cur=W.length?W[W.length-1].kg:g.start;
+  var need=g.target-g.start,doneKg=cur-g.start,lose=need<0,pct=need?Math.max(0,Math.min(1,doneKg/need)):1,dl=Math.round((dO(g.date)-dO(t))/864e5),rem=g.target-cur;
+  var reached=lose?cur<=g.target:cur>=g.target,perWk=dl>0?rem/(dl/7):null;
+  var cut=addD(t,-42),pts=W.filter(function(x){return x.d>=cut&&x.d>=g.startDate});if(pts.length<2)pts=W.slice(-4);var trend=null;
+  if(pts.length>=2){var x0=dO(pts[0].d),xs=pts.map(function(p){return (dO(p.d)-x0)/864e5}),ys=pts.map(function(p){return p.kg}),n=xs.length,mx=xs.reduce(function(a,b){return a+b},0)/n,my=ys.reduce(function(a,b){return a+b},0)/n,num=0,den=0;for(var i=0;i<n;i++){num+=(xs[i]-mx)*(ys[i]-my);den+=(xs[i]-mx)*(xs[i]-mx)}if(den>0)trend=num/den*7}
+  var proj=trend!=null&&dl>0?cur+trend*dl/7:null,on=reached||(proj!=null&&(lose?proj<=g.target+0.05:proj>=g.target-0.05));
+  var st=reached?["Goal reached","ok"]:dl<=0?["Target date passed","bad"]:trend==null?["Log more weigh-ins to see your trend",""]:on?["On track","ok"]:["Behind pace","bad"];
+  return {g:g,cur:cur,need:need,doneKg:doneKg,lose:lose,pct:pct,dl:dl,rem:rem,perWk:perWk,trend:trend,proj:proj,on:on,reached:reached,st:st,last:W[W.length-1]}}
+function kg89(x,sign){var v=Math.round(x*100)/100;return (sign&&v>0?'+':v<0?'−':'')+Math.abs(v).toFixed(Math.abs(v)<1&&Math.abs(v)>0?2:1)}
+function gCard89(done){var c=gl89Calc(),wk=GL89&&GL89.week||WG.week;
+  if(!c)return pmCard("wk-gc wk89g","GOALS","#3FA779","Weight goal","",cxEmpty("Set your weight goal","Pick your target weight and the date you want to reach it. Progress uses your weight log.",'<button class="cx-cta" data-wk89="goal">+ Set weight goal</button>'));
+  var g=c.g,word=c.lose?"lost":"gained",tot=Math.abs(c.need),got=Math.max(0,c.lose?-c.doneKg:c.doneKg);
+  var ring='<div class="wk-ring"><svg viewBox="0 0 160 160" width="150" height="150">'+wkRing(68,14,c.pct,"#3FA779")+wkRing(46,12,done/wk,"#EF6F5E")+'</svg><div class="wk-rc"><b>'+Math.round(c.pct*100)+'%</b><small>to '+g.target.toFixed(1)+' kg</small></div></div>';
+  var rows='<div class="wk89gl">'+
+   '<div><i style="background:#3FA779"></i><span>'+(c.lose?'Lost':'Gained')+'</span><b>'+got.toFixed(1)+' of '+tot.toFixed(1)+' kg</b></div>'+
+   '<div><i class="o"></i><span>Now → target</span><b>'+c.cur.toFixed(1)+' → '+g.target.toFixed(1)+' kg</b></div>'+
+   '<div><i class="o"></i><span>Needed</span><b>'+(c.reached?'–':c.perWk==null?'–':kg89(c.perWk,1)+' kg/week')+'</b></div>'+
+   '<div><i class="o"></i><span>Your trend</span><b>'+(c.trend==null?'–':kg89(c.trend,1)+' kg/week')+'</b></div>'+
+   '<div><i class="o"></i><span>Days left</span><b>'+(c.dl>0?c.dl+' · '+pmSd(g.date):'–')+'</b></div>'+
+   '<div class="sec"><i style="background:#EF6F5E"></i><span>Workouts this week</span><b>'+done+' / '+wk+'</b></div></div>';
+  return pmCard("wk-gc wk89g","GOALS","#3FA779",(g.sample?'Sample goal · ':'')+'Reach '+g.target.toFixed(1)+' kg by '+pmSd(g.date),'<button class="wk89edit" data-wk89="goal">Edit goal</button>',
+   '<div class="wk89st '+c.st[1]+'">'+(c.st[1]==="ok"?'✓ ':c.st[1]==="bad"?'! ':'')+c.st[0]+(c.proj!=null&&!c.reached&&c.dl>0?'<small> · at this pace ≈ '+c.proj.toFixed(1)+' kg on '+pmSd(g.date)+'</small>':'')+'</div><div class="wk89gw">'+ring+rows+'</div>')}
+function gl89Open(){var c=gl89Calc(),g=GL89,W=WT.slice().sort(function(a,b){return a.d<b.d?-1:1}),cur=W.length?W[W.length-1].kg:null;
+  m89Open("goal",{start:g?g.start:(cur||""),target:g?g.target:"",date:g?g.date:addD(td89(),84),week:g&&g.week||WG.week,had:!!g&&!g.sample})}
+function gl89Read(){var o=M89;o.start=v89("m9-gs");o.target=v89("m9-gt");o.date=v89("m9-gd");o.week=v89("m9-gw")}
+function gl89Pv(o){var s=parseFloat(o.start),t=parseFloat(o.target),pv="";
+  if(s&&t&&o.date&&o.date>td89()){var wks=(dO(o.date)-dO(td89()))/864e5/7,W=WT.slice().sort(function(a,b){return a.d<b.d?-1:1}),cur=W.length?W[W.length-1].kg:s,r=(t-cur)/wks;
+    pv='<div class="wk89pv'+(Math.abs(r)>1?' warn':'')+'">'+(Math.abs(t-cur)<0.05?'You\u2019re already at this weight.':'That\u2019s '+kg89(t-cur,1)+' kg from your last weigh-in ('+cur.toFixed(1)+' kg) in '+Math.round(wks)+' weeks: <b>'+kg89(r,1)+' kg/week</b>.'+(Math.abs(r)>1?' That\u2019s a fast pace; about 0.5–1 kg a week is easier to keep up.':''))+'</div>'}
+  return pv}
+M89B.goal=function(){var o=M89,pv='<div id="m9-pv">'+gl89Pv(o)+'</div>';
+  return {t:"Weight goal",c:"#3FA779",h:'<div class="m87two"><label>Start weight (kg)<input id="m9-gs" type="number" inputmode="decimal" step="0.1" min="30" max="250" value="'+esc(o.start)+'" data-m9ch="1"></label><label>Target weight (kg)<input id="m9-gt" type="number" inputmode="decimal" step="0.1" min="30" max="250" value="'+esc(o.target)+'" data-m9ch="1" data-m9focus></label></div>'+
+   '<div class="m87two"><label>Reach it by<input id="m9-gd" type="date" min="'+addD(td89(),1)+'" value="'+esc(o.date)+'" data-m9ch="1"></label><label>Workouts per week <em>optional</em><input id="m9-gw" type="number" inputmode="numeric" min="1" max="14" value="'+esc(o.week)+'"></label></div>'+
+   '<small class="m87hint">Progress and your trend come from the weights you log on this page.</small>'+pv+
+   '<div class="m87act">'+(GL89?'<button class="btn cx-del" data-m9="gclear">Remove goal</button>':'')+'<span></span><button class="btn" data-m9="close">Cancel</button><button class="btn pri m87save" data-m9="gsave" style="background:#3FA779">Save goal</button></div>'}};
+M89A["goal:ch"]=function(){gl89Read();var e=document.getElementById("m9-pv");if(e)e.innerHTML=gl89Pv(M89)};
+document.addEventListener("input",function(e){if(M89&&M89.k==="goal"&&e.target.closest&&e.target.closest("#m89m")){M89A["goal:ch"]()}});
+M89A["goal:gsave"]=function(){gl89Read();var o=M89,s=parseFloat(o.start),t=parseFloat(o.target),w=parseInt(o.week)||WG.week;
+  if(!(s>=30&&s<=250)){o.err="Enter a start weight between 30 and 250 kg.";m89Draw();return}if(!(t>=30&&t<=250)){o.err="Enter a target weight between 30 and 250 kg.";m89Draw();return}
+  if(Math.abs(t-s)<0.1){o.err="The target should differ from the start weight.";m89Draw();return}if(!o.date||o.date<=td89()){o.err="Pick a target date after today.";m89Draw();return}
+  if(w<1||w>14){o.err="Workouts per week should be 1–14.";m89Draw();return}
+  var keep=GL89&&!GL89.sample&&GL89.start===s;GL89={start:s,startDate:keep?GL89.startDate:td89(),target:t,date:o.date,week:w};gl89Save();WG.week=w;LS.set("lm.wgoal.v1",WG);m89Close();toast87("Goal saved: "+t.toFixed(1)+" kg by "+pmSd(o.date));render()};
+M89A["goal:gclear"]=function(){GL89=null;LS.set("lm.wtgoal.v1",null);m89Close();toast87("Weight goal removed");render()};
+/* when a goal start date is today but older weigh-ins exist, use the start weight as the first point */
+
+/* ---------- render hook ---------- */
+var _r89=render;render=function(){_r89();var b=document.body;b.classList.toggle("nb89",S.view==="notes");b.classList.toggle("wk89",S.view==="workout");if(S.view!=="workout")WSEL89=null;if(M89&&!document.querySelector("#m89m .sheet"))m89Draw()};
+
+
+/* v90: header toggle for the mini-month + calendars popover */
+document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("[data-c90]");if(!b)return;e.preventDefault();e.stopPropagation();var a=b.getAttribute("data-c90");C87.side=a==="tog"?!C87.side:false;render()});
+document.addEventListener("pointerdown",function(e){if(!C87.side||!e.target.closest)return;if(e.target.closest("#c87pop,.c87tog,#m89m,#ce87m"))return;C87.side=false;var t=e.target;setTimeout(function(){if(!C87.side&&document.getElementById("c87pop"))render()},0)},true);
+document.addEventListener("keydown",function(e){if(e.key==="Escape"&&C87.side&&!M89&&!CE&&!TDU){C87.side=false;render()}});
 
 render();
 if(CXC.pair&&!cxOn())cxPairPoll();
