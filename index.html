@@ -3554,6 +3554,74 @@ body.gdark .h93dock .h112s input{color:#F2ECE6}
 body .app{--ui113:.88;zoom:var(--ui113);width:calc(100% * var(--ui113))!important;box-sizing:border-box;margin-left:auto!important;margin-right:auto!important}
 @media (max-width:759px){body .app{--ui113:.94}}
 #cxsr{zoom:var(--ui113z,1)}
+/* ===== v114: Life home rework ===== */
+/* side panel: accent light grey */
+.h93home>.h93r.h114side{background:#B2AFAB!important;border-color:#A6A39F!important;-webkit-backdrop-filter:none;backdrop-filter:none}
+body.gdark .h93home>.h93r.h114side{background:#33302D!important;border-color:#3E3A36!important}
+
+/* v114c: mid grey panel (halfway #ECEAE7 -> Version B grey): keep dark text, deepen muted text for contrast */
+.h114side>.q-pr small{color:#3F3833!important}
+.h114side>.h92sch>.q-st .q-lnk{color:#3A332E!important}
+.h114side>.q-pr .q-ib{color:#2A2420!important}
+body.gdark .h114side>.q-pr small{color:#C2B8AF!important}
+body.gdark .h114side>.h92sch>.q-st .q-lnk{color:#E6DED6!important}
+body.gdark .h114side>.q-pr .q-ib{color:#F2ECE6!important}
+/* home grid: 6 columns so the to-dos and the workout card share the row equally */
+@media (min-width:1280px){.h114wid{grid-template-columns:repeat(6,minmax(0,1fr))!important}
+ .h114wid>.h94todo,.h114wid>.h114wo{grid-column:span 3!important}.h114wid>.h114hab{grid-column:1/-1!important}.h114wid>.h92c:nth-last-child(-n+2){grid-column:span 3}}
+@media (min-width:760px) and (max-width:1279px){.h114wid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ .h114wid>.h94todo,.h114wid>.h114wo,.h114wid>.h114hab{grid-column:1/-1!important}}
+@media (max-width:759px){.h114wid{grid-template-columns:minmax(0,1fr)!important}.h114wid>*{grid-column:auto!important}}
+/* workout card: week on top, today's workout emphasised below */
+.h114wo{min-height:0!important;gap:12px}
+.h114wo .q-wk{gap:6px;margin-top:2px}
+.h114wo .q-d{gap:5px;padding:4px 0}
+.h114wo .q-b{width:34px;height:34px}
+.h114wo .q-b svg{width:15px;height:15px}
+.h114wo .q-ck{width:13px;height:13px;font-size:8px;right:-2px;bottom:-2px}
+.h114wo hr{margin:2px 0 0!important}
+.h114wo .q-hero.h114em{margin:0;padding:16px;border-radius:20px;background:linear-gradient(135deg,#FDECE8,#FBE1DA);gap:16px}
+.h114wo .q-hero.h114em .q-tx b{font-size:24px}
+body.gdark .h114wo .q-hero.h114em{background:#3A2A26}
+@media (max-width:520px){.h114wo .q-b{width:30px;height:30px}.h114wo .q-wk{gap:3px}}
+/* routine card (top row) */
+.h114rv{display:flex;flex-direction:column;gap:7px;width:100%;justify-content:center;height:100%}
+.h114rv>div{display:grid;grid-template-columns:52px minmax(0,1fr) auto;align-items:center;gap:6px}
+.h114rv small{font-size:10.5px;font-weight:700;color:var(--ink3,#9A8E84);text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.h114rv i{display:block;height:7px;border-radius:9px;background:#F1EDE9;overflow:hidden}.h114rv em{display:block;height:100%;border-radius:9px}
+.h114rv b{font-size:11px;font-weight:800;color:var(--ink2,#6E635A)}
+body.gdark .h114rv i{background:#34302C}
+/* habit tracker */
+.h114hab .q-ch{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:10px}
+.h114hab .q-ch b{font-size:15px}.h114hab .q-ch .q-mut{display:block;font-size:11.5px;margin-top:2px}
+.h114hg{display:flex;flex-direction:column;gap:2px;min-width:0}
+.h114hr{display:grid;grid-template-columns:minmax(120px,1.6fr) repeat(7,minmax(30px,40px)) 64px;align-items:center;gap:6px;padding:5px 0;border-top:1px solid #F3EFEB}
+.h114hr.h114hh{border-top:0;padding-top:0}
+.h114hn{display:flex;align-items:center;gap:9px;min-width:0}.h114hn i{font-style:normal;width:30px;height:30px;flex:none;border-radius:10px;background:color-mix(in srgb,var(--hc) 14%,#fff);display:flex;align-items:center;justify-content:center;font-size:15px}
+.h114hn b{font-size:13.5px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.h114dl{display:flex;flex-direction:column;align-items:center;font-size:10.5px;font-weight:800;color:var(--ink3,#9A8E84);letter-spacing:.04em}.h114dl small{font-size:10px;font-weight:600}
+.h114dl.td{color:#EF6F5E}
+.h114tk{justify-self:center;width:30px;height:30px;border-radius:50%;border:1.8px solid #E2DBD4;background:#fff;color:#fff;font-weight:800;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;transition:transform .12s,background .12s}
+.h114tk:hover:not(:disabled){border-color:var(--hc);transform:scale(1.06)}
+.h114tk.on{background:var(--hc);border-color:var(--hc)}
+.h114tk.td:not(.on){border-color:var(--hc);border-style:dashed}
+.h114tk:disabled{opacity:.35;cursor:default;background:#F6F3F0}
+.h114sk{justify-self:end;font-size:12px;font-weight:800;color:var(--ink3,#9A8E84);white-space:nowrap}.h114sk.on{color:#E07A2E}
+body.gdark .h114hr{border-color:#34302C}body.gdark .h114tk{background:#262220;border-color:#4A4440}body.gdark .h114tk.on{background:var(--hc);border-color:var(--hc)}body.gdark .h114tk:disabled{background:#2A2624}
+@media (max-width:759px){.h114hr{grid-template-columns:minmax(0,1fr) repeat(7,minmax(36px,1fr)) 44px;gap:3px}.h114hn i{display:none}.h114hn b{font-size:12.5px;white-space:normal;line-height:1.2}.h114tk{width:36px;height:36px}}
+@media (max-width:520px){.h114hr{grid-template-columns:repeat(7,minmax(0,1fr)) 44px;row-gap:6px}.h114hn{grid-column:1/-1}.h114hh>span:first-child{display:none}.h114tk{width:36px;height:36px}}
+/* Workouts page: Body & goals panel */
+.h114body{display:grid;grid-template-columns:minmax(260px,340px) minmax(0,1fr);gap:16px;margin:0 0 14px;align-items:stretch}
+.h114bl{display:flex;flex-direction:column;gap:12px;min-width:0}
+.h114bt{display:flex;align-items:center;justify-content:space-between;gap:8px}.h114bt b{font-size:15px;font-weight:800}
+.h114lw{border:1px solid #EEE9E4;background:#fff;border-radius:99px;padding:6px 12px;font:inherit;font-size:12px;font-weight:700;color:#EF6F5E;cursor:pointer}
+.h114st{background:#F8F6F3!important;border:0!important;border-radius:18px!important;padding:12px 6px!important;box-shadow:none!important}
+.h114st div{border-color:#ECE7E2!important}.h114st b{color:#2A2420}.h114st span,.h114st b small{color:#9A8E84;opacity:1}
+.h114body .h95goals .q-ch{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.h114br{min-width:0;display:flex}.h114br .h93chart{flex:1;margin:0!important;box-shadow:none!important;background:#F8F6F3!important;border:0!important}
+@media (max-width:999px){.h114body{grid-template-columns:minmax(0,1fr)}}
+body.gdark .h114st,body.gdark .h114br .h93chart{background:#2A2624!important}body.gdark .h114st b{color:#F2ECE6}body.gdark .h114lw{background:#262220;border-color:#38332F}
+.h114tk.on{color:#fff!important}
 </style>
 </head>
 <body>
@@ -6439,6 +6507,44 @@ var _sl113=c87Slot;c87Slot=function(col,y){var z=h113Z();if(Math.abs(z-1)<.001)r
 /* search results list: same scale as the app, positioned in its zoomed coordinates */
 var _sb113=cxSearchBox;cxSearchBox=function(){_sb113();var el=document.getElementById("cxsr");if(!el||el.style.display==="none")return;var z=h113Z();el.style.setProperty("--ui113z",z);if(Math.abs(z-1)<.001)return;
   ["left","top","bottom","width","maxHeight"].forEach(function(k){var v=el.style[k];if(/px$/.test(v))el.style[k]=(parseFloat(v)/z)+"px"})};
+
+/* ===== v114: Life Hub home rework + Body & goals panel on Workouts ===== */
+/* --- habit tracker (saved in localStorage) --- */
+var H114K="lm.habits.v1";
+function h114Seed(){var hs=[{id:"hb1",n:"Drink 2L water",e:"\uD83D\uDCA7",c:"#3A9BD5"},{id:"hb2",n:"Read 20 pages",e:"\uD83D\uDCD6",c:"#C98B5A"},{id:"hb3",n:"Meditate 10 min",e:"\uD83E\uDDD8",c:"#9B7FD1"},{id:"hb4",n:"Stretch",e:"\uD83E\uDD38",c:"#EF6F5E"},{id:"hb5",n:"No phone after 10pm",e:"\uD83C\uDF19",c:"#3FA779"}];
+  var pat={hb1:[1,1,1,0,1,1,1,1,0,1,1,1,1,1],hb2:[1,1,0,1,1,1,0,0,1,1,0,1,1,0],hb3:[1,0,1,1,0,1,1,1,1,0,0,1,0,1],hb4:[0,1,1,0,1,0,1,1,0,1,1,0,1,1],hb5:[1,1,1,1,0,0,1,1,1,1,1,0,1,1]},d={};
+  for(var k=1;k<=14;k++){var day=addD(TODAY,-k);hs.forEach(function(h){if(pat[h.id][k-1]){(d[day]=d[day]||[]).push(h.id)}})}
+  return {habits:hs,done:d}}
+var H114=LS.get(H114K,null);if(!H114||!H114.habits){H114=h114Seed();LS.set(H114K,H114)}
+function h114Has(id,d){return (H114.done[d]||[]).indexOf(id)>=0}
+function h114Streak(id){var d=TODAY,n=0;if(!h114Has(id,d))d=addD(d,-1);while(h114Has(id,d)){n++;d=addD(d,-1)}return n}
+function h114Habits(){var s=wkS(TODAY),days=[0,1,2,3,4,5,6].map(function(k){return addD(s,k)}),L="MTWTFSS",H=H114.habits,dn=H.filter(function(h){return h114Has(h.id,TODAY)}).length;
+  var head='<div class="h114hr h114hh"><span></span>'+days.map(function(d,i){return '<span class="h114dl'+(d===TODAY?' td':'')+'">'+L.charAt(i)+'<small>'+dO(d).getDate()+'</small></span>'}).join("")+'<span class="h114sk">Streak</span></div>';
+  var rows=H.map(function(h){var st=h114Streak(h.id);return '<div class="h114hr" style="--hc:'+h.c+'"><span class="h114hn"><i>'+h.e+'</i><b>'+esc(h.n)+'</b></span>'+days.map(function(d){var on=h114Has(h.id,d),fut=d>TODAY;
+      return '<button class="h114tk'+(on?' on':'')+(d===TODAY?' td':'')+'" data-h114="hab" data-v="'+h.id+'|'+d+'"'+(fut?' disabled':'')+' aria-pressed="'+on+'" aria-label="'+esc(h.n)+' '+h95DN(d)+(on?' done':'')+'">'+(on?'\u2713':'')+'</button>'}).join("")+
+    '<span class="h114sk'+(st?' on':'')+'">'+(st?'\uD83D\uDD25 '+st:'\u2013')+'</span></div>'}).join("");
+  return '<div class="h92c h114hab"><div class="q-ch"><div><b>Habit tracker</b><small class="q-mut">This week \u00b7 tap a day to tick it</small></div><span class="q-pc">'+dn+'/'+H.length+' today</span></div><div class="h114hg">'+head+rows+'</div></div>'}
+document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest('[data-h114="hab"]');if(!b)return;e.preventDefault();e.stopPropagation();if(b.disabled)return;
+  var p=b.getAttribute("data-v").split("|"),id=p[0],d=p[1];if(d>TODAY)return;var a=H114.done[d]=H114.done[d]||[],i=a.indexOf(id);if(i>=0)a.splice(i,1);else a.push(id);if(!a.length)delete H114.done[d];LS.set(H114K,H114);render()},true);
+/* --- routine card for the top row --- */
+function h114RoutMet(){var tot=ROUTINE.length,dn=ROUTINE.filter(function(r){return S.done[r[0]]}).length,parts=[],c=CAT.routine.color;ROUTINE.forEach(function(r){if(parts.indexOf(r[1])<0)parts.push(r[1])});
+  var P=parts.map(function(pt){var L=ROUTINE.filter(function(r){return r[1]===pt}),d=L.filter(function(r){return S.done[r[0]]}).length;return {pt:pt,d:d,n:L.length}});
+  var viz='<div class="h114rv">'+P.slice(0,2).map(function(x){return '<div><small>'+esc(x.pt)+'</small><i><em style="width:'+(x.n?x.d/x.n*100:0)+'%;background:'+c+'"></em></i><b>'+x.d+'/'+x.n+'</b></div>'}).join("")+'</div>';
+  return h93Met("m4 h114rt","routine",c,"Routine",dn+'/'+tot,' today',viz,P.map(function(x){return esc(x.pt)+' '+x.d+'/'+x.n}).join(" \u00b7 ")||'No routine yet','data-a="go" data-v="routine"')}
+/* --- Life home --- */
+function h114Wo(){var h=h95Workout(),i=h.indexOf('<div class="q-hero">'),j=h.indexOf('<hr>'),k=h.indexOf('<div class="q-wk">');if(i<0||j<0||k<0)return h;
+  return h.slice(0,i).replace('class="h92c h95wo"','class="h92c h95wo h114wo"')+h.slice(k,h.length-6)+'<hr>'+h.slice(i,j).replace('class="q-hero"','class="q-hero h114em"')+'</div>'}
+h93Home=function(){H94C=[];try{h92A()}catch(e){}var g=function(k){for(var i=0;i<H94C.length;i++)if(H94C[i].k===k)return H94C[i].h.replace('class="h92c','class="h92c h94'+k);return ""};
+  var r=h93Right(false).replace(/<div class="h92stats">(?:<div>[\s\S]*?<\/div>){3}<\/div>/,'').replace('<aside class="h93r h92"','<aside class="h93r h92 h114side"'),j=r.indexOf('<div class="h92mini');
+  if(j>=0)r=r.slice(0,j)+h95Goals()+r.slice(j); /* v114b: November goals back in the side panel (shared GOALS state with Workouts) */
+  var mets=h93MetsLife().replace('<span class="q-mt">Spent this month</span>','<span class="q-mt">Finances</span>').replace(/<button class="h92m m4"[\s\S]*<\/button><\/div>$/,h114RoutMet()+'</div>');
+  var todo=g("todo").replace(/Today\u2019s to-dos|Today's to-dos/,'Upcoming to-dos');
+  return '<div class="h92 h93home h94home h95home h114home"><div class="h93a">'+mets+'</div>'+r+'<div class="h93wid h94wid h95wid h114wid">'+todo+h114Wo()+h114Habits()+h93Weekly()+h93Brain()+'</div></div>'+h93QDock()};
+/* --- Workouts page: Body & goals panel (weight stats + goals + weight chart) --- */
+function h114Body(){var W=h92Wt(),last=W[W.length-1],gc=typeof gl89Calc==="function"?gl89Calc():null;
+  var stats='<div class="h92stats h114st"><div><b>'+(last?last.kg.toFixed(1):'\u2013')+'<small> kg</small></b><span>Weight</span></div><div><b>'+(gc?gc.g.target.toFixed(1):'\u2013')+'<small> kg</small></b><span>Target</span></div><div><b>'+(gc&&gc.dl>0?gc.dl:'\u2013')+'</b><span>Days left</span></div></div>';
+  return '<section class="pn h114body"><div class="h114bl"><div class="h114bt"><b>Body &amp; goals</b><button class="h114lw" data-h92="wlog">Log weight</button></div>'+stats+h95Goals()+'</div><div class="h114br">'+h93Chart()+'</div></section>'}
+var _gw114=glWrap;glWrap=function(inner){if(S.view==="workout"&&HUB==="life"&&inner.indexOf('wk-r1')>=0&&inner.indexOf('h114body')<0)inner=inner.replace(/<div class="cr wk-r1/,h114Body()+'<div class="cr wk-r1');return _gw114(inner)};
 
 render();
 if(CXC.pair&&!cxOn())cxPairPoll();
