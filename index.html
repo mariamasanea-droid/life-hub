@@ -4035,6 +4035,54 @@ html body.wh115 .w115home .w117row>*{order:0!important}
 html body.wh115 .w115home .w117row>.h105notes{display:flex!important;flex-direction:column!important;justify-content:flex-start!important;align-content:flex-start!important;gap:10px!important}
 html body.wh115 .w115home .w117row>.h105notes>.q-ch{margin-bottom:4px!important}
 html body.wh115 .w115home .w117row>.h105notes>.hzn{width:100%!important;flex:0 0 auto!important;height:auto!important;grid-column:auto!important}
+/* v118: Account & sync (Settings) + sign-in sheet */
+.cx-set .sy-acc .sy-ic{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:#EEF3F7;margin-right:4px;vertical-align:-5px}
+.cx-set .sy-acc .sy-ic svg{width:14px;height:14px}
+.sy-big{display:inline-flex;align-items:center;gap:8px}
+.sy-big svg,.sy-note svg{width:16px;height:16px;vertical-align:-3px}
+.sy-who{display:flex;align-items:center;gap:12px;margin:6px 0 12px}
+.sy-who b{display:block;font-size:15px;word-break:break-all}.sy-who small{display:block;font-size:12px;opacity:.7;margin-top:2px}
+.sy-av{width:40px;height:40px;border-radius:50%;background:#A9D6F5;color:#1F2D3D;display:grid;place-items:center;font-weight:700;font-size:16px;flex:0 0 auto}
+.sy-stat{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:0 0 12px}
+.sy-stat>div{background:rgba(120,95,75,.06);border-radius:14px;padding:10px 12px;min-width:0}
+.sy-stat span{display:block;font-size:11px;opacity:.65;font-weight:600}.sy-stat b{display:block;font-size:13.5px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sy-q{font-size:13px;font-weight:700;align-self:center}
+.sy-fresh{margin-top:14px;padding-top:14px;border-top:1px solid rgba(120,95,75,.14);display:flex;gap:14px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap}
+.sy-fresh>div:first-child{flex:1 1 260px;min-width:0}.sy-fresh b{display:block;font-size:14px}.sy-fresh small{display:block;font-size:12.5px;opacity:.72;line-height:1.45;margin-top:3px}
+.sy-fq{flex:1 1 100%;background:rgba(208,80,61,.07);border-radius:14px;padding:12px}.sy-fq>span{display:block;font-size:13px;font-weight:600;margin-bottom:8px}
+.sy-note{display:flex;gap:8px;align-items:flex-start}.sy-note>svg{flex:none;margin-top:2px}.sy-note>span{flex:1;min-width:0}
+@media (max-width:520px){.sy-stat{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.sy-stat>div:last-child{grid-column:1/-1}}
+/* sheet */
+#sy-root .sy-ov{position:fixed;inset:0;background:rgba(31,45,61,.32);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);z-index:9000}
+#sy-root .sy-sheet{position:fixed;z-index:9001;left:50%;top:50%;transform:translate(-50%,-50%);width:min(440px,calc(100vw - 32px));max-height:calc(100dvh - 32px);overflow:auto;box-sizing:border-box;
+  background:#fff;border:1px solid #E6ECF2;border-radius:28px;box-shadow:0 30px 80px rgba(31,45,61,.18);padding:34px 32px 30px;font-family:Quicksand,system-ui,sans-serif;color:#1F2D3D;text-align:center}
+#sy-root .sy-x{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;border:1px solid #E6ECF2;background:#fff;font-size:20px;line-height:1;cursor:pointer;color:#5A6B7D}
+#sy-root .sy-logo{display:inline-flex;align-items:center;gap:8px;margin-bottom:18px}
+#sy-root .sy-logo .h93logo{width:34px;height:34px;border-radius:11px;background:#1F2D3D;color:#fff;display:inline-grid;place-items:center;font-weight:700;font-size:16px}
+#sy-root .sy-logo .h93logo em{font-style:normal;color:#A9D6F5}#sy-root .sy-logo b{font-size:17px}
+#sy-root h2{margin:0 0 8px;font-size:26px;font-weight:700;letter-spacing:-.01em}
+#sy-root p{margin:0 auto 20px;font-size:14.5px;line-height:1.55;color:#5A6B7D;max-width:340px}
+#sy-root .sy-form{text-align:left;display:flex;flex-direction:column;gap:8px}
+#sy-root .sy-form label{font-size:12.5px;font-weight:700;color:#5A6B7D}
+#sy-root .sy-form input{height:50px;border-radius:16px;border:1.5px solid #D9E3EC;padding:0 16px;font:600 16px Quicksand,system-ui,sans-serif;color:#1F2D3D;background:#F8FAFC;outline:none;box-sizing:border-box;width:100%}
+#sy-root .sy-form input:focus{border-color:#A9D6F5;background:#fff;box-shadow:0 0 0 4px rgba(169,214,245,.35)}
+#sy-root .sy-err{font-size:13px;font-weight:600;color:#C2412D}
+#sy-root .sy-pri{margin-top:6px;height:50px;border:0;border-radius:999px;background:#A9D6F5;color:#1F2D3D;font:700 15px Quicksand,system-ui,sans-serif;cursor:pointer;width:100%}
+#sy-root .sy-pri:hover:not(:disabled){background:#97CDF1}#sy-root .sy-pri:disabled{opacity:.6;cursor:default}
+#sy-root .sy-sec{flex:1;height:44px;border-radius:999px;border:1px solid #D9E3EC;background:#fff;color:#1F2D3D;font:700 14px Quicksand,system-ui,sans-serif;cursor:pointer}
+#sy-root .sy-row{display:flex;gap:10px}
+#sy-root .sy-pts{list-style:none;margin:22px 0 0;padding:16px 0 0;border-top:1px solid #EDF1F5;text-align:left;display:flex;flex-direction:column;gap:9px}
+#sy-root .sy-pts li{display:flex;gap:9px;align-items:flex-start;font-size:13px;color:#5A6B7D;font-weight:600}
+#sy-root .sy-pts svg{width:16px;height:16px;flex:0 0 auto;padding:2px;border-radius:50%;background:#DCEFFB;stroke:#1F2D3D;fill:none;stroke-width:2.4}
+#sy-root .sy-big-ic{width:64px;height:64px;border-radius:50%;background:#DCEFFB;display:grid;place-items:center;margin:0 auto 14px;font-size:28px;font-weight:700}
+#sy-root .sy-big-ic svg{width:30px;height:30px;fill:none;stroke:#1F2D3D;stroke-width:2}
+#sy-root .sy-big-ic.ok{background:#DDF3E6}#sy-root .sy-big-ic.bad{background:#FBE3DE;color:#C2412D}
+#sy-root .sy-spin{width:44px;height:44px;border-radius:50%;border:4px solid #DCEFFB;border-top-color:#A9D6F5;margin:6px auto 16px;animation:syspin 0.9s linear infinite}
+@keyframes syspin{to{transform:rotate(360deg)}}
+@media (max-width:520px){#sy-root .sy-sheet{top:auto;bottom:0;transform:translateX(-50%);width:100vw;border-radius:28px 28px 0 0;padding:30px 22px calc(26px + env(safe-area-inset-bottom))}#sy-root h2{font-size:23px}}
+body.gdark #sy-root .sy-sheet{background:#1E2227;border-color:#2C3239;color:#EEF2F6}body.gdark #sy-root p,body.gdark #sy-root .sy-form label,body.gdark #sy-root .sy-pts li{color:#A9B4C0}
+body.gdark #sy-root .sy-form input{background:#262B31;border-color:#353C44;color:#EEF2F6}body.gdark #sy-root .sy-sec,body.gdark #sy-root .sy-x{background:#262B31;border-color:#353C44;color:#EEF2F6}
+body.gdark .sy-stat>div{background:rgba(255,255,255,.06)}
 </style>
 </head>
 <body>
@@ -4151,7 +4199,7 @@ function check(id,color){var on=!!S.done[id];return '<button class="check" data-
 function bar(r,c,h){return '<div class="bar" style="height:'+(h||6)+'px"><div style="width:'+Math.min(100,Math.round(r*100))+'%;background:'+c+'"></div></div>'}
 function ct(t,r,c){return '<div class="ct">'+(c?dot(c):"")+'<div class="t">'+t+'</div>'+(r||"")+'</div>'}
 function card(h){return '<section class="card">'+h+'</section>'}
-function row(i,showDate){
+function row(i,showDate){if(!i)return "";
   var c=CAT[i.cat],d=!!S.done[i.id];
   var meta=[showDate?fdate(i.date):null,i.start!=null?tr(i):null,i.tag||null].filter(Boolean).join(" · ");
   return '<div class="row'+(d?' done':'')+'" data-a="open" data-id="'+i.id+'" style="border-color:'+c.color+'">'+
@@ -4895,7 +4943,7 @@ if(!PM){PM=pmSeed();var _old=LS.get("lm.pm.v1",null);if(_old&&_old.projects){_ol
 function pmSave(){LS.set("lm.pm.v2",PM)}
 var PMN=LS.get("lm.pm.notes.v1",{p1:"<h3>Launch plan</h3><p>Soft launch to the waitlist on <b>Thu 10 Dec</b>, public launch <b>Sat 12 Dec</b> with the Bangsar pop-up.</p><h3>Key messages</h3><ul><li>Made from recycled nylon, squat-proof</li><li>Designed in KL for heat and humidity</li><li>Sizes XS–XL, inclusive fit notes</li></ul><h3>Open questions</h3><ul><li>Free shipping threshold: RM 150 or RM 200?</li><li>Do we offer a launch bundle?</li></ul><p><i>Supplier contact: Mei Ling (fabric), WhatsApp group “SVELT samples”.</i></p>",p2:"<h3>Club ideas</h3><ul><li>Saturday social games, beginners welcome</li><li>Paddle line: 2 models (control / power)</li></ul>"});
 var PMU={pid:LS.get("lm.pm.pid",null)||"p1",view:LS.get("lm.pm.view","list"),tag:null,form:null,page:null,tab:LS.get("lm.pm.tab","list"),q:"",ftag:"",fpri:"",group:"status",subs:false,col:{},task:null,calM:0,addIn:null,qf:false};
-if(!PM.projects.some(function(p){return p.id===PMU.pid}))PMU.pid=PM.projects[0]&&PM.projects[0].id;
+if(!PM.projects.some(function(p){return p.id===PMU.pid}))PMU.pid=PM.projects[0]&&(PM.projects[0]||{}).id;
 var PM_M3=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],PM_MF=["January","February","March","April","May","June","July","August","September","October","November","December"];
 function pmToday(){return iso(new Date())}
 function pmFd(s){if(!s)return "No date";var d=new Date(s+"T12:00:00");return ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"][d.getDay()]+" "+d.getDate()+" "+PM_M3[d.getMonth()]}
@@ -6376,7 +6424,7 @@ function h92HA(){var m=mode87(),G=hzTasks(),PS=PM.projects.map(hzProj),open=G.to
   var pid=ptab==="all"?null:ptab,C={};
   C.tasks='<div class="h92c" id="hzmt"><div class="q-ch"><b>My tasks</b><span class="q-pc">'+(pid?esc(pmP(pid).name):open+' open')+'</span></div>'+hzTaskList(m==="phone"?4:5,pid)+'</div>';
   C.proj=PS.filter(function(x){return !pid||x.p.id===pid}).map(function(x){return '<div class="h92c hzpc"><div class="q-ch"><span class="hzpa" style="background:'+x.p.color+'">'+esc(x.p.name.charAt(0))+'</span><button class="q-lnk" data-cx="proj" data-v="'+x.p.id+'">Open board</button></div><b class="hzpn">'+esc(x.p.name)+'</b><small class="q-mut">'+esc(x.p.desc||"")+'</small><div class="h92semi">'+h92Semi(190,x.pr/100,x.p.color)+'<div class="q-v"><b>'+x.pr+'<small>%</small></b><span>complete</span></div></div><div class="hzst"><div><b>'+x.open+'</b><small>open</small></div><div class="'+(x.od?'od':'')+'"><b>'+x.od+'</b><small>overdue</small></div><div><b>'+pmSd(x.p.launch)+'</b><small>'+x.dl+' days left</small></div></div></div>'}).join("");
-  var bp=pid||PMU.pid||PM.projects[0].id;C.board='<div class="h92c"><div class="q-ch"><b>Board · '+esc(pmP(bp).name)+'</b><button class="q-lnk" data-cx="proj" data-v="'+bp+'">Open</button></div>'+hzBoard(bp)+'</div>';
+  var bp=pid||PMU.pid||(PM.projects[0]||{}).id;C.board='<div class="h92c"><div class="q-ch"><b>Board · '+esc((pmP(bp)||{name:"No projects yet"}).name)+'</b><button class="q-lnk" data-cx="proj" data-v="'+bp+'">Open</button></div>'+hzBoard(bp)+'</div>';
   var ev=[];for(var k=0;k<14&&ev.length<5;k++){h92Day(addD(TODAY,k)).forEach(function(i){if(i.start!=null&&ev.length<5)ev.push(i)})}
   C.cal='<div class="h92c"><div class="q-ch"><b>Work calendar</b><button class="q-lnk" data-a="go" data-v="calendar">Open</button></div><div class="hzwk">'+hzWeekEv().map(function(h,ix){var d=addD(TODAY,ix-((wkD(TODAY).getDay()+6)%7));return '<span class="'+(d===TODAY?'on':'')+'"><i style="height:'+Math.min(100,h/8*100)+'%"></i><small>'+"MTWTFSS".charAt(ix)+'</small></span>'}).join("")+'</div><div class="h92el">'+(ev.map(function(i){return '<div class="h92er" data-a="open" data-id="'+i.id+'"><span class="q-th" style="background:'+tint(WCOL,"1F")+';color:'+WCOL+'">'+h92ic("calendar",17)+'</span><span class="q-tx"><b>'+esc(i.title)+'</b><small>'+h92When(i)+(i.end!=null?' – '+shortT(i.end):'')+'</small></span></div>'}).join("")||'<div class="h92empty">No work events.</div>')+'</div></div>';
   C.notes='<div class="h92c"><div class="q-ch"><b>Project notes</b><button class="q-lnk" data-a="go" data-v="notes">All notes</button></div>'+hzNotes(110)+'</div>';
@@ -6466,10 +6514,10 @@ function h93Fin(){var sp=h92Spend();return '<div class="h92c"><div class="q-ch">
 function h93Brain(){return '<div class="h92c"><div class="q-ch"><b>Brain dump</b><span class="q-ci" style="background:'+tint(CAT.errand.color,"1F")+';color:'+CAT.errand.color+'">'+h92ic("errand",18)+'</span></div><div class="h92qr">'+ITEMS.filter(function(i){return i.cat==="errand"&&!S.done[i.id]}).slice(0,3).map(function(i){return '<span data-a="open" data-id="'+i.id+'">'+esc(i.title)+'</span>'}).join("")+'</div><button class="h92btn blue" data-a="go" data-v="errand">Open brain dump</button></div>'}
 function h93QDock(){return '<div class="h92dock h93qd">'+[["task","Task"],["event","Event"],["expense","Expense"],["goal","Goal"]].map(function(q){return '<button data-a="qa" data-v="'+q[0]+'"><span>+</span>'+q[1]+'</button>'}).join("")+'<button class="q-hot" data-h92="wlog" aria-label="Log weight">'+h92ic("scale",18)+'<span class="q-lb">Log weight</span></button></div>'}
 function h93Home(){return '<div class="h92 h93home">'+'<div class="h93a">'+h93MetsLife()+'</div>'+h93Right(false)+'<div class="h93wid">'+h93Chart()+h93Dial()+h93Weekly()+h93Fin()+h93Brain()+'</div></div>'+h93QDock()}
-function h93HHome(){var m=mode87(),PS=PM.projects.map(hzProj),bp=PMU.pid||PM.projects[0].id;
+function h93HHome(){var m=mode87(),PS=PM.projects.map(hzProj),bp=PMU.pid||(PM.projects[0]||{}).id;
   var tasks='<div class="h92c h93tasks" id="hzmt"><div class="q-ch"><b>My tasks</b><button class="q-lnk" data-a="go" data-v="work">Board →</button></div><div class="hzcols">'+hzTaskList(4,null,m!=="phone")+'</div></div>';
   var proj=PS.map(function(x){return '<div class="h92c hzpc"><div class="q-ch"><span class="hzpa" style="background:'+x.p.color+'">'+esc(x.p.name.charAt(0))+'</span><button class="q-lnk" data-cx="proj" data-v="'+x.p.id+'">Open board</button></div><b class="hzpn">'+esc(x.p.name)+'</b><div class="h92semi">'+h92Semi(180,x.pr/100,x.p.color)+'<div class="q-v"><b>'+x.pr+'<small>%</small></b><span>complete</span></div></div><div class="hzst"><div><b>'+x.open+'</b><small>open</small></div><div class="'+(x.od?'od':'')+'"><b>'+x.od+'</b><small>overdue</small></div><div><b>'+pmSd(x.p.launch)+'</b><small>'+x.dl+' days</small></div></div></div>'}).join("");
-  var board='<div class="h92c"><div class="q-ch"><b>Board · '+esc(pmP(bp).name)+'</b><button class="q-lnk" data-cx="proj" data-v="'+bp+'">Open</button></div>'+hzBoard(bp)+'</div>';
+  var board='<div class="h92c"><div class="q-ch"><b>Board · '+esc((pmP(bp)||{name:"No projects yet"}).name)+'</b><button class="q-lnk" data-cx="proj" data-v="'+bp+'">Open</button></div>'+hzBoard(bp)+'</div>';
   var notes='<div class="h92c"><div class="q-ch"><b>Project notes</b><button class="q-lnk" data-a="go" data-v="notes">All notes</button></div>'+hzNotes(100)+'</div>';
   var qd='<div class="h92dock h93qd"><button data-td87="new" data-v="work"><span>+</span>Task</button><button data-a="qa" data-v="event"><span>+</span>Event</button><button data-cx="pnotes" data-v="'+bp+'"><span>+</span>Note</button><button class="q-hot" data-cx="proj" data-v="'+bp+'" aria-label="Open board">'+h92ic("grid",18)+'<span class="q-lb">Open board</span></button></div>';
   return '<div class="h92 h93home hz"><div class="h93a">'+h93MetsHustle()+'</div>'+h93Right(false)+'<div class="h93wid">'+tasks+proj+board+notes+'</div></div>'+qd}
@@ -6857,7 +6905,7 @@ window.addEventListener("click",function(e){var b=e.target.closest&&e.target.clo
 
 /* ===== v110: the old full project page is the one Projects page, plus the collapsible right panel ===== */
 /* routing: on the Projects page a project is always open (PMU.page = selected project) */
-h109Norm=function(){if(PMU.page&&pmP(PMU.page)){PMU.pid=PMU.page;LS.set("lm.pm.pid",PMU.page)}else{if(!pmP(PMU.pid)&&PM.projects[0])PMU.pid=PM.projects[0].id;PMU.page=pmP(PMU.pid)?PMU.pid:null}};
+h109Norm=function(){if(PMU.page&&pmP(PMU.page)){PMU.pid=PMU.page;LS.set("lm.pm.pid",PMU.page)}else{if(!pmP(PMU.pid)&&PM.projects[0])PMU.pid=(PM.projects[0]||{}).id;PMU.page=pmP(PMU.pid)?PMU.pid:null}};
 h109View=function(v){var m={list:"list",board:"board",calendar:"calendar",timeline:"timeline",roadmap:"timeline",notes:"notes"}[v];if(!m)return;PMU.tab=m;LS.set("lm.pm.tab",m)};
 function h110Side(P){var h=h106Side(P);return h.replace('<div class="h106ov"><div class="q-st"><b>Overview</b>','<div class="h106ov"><div class="q-st"><b>Overview</b><button class="h110cl" data-h108="side" aria-label="Hide project panel" title="Hide panel">\u203a</button>').replace('class="h93r h92 h106r"','class="h93r h92 h106r h110r"')}
 vWorkPM=function(){h109Norm();var P=PMU.page&&pmP(PMU.page);var old=_vw106();if(!P)return old;
@@ -7006,7 +7054,7 @@ function w115Sched(){var L=h92Day(TODAY).filter(function(i){return i.start!=null
 /* Work home: big greeting + stats + actions, schedule, folders, sections */
 var _hh115=h93HHome;h93HHome=function(){var h=_hh115();if(!w115On())return h;
   var q=h.match(/<div class="h92dock h93qd">([\s\S]*?)<\/div>(?=<\/div>\s*$|$)/),qd=q?q[1]:'';if(q)h=h.replace(q[0],'');
-  var bp=(qd.match(/data-cx="pnotes" data-v="([^"]+)"/)||[])[1]||(PM.projects[0]&&PM.projects[0].id)||'';
+  var bp=(qd.match(/data-cx="pnotes" data-v="([^"]+)"/)||[])[1]||(PM.projects[0]&&(PM.projects[0]||{}).id)||'';
   var G=hzTasks(),o=G.today.length+G.week.length+G.later.length,od=PM.tasks.filter(pmOd).length,PS=PM.projects.map(hzProj),avg=Math.round(PS.reduce(function(s,x){return s+x.pr},0)/Math.max(1,PS.length)),dn=PM.tasks.filter(function(t){return t.status==="done"}).length;
   var st=[[o,"Open tasks","",""],[G.today.length,"Due today","lime","today"],[od,"Overdue",od?"red":"","needs you"],[avg+'<small>%</small>',"Avg. progress","",dn+" done"]].map(function(s){return '<div class="w115n"><b>'+s[0]+'</b><span>'+s[1]+(s[3]?'<i class="w115bd '+s[2]+'">'+s[3]+'</i>':'')+'</span></div>'}).join("");
   var hero='<header class="w115hero"><div class="w115hl"><p class="w115dt">'+realDay(1)+'</p><h1>'+greet()+', Mariama</h1><p class="w115sb">'+(od?od+' overdue task'+(od>1?'s':'')+' to clear, ':'')+G.today.length+' due today across '+PS.length+' project'+(PS.length>1?'s':'')+'.</p>'+
@@ -7094,6 +7142,191 @@ var _dk117=h93Dock;h93Dock=function(){var h=_dk117();if(!w115On())return h;
   h=h.replace(/<span class="w115brand"[\s\S]*?<\/b><\/span>/,t);
   var i=h.indexOf('<div class="h92hub');if(i>=0){var j=h.indexOf('</button></div>',i);if(j>0)h=h.slice(0,i)+h.slice(j+15)}
   return h};
+
+/* ===== v118: Account (email magic link) + full data sync across devices =====
+   Offline-first: the app keeps writing to localStorage as before. Every LS.set of a synced key is diffed into records
+   (one record per list item with an id, per object property, or the whole value), queued in an outbox that survives
+   reloads, and pushed in the background. Pulls run on focus, when back online, every 15 s while visible and after each push.
+   Conflicts: last write wins per record (updatedAt, server-clock adjusted); deletes are tombstones; nothing is wiped. */
+var SY_URL=/^(localhost|127\.0\.0\.1)$/.test(location.hostname)?"http://localhost:8787":CX_DEF_URL;
+var SYK="lm.sync.v1",SYDBK="lm.sync.db",SYOK="lm.sync.out";
+var SY=LS.get(SYK,null)||{};var SYDB=LS.get(SYDBK,null)||{};var SYOUT=LS.get(SYOK,null)||{};
+var SYU={status:"",busy:false,again:false,t:0,pend:null,sheet:null,email:"",msg:"",err:"",fresh:0,signout:0};
+/* device-only keys: calendar connection + cache, which hub/tab is open, migration flags, the sync bookkeeping itself */
+var SY_LOCAL=/^lm\.(cal\.|sync\.|hub\.v1$|pm\.pid$|pm\.tab$|pm\.view$|pm\.side\.v1$|w117\.i$|clean\.v1$|resample\.v1$)/;
+function syTracked(k){return /^lm\./.test(k)&&!SY_LOCAL.test(k)}
+function syOn(){return !!(cxOn()&&SY.email)}
+function sySave(){LS.set(SYK,SY)}function syDbSave(){LS.set(SYDBK,SYDB)}function syOutSave(){LS.set(SYOK,SYOUT)}
+function syNow(){return Date.now()+(SY.skew||0)}
+function syHash(s){var h=2166136261>>>0;for(var i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)>>>0}return h.toString(36)+"."+s.length}
+function syRaw(k){var v=localStorage.getItem(k);if(v==null)return undefined;try{return JSON.parse(v)}catch(e){return v}}
+/* ---- records ---- */
+function syIdArr(v){if(!Array.isArray(v))return false;var seen={};for(var i=0;i<v.length;i++){var x=v[i];if(!x||typeof x!=="object"||Array.isArray(x)||(typeof x.id!=="string"&&typeof x.id!=="number"))return false;var s=String(x.id);if(seen[s])return false;seen[s]=1}return true}
+function syPlain(v){return v&&typeof v==="object"&&!Array.isArray(v)}
+function syFlat(pre,v,out,depth){
+  if(syIdArr(v)){out[pre+"|@arr"]=v.map(function(x){return String(x.id)});v.forEach(function(x){out[pre+"|id:"+encodeURIComponent(String(x.id))]=x});return out}
+  if(depth===0&&syPlain(v)){out[pre+"|@obj"]=1;Object.keys(v).forEach(function(p){syFlat(pre+"|p:"+encodeURIComponent(p),v[p],out,1)});return out}
+  out[pre]=v;return out}
+function syFlatKey(k){var v=syRaw(k);return v===undefined?{}:syFlat(k,v,{},0)}
+function syTop(rk){var i=rk.indexOf("|");return i<0?rk:rk.slice(0,i)}
+/* rebuild one value from its records; the most recently written shape wins (whole value / list / object) */
+function syUnflat(pre,R,U,depth){
+  var c=[];if(R.hasOwnProperty(pre))c.push(["w",U(pre)]);if(R.hasOwnProperty(pre+"|@arr"))c.push(["a",U(pre+"|@arr")]);if(depth===0&&R.hasOwnProperty(pre+"|@obj"))c.push(["o",U(pre+"|@obj")]);
+  if(!c.length){/* items without a shape record (shouldn't happen): fall back to what exists */var hasEl=Object.keys(R).some(function(k){return k.indexOf(pre+"|id:")===0});if(hasEl)c.push(["a",0]);else if(depth===0&&Object.keys(R).some(function(k){return k.indexOf(pre+"|p:")===0}))c.push(["o",0]);else return undefined}
+  c.sort(function(a,b){return b[1]-a[1]});var f=c[0][0];
+  if(f==="w")return R[pre];
+  if(f==="a"){var el={},ord=[],ip=pre+"|id:";Object.keys(R).forEach(function(k){if(k.indexOf(ip)===0&&k.indexOf("|",ip.length)<0){var id=decodeURIComponent(k.slice(ip.length));el[id]=R[k];ord.push(id)}});
+    var o=(R[pre+"|@arr"]||[]).filter(function(id){return el.hasOwnProperty(id)}),seen={};o.forEach(function(id){seen[id]=1});ord.forEach(function(id){if(!seen[id])o.push(id)});return o.map(function(id){return el[id]})}
+  var obj={},pp=pre+"|p:",props={};Object.keys(R).forEach(function(k){if(k.indexOf(pp)===0){var r=k.slice(pp.length),j=r.indexOf("|");props[decodeURIComponent(j<0?r:r.slice(0,j))]=1}});
+  Object.keys(props).forEach(function(p){var v=syUnflat(pp+encodeURIComponent(p),R,U,1);if(v!==undefined)obj[p]=v});return obj}
+/* ---- local change detection ---- */
+var _lsset118=LS.set;LS.set=function(k,v){var r=_lsset118(k,v);if(syOn()&&syTracked(k)&&!SYU.applying)syDirty(k);return r};
+var SYDIRTY={};
+function syDirty(k){SYDIRTY[k]=1;clearTimeout(SYU.t);SYU.t=setTimeout(syFlush,600)}
+function syDiffKey(k,u){var cur=syFlatKey(k),db=SYDB[k]||(SYDB[k]={}),n=0;
+  Object.keys(cur).forEach(function(rk){var h=syHash(JSON.stringify(cur[rk])),e=db[rk];if(!e||e[0]!==h||e[2]){db[rk]=[h,u,0];SYOUT[rk]={k:rk,v:cur[rk],u:u};n++}});
+  Object.keys(db).forEach(function(rk){if(!cur.hasOwnProperty(rk)&&!db[rk][2]){db[rk]=["",u,1];SYOUT[rk]={k:rk,d:true,u:u};n++}});return n}
+function syFlush(){var ks=Object.keys(SYDIRTY);SYDIRTY={};if(!ks.length||!syOn())return;var u=syNow(),n=0;ks.forEach(function(k){n+=syDiffKey(k,u)});if(n){syDbSave();syOutSave();syRun()}}
+/* ---- push / pull ---- */
+function syApi(method,path,body){return fetch(SY_URL+path,{method:method,headers:{"Content-Type":"application/json",Authorization:"Bearer "+CXC.token},body:body?JSON.stringify(body):undefined})
+  .then(function(r){return r.json().catch(function(){return {}}).then(function(j){if(!r.ok){var e=new Error(j.message||("Sync server error "+r.status));e.status=r.status;e.key=j.error;throw e}return j})},function(){var e=new Error("offline");e.offline=true;throw e})}
+function syRun(){if(!syOn())return Promise.resolve();if(SYU.busy){SYU.again=true;return SYU.busyP}
+  if(!SY.init)return syInit();
+  SYU.busy=true;SYU.status="syncing";syPaint();
+  var step=function(){var recs=Object.keys(SYOUT).slice(0,400).map(function(k){return SYOUT[k]}),sent={};recs.forEach(function(r){sent[r.k]=r.u});
+    return syApi("POST","/api/sync",{since:SY.rev||0,records:recs,force:!!SYU.forceNext}).then(function(j){SYU.forceNext=false;
+      SY.skew=Math.round(j.now-Date.now());
+      Object.keys(sent).forEach(function(k){if(SYOUT[k]&&SYOUT[k].u===sent[k])delete SYOUT[k]});syOutSave();
+      syStage((j.current||[]).concat(j.changes||[]));SY.rev=j.last||j.rev;sySave();
+      if(j.more||Object.keys(SYOUT).length)return step()})};
+  SYU.busyP=step().then(function(){SY.last=new Date().toISOString();SY.err="";SYU.status="ok";sySave()},function(e){
+     SYU.status=e.offline?"offline":"error";SY.err=e.offline?"":e.message;sySave();
+     if(e.status===401){syLocalSignOut("This device was signed out. Sign in again to keep syncing.")}})
+   .then(function(){SYU.busy=false;syApply();syPaint();if(SYU.again){SYU.again=false;return syRun()}});
+  return SYU.busyP}
+/* remote changes wait here until it's safe to apply them (not while she is typing) */
+function syStage(ch){if(!ch.length)return;SYU.pend=SYU.pend||{};ch.forEach(function(c){var o=SYOUT[c.k];if(o&&o.u>c.u)return;var p=SYU.pend[c.k];if(!p||p.u<=c.u)SYU.pend[c.k]=c})}
+function syTyping(){var a=document.activeElement;return !!(a&&(a.tagName==="INPUT"||a.tagName==="TEXTAREA"||a.tagName==="SELECT"||a.isContentEditable))}
+function syApply(){var P=SYU.pend;if(!P)return;if(syTyping()){clearTimeout(SYU.at);SYU.at=setTimeout(syApply,1500);return}SYU.pend=null;
+  var byK={};Object.keys(P).forEach(function(rk){var K=syTop(rk);(byK[K]=byK[K]||[]).push(P[rk])});var changed=false;SYU.applying=true;
+  try{Object.keys(byK).forEach(function(K){if(!syTracked(K))return;var R=syFlatKey(K),db=SYDB[K]||(SYDB[K]={}),touched=false;
+    byK[K].forEach(function(c){var h=c.d?"":syHash(JSON.stringify(c.v)),e=db[c.k];if(e&&e[0]===h&&!!e[2]===!!c.d){if(e[1]<c.u)e[1]=c.u;return}
+      db[c.k]=[h,c.u,c.d?1:0];if(c.d)delete R[c.k];else R[c.k]=c.v;touched=true});
+    if(!touched)return;var U=function(rk){return db[rk]?db[rk][1]:0};var v=syUnflat(K,R,U,0);var before=localStorage.getItem(K),after=v===undefined?null:JSON.stringify(v);
+    if(after===null)localStorage.removeItem(K);else localStorage.setItem(K,after);if(before!==after)changed=true});
+  }finally{SYU.applying=false}
+  syDbSave();if(changed){SY.reloads=(SY.reloads||0)+1;sySave();syReload()}}
+/* the app keeps its data in memory, so after remote changes land the page reloads itself in place (same page and scroll) */
+function syReload(){try{sessionStorage.setItem("lm.sync.scroll",String(scrollY))}catch(e){}location.reload()}
+(function(){try{if(sessionStorage.getItem("lm.sync.sheet")==="done"){sessionStorage.removeItem("lm.sync.sheet");if(SY.email)SYU.sheet="done"}}catch(e){}})();
+(function(){try{var y=+sessionStorage.getItem("lm.sync.scroll");if(y){sessionStorage.removeItem("lm.sync.scroll");setTimeout(function(){scrollTo(0,y)},60)}}catch(e){}})();
+/* first sync on this device: server data wins for anything it already has; things only this device has are added */
+function syInit(){SYU.busy=true;SYU.status="syncing";syPaint();var S={},since=0;
+  var pullAll=function(){return syApi("GET","/api/sync?since="+since).then(function(j){SY.skew=Math.round(j.now-Date.now());(j.changes||[]).forEach(function(c){S[c.k]=c});since=j.last||since;if(j.more)return pullAll();return j.rev})};
+  SYU.busyP=pullAll().then(function(rev){var u=syNow(),keys={},changed=false;SYDB={};SYOUT={};
+    for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(syTracked(k))keys[k]=1}Object.keys(S).forEach(function(rk){keys[syTop(rk)]=1});
+    SYU.applying=true;try{Object.keys(keys).forEach(function(K){if(!syTracked(K))return;var L=syFlatKey(K),db=SYDB[K]={},R={},has=false;
+      Object.keys(S).forEach(function(rk){if(syTop(rk)!==K)return;var c=S[rk];has=true;db[rk]=[c.d?"":syHash(JSON.stringify(c.v)),c.u,c.d?1:0];if(!c.d)R[rk]=c.v});
+      Object.keys(L).forEach(function(rk){if(db[rk])return;R[rk]=L[rk];db[rk]=[syHash(JSON.stringify(L[rk])),u,0];SYOUT[rk]={k:rk,v:L[rk],u:u}});
+      if(has){var U=function(rk){return db[rk]?db[rk][1]:0},v=syUnflat(K,R,U,0),b=localStorage.getItem(K),a=v===undefined?null:JSON.stringify(v);if(a===null)localStorage.removeItem(K);else localStorage.setItem(K,a);if(a!==b)changed=true}})}finally{SYU.applying=false}
+    SY.rev=since||rev||0;SY.init=true;sySave();syDbSave();syOutSave();SYU.busy=false;
+    if(changed){syReload();return}return syRun()},function(e){SYU.busy=false;SYU.status=e.offline?"offline":"error";SY.err=e.offline?"":e.message;sySave();syPaint();if(e.status===401)syLocalSignOut("This device was signed out. Sign in again to keep syncing.")});
+  return SYU.busyP}
+setInterval(function(){if(syOn()&&document.visibilityState==="visible")syRun()},15000);
+addEventListener("focus",function(){if(syOn())syRun()});addEventListener("online",function(){if(syOn())syRun()});
+document.addEventListener("visibilitychange",function(){if(!syOn())return;if(document.visibilityState==="visible")syRun();else syFlush()});
+addEventListener("pagehide",function(){if(syOn())syFlush()});
+document.addEventListener("focusout",function(){if(SYU.pend)setTimeout(syApply,300)});
+/* ---- sign in (email magic link) ---- */
+function syStart(email){email=String(email||"").trim();SYU.err="";if(!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(email)){SYU.err="Enter a valid email address.";syPaint();return}
+  SYU.email=email;SYU.sending=true;syPaint();
+  fetch(SY_URL+"/api/auth?a=start",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:email,app:location.origin+location.pathname,name:cxDevName()})})
+   .then(function(r){return r.json().catch(function(){return {}}).then(function(j){if(!r.ok)throw new Error(r.status===503?"Email sign-in isn\u2019t switched on yet.":j.message||"Couldn\u2019t send the email ("+r.status+").");return j})},function(){throw new Error("You\u2019re offline. Connect to the internet and try again.")})
+   .then(function(j){SYU.sheet="sent";SYU.sentTo=j.to||email},function(e){SYU.err=e.message}).then(function(){SYU.sending=false;syPaint()})}
+function syVerify(tok){SYU.sheet="verifying";SYU.err="";syPaint();
+  fetch(SY_URL+"/api/auth?a=verify",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({token:tok,name:cxDevName()})})
+   .then(function(r){return r.json().catch(function(){return {}}).then(function(j){if(!r.ok)throw new Error(j.message||"That link didn\u2019t work ("+r.status+").");return j})},function(){throw new Error("You\u2019re offline. Connect and open the link again.")})
+   .then(function(j){CXC.url=SY_URL;CXC.token=j.token;CXC.device={id:j.deviceId,name:j.name};CXC.pair=null;CXC.err="";cxSaveCfg();
+      SY={email:j.email,dev:j.deviceId,rev:0,init:false,skew:0,last:null,since:new Date().toISOString()};sySave();SYU.sheet="done";syPaint();try{sessionStorage.setItem("lm.sync.sheet","done")}catch(e){}
+      cxLoadCals().then(function(){return cxPull(true)}).catch(function(){}).then(render);return syRun()},
+    function(e){SYU.sheet="error";SYU.err=e.message;syPaint()})}
+function syLocalSignOut(msg){CXC.token="";CXC.device=null;CXC.last=null;CXC.calList=[];CXC.cals={};CXC.write={};cxSaveCfg();
+  SY={};SYDB={};SYOUT={};SYU.pend=null;localStorage.removeItem(SYK);localStorage.removeItem(SYDBK);localStorage.removeItem(SYOK);SYU.msg=msg||"";render()}
+function sySignOut(){var t=CXC.token;SYU.signout=0;(t?fetch(SY_URL+"/api/auth?a=signout",{method:"POST",headers:{Authorization:"Bearer "+t}}).catch(function(){}):Promise.resolve()).then(function(){syLocalSignOut("Signed out. Everything stays on this device.")})}
+/* ---- Start fresh: clear the sample data everywhere (asks twice; a backup download is offered first) ---- */
+var SY_EMPTY={"lm.goals.v1":[],"lm.lib.v1":null,"lm.notebook.v1":null,"lm.pm.v2":null,"lm.prog.v1":null,"lm.weight.v1":[],"lm.wtgoal.v1":null,"lm.habits.v1":{habits:[],done:{}},
+  "lm.done.v1":{},"lm.wlog.v1":{},"lm.rhist.v1":{},"lm.reflect.v1":{},"lm.notes.v1":"","lm.pm.notes.v1":{},"lm.items.v1":[],"lm.tx.v1":[],"lm.routine.x.v1":[],"lm.proj.v1":[],"lm.read.v1":{today:0,d:""},"lm.wover.v1":{},"lm.ex.v1":{}};
+function syEmptyOf(v){if(Array.isArray(v))return [];if(syPlain(v)){var o={};Object.keys(v).forEach(function(k){var x=v[k];o[k]=Array.isArray(x)?[]:syPlain(x)?{}:x});return o}return v}
+function syFresh(){var at=new Date().toISOString();
+  var put=function(k,v){LS.set(k,v)};
+  Object.keys(SY_EMPTY).forEach(function(k){var e=SY_EMPTY[k];
+    if(k==="lm.lib.v1")e=syEmptyOf(LIB);else if(k==="lm.notebook.v1"){e=syEmptyOf(NB);if(NB.folders)e.folders=NB.folders}
+    else if(k==="lm.pm.v2"){e={v:2,projects:[],tasks:[],miles:[],tags:PM.tags||{}}}else if(k==="lm.prog.v1")e=syEmptyOf(PG);
+    put(k,e)});
+  /* built-in sample calendar items and to-dos: mark them deleted (same mechanism as deleting one by hand) */
+  ITEMS.forEach(function(i){if(!i.ic&&!cxIsExtra(i))CXE[i.id]={deleted:true}});put("lm.itemedits.v1",CXE);
+  put("lm.fresh.v1",{at:at});SYU.forceNext=true;SYU.fresh=0;syFlush();
+  var go=function(){location.reload()};(syOn()?syRun():Promise.resolve()).then(go,go)}
+/* built-in sample rows that don't live in storage (routine list, budget transactions) are hidden after Start fresh */
+(function(){var F=LS.get("lm.fresh.v1",null);if(!F)return;try{
+  var keep={};(LS.get("lm.routine.x.v1",[])||[]).forEach(function(r){keep[r[0]]=1});for(var i=ROUTINE.length-1;i>=0;i--)if(!keep[ROUTINE[i][0]])ROUTINE.splice(i,1);
+  var X=LS.get("lm.tx.v1",[])||[];TX.length=0;X.forEach(function(x){TX.unshift([typeof x.d==="number"?d2(x.d):x.d,x.l,x.c,-x.a])});
+  SPEND.forEach(function(sp){sp[2]=X.filter(function(x){return x.c===sp[0]}).reduce(function(a,x){return a+x.a},0)});
+  for(var j=ITEMS.length-1;j>=0;j--){var it=ITEMS[j];if(!it.ic&&!cxIsExtra(it)){delete BYID[it.id];ITEMS.splice(j,1)}}
+}catch(e){}})();
+/* ---- UI: Account & sync section (Settings) + sign-in sheet ---- */
+function syAgo(t){return t?cxAgo(t):"not yet"}
+function syChip(){if(!syOn())return ['Not signed in','#9C8673'];var s=SYU.status;var n=Object.keys(SYOUT).length;
+  if(s==="syncing")return ['Syncing\u2026','#3A9BD5'];if(s==="offline")return [n?'Offline \u00b7 '+n+' change'+(n>1?'s':'')+' waiting':'Offline','#E3A33B'];if(s==="error"||SY.err)return ['Needs attention','#D0503D'];return [n?n+' change'+(n>1?'s':'')+' to sync':'Synced','#3FA779']}
+function syAccount(){var c=syChip(),h='<section class="sy-acc"><div class="cx-st"><h3><span class="sy-ic">'+h92ic("user",16)+'</span> Account &amp; sync</h3><span class="cx-chip" style="--c:'+c[1]+'">'+c[0]+'</span></div>';
+  if(!syOn()){return h+'<p class="cx-p">Sign in with your email to keep tasks, projects, notes, workouts, habits, routine, finances and goals the same on your phone and computer. Apple Calendar connects at the same time \u2014 no code needed.</p>'+
+    (SYU.msg?'<div class="cx-ok">'+esc(SYU.msg)+'</div>':'')+'<div class="cx-row"><button class="btn cx-pri sy-big" data-sy="open">'+h92ic("mail",16)+' Sign in with email</button></div><p class="cx-p cx-sm">Works offline. Everything already on this device is kept and added to your account.</p>'+syFreshBlock()+'</section>'}
+  var n=Object.keys(SYOUT).length;
+  h+='<div class="sy-who"><span class="sy-av">'+esc((SY.email||"?").charAt(0).toUpperCase())+'</span><div><b>'+esc(SY.email)+'</b><small>'+esc((CXC.device&&CXC.device.name)||cxDevName())+' \u00b7 this device</small></div></div>'+
+   '<div class="sy-stat"><div><span>Last synced</span><b>'+(SY.last?syAgo(SY.last):'not yet')+'</b></div><div><span>Waiting to sync</span><b>'+(n?n+' change'+(n>1?'s':''):'Nothing')+'</b></div><div><span>Syncs</span><b>Live + every 15 s</b></div></div>'+
+   (SY.err?'<div class="cx-err">'+esc(SY.err)+'</div>':'')+
+   '<div class="cx-row"><button class="btn" data-sy="now">'+(SYU.status==="syncing"?'Syncing\u2026':'\u21bb Sync now')+'</button>'+(SYU.signout?'<span class="sy-q">Sign out of this device?</span><button class="btn cx-del" data-sy="signout2">Sign out</button><button class="btn" data-sy="cancel">Cancel</button>':'<button class="btn" data-sy="signout">Sign out</button>')+'</div>'+
+   (SYU.signout?'<p class="cx-p cx-sm">Your data stays on this device'+(n?' \u2014 but '+n+' change'+(n>1?'s haven\u2019t':' hasn\u2019t')+' synced yet':'')+'. Apple Calendar disconnects too.</p>':'');
+  return h+syFreshBlock()+'</section>'}
+function syFreshBlock(){if(LS.get("lm.fresh.v1",null))return '<div class="sy-fresh"><div><b>Started fresh</b><small>The sample data was cleared'+(syOn()?' on all your devices':' on this device')+'.</small></div></div>';
+  return '<div class="sy-fresh"><div><b>Start fresh</b><small>Remove the sample projects, tasks, notes, books, workouts, habits and budget rows'+(syOn()?' on all your devices':' on this device')+' and start with an empty app. Your own entries and Apple Calendar stay.</small></div>'+
+   (SYU.fresh?'<div class="sy-fq"><span>This can\u2019t be undone. Download a backup first?</span><div class="cx-row"><button class="btn" data-cx="export">Download a backup</button><button class="btn cx-del" data-sy="fresh2">Yes, clear sample data</button><button class="btn" data-sy="cancel">Cancel</button></div></div>':'<button class="btn" data-sy="fresh">Start fresh\u2026</button>')+'</div>'}
+function sySheet(){var m=SYU.sheet;if(!m)return "";var x='<button class="ib sy-x" data-sy="close" aria-label="Close">\u00d7</button>',logo='<div class="sy-logo"><span class="h93logo">L<em>\u2019</em></span><b>Life\u2019s</b></div>',b;
+  if(m==="email")b=logo+'<h2>Sign in to sync</h2><p>We\u2019ll email you a link. Tap it on this device and you\u2019re in \u2014 no password, no code.</p>'+
+    '<form class="sy-form" data-sy-form="1" novalidate><label for="sy-email">Email</label><input id="sy-email" type="email" inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" placeholder="you@example.com" value="'+esc(SYU.email)+'">'+
+    (SYU.err?'<div class="sy-err" role="alert">'+esc(SYU.err)+'</div>':'')+'<button class="sy-pri" type="submit"'+(SYU.sending?' disabled':'')+'>'+(SYU.sending?'Sending\u2026':'Email me a sign-in link')+'</button></form>'+
+    '<ul class="sy-pts"><li>'+h92ic("check",14)+'Tasks, projects, notes, workouts, habits and money stay in sync</li><li>'+h92ic("check",14)+'Apple Calendar connects automatically</li><li>'+h92ic("check",14)+'Works offline \u2014 changes sync when you\u2019re back</li></ul>';
+  else if(m==="sent")b=logo+'<div class="sy-big-ic">'+h92ic("mail",30)+'</div><h2>Check your email</h2><p>We sent a sign-in link to <b>'+esc(SYU.sentTo||SYU.email)+'</b>. Open it on this device. It works once and expires in 15 minutes.</p><div class="sy-row"><button class="sy-sec" data-sy="resend">Send again</button><button class="sy-sec" data-sy="other">Use a different email</button></div>';
+  else if(m==="verifying")b=logo+'<div class="sy-spin" aria-hidden="true"></div><h2>Signing you in\u2026</h2><p>Hang on a second.</p>';
+  else if(m==="done")b=logo+'<div class="sy-big-ic ok">'+h92ic("check",30)+'</div><h2>You\u2019re signed in</h2><p>Signed in as <b>'+esc(SY.email||"")+'</b>. Your data is syncing and Apple Calendar is connected on this device.</p><button class="sy-pri" data-sy="close">Continue</button>';
+  else b=logo+'<div class="sy-big-ic bad">!</div><h2>That link didn\u2019t work</h2><p>'+esc(SYU.err||"")+'</p><button class="sy-pri" data-sy="again">Send a new link</button>';
+  return '<div class="sy-ov" data-sy="close"></div><div class="sy-sheet" role="dialog" aria-modal="true" aria-label="Sign in">'+(m==="verifying"?'':x)+b+'</div>'}
+function syPaint(){var el=document.getElementById("sy-root");if(!el){el=document.createElement("div");el.id="sy-root";document.body.appendChild(el)}
+  var a=document.activeElement,keep=a&&a.id==="sy-email"?[a.value,a.selectionStart]:null;el.innerHTML=sySheet();
+  var acc=document.querySelector(".cx-set .sy-acc");if(acc){var d=document.createElement("div");d.innerHTML=syAccount();acc.replaceWith(d.firstChild)}
+  if(keep){var i=document.getElementById("sy-email");if(i){i.value=keep[0];i.focus();try{i.setSelectionRange(keep[1],keep[1])}catch(e){}}}
+  else if(SYU.sheet==="email"&&!SYU.focused){SYU.focused=1;var j=document.getElementById("sy-email");if(j&&innerWidth>=760)j.focus()}}
+H92I.user=H92I.user||'<circle cx="12" cy="8.5" r="3.5"/><path d="M5 19.5c1.2-3.3 4-5 7-5s5.8 1.7 7 5"/>';H92I.mail=H92I.mail||'<rect x="3.5" y="5.5" width="17" height="13" rx="3"/><path d="M4.5 7.5l7.5 5.5 7.5-5.5"/>';H92I.check=H92I.check||'<path d="M5 12.5l4.5 4.5L19 7.5"/>';
+var _set118=cxSettings;cxSettings=function(){var h=_set118();if(!h)return h;
+  h=h.replace('<section><div class="cx-st"><h3><span class="cx-apple"></span> Apple Calendar',syAccount()+'<section><div class="cx-st"><h3><span class="cx-apple"></span> Apple Calendar');
+  if(syOn())h=h.replace(/<section><h3>Your data<\/h3><p class="cx-p">[^<]*<\/p><div class="cx-row"><button class="btn" data-cx="export">Download a backup<\/button><button class="btn cx-del" data-cx="reset">Reset to sample data<\/button><\/div><\/section>/,'<section><h3>Your data</h3><p class="cx-p">Saved on this device and synced to '+esc(SY.email)+'. Changes made offline sync when you\u2019re back online.</p><div class="cx-row"><button class="btn" data-cx="export">Download a backup</button></div></section>');
+  return h};
+var _pb118=cxPairBlock;cxPairBlock=function(){if(cxOn())return _pb118();return '<p class="cx-p sy-note">'+h92ic("user",14)+'<span>Sign in under <b>Account &amp; sync</b> and Apple Calendar connects on this device automatically \u2014 no pairing code.</span></p>'};
+var _r118=render;render=function(){var r=_r118.apply(this,arguments);syPaint();return r};
+document.addEventListener("submit",function(e){if(!e.target.closest||!e.target.closest("[data-sy-form]"))return;e.preventDefault();var i=document.getElementById("sy-email");syStart(i?i.value:"")});
+window.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("[data-sy]");if(!b)return;var a=b.getAttribute("data-sy");e.preventDefault();e.stopPropagation();
+  if(a==="open"){SYU.sheet="email";SYU.err="";SYU.focused=0}else if(a==="close"){if(SYU.sheet==="verifying")return;SYU.sheet=null;SYU.err="";try{sessionStorage.removeItem("lm.sync.sheet")}catch(x){}}
+  else if(a==="resend"){syStart(SYU.email);return}else if(a==="other"||a==="again"){SYU.sheet="email";SYU.err="";SYU.focused=0}
+  else if(a==="now"){syRun();return}else if(a==="signout"){SYU.signout=1}else if(a==="signout2"){sySignOut();return}
+  else if(a==="fresh"){SYU.fresh=1}else if(a==="fresh2"){syFresh();return}else if(a==="cancel"){SYU.fresh=0;SYU.signout=0}
+  syPaint()},true);
+document.addEventListener("keydown",function(e){if(e.key==="Escape"&&SYU.sheet&&SYU.sheet!=="verifying"){SYU.sheet=null;syPaint()}});
+/* magic link landing: #signin=<token> */
+function syLanding(){var m=/^#signin=([A-Za-z0-9_-]{20,})/.exec(location.hash);if(!m)return false;try{history.replaceState(null,"",location.pathname+location.search+"#home")}catch(e){location.hash="#home"}setTimeout(function(){syVerify(m[1])},0);return true}
+syLanding();window.addEventListener("hashchange",function(e){if(syLanding()){e.stopImmediatePropagation();if(typeof cxGo==="function")cxGo("home");render()}},true);
+/* devices that were paired with a code before email sign-in: learn the account and start syncing */
+(function(){if(cxOn()&&!SY.email&&CXC.token&&/^dv1\./.test(CXC.token)){fetch(SY_URL+"/api/auth?a=me",{headers:{Authorization:"Bearer "+CXC.token}}).then(function(r){return r.ok?r.json():null}).then(function(j){if(j&&j.email){SY={email:j.email,dev:j.device.id,rev:0,init:false};sySave();syRun()}}).catch(function(){})}
+  else if(syOn())setTimeout(syRun,300)})();
 
 render();
 if(CXC.pair&&!cxOn())cxPairPoll();
