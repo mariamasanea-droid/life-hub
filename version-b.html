@@ -4083,6 +4083,83 @@ html body.wh115 .w115home .w117row>.h105notes>.hzn{width:100%!important;flex:0 0
 body.gdark #sy-root .sy-sheet{background:#1E2227;border-color:#2C3239;color:#EEF2F6}body.gdark #sy-root p,body.gdark #sy-root .sy-form label,body.gdark #sy-root .sy-pts li{color:#A9B4C0}
 body.gdark #sy-root .sy-form input{background:#262B31;border-color:#353C44;color:#EEF2F6}body.gdark #sy-root .sy-sec,body.gdark #sy-root .sy-x{background:#262B31;border-color:#353C44;color:#EEF2F6}
 body.gdark .sy-stat>div{background:rgba(255,255,255,.06)}
+/* ===== v118-lifefit: Life Hub fills the screen; keep the 88%/94% scale without leftover margins ===== */
+/* Chrome zoom: 100% in a zoomed .app is already viewport/zoom, so visual width = 100% of the viewport. */
+body .app{--ui113:.88;zoom:var(--ui113);width:100%!important;max-width:none!important;margin-left:0!important;margin-right:0!important;box-sizing:border-box}
+@media (max-width:759px){body .app{--ui113:.94}}
+
+/* Work Hub: drop the leftover .app inset so it also sits edge to edge. Internal layout unchanged. */
+body.glass.wh115 .app{padding:0!important}
+
+/* Remove the Life Hub floating quick-add dock. Task stays on the left + button; Log weight stays on Workouts. */
+body.h93:not(.wh115) .h92dock.h93qd,body.h93:not(.wh115) .h93qd{display:none!important}
+
+/* Life Hub desktop: slim ~20px outer margin; one viewport-height shell for Home, Today and Workouts */
+@media (min-width:760px){
+ body.glass.h93:not(.wh115) .app{padding:22px calc(22px + var(--sar,0px)) 22px calc(22px + var(--sal,0px))!important}
+ body.h93:not(.wh115) .gl.h94f{margin:0!important;padding:10px!important;gap:16px;height:calc(calc(100dvh / var(--ui113,1)) - 44px);min-height:calc(calc(100dvh / var(--ui113,1)) - 44px);max-height:calc(calc(100dvh / var(--ui113,1)) - 44px);overflow:hidden;box-sizing:border-box}
+ body.h93:not(.wh115) .gmain{min-height:0;height:100%;max-height:100%;overflow:hidden;display:flex;flex-direction:column}
+ body.h93:not(.wh115) .gmain>.h93hd{flex:none}
+ body.h93:not(.wh115) .gmain>.gpanel,body.h93:not(.wh115) .gmain>.gpanel.h93hp{flex:1 1 0;min-height:0;overflow:auto;display:flex;flex-direction:column;padding-bottom:16px!important}
+ body.h93:not(.wh115) .h94f>.h93dock{top:16px;max-height:calc(calc(100dvh / var(--ui113,1)) - 60px)}
+ /* Home/Today fill the panel so they share Workouts' shell; stacked layouts (Duo open) stay natural */
+ body.h93:not(.wh115) .gpanel>.h93home,body.h93:not(.wh115) .gpanel>.h98page{flex:1 1 0;min-height:0}
+}
+@media (min-width:1000px){
+ /* Home: left widgets and the side column both fill the shared shell */
+ body.h93:not(.wh115) .gpanel>.h93home{height:100%;overflow:hidden;align-items:stretch!important;grid-template-rows:auto minmax(0,1fr)}
+ body.h93:not(.wh115) .gpanel>.h93home>.h93wid{min-height:0;overflow:auto}
+ body.h93:not(.wh115) .h93home>.h93r{position:relative!important;top:0!important;align-self:stretch!important;height:auto!important;max-height:none!important;min-height:0!important;overflow:auto!important;box-sizing:border-box}
+ /* Today: don't flex-shrink the page; side stretches to the widget grid, panel scrolls in the shell */
+ body.h93:not(.wh115) .gpanel>.h98page{flex:0 0 auto!important;height:auto!important;min-height:0;overflow:visible;align-items:stretch!important;grid-template-rows:auto auto}
+ body.h93:not(.wh115) .gpanel>.h98page>.h98main{min-height:auto;overflow:visible;height:auto!important}
+ body.h93:not(.wh115) .h98page>.h93r{position:relative!important;top:auto!important;align-self:stretch!important;height:auto!important;max-height:none!important;min-height:auto!important;overflow:visible!important;box-sizing:border-box}
+}
+
+/* Roomier Life Hub spacing from desktop up; typography and colors stay as they are */
+@media (min-width:1000px){
+ body.h93:not(.wh115) .gmain>.h93hd{padding:20px 28px 16px}
+ body.h93:not(.wh115) .gmain>.gpanel,body.h93:not(.wh115) .gmain>.gpanel.h93hp{padding:8px 28px 24px!important}
+ .h93home{gap:22px}
+ .h93home .h92mets{gap:18px}
+ .h93wid,.h114wid{gap:22px}
+ .h93r{padding:20px;gap:18px}
+ .h92m{padding:18px 18px 16px}
+ .h93home .h92c,.h114wid .h92c,.h93wid .h92c{padding:20px}
+ .h98page{gap:22px;padding-bottom:0}
+ .h98main{gap:18px}
+ .h98grid.h97today{gap:22px}
+ .h98page>.h93r{top:0}
+ .h93cal{gap:20px}
+ .c87b{gap:20px}
+ .h114body{gap:22px;margin-bottom:20px}
+}
+
+/* Full-width layouts at 1280+ : a slightly wider side column, cards use the extra room */
+@media (min-width:1280px){
+ .h93home{grid-template-columns:minmax(0,1fr) minmax(340px,380px);gap:24px}
+ .h93home .h92mets{gap:20px}
+ .h93wid,.h114wid{gap:24px}
+ .h98page{grid-template-columns:minmax(0,1fr) minmax(340px,380px);gap:24px}
+ .h93cal{grid-template-columns:minmax(0,1fr) minmax(300px,340px)}
+ .c87side{width:240px}
+}
+
+/* Extra breathing room on large desktops, still no stretch */
+@media (min-width:1600px){
+ .h93home{grid-template-columns:minmax(0,1fr) minmax(360px,420px);gap:28px}
+ .h93home .h92mets{gap:22px}
+ .h93wid,.h114wid{gap:28px}
+ body.h93:not(.wh115) .gmain>.h93hd{padding:22px 36px 18px}
+ body.h93:not(.wh115) .gmain>.gpanel,body.h93:not(.wh115) .gmain>.gpanel.h93hp{padding:10px 36px 28px!important}
+ .h98page{grid-template-columns:minmax(0,1fr) minmax(360px,420px);gap:28px}
+ .h93cal{grid-template-columns:minmax(0,1fr) minmax(320px,380px);gap:24px}
+ .c87side{width:260px}
+ .h114body{grid-template-columns:minmax(280px,380px) minmax(0,1fr);gap:28px}
+}
+
+/* Work Hub: once the app is full-bleed, keep folder cards wide enough that 3-across never clips the 3:2 body */
+body.wh115 .h105pm.w115pm,body.wh115 .w115pm.w115sm{grid-template-columns:repeat(auto-fill,minmax(372px,1fr))!important}
 </style>
 </head>
 <body>
