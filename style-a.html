@@ -4160,6 +4160,368 @@ body.h93:not(.wh115) .h92dock.h93qd,body.h93:not(.wh115) .h93qd{display:none!imp
 
 /* Work Hub: once the app is full-bleed, keep folder cards wide enough that 3-across never clips the 3:2 body */
 body.wh115 .h105pm.w115pm,body.wh115 .w115pm.w115sm{grid-template-columns:repeat(auto-fill,minmax(372px,1fr))!important}
+/* ===== v118.3: 118.1 card proportions; search-row header; pills; page actually scrolls ===== */
+
+/* --- Header: row 1 = search | Life/Work toggle | bell/settings/theme; row 2 = greeting --- */
+@media (min-width:760px){
+ body.h93:not(.wh115) .gmain>.h93hd,
+ body.h93:not(.wh115) .gmain>.h93hd.h100hd{
+  grid-template-columns:minmax(0,1fr) auto auto!important;
+  grid-template-areas:"s mid act" "ht ht ht"!important;
+  column-gap:12px!important;row-gap:10px!important;align-items:center
+ }
+ body.h93:not(.wh115) .h93hd .h92s,
+ body.h93:not(.wh115) .h93hd.h100hd .h92s{
+  grid-area:s!important;justify-self:stretch;min-width:0;max-width:none!important;
+  transform:none!important;order:0!important
+ }
+ body.h93:not(.wh115) .h93hd .h93mid,
+ body.h93:not(.wh115) .h93hd.h100hd .h93mid{
+  grid-area:mid!important;justify-self:start;order:0!important;width:auto
+ }
+ body.h93:not(.wh115) .h93hd .h93mid .h92hub{width:auto!important;display:inline-flex}
+ body.h93:not(.wh115) .h93hd .h93act,
+ body.h93:not(.wh115) .h93hd.h100hd .h93act{grid-area:act!important;justify-self:end;order:0!important}
+ body.h93:not(.wh115) .h93hd .h93ht,
+ body.h93:not(.wh115) .h93hd.h100hd .h93ht{grid-area:ht!important;justify-self:start;order:0!important}
+ body.h93:not(.wh115) .h93hd.h100hd{--h100x:0px}
+}
+@media (max-width:759px){
+ body.h93:not(.wh115) .gmain>.h93hd,
+ body.h93:not(.wh115) .gmain>.h93hd.h100hd{
+  grid-template-columns:minmax(0,1fr) auto auto!important;
+  grid-template-areas:"s mid act" "ht ht ht"!important;
+  column-gap:8px!important;row-gap:8px!important
+ }
+ body.h93:not(.wh115) .h93hd .h92s,
+ body.h93:not(.wh115) .h93hd.h100hd .h92s{grid-area:s!important;min-width:0;transform:none!important;order:0!important}
+ body.h93:not(.wh115) .h93hd .h93mid,
+ body.h93:not(.wh115) .h93hd.h100hd .h93mid{grid-area:mid!important;order:0!important;width:auto;justify-self:start}
+ body.h93:not(.wh115) .h93hd .h93mid .h92hub{width:auto!important;display:inline-flex}
+ body.h93:not(.wh115) .h93hd .h93act,
+ body.h93:not(.wh115) .h93hd.h100hd .h93act{grid-area:act!important;justify-self:end;order:0!important}
+ body.h93:not(.wh115) .h93hd .h93ht,
+ body.h93:not(.wh115) .h93hd.h100hd .h93ht{grid-area:ht!important;order:0!important}
+ body.h93:not(.wh115) .h93hd .h93mid .h92hub button span{display:none!important}
+}
+
+/* No date / to-dos / "what's happening" line under the greeting */
+body.h93:not(.wh115).h93-home .h93hd .h93ht p,
+body.h93:not(.wh115).h93-today .h93hd .h93ht p,
+body.h93:not(.wh115) .h93hd.home .h93ht p,
+body.h93:not(.wh115) .h93hd.h100hd .h93ht p{
+  display:none!important;height:0!important;margin:0!important;padding:0!important;overflow:hidden
+}
+
+/* --- Space-pill row (replaces the four square stat cards only) --- */
+body.h93:not(.wh115) .h93home>.h93a{min-height:0;margin:0;padding:0;min-width:0;max-width:100%}
+body.h93:not(.wh115) .h93home .h92mets.h1182pills,
+html body.h93:not(.wh115) .h93home .h1182pills{
+  display:flex!important;flex-wrap:nowrap!important;align-items:center!important;
+  gap:8px!important;width:100%;min-width:0;min-height:0;margin:0!important;padding:2px 0;
+  overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;
+  scrollbar-width:none;grid-template-columns:none!important;justify-content:flex-start!important
+}
+body.h93:not(.wh115) .h1182pills::-webkit-scrollbar{display:none;width:0;height:0}
+body.h93:not(.wh115) .h93home .h1182pills .h92m,
+body.h93:not(.wh115) .h93home .h1182pills .h1182p{
+  display:inline-flex!important;flex-direction:row!important;align-items:center!important;
+  gap:6px!important;flex:0 0 auto!important;
+  height:34px!important;min-height:34px!important;max-height:34px!important;
+  width:auto!important;min-width:0!important;aspect-ratio:auto!important;
+  padding:0 12px 0 8px!important;margin:0!important;
+  border:0!important;border-radius:999px!important;
+  background:#fff!important;color:#2A2420!important;text-align:left;
+  box-shadow:0 1px 2px rgba(30,20,10,.06),0 0 0 1px rgba(30,20,10,.04);
+  cursor:pointer;white-space:nowrap;position:relative
+}
+body.h93:not(.wh115) .h93home .h1182pills .h1182p:not(.h92m){padding:0 12px!important}
+body.h93:not(.wh115) .h93home .h1182pills .q-mt{
+  display:inline!important;padding:0!important;margin:0!important;
+  font:700 12.5px/1 Quicksand,sans-serif!important;color:#2A2420!important
+}
+body.h93:not(.wh115) .h93home .h1182pills b{
+  font:700 12.5px/1 Quicksand,sans-serif!important;color:#2A2420!important;white-space:nowrap
+}
+body.h93:not(.wh115) .h93home .h1182pills .q-mv,
+body.h93:not(.wh115) .h93home .h1182pills .q-ms,
+body.h93:not(.wh115) .h93home .h1182pills .q-rg,
+body.h93:not(.wh115) .h93home .h1182pills .h114rv,
+body.h93:not(.wh115) .h93home .h1182pills .q-mi{display:none!important}
+body.h93:not(.wh115) .h1182pi{
+  width:18px;height:18px;border-radius:50%;flex:none;
+  display:inline-flex;align-items:center;justify-content:center;color:#fff
+}
+body.h93:not(.wh115) .h1182pi svg{display:block}
+body.h93:not(.wh115) .h93home .h1182pills .h1182all{
+  background:#fff!important;padding:0 12px 0 10px!important;
+  box-shadow:0 1px 2px rgba(30,20,10,.06),0 0 0 1px rgba(30,20,10,.08)
+}
+body.h93:not(.wh115) .h1182dot{
+  width:7px;height:7px;border-radius:50%;background:#3FA779;flex:none;display:inline-block
+}
+body.h93:not(.wh115) .h93home .h1182pills .h1182add{
+  width:34px!important;min-width:34px!important;padding:0!important;
+  justify-content:center!important;font:700 18px/1 Quicksand,sans-serif!important
+}
+
+/* Weekly goal: keep 118.1-scale arc, but don't let 1/4, the caption, or the slider thumb overlap */
+body.h93:not(.wh115) .h93home .h92semi{overflow:visible}
+body.h93:not(.wh115) .h93home .h92semi .q-v{padding-bottom:2px}
+body.h93:not(.wh115) .h93home .h92semi .q-v span{display:block;margin-top:2px;line-height:1.2}
+body.h93:not(.wh115) .h93home .h92sl{margin-top:16px;padding-top:8px;overflow:visible}
+body.h93:not(.wh115) .h93home .h92sl .q-tr{overflow:visible}
+
+/* --- Scroll safety: the shell is fixed; the panel scrolls. Never trap overflow. --- */
+@media (min-width:760px){
+ body.h93:not(.wh115) .gmain{min-height:0;overflow:hidden}
+ body.h93:not(.wh115) .gmain>.gpanel,body.h93:not(.wh115) .gmain>.gpanel.h93hp{
+  min-height:0;overflow-x:hidden;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain
+ }
+ /* Home grows to its cards (118.1 sizes) so gpanel can scroll; do not clip columns */
+ body.h93:not(.wh115) .gpanel>.h93home{
+  flex:0 0 auto!important;height:auto!important;max-height:none!important;
+  overflow:visible!important;align-items:start!important;
+  grid-template-rows:auto auto!important;-webkit-overflow-scrolling:touch
+ }
+ body.h93:not(.wh115) .gpanel>.h93home>.h93wid,
+ body.h93:not(.wh115) .h93home>.h93r{
+  min-height:0;height:auto!important;max-height:none!important;
+  overflow:visible!important;align-self:start!important
+ }
+ body.h93:not(.wh115) .gpanel>.h98page,
+ body.h93:not(.wh115) .gpanel>.today2,
+ body.h93:not(.wh115) .gpanel>.wkt{min-height:0;-webkit-overflow-scrolling:touch}
+}
+/* Mid widths (Duo): stacked a / r / w, natural heights, panel scrolls */
+@media (min-width:760px) and (max-width:999px){
+ body.h93:not(.wh115) .gpanel>.h93home{
+  flex:0 0 auto!important;height:auto!important;max-height:none!important;overflow:visible!important;
+  grid-template-rows:auto auto auto!important;align-items:start!important
+ }
+}
+@media (max-width:759px){
+ html,body{overflow-x:hidden;overflow-y:auto;-webkit-overflow-scrolling:touch}
+ body.h93:not(.wh115) .gl.h94f,
+ body.h93:not(.wh115) .gmain,
+ body.h93:not(.wh115) .gmain>.gpanel,
+ body.h93:not(.wh115) .gpanel>.h93home,
+ body.h93:not(.wh115) .gpanel>.h98page{overflow:visible!important;max-height:none!important;height:auto}
+}
+/* ===== v118.4: center a fixed-width search; keep Life/Work + actions grouped on the right ===== */
+@media (min-width:500px){
+ body.h93:not(.wh115) .gmain>.h93hd,
+ body.h93:not(.wh115) .gmain>.h93hd.h100hd{
+  grid-template-columns:minmax(0,1fr) auto auto!important;
+  grid-template-areas:"spacer mid act" "ht ht ht"!important;
+  position:relative
+ }
+ body.h93:not(.wh115) .h93hd .h92s,
+ body.h93:not(.wh115) .h93hd.h100hd .h92s{
+  grid-area:auto!important;
+  grid-row:1!important;
+  grid-column:1/-1!important;
+  justify-self:center!important;
+  width:calc(290px / var(--ui113,1))!important;
+  max-width:calc(290px / var(--ui113,1))!important;
+  min-width:0;
+  transform:none!important;
+  z-index:1
+ }
+ body.h93:not(.wh115) .h93hd .h93mid,
+ body.h93:not(.wh115) .h93hd.h100hd .h93mid{grid-area:mid!important;justify-self:end;z-index:2}
+ body.h93:not(.wh115) .h93hd .h93act,
+ body.h93:not(.wh115) .h93hd.h100hd .h93act{grid-area:act!important;justify-self:end;z-index:2}
+ body.h93:not(.wh115) .h93hd.h100hd{--h100x:0px}
+}
+@media (min-width:1000px){
+ body.h93:not(.wh115) .h93hd .h92s,
+ body.h93:not(.wh115) .h93hd.h100hd .h92s{
+  width:calc(420px / var(--ui113,1))!important;
+  max-width:calc(420px / var(--ui113,1))!important
+ }
+}
+@media (min-width:1280px){
+ body.h93:not(.wh115) .h93hd .h92s,
+ body.h93:not(.wh115) .h93hd.h100hd .h92s{
+  width:calc(430px / var(--ui113,1))!important;
+  max-width:calc(430px / var(--ui113,1))!important
+ }
+}
+@media (min-width:1440px){
+ body.h93:not(.wh115) .h93hd .h92s,
+ body.h93:not(.wh115) .h93hd.h100hd .h92s{
+  width:calc(460px / var(--ui113,1))!important;
+  max-width:calc(460px / var(--ui113,1))!important
+ }
+}
+@media (min-width:1600px){
+ body.h93:not(.wh115) .h93hd .h92s,
+ body.h93:not(.wh115) .h93hd.h100hd .h92s{
+  width:calc(480px / var(--ui113,1))!important;
+  max-width:calc(480px / var(--ui113,1))!important
+ }
+}
+/* Phone <500: keep the 118.3 stacked header (search | toggle | actions, greeting below). */
+@media (max-width:499px){
+ body.h93:not(.wh115) .gmain>.h93hd,
+ body.h93:not(.wh115) .gmain>.h93hd.h100hd{
+  grid-template-columns:minmax(0,1fr) auto auto!important;
+  grid-template-areas:"s mid act" "ht ht ht"!important
+ }
+ body.h93:not(.wh115) .h93hd .h92s,
+ body.h93:not(.wh115) .h93hd.h100hd .h92s{
+  grid-area:s!important;grid-column:auto!important;grid-row:auto!important;
+  width:auto!important;max-width:none!important;
+  justify-self:stretch!important;min-width:0;transform:none!important
+ }
+}
+/* ===== v118.5: the whole page (document) scrolls; the rounded frame grows with content ===== */
+/* Undo the full-height Life shell (lifefit + 118.3 inner .gpanel scroller). Work Hub is unchanged. */
+/* Keep 118.4 search, header rows, pills, 118.1 card sizes, and the ~20px outer margin. */
+/* Do not set overflow-x:hidden on html/body at desktop — that makes body a scroll
+   container and breaks position:sticky on the left dock (v117 leaves overflow visible). */
+
+body.h93:not(.wh115) .app{
+  overflow:visible!important;
+  height:auto!important;
+  max-height:none!important
+}
+
+@media (min-width:760px){
+  /* Frame fills the viewport when content is short, then grows and moves with the page */
+  body.h93:not(.wh115) .gl.h94f{
+    height:auto!important;
+    max-height:none!important;
+    min-height:calc(calc(100dvh / var(--ui113,1)) - 44px);
+    overflow:visible!important
+  }
+  body.h93:not(.wh115) .gmain{
+    display:flex;
+    flex-direction:column;
+    height:auto!important;
+    max-height:none!important;
+    min-height:calc(calc(100dvh / var(--ui113,1)) - 64px);
+    overflow:visible!important
+  }
+  body.h93:not(.wh115) .gmain>.h93hd{flex:none}
+  body.h93:not(.wh115) .gmain>.gpanel,
+  body.h93:not(.wh115) .gmain>.gpanel.h93hp{
+    flex:1 0 auto;
+    min-height:0;
+    height:auto!important;
+    max-height:none!important;
+    overflow:visible!important
+  }
+  /* Home: natural 118.1 card heights, no inner overflow trap */
+  body.h93:not(.wh115) .gpanel>.h93home{
+    flex:1 0 auto!important;
+    height:auto!important;
+    max-height:none!important;
+    overflow:visible!important;
+    align-items:start!important;
+    grid-template-rows:auto auto!important;
+    -webkit-overflow-scrolling:touch
+  }
+  body.h93:not(.wh115) .gpanel>.h93home>.h93wid,
+  body.h93:not(.wh115) .h93home>.h93r{
+    min-height:0;
+    height:auto!important;
+    max-height:none!important;
+    overflow:visible!important;
+    align-self:start!important
+  }
+  /* Today: keep the side panel stretched to the widget grid (118.4), but let the page grow */
+  body.h93:not(.wh115) .gpanel>.h98page{
+    flex:1 0 auto!important;
+    height:auto!important;
+    max-height:none!important;
+    overflow:visible!important;
+    align-items:stretch!important;
+    grid-template-rows:auto auto;
+    -webkit-overflow-scrolling:touch
+  }
+  body.h93:not(.wh115) .gpanel>.h98page>.h98main,
+  body.h93:not(.wh115) .h98page>.h93r{
+    height:auto!important;
+    max-height:none!important;
+    min-height:auto!important;
+    overflow:visible!important;
+    align-self:stretch!important
+  }
+  /* Workouts and other Life pages: grow with content, no inner scroller */
+  body.h93:not(.wh115) .gpanel>.today2,
+  body.h93:not(.wh115) .gpanel>.wkt{
+    flex:1 0 auto!important;
+    height:auto!important;
+    max-height:none!important;
+    overflow:visible!important;
+    -webkit-overflow-scrolling:touch
+  }
+  /* Calendar: nested flex with a definite basis so the card fills a short (min-height) frame.
+     A height:auto flex container would otherwise ignore flex-grow on .h93cal, leaving a ~45px
+     gap under the card (20px margin + frame padding + gpanel padding). */
+  body.h93-cal:not(.wh115) .gmain>.gpanel,
+  body.h93-cal:not(.wh115) .gmain>.gpanel.h93hp{
+    flex:1 1 0px!important;
+    min-height:0!important;
+    display:flex;
+    flex-direction:column
+  }
+  body.h93:not(.wh115) .gpanel>.h93cal,
+  body.h93-cal:not(.wh115) .gpanel>.h93cal{
+    flex:1 1 0px!important;
+    min-height:0!important;
+    height:auto!important;
+    max-height:none!important;
+    overflow:visible!important;
+    align-items:stretch!important
+  }
+  body.h93-cal:not(.wh115) .gpanel>.h93cal .c87,
+  body.h93-cal:not(.wh115) .h93cal.c87,
+  body.h93-cal:not(.wh115) .gpanel .c87{
+    flex:1 1 auto;
+    min-height:0;
+    align-self:stretch
+  }
+  /* Left dock stays sticky inside the growing frame, as in v117/v118 */
+  body.h93:not(.wh115) .h94f>.h93dock{
+    position:sticky!important;
+    top:16px;
+    align-self:start;
+    max-height:calc(calc(100dvh / var(--ui113,1)) - 60px)
+  }
+}
+@media (min-width:760px) and (max-width:999px){
+  body.h93:not(.wh115) .gpanel>.h93home{
+    grid-template-rows:auto auto auto!important;
+    align-items:start!important
+  }
+}
+@media (max-width:759px){
+  /* Phones already document-scrolled in 118.3/118.4 (dock is fixed, not sticky). Keep that. */
+  html,body{overflow-x:hidden;overflow-y:auto;height:auto;min-height:100%;-webkit-overflow-scrolling:touch}
+  body.h93:not(.wh115) .gl.h94f,
+  body.h93:not(.wh115) .gmain,
+  body.h93:not(.wh115) .gmain>.gpanel,
+  body.h93:not(.wh115) .gpanel>.h93home,
+  body.h93:not(.wh115) .gpanel>.h98page,
+  body.h93:not(.wh115) .gpanel>.h93cal{
+    overflow:visible!important;
+    max-height:none!important;
+    height:auto
+  }
+}
+/* ===== v118.6: on desktop Home, bump the side panel down to the Upcoming to-dos row ===== */
+/* Pills stay in the left column (same width as the widget stack). The right column
+   starts at the widget row so its top lines up with Upcoming to-dos. */
+/* Stacked layouts (Duo / phone, max-width 999px, areas "a" "r" "w") are unchanged. */
+/* Today already aligns the side panel with the first card row on desktop; leave it alone. */
+@media (min-width:1000px){
+  body.h93:not(.wh115) .h93home{
+    grid-template-areas:"a ." "w r"!important
+  }
+}
 </style>
 </head>
 <body>
@@ -7404,6 +7766,47 @@ syLanding();window.addEventListener("hashchange",function(e){if(syLanding()){e.s
 /* devices that were paired with a code before email sign-in: learn the account and start syncing */
 (function(){if(cxOn()&&!SY.email&&CXC.token&&/^dv1\./.test(CXC.token)){fetch(SY_URL+"/api/auth?a=me",{headers:{Authorization:"Bearer "+CXC.token}}).then(function(r){return r.ok?r.json():null}).then(function(j){if(j&&j.email){SY={email:j.email,dev:j.device.id,rev:0,init:false};sySave();syRun()}}).catch(function(){})}
   else if(syOn())setTimeout(syRun,300)})();
+
+
+/* ===== v118.2: fold Home stat squares into the space-pill row ===== */
+function h1182Pills(){
+  var wk=h92Week(),sp=h92Spend(),tdT=h92Todos(TODAY),tdd=tdT.filter(function(i){return S.done[i.id]}).length;
+  var tot=ROUTINE.length,dn=ROUTINE.filter(function(r){return S.done[r[0]]}).length;
+  var rc=(CAT.routine&&CAT.routine.color)||"#A97CD6";
+  function ic(k,col){return '<i class="h1182pi" style="background:'+col+'">'+h92ic(k,11)+'</i>'}
+  function pill(cls,k,col,label,val,go){
+    return '<button type="button" class="h92m '+cls+' h1182p" data-a="go" data-v="'+go+'">'+ic(k,col)+'<span class="q-mt">'+label+'</span><b>'+val+'</b></button>';
+  }
+  return '<div class="h92mets h1182pills" role="toolbar" aria-label="Home spaces">'+
+    '<button type="button" class="h1182p h1182all on" data-a="go" data-v="home"><i class="h1182dot" aria-hidden="true"></i>All</button>'+
+    pill("m1","workout","#EF6F5E","Workouts",wk.done+"/"+wk.target,"workout")+
+    pill("m4 h114rt","routine",rc,"Routine",dn+"/"+tot,"routine")+
+    pill("m2","todo","#3FA779","To-dos",tdd+"/"+tdT.length,"todo")+
+    pill("m3","budget","#E3A33B","Finances",rm(sp.s),"budget")+
+    '<button type="button" class="h1182p h1182bd" data-a="go" data-v="errand">'+ic("errand","#3A9BD5")+'Brain dump</button>'+
+    '<button type="button" class="h1182p h1182add plus" data-a="qa" data-v="task" aria-label="Quick add">+</button>'+
+  '</div>';
+}
+var _h1182Home=h93Home;
+h93Home=function(){
+  var h=_h1182Home.apply(this,arguments);
+  var a=h.indexOf('<div class="h93a">');
+  if(a<0)return h;
+  var w=h.indexOf('<div class="h93wid',a),r=h.indexOf('<aside',a);
+  var end=-1;
+  if(w>=0&&(r<0||w<r))end=w;else if(r>=0)end=r;
+  if(end<0)return h;
+  return h.slice(0,a)+'<div class="h93a">'+h1182Pills()+'</div>'+h.slice(end);
+};
+/* Remove the date / to-dos / "what's happening" subtitle under the Life Hub title on Home and Today */
+var _h1182Head=h93Head;
+h93Head=function(){
+  var h=_h1182Head.apply(this,arguments);
+  if(HUB==="life"&&(S.view==="home"||S.view==="today")){
+    h=h.replace(/(<div class="h93ht">[\s\S]*?<\/h1>)\s*<p>[\s\S]*?<\/p>/,"$1");
+  }
+  return h;
+};
 
 render();
 if(CXC.pair&&!cxOn())cxPairPoll();
