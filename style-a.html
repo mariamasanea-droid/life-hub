@@ -4938,18 +4938,12 @@ body.h93:not(.wh115).m3home .h93home .h114wid{
   gap:18px!important
 }
 body.h93:not(.wh115).m3home .h93home .h95goals,
-body.h93:not(.wh115).m3home .h93home .h92c{
+body.h93:not(.wh115).m3home .h93home .h92c,
+body.h93:not(.wh115).m3home .h93home .h92sch{
   background:#fff!important;
   border:1px solid #EDEDED!important;
   box-shadow:0 1px 2px rgba(16,16,16,.04)!important;
   border-radius:22px!important
-}
-body.h93:not(.wh115).m3home .h93home .h92sch .h92er{
-  background:#fff!important;
-  border:1px solid #EDEDED!important;
-  box-shadow:none!important;
-  border-radius:16px!important;
-  margin-bottom:10px!important
 }
 body.gdark.h93:not(.wh115).m3home .gmain>.h93hd,
 body.gdark.h93:not(.wh115).m3home .gmain>.gpanel,
@@ -4958,7 +4952,7 @@ body.gdark.h93:not(.wh115).m3home .gmain>.gpanel.h93hp{
 }
 body.gdark.h93:not(.wh115).m3home .h93home .h95goals,
 body.gdark.h93:not(.wh115).m3home .h93home .h92c,
-body.gdark.h93:not(.wh115).m3home .h93home .h92sch .h92er{
+body.gdark.h93:not(.wh115).m3home .h93home .h92sch{
   background:#161616!important;
   border-color:#2A2A2A!important;
   box-shadow:none!important
@@ -5098,6 +5092,173 @@ body.gdark.h93:not(.wh115).m3home .h93home .h92er .q-tx b,
 body.gdark.h93:not(.wh115).m3home .h93home .h92tr .q-t,
 body.gdark.h93:not(.wh115).m3home .h93home .h114hn b{
   color:#F2ECE6!important
+}
+
+
+/* 9. Step 5: compact header — greeting left, hub + settings right */
+body.h93:not(.wh115).m3home .gmain>.h93hd,
+body.h93:not(.wh115).m3home .gmain>.h93hd.h100hd{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:8px!important;
+  padding:16px 16px 8px!important;
+  grid-template-columns:none!important;
+  grid-template-areas:none!important
+}
+body.h93:not(.wh115).m3home .h93hd .h93ht,
+body.h93:not(.wh115).m3home .h93hd.h100hd .h93ht{
+  flex:1 1 auto!important;
+  min-width:0!important;
+  grid-area:auto!important;
+  grid-column:auto!important;
+  grid-row:auto!important;
+  order:0!important;
+  justify-self:start!important
+}
+body.h93:not(.wh115).m3home .h93hd .h93mid,
+body.h93:not(.wh115).m3home .h93hd.h100hd .h93mid{
+  flex:none!important;
+  width:auto!important;
+  grid-area:auto!important;
+  order:0!important;
+  justify-self:end!important
+}
+body.h93:not(.wh115).m3home .h93hd .h93act,
+body.h93:not(.wh115).m3home .h93hd.h100hd .h93act{
+  flex:none!important;
+  grid-area:auto!important;
+  order:0!important;
+  justify-self:end!important;
+  gap:6px
+}
+
+/* Search off phone Home header */
+body.h93:not(.wh115).m3home .h93hd .h92s,
+body.h93:not(.wh115).m3home .h93hd .gsearch,
+body.h93:not(.wh115).m3home .h93hd.h100hd .h92s{
+  display:none!important
+}
+
+/* Bell and header auto-sync toggle off; settings gear stays.
+   Auto-sync still runs on open / every 10 minutes (CXC.auto) and
+   remains reachable in Settings (Apple Calendar, Sync now, #cx-auto). */
+body.h93:not(.wh115).m3home .h93hd .h93act [aria-label="Overdue"],
+body.h93:not(.wh115).m3home .h93hd .h93act .h92tg{
+  display:none!important
+}
+
+/* Profile row off phone Home */
+body.h93:not(.wh115).m3home .h93home > .h93r > .q-pr,
+body.h93:not(.wh115).m3home .h93home .h114side > .q-pr{
+  display:none!important
+}
+
+/* "Hey, Mariama": Hey in coral, name near-black; no wave */
+body.h93:not(.wh115).m3home .h93hd h1,
+body.h93:not(.wh115).m3home .h93hd.home h1,
+body.h93:not(.wh115).m3home .h93hd h1.m3hey{
+  font-size:27px!important;
+  font-weight:700!important;
+  letter-spacing:-.03em!important;
+  line-height:1.15;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  margin:0
+}
+body.h93:not(.wh115).m3home .h93hd h1 .m3hey-a{
+  color:var(--co)!important;
+  font-weight:700
+}
+body.h93:not(.wh115).m3home .h93hd h1 .m3hey-n{
+  color:#1A1A1A!important;
+  font-weight:700
+}
+body.h93:not(.wh115).m3home .h93hd .wv{
+  display:none!important
+}
+body.gdark.h93:not(.wh115).m3home .h93hd h1 .m3hey-a{
+  color:var(--co)!important
+}
+body.gdark.h93:not(.wh115).m3home .h93hd h1 .m3hey-n,
+body.gdark.h93:not(.wh115).m3home .h93hd h1{
+  color:#F2ECE6!important
+}
+
+
+/* 10. Scheduled events are individual rounded cards (live/v118.7.1 inner rows)
+   inside the later elevated outer frame. */
+body.h93:not(.wh115).m3home .h93home .h92sch .q-st{
+  margin-bottom:10px!important
+}
+body.h93:not(.wh115).m3home .h93home .h92sch .h92er{
+  background:#fff!important;
+  border:1px solid #EDEDED!important;
+  box-shadow:none!important;
+  border-radius:16px!important;
+  margin-bottom:10px!important;
+  padding:8px 10px!important
+}
+body.h93:not(.wh115).m3home .h93home .h92sch .h92er:last-child{
+  margin-bottom:0!important;
+  border-bottom:1px solid #EDEDED!important
+}
+body.h93:not(.wh115).m3home .h93home .h92sch .h92empty{
+  padding:16px 0 8px!important;
+  color:#9A9A9A!important;
+  font-size:15px!important;
+  font-weight:400!important
+}
+body.gdark.h93:not(.wh115).m3home .h93home .h92sch .h92er{
+  background:#161616!important;
+  border-color:#2A2A2A!important;
+  box-shadow:none!important
+}
+body.gdark.h93:not(.wh115).m3home .h93home .h92sch .h92empty{
+  color:#8A8A8A!important
+}
+
+
+/* 11. Step 7: elevated Hour-like tiles on Scheduled, goals, to-dos, workout, habits */
+body.h93:not(.wh115).m3home .h93home .h92sch,
+body.h93:not(.wh115).m3home .h93home .h95goals,
+body.h93:not(.wh115).m3home .h93home .h94todo,
+body.h93:not(.wh115).m3home .h93home .h95wo,
+body.h93:not(.wh115).m3home .h93home .h114hab{
+  background:linear-gradient(180deg,#FFFFFF 0%,#FBFAF9 100%)!important;
+  border:1px solid #E6E3E0!important;
+  border-radius:28px!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 8px 24px rgba(0,0,0,.06),0 2px 6px rgba(0,0,0,.04)!important;
+  padding:22px!important
+}
+body.h93:not(.wh115).m3home .h93home > .h93r,
+body.h93:not(.wh115).m3home .h93home .h114wid,
+body.h93:not(.wh115).m3home .h93home .h93wid,
+body.h93:not(.wh115).m3home .h93home{
+  overflow:visible!important
+}
+body.gdark.h93:not(.wh115).m3home .h93home .h92sch,
+body.gdark.h93:not(.wh115).m3home .h93home .h95goals,
+body.gdark.h93:not(.wh115).m3home .h93home .h94todo,
+body.gdark.h93:not(.wh115).m3home .h93home .h95wo,
+body.gdark.h93:not(.wh115).m3home .h93home .h114hab{
+  background:linear-gradient(180deg,#1C1C1C 0%,#161616 100%)!important;
+  border-color:#2A2A2A!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 8px 24px rgba(0,0,0,.4),0 2px 6px rgba(0,0,0,.25)!important
+}
+
+
+/* 12. Step 7b: keep the selected month pill visible in the elevated goals card */
+body.h93:not(.wh115).m3home .h93home .h95goals .h1187mrow{
+  margin-left:0;
+  margin-right:0;
+  padding-left:2px;
+  padding-right:2px;
+  overflow-x:auto;
+  overflow-y:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 12px,#000 calc(100% - 12px),transparent 100%);
+  mask-image:linear-gradient(90deg,transparent 0,#000 12px,#000 calc(100% - 12px),transparent 100%)
 }
 
 }
@@ -8935,7 +9096,7 @@ h93Head=function(){
   function life(){return document.body&&document.body.classList.contains('h93')&&!document.body.classList.contains('wh115')}
   function view(){try{if(typeof S==='object'&&S.view)return S.view}catch(e){}return (location.hash||'#home').replace('#','')||'home'}
   function onHome(){return isPhone()&&life()&&view()==='home'}
-  var M3={w:0};
+  var M3={w:0,day:null};
   function isoOf(d){
     if(typeof iso==='function')return iso(d);
     return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
@@ -8944,6 +9105,62 @@ h93Head=function(){
     var d=(typeof dO==='function')?dO(isoDay):new Date(String(isoDay)+'T12:00:00');
     var back=(d.getDay()+6)%7;
     return isoOf(new Date(d.getFullYear(),d.getMonth(),d.getDate()-back));
+  }
+  function todayIso(){return (typeof TODAY!=='undefined')?TODAY:isoOf(new Date())}
+  function selectedDay(){return M3.day||todayIso()}
+  function dayTitle(d){
+    if(d===todayIso())return 'Today';
+    if(typeof h92D==='function')return h92D(d);
+    var dt=(typeof dO==='function')?dO(d):new Date(d+'T12:00:00');
+    var days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    var mons=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    return days[dt.getDay()]+' '+dt.getDate()+' '+mons[dt.getMonth()];
+  }
+  function escTxt(s){return (typeof esc==='function')?esc(s):String(s==null?'':s).replace(/[&<>"]/g,function(c){return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])})}
+  function whenLine(i){
+    if(typeof h92When==='function'){
+      var s=h92When(i);
+      if(i.end!=null)s+=' – '+((typeof shortT==='function')?shortT(i.end):String(i.end));
+      return s;
+    }
+    var day=i.date===todayIso()?'Today':(typeof addD==='function'&&i.date===addD(todayIso(),1)?'Tomorrow':(typeof h92D==='function'?h92D(i.date):(i.date||'')));
+    if(i.start==null)return day;
+    var a=(typeof shortT==='function')?shortT(i.start):String(i.start);
+    if(i.end!=null)a+=' – '+((typeof shortT==='function')?shortT(i.end):String(i.end));
+    return day+' · '+a;
+  }
+  function itemsFor(d){
+    var list=[];
+    if(typeof h92Day==='function')list=h92Day(d)||[];
+    else if(typeof dayItems==='function')list=dayItems(d)||[];
+    return list.slice();
+  }
+  function schInner(){
+    var d=selectedDay();
+    var items=itemsFor(d);
+    var title=dayTitle(d);
+    var rows;
+    if(!items.length){
+      rows='<div class="h92empty">Nothing planned</div>';
+    }else{
+      rows=items.map(function(i){
+        var c=(typeof CAT==='object'&&CAT[i.cat])?CAT[i.cat]:{color:'#9A9A9A',label:i.cat||''};
+        var when=whenLine(i);
+        var ic=(typeof h92ic==='function')?h92ic(i.cat,18):'';
+        var bg=(typeof tint==='function')?tint(c.color,'1F'):'#F5F5F5';
+        return '<div class="h92er" data-a="open" data-id="'+escTxt(i.id)+'">'+
+          '<span class="q-th" style="background:'+bg+';color:'+c.color+'">'+ic+'</span>'+
+          '<span class="q-tx"><b>'+escTxt(i.title)+'</b><small>'+escTxt(when)+'</small></span>'+
+          '<span class="q-tg" style="--c:'+c.color+'">'+escTxt(c.label)+'</span></div>';
+      }).join('');
+    }
+    return '<div class="q-st"><b>'+title+'</b><button type="button" class="q-lnk" data-a="go" data-v="calendar">All</button></div>'+rows;
+  }
+  function paintScheduled(){
+    var el=document.querySelector('.h93home .h93r .h92sch, .h93home .h92sch');
+    if(!el)return;
+    el.classList.add('m3sch');
+    el.innerHTML=schInner();
   }
   function weekInner(){
     var todayIso=(typeof TODAY!=='undefined')?TODAY:isoOf(new Date());
@@ -8958,10 +9175,11 @@ h93Head=function(){
     var chevr=(typeof h92ic==='function')?h92ic('chevr',16):'›';
     var calic=(typeof h92ic==='function')?h92ic('calendar',18):'▦';
     var labs=['M','T','W','T','F','S','S'];
+    var sel=selectedDay();
     var cells=days.map(function(d,i){
       var dt=(typeof dO==='function')?dO(d):new Date(d+'T12:00:00');
       var out=dt.getMonth()!==mon;
-      return '<button class="q-md'+(out?' out':'')+(d===todayIso?' td':'')+'" data-h92="cday" data-v="'+d+'">'+
+      return '<button class="q-md'+(out?' out':'')+(d===sel?' td':'')+'" data-h92="cday" data-v="'+d+'">'+
         '<span class="q-w">'+labs[i]+'</span>'+
         '<span class="m3dn">'+dt.getDate()+'</span></button>';
     }).join('');
@@ -8970,7 +9188,7 @@ h93Head=function(){
         '<button type="button" data-m3="w" data-v="-1" aria-label="Previous week">'+chevl+'</button>'+
         '<b>'+months[mon]+' '+yr+'</b>'+
         '<button type="button" data-m3="w" data-v="1" aria-label="Next week">'+chevr+'</button>'+
-        (M3.w?'<button type="button" class="tdy" data-m3="w" data-v="0">Today</button>':'')+
+        ((M3.w||(M3.day&&M3.day!==todayIso))?'<button type="button" class="tdy" data-m3="w" data-v="0">Today</button>':'')+
       '</div>'+
       '<button type="button" class="m3cal" data-a="go" data-v="calendar" aria-label="Open calendar">'+calic+'</button>'+
       '</div><div class="q-mg m3wk">'+cells+'</div>';
@@ -9006,6 +9224,12 @@ h93Head=function(){
     r.insertBefore(sch, mini.nextSibling);
     r.insertBefore(goals, sch.nextSibling);
   }
+  function paintHey(){
+    var h=document.querySelector('.h93hd h1');
+    if(!h)return;
+    h.classList.add('m3hey');
+    h.innerHTML='<span class="m3hey-a">Hey</span><span class="m3hey-n">, Mariama</span>';
+  }
   function after(){
     var b=document.body;
     if(!b)return;
@@ -9014,10 +9238,26 @@ h93Head=function(){
       return;
     }
     b.classList.add('m3home');
+    paintHey();
     paintWeek();
+    paintScheduled();
     reorderHome();
     var el=document.querySelector('.h93home .h93r .h92mini, .h93home .h92mini');
     if(el)bleedCal(el);
+    alignGoalMonth();
+    if(typeof requestAnimationFrame==='function'){
+      requestAnimationFrame(function(){alignGoalMonth();requestAnimationFrame(alignGoalMonth)});
+    }
+  }
+  function alignGoalMonth(){
+    if(!onHome())return;
+    var row=document.querySelector('.h93home .h95goals .h1187mrow, .h93home .h1187mrow');
+    if(!row)return;
+    var on=row.querySelector('button.on');
+    if(!on)return;
+    var left=on.offsetLeft-(row.clientWidth-on.offsetWidth)/2;
+    var max=Math.max(0,row.scrollWidth-row.clientWidth);
+    row.scrollLeft=Math.max(0,Math.min(max,left));
   }
   var _render=render;
   if(typeof _render==='function'){
@@ -9028,15 +9268,30 @@ h93Head=function(){
     };
   }
   window.addEventListener('click',function(e){
+    if(!onHome())return;
+    var dayBtn=e.target&&e.target.closest&&e.target.closest('.h93home .h92mini [data-h92="cday"]');
+    if(dayBtn){
+      e.preventDefault();
+      e.stopPropagation();
+      if(e.stopImmediatePropagation)e.stopImmediatePropagation();
+      var day=dayBtn.getAttribute('data-v');
+      if(day)M3.day=day;
+      paintWeek();
+      paintScheduled();
+      return;
+    }
     var t=e.target&&e.target.closest&&e.target.closest('[data-m3]');
-    if(!t||!onHome())return;
+    if(!t)return;
     var act=t.getAttribute('data-m3');
     if(act!=='w')return;
     e.preventDefault();
     e.stopPropagation();
+    if(e.stopImmediatePropagation)e.stopImmediatePropagation();
     var v=t.getAttribute('data-v');
-    M3.w=(v==='0')?0:(M3.w||0)+(+v);
+    if(v==='0'){M3.w=0;M3.day=null}
+    else M3.w=(M3.w||0)+(+v);
     paintWeek();
+    paintScheduled();
   },true);
   window.addEventListener('hashchange',function(){try{after()}catch(e){}});
   if(window.matchMedia){
@@ -9048,6 +9303,7 @@ h93Head=function(){
     if(!onHome())return;
     var el=document.querySelector('.h93home .h93r .h92mini, .h93home .h92mini');
     if(el)bleedCal(el);
+    alignGoalMonth();
   });
 })();
 
