@@ -6,6 +6,7 @@
 <meta name="theme-color" content="#FAFAF9">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <!-- v118.7 mock -->
+<!-- v118.7.1 mock -->
 <title>Life’s</title>
 <meta name="apple-mobile-web-app-title" content="Life’s">
 <meta name="application-name" content="Life’s">
@@ -4687,6 +4688,9 @@ body.gdark.h93:not(.wh115) .h1187tdg{
   box-shadow:0 1px 2px rgba(0,0,0,.2),0 10px 28px rgba(0,0,0,.25)!important
 }
 .h1187lib .lbc-t, .h1187lib .lbc-a{display:none!important}
+
+/* v118.7.1: no extra visual chrome; month-row scroll stays inside the pill strip */
+.h1187mrow{scroll-behavior:auto}
 </style>
 </head>
 <body>
@@ -6360,8 +6364,8 @@ function td87Persist(i){if(i.ic||i.pm)return;if(cxIsExtra(i)){cxSaveExtra();retu
   if(i.start==null){keep.start=null;keep.end=null}CXE[i.id]=keep;LS.set("lm.itemedits.v1",CXE)}
 /* checking off a repeating to-do moves it to its next date */
 document.addEventListener("click",function(e){var t=e.target.closest&&e.target.closest('[data-a="toggle"]');if(!t)return;var i=BYID[t.getAttribute("data-id")];
-  if(!i||i.cat!=="todo"||!isRep87(i)||S.done[i.id])return;var nd=nextOcc(i,i.date);if(!nd)return;
-  e.stopPropagation();e.preventDefault();(i.hist=i.hist||[]).push(i.date);if(i.hist.length>60)i.hist=i.hist.slice(-60);i.lastDone=i.date;i.date=nd;td87Persist(i);
+  if(!i||i.cat!=="todo"||!isRep87(i)||S.done[i.id])return;var from=(i.date&&i.date>TODAY)?i.date:TODAY,nd=nextOcc(i,from);if(!nd)return;
+  e.stopPropagation();e.preventDefault();(i.hist=i.hist||[]).push(i.date);if(i.hist.length>60)i.hist=i.hist.slice(-60);i.lastDone=TODAY;i.date=nd;td87Persist(i);
   toast87("Done ✓  Next: "+fdate(nd));render()},true);
 
 function vTodo87(){var k=CAT.todo,show=S.show.todo||"upcoming";
@@ -8204,8 +8208,7 @@ h93Head=function(){
       el.addEventListener("pointerup",end);
       el.addEventListener("pointercancel",function(){armed=0});
     });
-    var pills=document.querySelector('.h1187mrow button.on');
-    if(pills&&pills.scrollIntoView)try{pills.scrollIntoView({inline:"center",block:"nearest",behavior:"instant"})}catch(e){}
+    if(window.h11871AlignMonths)h11871AlignMonths();
   }
 
   document.addEventListener("click",function(e){
@@ -8400,6 +8403,119 @@ h93Head=function(){
   },true);
 
   if(window.h1187){h1187.markWo=h1187MarkWo}
+})();
+
+
+/* ===== v118.7.1: keep scroll on Home (and everywhere) after a tick; don't let stale sync overwrite a fresh tick ===== */
+(function(){
+  function h11871AlignMonths(){
+    document.querySelectorAll(".h1187mrow").forEach(function(row){
+      var on=row.querySelector("button.on");
+      if(!on)return;
+      var left=on.offsetLeft-(row.clientWidth-on.offsetWidth)/2;
+      row.scrollLeft=Math.max(0,left);
+    });
+  }
+  window.h11871AlignMonths=h11871AlignMonths;
+
+  function h11871Snap(){
+    var y=window.pageYOffset||document.documentElement.scrollTop||0;
+    var inner=[];
+    document.querySelectorAll(".h1187hlist, .h1187mrow, .h1187wside").forEach(function(el,i){
+      inner.push({key:(el.className||"")+"@"+i, top:el.scrollTop, left:el.scrollLeft, i:i, cls:el.className});
+    });
+    return {view:S.view, y:y, inner:inner};
+  }
+  function h11871Restore(snap){
+    if(!snap||S.view!==snap.view)return;
+    var go=function(){
+      if(S.view!==snap.view)return;
+      window.scrollTo(0,snap.y);
+      var nodes=document.querySelectorAll(".h1187hlist, .h1187mrow, .h1187wside");
+      snap.inner.forEach(function(s){
+        var el=nodes[s.i];
+        if(!el)return;
+        el.scrollTop=s.top;
+        el.scrollLeft=s.left;
+      });
+    };
+    go();
+    /* One or two frames later is enough for iOS layout after #view is rebuilt.
+       A longer timeout would fight an intentional scrollTo(0,0) after a view change. */
+    if(typeof requestAnimationFrame==="function"){
+      requestAnimationFrame(function(){go();requestAnimationFrame(go)});
+    }else setTimeout(go,0);
+  }
+
+  var _r11871=render;
+  render=function(){
+    var snap=h11871Snap();
+    var r=_r11871.apply(this,arguments);
+    try{h11871AlignMonths()}catch(err){}
+    h11871Restore(snap);
+    return r;
+  };
+
+  /* Remote records must not overwrite a key the user just changed but we have not flushed yet. */
+  if(typeof syStage==="function"){
+    var _syStage=syStage;
+    syStage=function(ch){
+      if(!ch||!ch.length)return;
+      var keep=ch.filter(function(c){
+        var top=typeof syTop==="function"?syTop(c.k):c.k;
+        if(typeof SYDIRTY==="object"&&SYDIRTY[top])return false;
+        var o=typeof SYOUT==="object"&&SYOUT[c.k];
+        if(o&&o.u>c.u)return false;
+        return true;
+      });
+      return _syStage(keep);
+    };
+  }
+  if(typeof syApply==="function"){
+    var _syApply=syApply;
+    syApply=function(){
+      if(SYU&&SYU.pend&&typeof SYDIRTY==="object"){
+        Object.keys(SYU.pend).forEach(function(rk){
+          var top=typeof syTop==="function"?syTop(rk):rk;
+          if(SYDIRTY[top])delete SYU.pend[rk];
+        });
+        if(!Object.keys(SYU.pend).length)SYU.pend=null;
+      }
+      return _syApply.apply(this,arguments);
+    };
+  }
+  /* Flush ticks immediately so an in-flight pull cannot beat the outbound record. */
+  if(typeof syDirty==="function"){
+    var _syDirty=syDirty;
+    syDirty=function(k){
+      if(typeof SYDIRTY==="object")SYDIRTY[k]=1;
+      if(/^lm\.(done|rdone|wlog|rhist)\.v1$/.test(k)&&typeof syFlush==="function"){
+        if(typeof SYU==="object")clearTimeout(SYU.t);
+        syFlush();
+        return;
+      }
+      return _syDirty.apply(this,arguments);
+    };
+  }
+
+  if(window.h1187){h1187.alignMonths=h11871AlignMonths;h1187.snap=h11871Snap;h1187.restore=h11871Restore}
+  /* helpers for tests; also lets Playwright reach IIFE-scoped sync */
+  window.h11871={
+    alignMonths:h11871AlignMonths,
+    testSyncRace:function(id){
+      if(!id)return {err:"no-id"};
+      S.done[id]=true;saveDone();
+      /* Simulate a signed-in tick (syDirty only runs when syOn()). Never calls syRun / the network. */
+      if(typeof SYDIRTY==="object")SYDIRTY["lm.done.v1"]=1;
+      if(typeof SYU==="object")SYU.pend=null;
+      if(typeof syStage==="function")syStage([{k:"lm.done.v1|p:"+encodeURIComponent(id),v:false,u:(typeof syNow==="function"?syNow():Date.now())+1e9,d:false}]);
+      var staged=typeof SYU==="object"&&SYU.pend?Object.keys(SYU.pend):[];
+      if(typeof syApply==="function")syApply();
+      var ls=JSON.parse(localStorage.getItem("lm.done.v1")||"{}");
+      if(typeof SYDIRTY==="object")delete SYDIRTY["lm.done.v1"];
+      return {dirty:true,staged:staged,still:!!S.done[id],ls:!!ls[id]};
+    }
+  };
 })();
 
 render();
