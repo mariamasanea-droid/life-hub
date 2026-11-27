@@ -8,6 +8,7 @@
 <!-- v118.7 mock -->
 <!-- v118.7.1 mock -->
 <!-- vM3 home phone -->
+<!-- vM4day phone Day -->
 <title>Life’s</title>
 <meta name="apple-mobile-web-app-title" content="Life’s">
 <meta name="application-name" content="Life’s">
@@ -5262,6 +5263,614 @@ body.h93:not(.wh115).m3home .h93home .h95goals .h1187mrow{
 }
 
 }
+
+/* vM4day: styles apply on phone Day only (body.m4page is set only on #today)
+   and on phone Home week labels / round checks (.m3home). Other Life pages stay M3b. */
+/* ===== vM4: phone Life pages (non-Home). Desktop and open Duo stay live M3b. ===== */
+/* Checkpoint 1: Calendar and To-dos only (body.m4page). */
+
+@media (max-width:759px){
+
+/* Shared elevated tile — same recipe as M3 Home cards */
+body.h93:not(.wh115).m4page .m4tile,
+body.h93:not(.wh115).m4page .h93cm,
+body.h93:not(.wh115).m4page .h93cal > .h93r > .h92mini,
+body.h93:not(.wh115).m4page .h93cal > .h93r > .h93flt,
+body.h93:not(.wh115).m4page .h93cal > .h93r > .h92sch,
+body.h93:not(.wh115).m4page .td87g > .tds,
+body.h93:not(.wh115).m4page .h96card:not(.h96wo),
+body.h93:not(.wh115).m4page .h98page .h92mini,
+body.h93:not(.wh115).m4page .h98page .h92sch,
+body.h93:not(.wh115).m4page .h98page .h92stats,
+body.h93:not(.wh115).m4page section.card,
+body.h93:not(.wh115).m4page section.pn,
+body.h93:not(.wh115).m4page section.nb-list,
+body.h93:not(.wh115).m4page .h114body,
+body.h93:not(.wh115).m4page .gpanel > .list > .list,
+body.h93:not(.wh115).m4page .gpanel > .list:not(:has(> .list)){
+  background:linear-gradient(180deg,#FFFFFF 0%,#FBFAF9 100%)!important;
+  border:1px solid #E6E3E0!important;
+  border-radius:28px!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 8px 24px rgba(0,0,0,.06),0 2px 6px rgba(0,0,0,.04)!important;
+  padding:22px!important;
+  box-sizing:border-box
+}
+
+/* 1. Full-width white canvas: drop the frosted-glass frame and inset */
+html:has(body.h93:not(.wh115).m4page),
+body.h93:not(.wh115).m4page,
+body.h93:not(.wh115).m4page.glass{
+  background:#fff!important
+}
+body.h93:not(.wh115).m4page.glass::before,
+body.h93:not(.wh115).m4page.glass::after,
+body.h93:not(.wh115).m4page .gl.h94f::before,
+body.h93:not(.wh115).m4page .gl.h94f::after{
+  display:none!important;content:none!important
+}
+body.h93:not(.wh115).m4page.glass .app,
+body.glass.h93:not(.wh115).m4page .app{
+  background:#fff!important;
+  padding:0 0 calc(96px + var(--sab,0px)) 0!important;
+  margin:0!important;max-width:none!important;
+  border:0!important;box-shadow:none!important;border-radius:0!important
+}
+body.h93:not(.wh115).m4page .gl.h94f{
+  padding:0!important;margin:0!important;
+  border:0!important;border-radius:0!important;
+  box-shadow:none!important;
+  background:#fff!important;
+  min-height:calc(calc(100dvh / var(--ui113,1)) - 96px)
+}
+body.h93:not(.wh115).m4page .gmain,
+body.h93:not(.wh115).m4page .gmain>.gpanel,
+body.h93:not(.wh115).m4page .gmain>.gpanel.h93hp,
+body.h93:not(.wh115).m4page .gmain>.h93hd,
+body.h93:not(.wh115).m4page .gmain>.h93hd.h100hd{
+  border-radius:0!important;
+  box-shadow:none!important
+}
+body.h93:not(.wh115).m4page .gmain>.h93hd,
+body.h93:not(.wh115).m4page .gmain>.h93hd.h100hd,
+body.h93:not(.wh115).m4page .gmain>.gpanel,
+body.h93:not(.wh115).m4page .gmain>.gpanel.h93hp{
+  background:#fff!important
+}
+body.h93:not(.wh115).m4page .gmain>.gpanel,
+body.h93:not(.wh115).m4page .gmain>.gpanel.h93hp{
+  padding:8px 16px 24px!important;
+  overflow:visible!important
+}
+body.h93:not(.wh115).m4page .gmain,
+body.h93:not(.wh115).m4page .gpanel>.h93cal,
+body.h93:not(.wh115).m4page .td87g{
+  overflow:visible!important
+}
+
+/* Keep the floating dock a little off the new screen edge */
+body.h93:not(.wh115).m4page .h94f>.h93dock,
+body.h93:not(.wh115).m4page .h93dock{
+  left:8px!important;right:8px!important
+}
+
+/* Dark canvas */
+body.gdark.h93:not(.wh115).m4page,
+body.gdark.h93:not(.wh115).m4page.glass,
+body.gdark.h93:not(.wh115).m4page.glass .app,
+body.gdark.h93:not(.wh115).m4page .gl.h94f,
+body.gdark.h93:not(.wh115).m4page .gmain>.h93hd,
+body.gdark.h93:not(.wh115).m4page .gmain>.gpanel,
+body.gdark.h93:not(.wh115).m4page .gmain>.gpanel.h93hp{
+  background:#000!important
+}
+
+/* 2. System font to match Home (SF Pro on iPhone; box shows a fallback) */
+body.h93:not(.wh115).m4page,
+body.h93:not(.wh115).m4page .h93hd,
+body.h93:not(.wh115).m4page .gpanel,
+body.h93:not(.wh115).m4page .h93dock,
+body.h93:not(.wh115).m4page .h93hd *,
+body.h93:not(.wh115).m4page .gpanel *,
+body.h93:not(.wh115).m4page .h93dock *{
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",system-ui,"Helvetica Neue",Arial,sans-serif!important
+}
+
+/* 3. Calendar: drop the grey side-panel frame; cards sit on the page */
+body.h93:not(.wh115).m4page .h93cal{
+  gap:18px!important
+}
+body.h93:not(.wh115).m4page .h93cal > .h93r,
+body.h93:not(.wh115).m4page .h93cal > .h93r.h114side{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  -webkit-backdrop-filter:none!important;
+  backdrop-filter:none!important;
+  border-radius:0!important;
+  padding:0!important;
+  gap:18px!important;
+  display:flex;
+  flex-direction:column;
+  position:static!important;
+  max-height:none!important;
+  overflow:visible!important
+}
+
+/* 4. To-dos: live M3b already used a cramped 2-col grid (inner ~146px,
+   titles wrapping letter-by-letter). Stack Personal and Home full width
+   on phone only; inner rows stay the same. Cards now use the standard
+   22px frame padding. */
+body.h93:not(.wh115).m4page .td87g{
+  grid-template-columns:minmax(0,1fr)!important;
+  gap:18px!important
+}
+body.h93:not(.wh115).m4page .td87g > .tds,
+body.h93:not(.wh115).m4page .td87g > .tds-personal,
+body.h93:not(.wh115).m4page .td87g > .tds-home,
+body.h93:not(.wh115).m4page .td87g > .h1187tdg{
+  grid-column:1 / -1!important
+}
+
+/* 5. Header matches M3 Home: title left at 27px bold #1A1A1A,
+   heart/laptop + settings right. Search, bell, and sync toggle hidden
+   with CSS only (auto-sync still runs). Hide the stacked title + date
+   subtitle, and the To-dos .phead heading so the name is not shown twice. */
+body.h93:not(.wh115).m4page .gmain>.h93hd,
+body.h93:not(.wh115).m4page .gmain>.h93hd.h100hd{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:8px!important;
+  padding:16px 16px 8px!important;
+  grid-template-columns:none!important;
+  grid-template-areas:none!important
+}
+body.h93:not(.wh115).m4page .h93hd .h93ht,
+body.h93:not(.wh115).m4page .h93hd.h100hd .h93ht{
+  flex:1 1 auto!important;
+  min-width:0!important;
+  grid-area:auto!important;
+  grid-column:auto!important;
+  grid-row:auto!important;
+  order:0!important;
+  justify-self:start!important
+}
+body.h93:not(.wh115).m4page .h93hd .h93mid,
+body.h93:not(.wh115).m4page .h93hd.h100hd .h93mid{
+  flex:none!important;
+  width:auto!important;
+  grid-area:auto!important;
+  order:0!important;
+  justify-self:end!important
+}
+body.h93:not(.wh115).m4page .h93hd .h93act,
+body.h93:not(.wh115).m4page .h93hd.h100hd .h93act{
+  flex:none!important;
+  grid-area:auto!important;
+  order:0!important;
+  justify-self:end!important;
+  gap:6px
+}
+body.h93:not(.wh115).m4page .h93hd .h92s,
+body.h93:not(.wh115).m4page .h93hd .gsearch,
+body.h93:not(.wh115).m4page .h93hd.h100hd .h92s{
+  display:none!important
+}
+body.h93:not(.wh115).m4page .h93hd .h93act [aria-label="Overdue"],
+body.h93:not(.wh115).m4page .h93hd .h93act .h92tg{
+  display:none!important
+}
+body.h93:not(.wh115).m4page .h93hd .h93ht p,
+body.h93:not(.wh115).m4page .h93hd h1 + p,
+body.h93:not(.wh115).m4page .h93hd .wv{
+  display:none!important
+}
+body.h93:not(.wh115).m4page .phead .h1,
+body.h93:not(.wh115).m4page .m4dup{
+  display:none!important
+}
+body.h93:not(.wh115).m4page .h93hd h1{
+  font-size:27px!important;
+  font-weight:700!important;
+  letter-spacing:-.03em!important;
+  line-height:1.15;
+  color:#1A1A1A!important;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  margin:0
+}
+body.gdark.h93:not(.wh115).m4page .h93hd h1{
+  color:#F2ECE6!important
+}
+
+/* Dark elevated tiles */
+body.gdark.h93:not(.wh115).m4page .h93cm,
+body.gdark.h93:not(.wh115).m4page .h93cal > .h93r > .h92mini,
+body.gdark.h93:not(.wh115).m4page .h93cal > .h93r > .h93flt,
+body.gdark.h93:not(.wh115).m4page .h93cal > .h93r > .h92sch,
+body.gdark.h93:not(.wh115).m4page .td87g > .tds,
+body.gdark.h93:not(.wh115).m4page .h96card:not(.h96wo),
+body.gdark.h93:not(.wh115).m4page .h98page .h92mini,
+body.gdark.h93:not(.wh115).m4page .h98page .h92sch,
+body.gdark.h93:not(.wh115).m4page .h98page .h92stats,
+body.gdark.h93:not(.wh115).m4page section.card,
+body.gdark.h93:not(.wh115).m4page section.pn,
+body.gdark.h93:not(.wh115).m4page section.nb-list,
+body.gdark.h93:not(.wh115).m4page .h114body,
+body.gdark.h93:not(.wh115).m4page .gpanel > .list > .list,
+body.gdark.h93:not(.wh115).m4page .gpanel > .list:not(:has(> .list)),
+body.gdark.h93:not(.wh115).m4set .cx-set > section{
+  background:linear-gradient(180deg,#1C1C1C 0%,#161616 100%)!important;
+  border-color:#2A2A2A!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 8px 24px rgba(0,0,0,.4),0 2px 6px rgba(0,0,0,.25)!important
+}
+
+
+/* 6. Remaining Life pages: unwrap grey panels, flatten leftover shells,
+      keep page chrome (day strip, stats, filters, intros) unframed. */
+body.h93:not(.wh115).m4page .h98page > .h93r,
+body.h93:not(.wh115).m4page .h1187wside,
+body.h93:not(.wh115).m4page aside.h93r.h114side,
+body.h93:not(.wh115).m4page .h114side{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  -webkit-backdrop-filter:none!important;
+  backdrop-filter:none!important;
+  border-radius:0!important;
+  padding:0!important;
+  gap:18px!important;
+  display:flex;
+  flex-direction:column;
+  position:static!important;
+  max-height:none!important;
+  overflow:visible!important
+}
+body.h93:not(.wh115).m4page .shell,
+body.h93:not(.wh115).m4page .today2,
+body.h93:not(.wh115).m4page .cx-page,
+body.h93:not(.wh115).m4page .nbpage,
+body.h93:not(.wh115).m4page .lbp,
+body.h93:not(.wh115).m4page .wkt{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  border-radius:0!important
+}
+body.h93:not(.wh115).m4page .shell{
+  padding:0!important;
+  gap:18px!important
+}
+body.h93:not(.wh115).m4page .h98page,
+body.h93:not(.wh115).m4page .h98main,
+body.h93:not(.wh115).m4page .h98grid,
+body.h93:not(.wh115).m4page .h1187wk,
+body.h93:not(.wh115).m4page .grid2{
+  gap:18px!important
+}
+/* Day rest-day card keeps its coral fill; only the frame metrics change */
+body.h93:not(.wh115).m4page .h96card.h96wo{
+  border-radius:28px!important;
+  box-shadow:0 8px 24px rgba(0,0,0,.06),0 2px 6px rgba(0,0,0,.04)!important;
+  padding:22px!important;
+  box-sizing:border-box
+}
+/* Body goals: one outer frame, do not nest a second card on the chart */
+body.h93:not(.wh115).m4page .h114body .h93chart,
+body.h93:not(.wh115).m4page .h114body .h92stats{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  border-radius:0!important
+}
+
+/* 7. Settings sheet (m4set): full-bleed white page, elevated sections,
+      title styled like the Home header. Close button stays. */
+body.h93:not(.wh115).m4set .cx-ov{
+  background:#fff!important
+}
+body.h93:not(.wh115).m4set .cx-set{
+  left:0!important;right:0!important;top:0!important;bottom:0!important;
+  transform:none!important;
+  width:100%!important;height:100%!important;max-width:none!important;
+  max-height:none!important;margin:0!important;
+  border-radius:0!important;border:0!important;
+  box-shadow:none!important;
+  background:#fff!important;
+  padding:16px 16px 24px!important;
+  overflow:auto!important
+}
+body.h93:not(.wh115).m4set .cx-set,
+body.h93:not(.wh115).m4set .cx-set *{
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",system-ui,"Helvetica Neue",Arial,sans-serif!important
+}
+body.h93:not(.wh115).m4set .cx-set .cx-sh{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:8px!important;
+  padding:0 0 12px!important;
+  margin:0 0 6px!important
+}
+body.h93:not(.wh115).m4set .cx-set .cx-sh .hpill,
+body.h93:not(.wh115).m4set .cx-set .cx-sh > span:not(.ib){
+  font-size:27px!important;
+  font-weight:700!important;
+  letter-spacing:-.03em!important;
+  line-height:1.15;
+  color:#1A1A1A!important;
+  background:transparent!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  text-transform:none!important
+}
+body.h93:not(.wh115).m4set .cx-set > section{
+  background:linear-gradient(180deg,#FFFFFF 0%,#FBFAF9 100%)!important;
+  border:1px solid #E6E3E0!important;
+  border-radius:28px!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 8px 24px rgba(0,0,0,.06),0 2px 6px rgba(0,0,0,.04)!important;
+  padding:22px!important;
+  box-sizing:border-box;
+  margin:0 0 18px!important
+}
+body.gdark.h93:not(.wh115).m4set,
+body.gdark.h93:not(.wh115).m4set .cx-ov,
+body.gdark.h93:not(.wh115).m4set .cx-set{
+  background:#000!important
+}
+body.gdark.h93:not(.wh115).m4set .cx-set .cx-sh .hpill,
+body.gdark.h93:not(.wh115).m4set .cx-set .cx-sh > span:not(.ib){
+  color:#F2ECE6!important
+}
+
+
+
+/* 8. Day page week row: same as Home, no month-header / calendar icon.
+      Sits above the ‹ Today › strip (kept: week row cannot change weeks
+      or pick an arbitrary date). */
+body.h93:not(.wh115).m4page .h98page > .m4week{
+  grid-column:1 / -1;
+  width:calc(100vw / var(--ui113, 1))!important;
+  max-width:calc(100vw / var(--ui113, 1))!important;
+  margin-left:calc(50% - (100vw / var(--ui113, 1) / 2))!important;
+  margin-right:calc(50% - (100vw / var(--ui113, 1) / 2))!important;
+  box-sizing:border-box!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  border-radius:0!important;
+  padding:20px 20px 10px!important
+}
+body.h93:not(.wh115).m4page .h98page > .m4week .q-mg,
+body.h93:not(.wh115).m4page .h98page > .m4week .m3wk{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:0;
+  width:100%;
+  box-sizing:border-box;
+  padding:0
+}
+body.h93:not(.wh115).m4page .h98page > .m4week .q-md,
+body.h93:not(.wh115).m4page .h98page > .m4week .q-md:hover{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  border-radius:0!important;
+  padding:0!important;
+  min-height:0;
+  gap:20px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-start
+}
+body.h93:not(.wh115).m4page .h98page > .m4week .q-md .q-w{
+  font-family:inherit;
+  font-size:14px!important;
+  font-weight:400!important;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  opacity:1;
+  color:#A0A0A0!important;
+  padding:0;
+  line-height:1
+}
+body.h93:not(.wh115).m4page .h98page > .m4week .q-md .m3dn{
+  width:calc(34px / var(--ui113, 1));
+  height:calc(34px / var(--ui113, 1));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:inherit;
+  font-size:16px;
+  font-weight:400;
+  line-height:1;
+  color:#333;
+  background:none;
+  border-radius:0
+}
+body.h93:not(.wh115).m4page .h98page > .m4week .q-md.td span{
+  background:none;
+  color:inherit;
+  width:auto;
+  height:auto;
+  border-radius:0
+}
+body.h93:not(.wh115).m4page .h98page > .m4week .q-md.td .m3dn{
+  background:var(--co)!important;
+  color:#fff!important;
+  font-weight:400;
+  border-radius:50%!important;
+  width:calc(34px / var(--ui113, 1));
+  height:calc(34px / var(--ui113, 1))
+}
+body.h93:not(.wh115).m4page .h98page > .m4week .q-md i{
+  display:none!important
+}
+body.h93:not(.wh115).m4page .h98page > .m4week .q-md.out{
+  opacity:.35
+}
+body.gdark.h93:not(.wh115).m4page .h98page > .m4week .q-md .q-w,
+body.gdark.h93:not(.wh115).m4page .h98page > .m4week .q-md .m3dn{
+  color:#F2ECE6
+}
+body.gdark.h93:not(.wh115).m4page .h98page > .m4week .q-md.td .m3dn{
+  color:#fff
+}
+
+
+
+/* 9. Day page: one header row — switch left, ‹ November 2026 › centered,
+      gear right. Hide the ‹ Today › date strip. Calendar icon dropped
+      (dock already has Calendar). A small Today chip sits under the
+      header only when you've left today. */
+body.h93:not(.wh115).m4page.m4day .gmain>.h93hd,
+body.h93:not(.wh115).m4page.m4day .gmain>.h93hd.h100hd{
+  display:grid!important;
+  grid-template-columns:1fr auto 1fr!important;
+  grid-template-areas:none!important;
+  align-items:center!important;
+  justify-content:initial!important;
+  gap:8px!important;
+  padding:16px 16px 8px!important
+}
+body.h93:not(.wh115).m4page.m4day .h93hd .h93ht,
+body.h93:not(.wh115).m4page.m4day .h93hd h1,
+body.h93:not(.wh115).m4page.m4day .h98page > .h98day{
+  display:none!important
+}
+body.h93:not(.wh115).m4page.m4day .gmain>.gpanel,
+body.h93:not(.wh115).m4page.m4day .gmain>.gpanel.h93hp{
+  padding-top:0!important
+}
+body.h93:not(.wh115).m4page.m4day .h93hd > :not(.h93mid):not(.h93act):not(.m4mh){
+  display:none!important
+}
+body.h93:not(.wh115).m4page.m4day .h93hd .h93mid,
+body.h93:not(.wh115).m4page.m4day .h93hd.h100hd .h93mid{
+  grid-area:1 / 1 / 2 / 2!important;
+  justify-self:start!important;
+  width:auto!important;
+  flex:none!important;
+  z-index:2
+}
+body.h93:not(.wh115).m4page.m4day .h93hd .h93act,
+body.h93:not(.wh115).m4page.m4day .h93hd.h100hd .h93act{
+  grid-area:1 / 3 / 2 / 4!important;
+  justify-self:end!important;
+  flex:none!important;
+  z-index:2
+}
+body.h93:not(.wh115).m4page.m4day .h93hd .m4mh{
+  grid-area:1 / 2 / 2 / 3!important;
+  justify-self:center!important;
+  min-width:0;
+  z-index:1
+}
+body.h93:not(.wh115).m4page.m4day .h93hd .m4mh .m3mt{
+  display:flex;
+  align-items:center;
+  gap:2px;
+  min-width:0
+}
+body.h93:not(.wh115).m4page.m4day .h93hd .m4mh .m3mt b{
+  font-family:inherit;
+  font-size:15px;
+  font-weight:500;
+  color:#333;
+  padding:0 4px;
+  white-space:nowrap
+}
+body.h93:not(.wh115).m4page.m4day .h93hd .m4mh .m3mt button{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  width:28px;
+  height:28px;
+  padding:0;
+  border-radius:0;
+  color:#2A2420;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  flex:none
+}
+body.gdark.h93:not(.wh115).m4page.m4day .h93hd .m4mh .m3mt b,
+body.gdark.h93:not(.wh115).m4page.m4day .h93hd .m4mh .m3mt button{
+  color:#F2ECE6
+}
+body.h93:not(.wh115).m4page .h98page > .m4week .m4today{
+  display:flex;
+  justify-content:center;
+  padding:2px 0 8px
+}
+body.h93:not(.wh115).m4page .h98page > .m4week .m4today .tdy{
+  width:auto;
+  height:24px;
+  padding:0 10px;
+  border:0!important;
+  box-shadow:none!important;
+  border-radius:99px;
+  background:rgba(239,111,94,.12);
+  font-size:12px;
+  font-weight:700;
+  color:var(--co);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center
+}
+
+/* 10. Day card title highlight: pale solid tint, full line height,
+      flat 3px-radius rectangle, 4px horizontal padding. Workout skipped. */
+body.h93:not(.wh115).m4page.m4day .h96card:not(.h96wo) .q-ch > b .m4hl{
+  display:inline;
+  padding:0 4px;
+  color:inherit;
+  background:var(--m4hl);
+  background-image:none;
+  border-radius:3px;
+  -webkit-box-decoration-break:clone;
+  box-decoration-break:clone
+}
+
+/* 10b. Day list rows: regular weight like Home. Titles and Overdue stay as-is. */
+body.h93:not(.wh115).m4page.m4day .h96card:not(.h96wo) .h92tr .q-t,
+body.h93:not(.wh115).m4page.m4day .h96card:not(.h96wo) .h96nl button > b{
+  font-weight:400!important
+}
+
+/* 11. Round checkboxes on phone Home (M3) and all M4 pages.
+      Radius only — size, colour, tick, hit area unchanged. */
+body.h93:not(.wh115).m3home .check,
+body.h93:not(.wh115).m3home .h92gl button i,
+body.h93:not(.wh115).m4page .check,
+body.h93:not(.wh115).m4page .h92gl button i{
+  border-radius:50%!important
+}
+
+/* 12. Phone Home + Day week labels: two letters, airy gap above the numbers.
+      Phone Home only (.m3home); desktop / open Duo stay untouched. */
+body.h93:not(.wh115).m3home .h93home .h92mini .q-md,
+body.h93:not(.wh115).m3home .h93r .h92mini .q-md,
+body.h93:not(.wh115).m3home .h93home .h92mini .q-md:hover,
+body.h93:not(.wh115).m3home .h93r .h92mini .q-md:hover{
+  gap:20px!important
+}
+body.h93:not(.wh115).m3home .h93home .h92mini .q-md .q-w,
+body.h93:not(.wh115).m3home .h93r .h92mini .q-md .q-w{
+  font-family:inherit;
+  font-size:14px!important;
+  font-weight:400!important;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  opacity:1;
+  color:#A0A0A0!important;
+  padding:0;
+  line-height:1
+}
 </style>
 </head>
 <body>
@@ -9304,6 +9913,292 @@ h93Head=function(){
     var el=document.querySelector('.h93home .h93r .h92mini, .h93home .h92mini');
     if(el)bleedCal(el);
     alignGoalMonth();
+  });
+})();
+
+/* vM4day: phone Day page only, plus Home week labels and round checks.
+   Full M4 (all pages) stays in pM4.js / mockM4-glass.html. */
+(function m4DayOnly(){
+  if(window.__m4dayonly)return;window.__m4dayonly=1;
+  function isPhone(){return window.innerWidth<=759}
+  function life(){return document.body&&document.body.classList.contains('h93')&&!document.body.classList.contains('wh115')}
+  function view(){try{if(typeof S==='object'&&S.view)return S.view}catch(e){}return (location.hash||'#home').replace('#','')||'home'}
+  function settingsOpen(){
+    try{if(typeof CXU==='object'&&CXU.set)return true}catch(e){}
+    var el=document.querySelector('.cx-set');
+    if(!el)return false;
+    var s=getComputedStyle(el);
+    return s.display!=='none'&&s.visibility!=='hidden'&&s.opacity!=='0';
+  }
+  function onM4(){return isPhone()&&life()&&view()==='today'}
+  function hideDupTitle(){
+    var h=document.querySelector('.h93hd h1');
+    var t=h?String(h.textContent||'').trim().toLowerCase():'';
+    var nodes=document.querySelectorAll('.phead .h1, .ch-head .h1');
+    for(var i=0;i<nodes.length;i++){
+      var el=nodes[i];
+      var same=t&&String(el.textContent||'').trim().toLowerCase()===t;
+      if(same)el.classList.add('m4dup');
+      else el.classList.remove('m4dup');
+    }
+  }
+  function paintSettingsTitle(on){
+    var pill=document.querySelector('.cx-set .cx-sh .hpill, .cx-set .cx-sh > span');
+    if(!pill)return;
+    if(on){
+      if(!pill.getAttribute('data-m4t'))pill.setAttribute('data-m4t',pill.textContent);
+      if(/^\s*settings\s*$/i.test(pill.textContent))pill.textContent='Settings';
+    }else if(pill.getAttribute('data-m4t')){
+      pill.textContent=pill.getAttribute('data-m4t');
+      pill.removeAttribute('data-m4t');
+    }
+  }
+  var DW={w:0,lastSel:null};
+  function isoOf(d){
+    if(typeof iso==='function')return iso(d);
+    return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+  }
+  function weekStart(isoDay){
+    var d=(typeof dO==='function')?dO(isoDay):new Date(String(isoDay)+'T12:00:00');
+    var back=(d.getDay()+6)%7;
+    return isoOf(new Date(d.getFullYear(),d.getMonth(),d.getDate()-back));
+  }
+  function todayIso(){return (typeof TODAY!=='undefined')?TODAY:isoOf(new Date())}
+  function selDay(){return (typeof h96Sel==='function')?h96Sel():((typeof H96==='object'&&H96.d)||todayIso())}
+  function onDayPage(){return isPhone()&&life()&&view()==='today'}
+  function onHome(){return isPhone()&&life()&&view()==='home'}
+  function paintWeekLabs(){
+    if(!isPhone()||!life())return;
+    var labs=['MO','TU','WE','TH','FR','SA','SU'];
+    var roots=[],d,h,i,els,root;
+    if(onDayPage()){
+      d=document.querySelector('.h98page > .m4week');
+      if(d)roots.push(d);
+    }
+    if(onHome()){
+      h=document.querySelector('.h93home .h92mini.m3week')||document.querySelector('.h93home .h92mini');
+      if(h)roots.push(h);
+    }
+    for(i=0;i<roots.length;i++){
+      root=roots[i];
+      els=root.querySelectorAll('.q-md .q-w');
+      for(var j=0;j<els.length&&j<7;j++)els[j].textContent=labs[j];
+    }
+  }
+  function weekOffsetOf(isoDay){
+    var a=weekStart(todayIso()), b=weekStart(isoDay);
+    var da=(typeof dO==='function')?dO(a):new Date(a+'T12:00:00');
+    var db=(typeof dO==='function')?dO(b):new Date(b+'T12:00:00');
+    return Math.round((db-da)/(7*24*3600*1000));
+  }
+  function weekInfo(){
+    var today=todayIso();
+    var anchor=(typeof addD==='function')?addD(today,(DW.w||0)*7):today;
+    var start=weekStart(anchor);
+    var days=[],i;
+    for(i=0;i<7;i++)days.push((typeof addD==='function')?addD(start,i):start);
+    var mid=(typeof dO==='function')?dO(days[3]):new Date(days[3]+'T12:00:00');
+    var mon=mid.getMonth(),yr=mid.getFullYear();
+    var sel=selDay();
+    var away=!!(DW.w||(sel&&sel!==today));
+    return {today:today,days:days,mon:mon,yr:yr,sel:sel,away:away};
+  }
+  function dayMonthInner(info){
+    info=info||weekInfo();
+    var months=(typeof MONTHS!=='undefined')?MONTHS:['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var chevl=(typeof h92ic==='function')?h92ic('chevl',16):'‹';
+    var chevr=(typeof h92ic==='function')?h92ic('chevr',16):'›';
+    return '<div class="m3mt">'+
+      '<button type="button" data-m4="w" data-v="-1" aria-label="Previous week">'+chevl+'</button>'+
+      '<b>'+months[info.mon]+' '+info.yr+'</b>'+
+      '<button type="button" data-m4="w" data-v="1" aria-label="Next week">'+chevr+'</button>'+
+    '</div>';
+  }
+  function dayWeekInner(info){
+    info=info||weekInfo();
+    var labs=['MO','TU','WE','TH','FR','SA','SU'];
+    var cells=info.days.map(function(d,i){
+      var dt=(typeof dO==='function')?dO(d):new Date(d+'T12:00:00');
+      var out=dt.getMonth()!==info.mon;
+      return '<button type="button" class="q-md'+(out?' out':'')+(d===info.sel?' td':'')+'" data-m4="cday" data-v="'+d+'">'+
+        '<span class="q-w">'+labs[i]+'</span>'+
+        '<span class="m3dn">'+dt.getDate()+'</span></button>';
+    }).join('');
+    var chip=info.away?'<div class="m4today"><button type="button" class="tdy" data-m4="w" data-v="0">Today</button></div>':'';
+    return chip+'<div class="q-mg m3wk">'+cells+'</div>';
+  }
+  function clearDayHead(){
+    var mh=document.querySelector('.h93hd > .m4mh');
+    if(mh)mh.remove();
+  }
+  function bleedDayWeek(el){
+    if(!el||!onDayPage())return;
+    var app=document.querySelector('.app');
+    var z=parseFloat(getComputedStyle(app||document.body).zoom)||1;
+    el.style.width=(window.innerWidth/z)+'px';
+    el.style.maxWidth=(window.innerWidth/z)+'px';
+    el.style.marginLeft='0px';
+    el.style.marginRight='0px';
+    var r=el.getBoundingClientRect();
+    el.style.marginLeft=((-r.left)/z)+'px';
+  }
+  function paintDayWeek(){
+    if(!onDayPage()){clearDayHead();return;}
+    var page=document.querySelector('.h98page');
+    if(!page)return;
+    var sel=selDay();
+    if(DW.lastSel && DW.lastSel!==sel){
+      var vis=weekStart((typeof addD==='function')?addD(todayIso(),(DW.w||0)*7):todayIso());
+      if(weekStart(sel)!==vis) DW.w=weekOffsetOf(sel);
+    }
+    DW.lastSel=sel;
+    var row=page.querySelector(':scope > .m4week');
+    if(!row){
+      row=document.createElement('div');
+      row.className='m4week';
+      var strip=page.querySelector(':scope > .h98day');
+      if(strip)page.insertBefore(row,strip);
+      else page.insertBefore(row,page.firstChild);
+    }
+    var info=weekInfo();
+    var hd=document.querySelector('.gmain > .h93hd')||document.querySelector('.h93hd');
+    if(hd){
+      var mh=hd.querySelector(':scope > .m4mh');
+      if(!mh){
+        mh=document.createElement('div');
+        mh.className='m4mh';
+        hd.appendChild(mh);
+      }
+      mh.innerHTML=dayMonthInner(info);
+    }
+    row.innerHTML=dayWeekInner(info);
+    bleedDayWeek(row);
+  }
+  function hlRgba(c){
+    c=String(c||'').trim();
+    var m=c.match(/^#([0-9a-f]{6})$/i);
+    if(m){
+      var n=parseInt(m[1],16);
+      return 'rgba('+(n>>16&255)+','+(n>>8&255)+','+(n&255)+',.13)';
+    }
+    var m2=c.match(/^rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/);
+    if(m2)return 'rgba('+m2[1]+','+m2[2]+','+m2[3]+',.13)';
+    return '';
+  }
+  function cardFolderColor(card){
+    var pb=card.querySelector('.h96pb, [style*="--c"]');
+    if(pb){
+      var st=pb.getAttribute('style')||'';
+      var m=st.match(/--c:\s*([^;]+)/);
+      if(m)return m[1].trim();
+      if(typeof getComputedStyle==='function'){
+        var v=getComputedStyle(pb).getPropertyValue('--c');
+        if(v&&v.trim())return v.trim();
+      }
+    }
+    try{
+      if(typeof CAT==='object'){
+        if(card.classList.contains('h96td')&&CAT.todo)return CAT.todo.color;
+        if(card.classList.contains('h97rt')&&CAT.routine)return CAT.routine.color;
+        if(card.classList.contains('h96bd')&&CAT.errand)return CAT.errand.color;
+        if(card.classList.contains('h96fi')&&CAT.budget)return CAT.budget.color;
+      }
+    }catch(e){}
+    if(card.classList.contains('h96qn'))return '#A97CD6';
+    if(card.classList.contains('h96lib')||card.classList.contains('h1187lib'))return '#C98B5A';
+    return '';
+  }
+  function paintHighlights(){
+    if(!onDayPage())return;
+    var cards=document.querySelectorAll('.h98page .h96card:not(.h96wo)');
+    for(var i=0;i<cards.length;i++){
+      var card=cards[i];
+      var b=card.querySelector('.q-ch > b');
+      if(!b)continue;
+      if(b.querySelector('.m4hl'))continue;
+      var col=hlRgba(cardFolderColor(card));
+      if(!col)continue;
+      var span=document.createElement('span');
+      span.className='m4hl';
+      span.style.setProperty('--m4hl',col);
+      while(b.firstChild)span.appendChild(b.firstChild);
+      b.appendChild(span);
+    }
+  }
+  function after(){
+    var b=document.body;
+    if(!b)return;
+    if(onM4())b.classList.add('m4page');
+    else b.classList.remove('m4page');
+    var set=onM4()&&settingsOpen();
+    if(set)b.classList.add('m4set');
+    else b.classList.remove('m4set');
+    if(onDayPage())b.classList.add('m4day');
+    else b.classList.remove('m4day');
+    try{if(b.classList.contains('m4page'))hideDupTitle()}catch(e){}
+    try{paintSettingsTitle(set)}catch(e){}
+    try{if(onDayPage()){paintDayWeek();paintHighlights()}else clearDayHead()}catch(e){}
+    try{paintWeekLabs()}catch(e){}
+  }
+  var _render=render;
+  if(typeof _render==='function'){
+    render=function(){
+      var r=_render.apply(this,arguments);
+      try{after()}catch(e){console.warn('m4After',e)}
+      return r;
+    };
+  }
+  window.addEventListener('hashchange',function(){try{after()}catch(e){}});
+  document.addEventListener('click',function(){
+    if(typeof requestAnimationFrame==='function')requestAnimationFrame(function(){try{after()}catch(e){}});
+    else setTimeout(function(){try{after()}catch(e){}},0);
+  },true);
+  if(window.matchMedia){
+    var mq=window.matchMedia('(max-width:759px)');
+    var onq=function(){if(typeof render==='function')render()};
+    if(mq.addEventListener)mq.addEventListener('change',onq);else if(mq.addListener)mq.addListener(onq);
+  }
+  function keepScroll(fn){
+    var x=window.scrollX||0, y=window.scrollY||0;
+    fn();
+    var restore=function(){try{window.scrollTo(x,y)}catch(err){}};
+    restore();
+    if(typeof requestAnimationFrame==='function'){
+      requestAnimationFrame(function(){restore();requestAnimationFrame(restore)});
+    }
+  }
+  window.addEventListener('click',function(e){
+    if(!onDayPage())return;
+    var dayBtn=e.target&&e.target.closest&&e.target.closest('.m4week [data-m4="cday"]');
+    if(dayBtn){
+      e.preventDefault();
+      e.stopPropagation();
+      if(e.stopImmediatePropagation)e.stopImmediatePropagation();
+      var day=dayBtn.getAttribute('data-v');
+      if(!day)return;
+      try{if(typeof H96==='object')H96.d=(day===todayIso())?null:day}catch(err){}
+      keepScroll(function(){if(typeof render==='function')render()});
+      return;
+    }
+    var wBtn=e.target&&e.target.closest&&e.target.closest('.m4week [data-m4="w"], .h93hd .m4mh [data-m4="w"]');
+    if(!wBtn)return;
+    e.preventDefault();
+    e.stopPropagation();
+    if(e.stopImmediatePropagation)e.stopImmediatePropagation();
+    var v=wBtn.getAttribute('data-v');
+    if(v==='0'){
+      DW.w=0;
+      try{if(typeof H96==='object')H96.d=null}catch(err){}
+      keepScroll(function(){if(typeof render==='function')render()});
+      return;
+    }
+    DW.w=(DW.w||0)+(+v);
+    keepScroll(function(){paintDayWeek()});
+  },true);
+  window.addEventListener('resize',function(){
+    if(!onDayPage())return;
+    var el=document.querySelector('.h98page > .m4week');
+    if(el)bleedDayWeek(el);
   });
 })();
 
