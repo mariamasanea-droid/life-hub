@@ -7,6 +7,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <!-- v118.7 mock -->
 <!-- v118.7.1 mock -->
+<!-- vM3 home phone -->
 <title>Life’s</title>
 <meta name="apple-mobile-web-app-title" content="Life’s">
 <meta name="application-name" content="Life’s">
@@ -4691,6 +4692,415 @@ body.gdark.h93:not(.wh115) .h1187tdg{
 
 /* v118.7.1: no extra visual chrome; month-row scroll stays inside the pill strip */
 .h1187mrow{scroll-behavior:auto}
+
+/* ===== vM3: phone Home only. Desktop and other pages stay v118.7.1. ===== */
+
+@media (max-width:759px){
+
+/* 1. Full width: drop the outer frosted-glass frame and its inset */
+html:has(body.h93:not(.wh115).m3home),
+body.h93:not(.wh115).m3home,
+body.h93:not(.wh115).m3home.glass{
+  background:#fff!important
+}
+body.h93:not(.wh115).m3home.glass::before,
+body.h93:not(.wh115).m3home.glass::after,
+body.h93:not(.wh115).m3home .gl.h94f::before,
+body.h93:not(.wh115).m3home .gl.h94f::after{
+  display:none!important;content:none!important
+}
+body.h93:not(.wh115).m3home.glass .app,
+body.glass.h93:not(.wh115).m3home .app{
+  background:#fff!important;
+  padding:0 0 calc(96px + var(--sab,0px)) 0!important;
+  margin:0!important;max-width:none!important;
+  border:0!important;box-shadow:none!important;border-radius:0!important
+}
+body.h93:not(.wh115).m3home .gl.h94f{
+  padding:0!important;margin:0!important;
+  border:0!important;border-radius:0!important;
+  box-shadow:none!important;
+  background:#fff!important;
+  min-height:calc(calc(100dvh / var(--ui113,1)) - 96px)
+}
+body.h93:not(.wh115).m3home .gmain,
+body.h93:not(.wh115).m3home .gmain>.gpanel,
+body.h93:not(.wh115).m3home .gmain>.gpanel.h93hp,
+body.h93:not(.wh115).m3home .gmain>.h93hd,
+body.h93:not(.wh115).m3home .gmain>.h93hd.h100hd{
+  border-radius:0!important;
+  box-shadow:none!important
+}
+
+/* Keep the floating dock a little off the new screen edge */
+body.h93:not(.wh115).m3home .h94f>.h93dock,
+body.h93:not(.wh115).m3home .h93dock{
+  left:8px!important;right:8px!important
+}
+
+/* Dark: same full-bleed idea, black canvas */
+body.gdark.h93:not(.wh115).m3home,
+body.gdark.h93:not(.wh115).m3home.glass,
+body.gdark.h93:not(.wh115).m3home.glass .app,
+body.gdark.h93:not(.wh115).m3home .gl.h94f{
+  background:#000!important
+}
+
+/* 2. Folders/pills come off Home; the dock keeps that navigation */
+body.h93:not(.wh115).m3home .h93home > .h93a,
+body.h93:not(.wh115).m3home .h93home .h1182pills{
+  display:none!important
+}
+body.h93:not(.wh115).m3home .h93home{
+  grid-template-areas:"r" "w"!important;
+  padding-top:8px
+}
+
+/* 3. Drop the grey rounded side-panel frame. Cards sit on the page. */
+body.h93:not(.wh115).m3home .h93home > .h93r,
+body.h93:not(.wh115).m3home .h93home > .h93r.h114side{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  -webkit-backdrop-filter:none!important;
+  backdrop-filter:none!important;
+  border-radius:0!important;
+  padding:0!important
+}
+
+/* 4. Weekly calendar: no card, full width, on the page (Hour placement only) */
+body.h93:not(.wh115).m3home .h93home .h92mini,
+body.h93:not(.wh115).m3home .h93r .h92mini{
+  width:calc(100vw / var(--ui113, 1))!important;
+  max-width:calc(100vw / var(--ui113, 1))!important;
+  margin-left:calc(50% - (100vw / var(--ui113, 1) / 2))!important;
+  margin-right:calc(50% - (100vw / var(--ui113, 1) / 2))!important;
+  box-sizing:border-box!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  border-radius:0!important;
+  /* ~16–20px visual side padding after the 0.94 phone zoom */
+  padding:8px 20px 10px!important
+}
+body.h93:not(.wh115).m3home .h93home .h92mini .q-mh,
+body.h93:not(.wh115).m3home .h93home .h92mini .q-mg{
+  width:100%;
+  box-sizing:border-box;
+  padding:0
+}
+body.h93:not(.wh115).m3home .h93home .h92mini .m3mh{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  padding:0 0 10px
+}
+body.h93:not(.wh115).m3home .h93home .h92mini .m3mt{
+  display:flex;
+  align-items:center;
+  gap:2px;
+  min-width:0
+}
+body.h93:not(.wh115).m3home .h93home .h92mini .m3mt b{
+  font-family:inherit;
+  font-size:15px;
+  font-weight:500;
+  color:#333;
+  padding:0 4px;
+  white-space:nowrap
+}
+body.h93:not(.wh115).m3home .h93home .h92mini .m3mt button,
+body.h93:not(.wh115).m3home .h93home .h92mini .m3cal,
+body.h93:not(.wh115).m3home .h93r .h92mini .q-mh button{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  width:28px;
+  height:28px;
+  padding:0;
+  border-radius:0;
+  color:#2A2420;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  flex:none
+}
+body.h93:not(.wh115).m3home .h93home .h92mini .m3mt .tdy{
+  width:auto;
+  padding:0 8px;
+  font-size:12px;
+  font-weight:700;
+  color:var(--co)
+}
+body.h93:not(.wh115).m3home .h93home .h92mini .m3cal{
+  color:#2A2420;
+  opacity:.85
+}
+body.h93:not(.wh115).m3home .h93home .h92mini .m3wk{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:0;
+  width:100%
+}
+body.h93:not(.wh115).m3home .h93home .h92mini .q-md,
+body.h93:not(.wh115).m3home .h93r .h92mini .q-md,
+body.h93:not(.wh115).m3home .h93home .h92mini .q-md:hover,
+body.h93:not(.wh115).m3home .h93r .h92mini .q-md:hover{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  border-radius:0!important;
+  padding:0!important;
+  min-height:0;
+  gap:6px
+}
+body.h93:not(.wh115).m3home .h93home .h92mini .q-md .q-w{
+  font-family:inherit;
+  font-size:11px;
+  font-weight:400;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  opacity:1;
+  color:#A3A3A3;
+  padding:0;
+  line-height:1
+}
+body.h93:not(.wh115).m3home .h93home .h92mini .q-md .m3dn{
+  width:calc(34px / var(--ui113, 1));
+  height:calc(34px / var(--ui113, 1));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:inherit;
+  font-size:16px;
+  font-weight:400;
+  line-height:1;
+  color:#333;
+  background:none;
+  border-radius:0
+}
+/* today: coral circle ~34px, white number; no boxes on other days */
+body.h93:not(.wh115).m3home .h93home .h92mini .q-md.td span,
+body.h93:not(.wh115).m3home .h93r .h92mini .q-md.td span{
+  background:none;
+  color:inherit;
+  width:auto;
+  height:auto;
+  border-radius:0
+}
+body.h93:not(.wh115).m3home .h93home .h92mini .q-md.td .m3dn,
+body.h93:not(.wh115).m3home .h93r .h92mini .q-md.td .m3dn{
+  background:var(--co)!important;
+  color:#fff!important;
+  font-weight:400;
+  border-radius:50%!important;
+  width:calc(34px / var(--ui113, 1));
+  height:calc(34px / var(--ui113, 1))
+}
+/* event dots removed */
+body.h93:not(.wh115).m3home .h93home .h92mini .q-md i{
+  display:none!important
+}
+body.gdark.h93:not(.wh115).m3home .h93home .h92mini .m3mt b,
+body.gdark.h93:not(.wh115).m3home .h93home .h92mini .m3mt button,
+body.gdark.h93:not(.wh115).m3home .h93home .h92mini .m3cal,
+body.gdark.h93:not(.wh115).m3home .h93home .h92mini .q-md .q-w,
+body.gdark.h93:not(.wh115).m3home .h93home .h92mini .q-md .m3dn{
+  color:#F2ECE6
+}
+body.gdark.h93:not(.wh115).m3home .h93home .h92mini .q-md.td .m3dn{
+  color:#fff
+}
+
+/* 5. Step 1 finish: white page, more space, hairline cards. Same layout. */
+body.h93:not(.wh115).m3home .gmain>.h93hd,
+body.h93:not(.wh115).m3home .gmain>.h93hd.h100hd,
+body.h93:not(.wh115).m3home .gmain>.gpanel,
+body.h93:not(.wh115).m3home .gmain>.gpanel.h93hp{
+  background:#fff!important
+}
+body.h93:not(.wh115).m3home .gmain>.gpanel.h93hp,
+body.h93:not(.wh115).m3home .gmain>.gpanel{
+  padding:8px 12px 24px!important
+}
+body.h93:not(.wh115).m3home .h93home{
+  gap:18px!important;
+  padding-top:14px
+}
+body.h93:not(.wh115).m3home .h93home > .h93r,
+body.h93:not(.wh115).m3home .h93home > .h93r.h114side{
+  gap:18px!important
+}
+body.h93:not(.wh115).m3home .h93home .h93wid,
+body.h93:not(.wh115).m3home .h93home .h94wid,
+body.h93:not(.wh115).m3home .h93home .h114wid{
+  gap:18px!important
+}
+body.h93:not(.wh115).m3home .h93home .h95goals,
+body.h93:not(.wh115).m3home .h93home .h92c{
+  background:#fff!important;
+  border:1px solid #EDEDED!important;
+  box-shadow:0 1px 2px rgba(16,16,16,.04)!important;
+  border-radius:22px!important
+}
+body.h93:not(.wh115).m3home .h93home .h92sch .h92er{
+  background:#fff!important;
+  border:1px solid #EDEDED!important;
+  box-shadow:none!important;
+  border-radius:16px!important;
+  margin-bottom:10px!important
+}
+body.gdark.h93:not(.wh115).m3home .gmain>.h93hd,
+body.gdark.h93:not(.wh115).m3home .gmain>.gpanel,
+body.gdark.h93:not(.wh115).m3home .gmain>.gpanel.h93hp{
+  background:#000!important
+}
+body.gdark.h93:not(.wh115).m3home .h93home .h95goals,
+body.gdark.h93:not(.wh115).m3home .h93home .h92c,
+body.gdark.h93:not(.wh115).m3home .h93home .h92sch .h92er{
+  background:#161616!important;
+  border-color:#2A2A2A!important;
+  box-shadow:none!important
+}
+
+/* 6. Step 2: lighter secondary text and quieter chips */
+body.h93:not(.wh115).m3home .h93home .q-pr small,
+body.h93:not(.wh115).m3home .h114side>.q-pr small,
+body.h93:not(.wh115).m3home .h93home .h92sch .q-st .q-lnk,
+body.h93:not(.wh115).m3home .h114side>.h92sch>.q-st .q-lnk,
+body.h93:not(.wh115).m3home .h93home .q-mut,
+body.h93:not(.wh115).m3home .h93home .h92sch .q-lnk,
+body.h93:not(.wh115).m3home .h93home .h92er .q-tx small,
+body.h93:not(.wh115).m3home .h93home .h94todo .q-m,
+body.h93:not(.wh115).m3home .h93home .h92tr small,
+body.h93:not(.wh115).m3home .h93home .q-ch small{
+  color:#9A9A9A!important
+}
+body.h93:not(.wh115).m3home .h93home .h92er .q-th{
+  background:#F5F5F5!important
+}
+body.h93:not(.wh115).m3home .h93home .h92er .q-tg{
+  background:#F5F5F5!important;
+  color:#7A7A7A!important;
+  font-weight:600
+}
+body.h93:not(.wh115).m3home .h93home .h95goals .q-pc{
+  background:#F5F5F5!important;
+  color:#8A8A8A!important
+}
+body.gdark.h93:not(.wh115).m3home .h93home .q-pr small,
+body.gdark.h93:not(.wh115).m3home .h93home .q-mut,
+body.gdark.h93:not(.wh115).m3home .h93home .h92sch .q-lnk,
+body.gdark.h93:not(.wh115).m3home .h93home .h92er .q-tx small,
+body.gdark.h93:not(.wh115).m3home .h93home .q-ch small{
+  color:#8A8A8A!important
+}
+body.gdark.h93:not(.wh115).m3home .h93home .h92er .q-th,
+body.gdark.h93:not(.wh115).m3home .h93home .h92er .q-tg,
+body.gdark.h93:not(.wh115).m3home .h93home .h95goals .q-pc{
+  background:#222!important;
+  color:#A8A8A8!important
+}
+
+/* 7. Step 3: Weekly goal and Brain dump off phone Home only */
+body.h93:not(.wh115).m3home .h93home .h92c:has(.h92semi),
+body.h93:not(.wh115).m3home .h93home .h92c:has(.h92qr),
+body.h93:not(.wh115).m3home .h93home .h92c:has(.h92btn.blue){
+  display:none!important
+}
+
+/* 8. Step 4: system font on phone Home (SF Pro on iPhone; box shows a fallback) */
+body.h93:not(.wh115).m3home,
+body.h93:not(.wh115).m3home .h93hd,
+body.h93:not(.wh115).m3home .h93home,
+body.h93:not(.wh115).m3home .h93dock,
+body.h93:not(.wh115).m3home .h93hd *,
+body.h93:not(.wh115).m3home .h93home *,
+body.h93:not(.wh115).m3home .h93dock *{
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",system-ui,"Helvetica Neue",Arial,sans-serif!important
+}
+
+/* Greeting */
+body.h93:not(.wh115).m3home .h93hd h1,
+body.h93:not(.wh115).m3home .h93hd.home h1{
+  font-size:26px!important;
+  font-weight:700!important;
+  letter-spacing:-.03em!important;
+  line-height:1.15
+}
+
+/* Card / section titles */
+body.h93:not(.wh115).m3home .h93home .q-ch b,
+body.h93:not(.wh115).m3home .h93home .h92sch .q-st b,
+body.h93:not(.wh115).m3home .h93home .h95goals .q-ch b,
+body.h93:not(.wh115).m3home .h93home .h92mini .m3mt b,
+body.h93:not(.wh115).m3home .h93home .h95wo .q-hero b,
+body.h93:not(.wh115).m3home .h93home .h95wo .q-pill{
+  font-size:17px!important;
+  font-weight:600!important;
+  letter-spacing:-.015em
+}
+
+/* Row text */
+body.h93:not(.wh115).m3home .h93home .q-pr b,
+body.h93:not(.wh115).m3home .h93home .h92er .q-tx b,
+body.h93:not(.wh115).m3home .h93home .h92tr .q-t,
+body.h93:not(.wh115).m3home .h93home .h114hn b,
+body.h93:not(.wh115).m3home .h93home .h95goals .h92gl span,
+body.h93:not(.wh115).m3home .h93home .h95goals [data-a="goaltoggle"] span{
+  font-size:16px!important;
+  font-weight:400!important;
+  color:#333!important;
+  letter-spacing:-.01em
+}
+
+/* Captions */
+body.h93:not(.wh115).m3home .h93home .q-pr small,
+body.h93:not(.wh115).m3home .h93home .q-mut,
+body.h93:not(.wh115).m3home .h93home .q-ch small,
+body.h93:not(.wh115).m3home .h93home .h92er .q-tx small,
+body.h93:not(.wh115).m3home .h93home .h94todo .q-m,
+body.h93:not(.wh115).m3home .h93home .h92tr small,
+body.h93:not(.wh115).m3home .h93home .q-pc,
+body.h93:not(.wh115).m3home .h93home .h114sk,
+body.h93:not(.wh115).m3home .h93home .h114hn small{
+  font-size:13px!important;
+  font-weight:400!important
+}
+
+/* Weekday labels + day numbers (sizes only; colours already set) */
+body.h93:not(.wh115).m3home .h93home .h92mini .q-md .q-w{
+  font-size:12px!important;
+  font-weight:400!important
+}
+body.h93:not(.wh115).m3home .h93home .h92mini .q-md .m3dn,
+body.h93:not(.wh115).m3home .h93home .h92mini .q-md.td .m3dn{
+  font-size:16px!important;
+  font-weight:400!important
+}
+
+/* Links */
+body.h93:not(.wh115).m3home .h93home .q-lnk,
+body.h93:not(.wh115).m3home .h93home .h92sch .q-st .q-lnk,
+body.h93:not(.wh115).m3home .h114side>.h92sch>.q-st .q-lnk{
+  font-size:13px!important;
+  font-weight:500!important;
+  color:var(--co)!important
+}
+
+body.gdark.h93:not(.wh115).m3home .h93hd h1,
+body.gdark.h93:not(.wh115).m3home .h93home .q-ch b,
+body.gdark.h93:not(.wh115).m3home .h93home .h92sch .q-st b,
+body.gdark.h93:not(.wh115).m3home .h93home .h92mini .m3mt b,
+body.gdark.h93:not(.wh115).m3home .h93home .q-pr b,
+body.gdark.h93:not(.wh115).m3home .h93home .h92er .q-tx b,
+body.gdark.h93:not(.wh115).m3home .h93home .h92tr .q-t,
+body.gdark.h93:not(.wh115).m3home .h93home .h114hn b{
+  color:#F2ECE6!important
+}
+
+}
 </style>
 </head>
 <body>
@@ -8516,6 +8926,129 @@ h93Head=function(){
       return {dirty:true,staged:staged,still:!!S.done[id],ls:!!ls[id]};
     }
   };
+})();
+
+/* vM3 phone: Home only. Full-width frame + weekly mini-calendar. */
+(function m3Home(){
+  if(window.__m3home)return;window.__m3home=1;
+  function isPhone(){return window.innerWidth<=759}
+  function life(){return document.body&&document.body.classList.contains('h93')&&!document.body.classList.contains('wh115')}
+  function view(){try{if(typeof S==='object'&&S.view)return S.view}catch(e){}return (location.hash||'#home').replace('#','')||'home'}
+  function onHome(){return isPhone()&&life()&&view()==='home'}
+  var M3={w:0};
+  function isoOf(d){
+    if(typeof iso==='function')return iso(d);
+    return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+  }
+  function weekStart(isoDay){
+    var d=(typeof dO==='function')?dO(isoDay):new Date(String(isoDay)+'T12:00:00');
+    var back=(d.getDay()+6)%7;
+    return isoOf(new Date(d.getFullYear(),d.getMonth(),d.getDate()-back));
+  }
+  function weekInner(){
+    var todayIso=(typeof TODAY!=='undefined')?TODAY:isoOf(new Date());
+    var anchor=(typeof addD==='function')?addD(todayIso,(M3.w||0)*7):todayIso;
+    var start=weekStart(anchor);
+    var days=[],i;
+    for(i=0;i<7;i++)days.push((typeof addD==='function')?addD(start,i):start);
+    var mid=(typeof dO==='function')?dO(days[3]):new Date(days[3]+'T12:00:00');
+    var mon=mid.getMonth(),yr=mid.getFullYear();
+    var months=(typeof MONTHS!=='undefined')?MONTHS:['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var chevl=(typeof h92ic==='function')?h92ic('chevl',16):'‹';
+    var chevr=(typeof h92ic==='function')?h92ic('chevr',16):'›';
+    var calic=(typeof h92ic==='function')?h92ic('calendar',18):'▦';
+    var labs=['M','T','W','T','F','S','S'];
+    var cells=days.map(function(d,i){
+      var dt=(typeof dO==='function')?dO(d):new Date(d+'T12:00:00');
+      var out=dt.getMonth()!==mon;
+      return '<button class="q-md'+(out?' out':'')+(d===todayIso?' td':'')+'" data-h92="cday" data-v="'+d+'">'+
+        '<span class="q-w">'+labs[i]+'</span>'+
+        '<span class="m3dn">'+dt.getDate()+'</span></button>';
+    }).join('');
+    return '<div class="q-mh m3mh">'+
+      '<div class="m3mt">'+
+        '<button type="button" data-m3="w" data-v="-1" aria-label="Previous week">'+chevl+'</button>'+
+        '<b>'+months[mon]+' '+yr+'</b>'+
+        '<button type="button" data-m3="w" data-v="1" aria-label="Next week">'+chevr+'</button>'+
+        (M3.w?'<button type="button" class="tdy" data-m3="w" data-v="0">Today</button>':'')+
+      '</div>'+
+      '<button type="button" class="m3cal" data-a="go" data-v="calendar" aria-label="Open calendar">'+calic+'</button>'+
+      '</div><div class="q-mg m3wk">'+cells+'</div>';
+  }
+  function bleedCal(el){
+    if(!el||!onHome())return;
+    var app=document.querySelector('.app');
+    var z=parseFloat(getComputedStyle(app||document.body).zoom)||1;
+    el.style.width=(window.innerWidth/z)+'px';
+    el.style.maxWidth=(window.innerWidth/z)+'px';
+    el.style.marginLeft='0px';
+    el.style.marginRight='0px';
+    var r=el.getBoundingClientRect();
+    el.style.marginLeft=((-r.left)/z)+'px';
+  }
+  function paintWeek(){
+    var el=document.querySelector('.h93home .h93r .h92mini, .h93home .h92mini');
+    if(!el)return;
+    el.classList.add('m3week');
+    el.innerHTML=weekInner();
+    bleedCal(el);
+  }
+  function reorderHome(){
+    var r=document.querySelector('.h93home > .h93r');
+    if(!r)return;
+    var pr=r.querySelector('.q-pr');
+    var mini=r.querySelector('.h92mini');
+    var sch=r.querySelector('.h92sch');
+    var goals=r.querySelector('.h95goals');
+    if(!mini||!sch||!goals)return;
+    if(pr)r.insertBefore(mini, pr.nextSibling);
+    else r.insertBefore(mini, r.firstChild);
+    r.insertBefore(sch, mini.nextSibling);
+    r.insertBefore(goals, sch.nextSibling);
+  }
+  function after(){
+    var b=document.body;
+    if(!b)return;
+    if(!onHome()){
+      b.classList.remove('m3home');
+      return;
+    }
+    b.classList.add('m3home');
+    paintWeek();
+    reorderHome();
+    var el=document.querySelector('.h93home .h93r .h92mini, .h93home .h92mini');
+    if(el)bleedCal(el);
+  }
+  var _render=render;
+  if(typeof _render==='function'){
+    render=function(){
+      var r=_render.apply(this,arguments);
+      try{after()}catch(e){console.warn('m3After',e)}
+      return r;
+    };
+  }
+  window.addEventListener('click',function(e){
+    var t=e.target&&e.target.closest&&e.target.closest('[data-m3]');
+    if(!t||!onHome())return;
+    var act=t.getAttribute('data-m3');
+    if(act!=='w')return;
+    e.preventDefault();
+    e.stopPropagation();
+    var v=t.getAttribute('data-v');
+    M3.w=(v==='0')?0:(M3.w||0)+(+v);
+    paintWeek();
+  },true);
+  window.addEventListener('hashchange',function(){try{after()}catch(e){}});
+  if(window.matchMedia){
+    var mq=window.matchMedia('(max-width:759px)');
+    var onq=function(){if(typeof render==='function')render()};
+    if(mq.addEventListener)mq.addEventListener('change',onq);else if(mq.addListener)mq.addListener(onq);
+  }
+  window.addEventListener('resize',function(){
+    if(!onHome())return;
+    var el=document.querySelector('.h93home .h93r .h92mini, .h93home .h92mini');
+    if(el)bleedCal(el);
+  });
 })();
 
 render();
