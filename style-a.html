@@ -12,6 +12,7 @@
 <!-- vM4b day rail -->
 <!-- vM5 routine -->
 <!-- vAuth -->
+<!-- vWo -->
 <title>Lifey</title>
 <meta name="apple-mobile-web-app-title" content="Lifey">
 <meta name="application-name" content="Lifey">
@@ -7294,6 +7295,34 @@ body.h93:not(.wh115).m4page.m4rt .grid2.even > .card > .ct .r{
   align-self:baseline
 }
 }
+
+/* vWo: workout editor (min label, icon picker, Sets/Reps/kg headers). Editor-only rules; default pages unchanged. */
+.wo-min{position:relative;display:block;min-width:0}
+.wo-min input{padding-right:34px!important}
+.wo-min em{position:absolute;right:11px;top:50%;transform:translateY(-50%);font-style:normal;font-size:11.5px;font-weight:700;color:var(--mut);pointer-events:none}
+.wk-edr{grid-template-columns:minmax(0,2fr) minmax(0,1.3fr) 86px}
+.wo-ic{margin:0 0 12px}
+.wo-icl{display:block;font-size:10.5px;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
+.wo-icg{display:flex;flex-wrap:wrap;gap:6px}
+.wo-icb{width:36px;height:36px;border-radius:50%;border:1px solid rgba(120,95,75,.2);background:#fff;display:inline-flex;align-items:center;justify-content:center;padding:0;cursor:pointer;font-family:inherit}
+.wo-icb.on{border-color:#EF6F5E;background:color-mix(in srgb,#EF6F5E 12%,#fff)}
+.wo-auto{width:auto;padding:0 13px;border-radius:99px;font-size:12px;font-weight:700;color:#5A5048}
+.wo-auto.on{color:#EF6F5E}
+.wo-ich{display:block;margin-top:6px;font-size:11.5px;color:var(--mut)}
+.wk-exh,.wk-exe{grid-template-columns:minmax(0,2fr) 56px minmax(0,1fr) 64px 70px 30px}
+.wk-exh i{font-style:normal}
+.wk-exh span+span{padding-left:9px}
+@media (max-width:999px){
+  .wk-exh{display:grid}
+  .wk-exh,.wk-exe{grid-template-columns:minmax(0,1fr) 36px 52px 50px 26px;gap:4px}
+  .wk-exe input:nth-child(4){display:block}
+  .wk-exe input:nth-child(5){display:none}
+  .wk-exh span:nth-child(5){display:none}
+  .wk-exh i{display:none}
+  .wk-exh span+span{padding-left:6px}
+  .wk-exe input{padding-left:7px;padding-right:4px;font-size:12.5px}
+  .wk-exe .wk-x{width:26px;height:26px}
+}
 </style>
 </head>
 <body>
@@ -7442,9 +7471,9 @@ function exCard(){
   var td=ITEMS.filter(function(i){return i.cat==="workout"&&!i.ic&&i.date===ref}).sort(function(a,b){return (a.start||0)-(b.start||0)})[0];
   var top='<span class="fpill hpill">TODAY · '+DN[dt.getDay()]+'</span>';
   if(!td&&!(PG.programs||[]).length)return '<section class="exc">'+top+'<div class="fbig"><span class="fbadge" style="background:#F6B3A8">'+fic("lift","#fff",28)+'</span><div class="fnm"><div class="fn1">No workout split yet</div><div class="fn2">Your split drives this card</div></div></div><div class="fdiv"></div><button class="cx-cta" data-wk="start">+ Create your split</button></section>';
-  if(!td)return '<section class="exc">'+top+'<div class="fbig"><span class="fbadge" style="background:#F6B3A8">'+fic("rest","#fff",30)+'</span><div class="fnm"><div class="fn1">Rest day</div><div class="fn2">No workout planned</div></div></div><div class="fdiv"></div><div class="exnote">Recovery day: an easy walk, 10 minutes of stretching, plenty of water and an early night.</div></section>';
+  if(!td)return '<section class="exc">'+top+'<div class="fbig"><span class="fbadge" style="background:#F6B3A8">'+fic({type:"rest"},"#fff",30)+'</span><div class="fnm"><div class="fn1">Rest day</div><div class="fn2">No workout planned</div></div></div><div class="fdiv"></div><div class="exnote">Recovery day: an easy walk, 10 minutes of stretching, plenty of water and an early night.</div></section>';
   var L=EXL[exKey(td)],dn=L.filter(function(e,ix){return EXD[td.id+":"+ix]}).length;
-  return '<section class="exc">'+top+'<div class="fbig" data-a="open" data-id="'+td.id+'" style="cursor:pointer"><span class="fbadge">'+fic(wkType(td),"#fff",28)+'</span><div class="fnm"><div class="fn1">'+esc(wkName(td))+'</div><div class="fn2">'+(td.start!=null?tr(td):'Anytime')+'</div></div></div>'+
+  return '<section class="exc">'+top+'<div class="fbig" data-a="open" data-id="'+td.id+'" style="cursor:pointer"><span class="fbadge">'+fic({type:wkType(td),name:wkName(td),icon:td.wicon},"#fff",28)+'</span><div class="fnm"><div class="fn1">'+esc(wkName(td))+'</div><div class="fn2">'+(td.start!=null?tr(td):'Anytime')+'</div></div></div>'+
     '<div class="exh"><span class="fdiv"></span><span class="exc-n">'+dn+'/'+L.length+'</span></div><div class="exl">'+
     L.map(function(e,ix){var k=td.id+":"+ix,on=!!EXD[k];return '<div class="exr'+(on?' on':'')+'" data-a="extog" data-v="'+k+'"><span class="ering">'+(on?'✓':'')+'</span><span class="en">'+esc(e[0])+'</span><span class="es">'+esc(e[1])+'</span></div>'}).join("")+'</div></section>';
 }
@@ -7764,7 +7793,7 @@ var CIC={
  errand:'<path d="M12 3a6.5 6.5 0 0 0-3.9 11.7c.8.6 1.3 1.5 1.4 2.4h5c.1-.9.6-1.8 1.4-2.4A6.5 6.5 0 0 0 12 3z" fill="C"/><path d="M9.6 19.3h4.8M10.4 21.4h3.2" stroke="C" stroke-width="1.8" stroke-linecap="round"/><path d="M9.4 8.6a3 3 0 0 1 2.4-2" stroke="#fff" stroke-opacity=".75" stroke-width="1.4" stroke-linecap="round" fill="none"/>',
  todo:'<rect x="3.5" y="3.5" width="17" height="17" rx="4" fill="C"/><path d="M8 12.2l2.8 2.8L16.2 9.6" stroke="#fff" stroke-width="2.4"/>',
  budget:'<rect x="3" y="6" width="18" height="13" rx="3" fill="C"/><path d="M15 12.5h3.5" stroke="#fff" stroke-width="2.4"/>'};
-function cic(i,c,sz){if(i.cat==="workout")return fic(wkType(i),c,sz);return '<svg width="'+sz+'" height="'+sz+'" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">'+CIC[i.cat].replace(/="C"/g,'="'+c+'"')+'</svg>'}
+function cic(i,c,sz){if(i.cat==="workout")return fic({type:wkType(i),name:wkName(i),icon:i.wicon},c,sz);return '<svg width="'+sz+'" height="'+sz+'" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">'+CIC[i.cat].replace(/="C"/g,'="'+c+'"')+'</svg>'}
 function nowH(){var q=(location.search.match(/[?&]now=(\d{1,2}):(\d{2})/)||[]);if(q[1])return +q[1]+q[2]/60;var d=new Date();return d.getHours()+d.getMinutes()/60}
 function todoCard(){
   var TD=["todo","errand","budget","workout"];
@@ -7813,12 +7842,12 @@ function fitCard(){
   var wk=ITEMS.filter(function(i){return i.cat==="workout"&&!i.ic}).sort(function(a,b){return a.date<b.date?-1:a.date>b.date?1:(a.start||0)-(b.start||0)});
   var td=wk.filter(function(i){return i.date===ref})[0],nx=wk.filter(function(i){return i.date>ref}).slice(0,2);
   if(!(PG.programs||[]).length)return '<div class="fitc"><span class="fpill hpill">TODAY · '+DN[dt.getDay()]+'</span><div class="fbig"><span class="fbadge" style="background:#F6B3A8">'+fic("lift","#fff",30)+'</span><div class="fnm"><div class="fn1">No workout split yet</div><div class="fn2">Create one and your week shows here</div></div></div><div class="fdiv"></div><button class="cx-cta" data-wk="start">+ Create your split</button></div>';
-  var main=td?'<div class="fbig"><span class="fbadge">'+fic(wkType(td),"#fff",32)+'</span><div class="fnm"><div class="fn1'+(S.done[td.id]?' dn':'')+'">'+esc(wkName(td))+'</div><div class="fn2">'+(td.start!=null?tr(td):'Anytime')+(S.done[td.id]?' · Done ✓':'')+'</div></div></div>'
-    :'<div class="fbig"><span class="fbadge" style="background:#F6B3A8">'+fic("rest","#fff",30)+'</span><div class="fnm"><div class="fn1">Rest day</div><div class="fn2">Recover and stretch</div></div></div>';
+  var main=td?'<div class="fbig"><span class="fbadge">'+fic({type:wkType(td),name:wkName(td),icon:td.wicon},"#fff",32)+'</span><div class="fnm"><div class="fn1'+(S.done[td.id]?' dn':'')+'">'+esc(wkName(td))+'</div><div class="fn2">'+(td.start!=null?tr(td):'Anytime')+(S.done[td.id]?' · Done ✓':'')+'</div></div></div>'
+    :'<div class="fbig"><span class="fbadge" style="background:#F6B3A8">'+fic({type:"rest"},"#fff",30)+'</span><div class="fnm"><div class="fn1">Rest day</div><div class="fn2">Recover and stretch</div></div></div>';
   var mon=new Date(dt);mon.setDate(dt.getDate()-((dt.getDay()+6)%7));
   var strip=[0,1,2,3,4,5,6].map(function(k){var d=new Date(mon);d.setDate(mon.getDate()+k);var ds=iso(d),w=wk.filter(function(i){return i.date===ds})[0];
     var st=ds<ref?"past":ds===ref?"today":"next",dn=w&&!!S.done[w.id];
-    return '<div class="wd '+st+(w?'':' rest')+'" data-a="go" data-v="workout" title="'+(w?esc(w.title):'Rest day')+'"><span class="wl">'+DN[d.getDay()].slice(0,3)+'</span><span class="wc">'+fic(w?wkType(w):"rest",st==="today"?"#fff":"#3A2E2C",17)+(dn&&st!=="today"?'<span class="wk">✓</span>':'')+'</span><span class="wn">'+(w?esc(wkName(w)):'Rest')+'</span></div>'}).join("");
+    return '<div class="wd '+st+(w?'':' rest')+'" data-a="go" data-v="workout" title="'+(w?esc(w.title):'Rest day')+'"><span class="wl">'+DN[d.getDay()].slice(0,3)+'</span><span class="wc">'+fic(w?{type:wkType(w),name:wkName(w),icon:w.wicon}:{type:"rest"},st==="today"?"#fff":"#3A2E2C",17)+(dn&&st!=="today"?'<span class="wk">✓</span>':'')+'</span><span class="wn">'+(w?esc(wkName(w)):'Rest')+'</span></div>'}).join("");
   return '<div class="fitc" data-a="go" data-v="workout" title="Open Workouts"><span class="fpill hpill">TODAY · '+DN[dt.getDay()]+'</span>'+main+'<div class="fdiv"></div><div class="wstrip">'+strip+'</div></div>';
 }
 function vHomeDesk(){
@@ -8489,7 +8518,7 @@ function vWkMain(ref){
   var rd=wkD(ref),mon=new Date(rd);mon.setDate(rd.getDate()-((rd.getDay()+6)%7));var week=[];for(var k=0;k<7;k++){var x=new Date(mon);x.setDate(mon.getDate()+k);week.push(x)}
   var done=0,planned=0,wmin=0,wvol=0;
   var strip='<div class="wk-week">'+week.map(function(dt,ix){var d=iso(dt),w=wkFor(d),dn=wkDoneD(d),isT=d===ref,past=d<iso(new Date());if(w){planned++}if(dn){done++;wmin+=wkMin2(d)}wvol+=wkVol(d);
-    var ty=w?w.type:dn?wkTy2(d):"rest",ic=fic(ty,isT?"#fff":dn?"#EF6F5E":ty==="rest"?"#A2958A":"#5A5048",ty==="rest"?18:20);
+    var ty=w?w.type:dn?wkTy2(d):"rest",ic=fic(w||(dn?{type:wkTy2(d),name:wkName2(d),icon:(WL[d]||{}).icon}:{type:"rest"}),isT?"#fff":dn?"#EF6F5E":ty==="rest"?"#A2958A":"#5A5048",ty==="rest"?18:20);
     return '<div data-wk89="day" data-v="'+d+'" class="wk-day'+(d>iso(new Date())?' fut':'')+(d===iso(new Date())?' now':'')+(isT?' td':'')+(past?' past':'')+(dn?' ok':'')+(w&&!dn&&past?' miss':'')+'"><span class="wk-dn">'+WDS[ix]+'</span><span class="wk-dd">'+dt.getDate()+'</span><span class="wk-c">'+ic+(dn?'<i class="wk-tick">✓</i>':'')+'</span><span class="wk-nm">'+(w?esc(w.name):dn?esc(wkName2(d)):'Rest')+'</span></div>'}).join("")+'</div>';
   var mo=rd.getMonth(),hist=wkHist(ref),mdone=hist.filter(function(d){return wkD(d).getMonth()===mo}).length,streak=wkStreak(iso(new Date())),P=pgA();
   var head=wkHead("Let's move, Mariama","Your week of training at a glance.",'<div class="wk-acts"><button class="wk-btn" data-wk="go" data-v="programs">'+fic("lift","#5A5048",15)+' Programs &amp; splits</button><button class="wk-btn" data-wk="go" data-v="history">History</button></div><div class="wk-strk"><b>'+streak+'</b><span>🔥</span><small>workout streak</small></div>');
@@ -8500,12 +8529,12 @@ function vWkMain(ref){
   var tw=wkFor(ref),ov=WOV[ref]!==undefined,inner,btns=pmBtn("x",null,"✎","Edit or log this day").replace('data-pm="x"','data-wk89="opts"');
   if(WKU.edit==="today")inner=wkEditor(WKU.draft,"today");
   else if(tw){var sd=wkSetsDone(ref),dn=wkDoneD(ref);
-    inner='<div class="wk-th"><span class="fbadge">'+fic(tw.type,"#fff",28)+'</span><div><b>'+esc(tw.name)+(ov?' <span class="wk-ov">Edited for today</span>':'')+'</b><small>'+(tw.t!=null?ft(tw.t)+' · ':'')+(tw.min||45)+' min · '+tw.ex.length+' exercises'+(ov?'':' · from '+esc(P.name))+'</small></div></div>'+
+    inner='<div class="wk-th"><span class="fbadge">'+fic(tw,"#fff",28)+'</span><div><b>'+esc(tw.name)+(ov?' <span class="wk-ov">Edited for today</span>':'')+'</b><small>'+(tw.t!=null?ft(tw.t)+' · ':'')+(tw.min||45)+' min · '+tw.ex.length+' exercises'+(ov?'':' · from '+esc(P.name))+'</small></div></div>'+
     '<div class="wk-list"><div class="wk-lh"><span></span><span>Exercise</span><span>Target</span><span>Rest</span></div>'+tw.ex.map(function(e,i){var L=WL[ref]&&WL[ref].sets&&WL[ref].sets[e.n],ok=L&&L.length&&L.every(function(s){return s.ok}),part=L&&L.some(function(s){return s.ok});
       return '<div class="wk-li'+(ok?' ok':'')+'"><span class="wk-ln">'+(ok?'✓':i+1)+'</span><b>'+esc(e.n)+(part&&!ok?'<small> · '+L.filter(function(s){return s.ok}).length+'/'+L.length+' sets</small>':'')+'</b><span class="wk-lt">'+esc(exT(e))+'</span><span class="wk-lr">'+(e.rest?esc(e.rest):'–')+'</span></div>'}).join("")+'</div>'+
     '<div class="wk-tf"><span>'+(dn?'✓ Completed':sd[0]?sd[0]+' sets logged':'Not started')+'</span><button class="wk-done'+(dn?' on':'')+'" data-wk="go" data-v="log">'+(dn?'View log':'Log workout →')+'</button></div>'}
   else{var nx=null,dt2=wkD(ref);for(var q=1;q<8&&!nx;q++){dt2.setDate(dt2.getDate()+1);if(wkFor(iso(dt2)))nx=iso(dt2)}
-    inner='<div class="wk-th"><span class="fbadge">'+fic("rest","#fff",28)+'</span><div><b>Rest day</b><small>Recover: walk, stretch, sleep 8 hours, hydrate.</small></div></div><div class="wk-restbox">Feel like training anyway? Tap <b>✎</b> to add a workout just for this day.</div>'+(nx?'<div class="wk-next"><small>Up next</small><b>'+esc(wkFor(nx).name)+'</b><span>'+pmFd(nx)+'</span></div>':'')}
+    inner='<div class="wk-th"><span class="fbadge">'+fic({type:"rest"},"#fff",28)+'</span><div><b>Rest day</b><small>Recover: walk, stretch, sleep 8 hours, hydrate.</small></div></div><div class="wk-restbox">Feel like training anyway? Tap <b>✎</b> to add a workout just for this day.</div>'+(nx?'<div class="wk-next"><small>Up next</small><b>'+esc(wkFor(nx).name)+'</b><span>'+pmFd(nx)+'</span></div>':'')}
   if(!PG.programs.length&&WKU.edit!=="today"){inner=cxEmpty("No workout split yet","Create your split once: name it, add your workouts and pick one for each day. It then drives this page, Today and Home. Apple Calendar classes stay on your calendar and never change your split.",'<button class="cx-cta" data-wk="start">+ Create your split</button>');btns=""}
   var tC=pmCard("wk-tc",(ref===iso(new Date())?"TODAY · "+WD[rd.getDay()].toUpperCase():WD[rd.getDay()].toUpperCase()+" · "+pmSd(ref).toUpperCase()),"#EF6F5E",tw?"From your split":PG.programs.length?"Rest day":"No split yet",btns,inner);if(PG.programs.length)tC=wk91Pill(tC,ref);
   // weight
@@ -8517,7 +8546,7 @@ function vWkMain(ref){
     (pts.length>1?'<svg class="wk-spark" viewBox="-4 -4 '+(PW+8)+' '+(PH+8)+'" preserveAspectRatio="none"><path d="'+path+' L'+PW+' '+PH+' L0 '+PH+' Z" fill="rgba(63,167,121,.12)" stroke="none"/><path d="'+path+'" fill="none" stroke="#3FA779" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/></svg>':'')+'</div>'+
     '<div class="wk-wf"><input id="wtkg" inputmode="decimal" placeholder="kg"><input id="wtd" type="date" value="'+ref+'"><button class="wk-btn pri" data-wk="wlog">Log</button></div><div class="cqa-e" id="wterr"></div>');
   var up=[],dt3=wkD(ref);for(var u=1;u<14&&up.length<3;u++){dt3.setDate(dt3.getDate()+1);var dd=iso(dt3),ww=wkFor(dd);if(ww)up.push([dd,ww])}
-  var uC=pmCard("wk-uc","UP NEXT","#EF6F5E","From your split","",'<div class="wk-hist">'+(up.length?up.map(function(x){return '<div class="wk-hr"><span class="wk-hi">'+fic(x[1].type,"#EF6F5E",18)+'</span><div><b>'+esc(x[1].name)+'</b><small>'+pmFd(x[0])+(x[1].t!=null?' · '+ft(x[1].t):'')+' · '+(x[1].min||45)+' min</small></div></div>'}).join(""):'<small>Nothing planned yet</small>')+'</div>');
+  var uC=pmCard("wk-uc","UP NEXT","#EF6F5E","From your split","",'<div class="wk-hist">'+(up.length?up.map(function(x){return '<div class="wk-hr"><span class="wk-hi">'+fic(x[1],"#EF6F5E",18)+'</span><div><b>'+esc(x[1].name)+'</b><small>'+pmFd(x[0])+(x[1].t!=null?' · '+ft(x[1].t):'')+' · '+(x[1].min||45)+' min</small></div></div>'}).join(""):'<small>Nothing planned yet</small>')+'</div>');
   return head+'<div class="cr wk-r1">'+wkC+gC+'</div><div class="cr wk-r2">'+tC+'<div class="stk">'+wC+'</div></div>';
 }
 function vWkPrograms(ref){var P=PG.programs.filter(function(p){return p.id===WKU.pg})[0]||pgA();if(!P)return wkBack("Programs &amp; splits")+wkHead("Create your split","Name a program, add your workouts, then pick one for each day of the week.","")+pmCard("wk-pl","NEW PROGRAM","#EF6F5E","Step 1 of 3","",'<div class="cqa pm-form"><input id="pgn" placeholder="Program name (e.g. Boxing &amp; Pilates)"><button class="cqa-ok" data-wk="pgsave">Create</button></div><div class="cx-empty"><b>How it works</b><span>1. Create a program · 2. Add workouts (exercises, sets, reps) · 3. Assign a workout or rest to each day. The active split then drives Today, Home and this page.</span></div>');WKU.pg=P.id;
@@ -8525,9 +8554,9 @@ function vWkPrograms(ref){var P=PG.programs.filter(function(p){return p.id===WKU
     (WKU.newp?'<div class="cqa pm-form"><input id="pgn" placeholder="Program name (e.g. Marathon block)"><button class="cqa-ok" data-wk="pgsave">Add</button><button class="cqa-x" data-wk="pgcancel" aria-label="Cancel">×</button></div>':'<button class="wk-add" data-wk="pgnew">+ New program</button>'));
   var order=[1,2,3,4,5,6,0];
   var isA=P.id===PG.active,AP=pgA();
-  var split=pmCard("wk-sp","WEEKLY SPLIT","#EF6F5E",isA?'<b class="wk-actl">✓ Active</b> '+esc(P.name)+' · drives your week, today &amp; up next':'Viewing '+esc(P.name)+' · not active',isA?"":'<button class="wk-btn sm pri" data-wk="activate" data-v="'+P.id+'">Set active</button>',(isA?'':'<div class="wk-viewing">You\'re editing <b>'+esc(P.name)+'</b>. Your week currently follows <b>'+esc(AP?AP.name:"–")+'</b>. <button class="wk-btn sm" data-wk="pick" data-v="'+(AP?AP.id:"")+'">Show active split</button></div>')+'<div class="wk-split">'+order.map(function(k,i){var w=pgW(P,P.days[k]);return '<div class="wk-sd"><span class="wk-dn">'+WDS[i]+'</span><span class="wk-c'+(w?'':' rest')+'">'+fic(w?w.type:"rest",w?"#EF6F5E":"#A2958A",20)+'</span><select data-wsplit="'+k+'" aria-label="'+WD[k]+' workout"><option value="">Rest</option>'+P.workouts.map(function(x){return '<option value="'+x.id+'"'+(P.days[k]===x.id?' selected':'')+'>'+esc(x.name)+'</option>'}).join("")+'</select></div>'}).join("")+'</div><p class="wk-hint">Pick a workout for each day. The week strip and today\'s workout follow the <b>active</b> program.</p>');
+  var split=pmCard("wk-sp","WEEKLY SPLIT","#EF6F5E",isA?'<b class="wk-actl">✓ Active</b> '+esc(P.name)+' · drives your week, today &amp; up next':'Viewing '+esc(P.name)+' · not active',isA?"":'<button class="wk-btn sm pri" data-wk="activate" data-v="'+P.id+'">Set active</button>',(isA?'':'<div class="wk-viewing">You\'re editing <b>'+esc(P.name)+'</b>. Your week currently follows <b>'+esc(AP?AP.name:"–")+'</b>. <button class="wk-btn sm" data-wk="pick" data-v="'+(AP?AP.id:"")+'">Show active split</button></div>')+'<div class="wk-split">'+order.map(function(k,i){var w=pgW(P,P.days[k]);return '<div class="wk-sd"><span class="wk-dn">'+WDS[i]+'</span><span class="wk-c'+(w?'':' rest')+'">'+fic(w||{type:"rest"},w?"#EF6F5E":"#A2958A",20)+'</span><select data-wsplit="'+k+'" aria-label="'+WD[k]+' workout"><option value="">Rest</option>'+P.workouts.map(function(x){return '<option value="'+x.id+'"'+(P.days[k]===x.id?' selected':'')+'>'+esc(x.name)+'</option>'}).join("")+'</select></div>'}).join("")+'</div><p class="wk-hint">Pick a workout for each day. The week strip and today\'s workout follow the <b>active</b> program.</p>');
   var cards=P.workouts.map(function(w){if(WKU.edit===w.id)return '<section class="pn wk-wcard ed"><div class="pn-in">'+wkEditor(WKU.draft,"prog")+'</div></section>';
-    return '<section class="pn wk-wcard"><div class="pn-in"><div class="wk-wch"><span class="wk-hi">'+fic(w.type,"#EF6F5E",18)+'</span><div><b>'+esc(w.name)+'</b><small>'+(w.min||45)+' min · '+w.ex.length+' exercises</small></div><button class="ib" data-wk="wedit" data-v="'+w.id+'" aria-label="Edit workout">✎</button></div>'+w.ex.map(function(e){return '<div class="wk-wce"><span>'+esc(e.n)+'</span><span>'+esc(exT(e))+'</span></div>'}).join("")+'</div></section>'}).join("")+
+    return '<section class="pn wk-wcard"><div class="pn-in"><div class="wk-wch"><span class="wk-hi">'+fic(w,"#EF6F5E",18)+'</span><div><b>'+esc(w.name)+'</b><small>'+(w.min||45)+' min · '+w.ex.length+' exercises</small></div><button class="ib" data-wk="wedit" data-v="'+w.id+'" aria-label="Edit workout">✎</button></div>'+w.ex.map(function(e){return '<div class="wk-wce"><span>'+esc(e.n)+'</span><span>'+esc(exT(e))+'</span></div>'}).join("")+'</div></section>'}).join("")+
     (WKU.edit==="new"?'<section class="pn wk-wcard ed"><div class="pn-in">'+wkEditor(WKU.draft,"prog")+'</div></section>':'<button class="wk-newc" data-wk="wnew">+ New workout</button>');
   return wkBack("Programs &amp; splits")+wkHead("Programs &amp; splits","Build programs, then assign a workout to each day.","")+'<div class="cr wk-pr1">'+list+split+'</div><div class="wk-sec"><span class="hpill" style="background:#EF6F5E">WORKOUTS IN '+esc(P.name).toUpperCase()+'</span></div><div class="wk-wgrid">'+cards+'</div>';
 }
@@ -8536,13 +8565,13 @@ function vWkLog(ref){var tw=wkFor(ref);if(!tw)return wkBack("Log")+wkHead("Rest 
     return '<div class="wk-ex'+(allok?' ok':'')+'"><div class="wk-eh"><b>'+esc(e.n)+'</b><span>Target '+esc(exT(e))+(e.rest?' · rest '+esc(e.rest):'')+'</span></div><div class="wk-sh"><span>Set</span><span>Reps</span><span>kg</span><span></span></div>'+
     sets.map(function(s,si){return '<div class="wk-set'+(s.ok?' ok':'')+'"><span class="wk-sn">'+(si+1)+'</span><input inputmode="decimal" data-wkin="'+ei+':'+si+':r" value="'+esc(s.r)+'" placeholder="'+esc(String(e.r).replace(/ each$/,""))+'" aria-label="Reps"><input inputmode="decimal" data-wkin="'+ei+':'+si+':w" value="'+esc(s.w)+'" placeholder="–" aria-label="kg"><button class="lc'+(s.ok?' on':'')+'" data-wk="ok" data-v="'+ei+':'+si+'" aria-label="Set done">'+(s.ok?'✓':'')+'</button></div>'}).join("")+'<button class="wk-add" data-wk="add" data-v="'+ei+'">+ Add set</button></div>'}).join("");
   sd=wkSetsDone(ref);
-  var sum='<div class="wk-logbar pn"><div class="pn-in"><div class="wk-th"><span class="fbadge">'+fic(tw.type,"#fff",28)+'</span><div><b>'+esc(tw.name)+'</b><small>'+pmFd(ref)+' · '+(tw.min||45)+' min · '+sd[0]+' of '+sd[1]+' sets · '+Math.round(wkVol(ref)).toLocaleString()+' kg volume</small></div></div><div class="wk-pb"><i style="width:'+(sd[1]?sd[0]/sd[1]*100:0)+'%"></i></div><button class="wk-done'+(dn?' on':'')+'" data-wk="done">'+(dn?'✓ Workout completed · tap to undo':'Mark workout complete')+'</button></div></div>';
+  var sum='<div class="wk-logbar pn"><div class="pn-in"><div class="wk-th"><span class="fbadge">'+fic(tw,"#fff",28)+'</span><div><b>'+esc(tw.name)+'</b><small>'+pmFd(ref)+' · '+(tw.min||45)+' min · '+sd[0]+' of '+sd[1]+' sets · '+Math.round(wkVol(ref)).toLocaleString()+' kg volume</small></div></div><div class="wk-pb"><i style="width:'+(sd[1]?sd[0]/sd[1]*100:0)+'%"></i></div><button class="wk-done'+(dn?' on':'')+'" data-wk="done">'+(dn?'✓ Workout completed · tap to undo':'Mark workout complete')+'</button></div></div>';
   return wkBack("Log workout")+wkHead("Log workout","Enter reps and weight for each set, tick it off, then mark the workout complete.","")+sum+'<div class="wk-exs">'+cards+'</div>';
 }
 function vWkHistory(ref){var H=wkHist(ref),mo=wkD(ref).getMonth(),tm=0,tv=0;H.forEach(function(d){tm+=wkMin2(d);tv+=wkVol(d)});
   var st='<div class="pm-stats">'+[["Workouts logged",H.length,"last 120 days","#EF6F5E"],["This month",H.filter(function(d){return wkD(d).getMonth()===mo}).length,WMO[mo],"#A97CD6"],["Minutes",tm,"time training","#3A9BD5"],["kg lifted",Math.round(tv).toLocaleString(),"logged volume","#3FA779"]].map(function(x){return '<div class="pm-stat"><span class="pm-sl"><i style="background:'+x[3]+'"></i>'+x[0]+'</span><b>'+x[1]+'</b><small>'+x[2]+'</small></div>'}).join("")+'</div>';
   var groups={};H.forEach(function(d){var k=wkD(d).getMonth();(groups[k]=groups[k]||[]).push(d)});
-  var rows=Object.keys(groups).sort(function(a,b){return b-a}).map(function(k){return '<div class="wk-hm">'+WMO[k]+'</div>'+groups[k].map(function(d){var s=wkSetsDone(d),v=wkVol(d);return '<div class="wk-hrow"><span class="wk-hi">'+fic(wkTy2(d),"#EF6F5E",18)+'</span><span class="wk-hd">'+pmFd(d)+'</span><b>'+esc(wkName2(d))+'</b><span>'+wkMin2(d)+' min</span><span>'+(s[1]?s[0]+' sets':'–')+'</span><span>'+(v?Math.round(v).toLocaleString()+' kg':'–')+'</span><span class="wk-ck">✓</span></div>'}).join("")}).join("");
+  var rows=Object.keys(groups).sort(function(a,b){return b-a}).map(function(k){return '<div class="wk-hm">'+WMO[k]+'</div>'+groups[k].map(function(d){var s=wkSetsDone(d),v=wkVol(d);return '<div class="wk-hrow"><span class="wk-hi">'+fic({type:wkTy2(d),name:wkName2(d),icon:(WL[d]||{}).icon},"#EF6F5E",18)+'</span><span class="wk-hd">'+pmFd(d)+'</span><b>'+esc(wkName2(d))+'</b><span>'+wkMin2(d)+' min</span><span>'+(s[1]?s[0]+' sets':'–')+'</span><span>'+(v?Math.round(v).toLocaleString()+' kg':'–')+'</span><span class="wk-ck">✓</span></div>'}).join("")}).join("");
   return wkBack("History")+wkHead("Workout history","Every workout you've completed.","")+st+pmCard("wk-hist2","COMPLETED WORKOUTS","#EF6F5E",H.length+" workouts","",'<div class="wk-hth"><span></span><span>Date</span><span>Workout</span><span>Time</span><span>Sets</span><span>Volume</span><span></span></div>'+(rows||'<small>No workouts yet</small>'));
 }
 function vWorkoutT(){var ref=wkRef(),v=WKU.view,body=v==="programs"?vWkPrograms(ref):v==="log"?vWkLog(ref):v==="history"?vWkHistory(ref):vWkMain(ref);
@@ -8573,7 +8602,7 @@ document.addEventListener("click",function(e){var b=e.target.closest&&e.target.c
   else{var tw=wkFor(ref);if(tw){
     if(a==="ok"){var q=v.split(":"),e2=tw.ex[+q[0]],s=exSets(ref,e2)[+q[1]];s.ok=!s.ok;if(s.ok&&!s.r)s.r=String(e2.r).replace(/ each$/,"");wlSave()}
     if(a==="add"){var e3=tw.ex[+v],ss=exSets(ref,e3),l=ss[ss.length-1]||{};ss.push({r:l.r||"",w:l.w||"",ok:false});wlSave()}
-    if(a==="done"){var L=WL[ref]||(WL[ref]={sets:{}});L.done=!wkDoneD(ref);L.name=tw.name;L.type=tw.type;L.min=tw.min;var it=wkItem(ref);if(it){if(L.done)S.done[it.id]=true;else delete S.done[it.id];saveDone()}wlSave()}}}
+    if(a==="done"){var L=WL[ref]||(WL[ref]={sets:{}});L.done=!wkDoneD(ref);L.name=tw.name;L.type=tw.type;L.min=tw.min;L.icon=tw.icon||"";var it=wkItem(ref);if(it){if(L.done)S.done[it.id]=true;else delete S.done[it.id];saveDone()}wlSave()}}}
   render();if(top)window.scrollTo(0,0)},true);
 document.addEventListener("change",function(e){var t=e.target;if(!t||!t.getAttribute)return;var k=t.getAttribute("data-wkin"),sp=t.getAttribute("data-wsplit"),ref=wkRef();
   if(sp!=null){var P=PG.programs.filter(function(p){return p.id===WKU.pg})[0];P.days[sp]=t.value;pgSave();render();return}
@@ -8584,7 +8613,7 @@ function wkTag(ty){return ty==="lift"?"Strength":ty==="run"?"Cardio":ty==="hike"
 function syncSplit(){var ref=wkRef(),rd=wkD(ref),mon=new Date(rd);mon.setDate(rd.getDate()-((rd.getDay()+6)%7));var from=iso(mon),end=new Date(mon);end.setDate(mon.getDate()+41);var to=iso(end);
   var keep=[];for(var i=ITEMS.length-1;i>=0;i--){var it=ITEMS[i];if(it.cat==="workout"&&!it.ic&&it.date>=from&&it.date<=to){if(!it.sp&&S.done[it.id])S.done["sp"+it.date]=true;delete BYID[it.id];ITEMS.splice(i,1)}}
   for(var k in EXL)if(k.indexOf("sp:")===0)delete EXL[k];
-  var dt=new Date(mon);for(var q=0;q<42;q++){var d=iso(dt),w=wkFor(d);if(w){var t=w.t!=null?w.t:7,x={id:"sp"+d,cat:"workout",title:w.name,date:d,start:t,end:t+(w.min||45)/60,tag:wkTag(w.type),sp:true,wtype:w.type};
+  var dt=new Date(mon);for(var q=0;q<42;q++){var d=iso(dt),w=wkFor(d);if(w){var t=w.t!=null?w.t:7,x={id:"sp"+d,cat:"workout",title:w.name,date:d,start:t,end:t+(w.min||45)/60,tag:wkTag(w.type),sp:true,wtype:w.type,wicon:w.icon};
     if(WL[d]&&WL[d].done!=null){if(WL[d].done)S.done[x.id]=true;else delete S.done[x.id]}
     EXL["sp:"+d]=(w.ex||[]).map(function(e){return [e.n,exT(e)]});ITEMS.push(x);BYID[x.id]=x}dt.setDate(dt.getDate()+1)}}
 var _exKeyO=exKey;exKey=function(i){return i&&i.sp?"sp:"+i.date:_exKeyO(i)};
@@ -9347,7 +9376,7 @@ function wl89W(){var o=M89;return o.wid?wl89Opts(o.d).filter(function(w){return 
 function wl89Read(){var o=M89;if(!o)return;var m=document.getElementById("m9-min");if(m)o.min=parseInt(m.value)||0;var dn=document.getElementById("m9-done");if(dn)o.done=dn.checked;var n=document.getElementById("m9-note");if(n)o.note=n.value;
   document.querySelectorAll("#m89m [data-m9set]").forEach(function(el){var k=el.getAttribute("data-m9set").split("|"),S2=o.sets[k[0]];if(S2&&S2[+k[1]])S2[+k[1]][k[2]]=el.value})}
 M89B.wlog=function(){var o=M89,w=wl89W(),dt=wkD(o.d),planned=wkFor(o.d),isT=o.d===td89();
-  if(w)w.ex.forEach(function(e){if(!o.sets[e.n]){o.sets[e.n]=[];for(var j=0;j<Math.max(1,e.s);j++)o.sets[e.n].push({r:"",w:"",ok:false})}});
+  if(w)w.ex.forEach(function(e){if(!o.sets[e.n]){o.sets[e.n]=[];for(var j=0;j<Math.max(1,e.s);j++)o.sets[e.n].push({r:"",w:(window.wkKg(e)?String(window.wkKg(e)):""),ok:false})}});
   var ex=w?w.ex.map(function(e){var S2=o.sets[e.n];return '<div class="wl9ex"><div class="wl9eh"><b>'+esc(e.n)+'</b><small>Target '+esc(exT(e))+'</small></div>'+S2.map(function(s,si){return '<div class="wl9set'+(s.ok?' ok':'')+'"><span>'+(si+1)+'</span><input inputmode="decimal" data-m9set="'+esc(e.n)+'|'+si+'|r" value="'+esc(s.r)+'" placeholder="'+esc(String(e.r).replace(/ each$/,""))+'" aria-label="Reps set '+(si+1)+'"><input inputmode="decimal" data-m9set="'+esc(e.n)+'|'+si+'|w" value="'+esc(s.w)+'" placeholder="kg" aria-label="kg set '+(si+1)+'"><button class="lc'+(s.ok?' on':'')+'" data-m9="ok" data-v="'+esc(e.n)+'|'+si+'" aria-label="Set '+(si+1)+' done" aria-pressed="'+(s.ok?'true':'false')+'">✓</button></div>'}).join("")+'<button class="wl9add" data-m9="addset" data-v="'+esc(e.n)+'">+ Set</button></div>'}).join(""):'<div class="m87hint">No workout picked: this day is logged as a rest day.</div>';
   var ws=wl89Opts(o.d);
   return {t:'Log · '+(isT?'Today':WD[dt.getDay()]+' '+pmSd(o.d)),c:"#EF6F5E",wide:true,h:
@@ -9365,7 +9394,7 @@ M89A["wlog:save"]=function(){wl89Read();var o=M89,d=o.d;if(d>td89()){M89.err="Yo
   if(o.min<1||o.min>600){M89.err="Duration should be between 1 and 600 minutes.";m89Draw();return}
   if(!planned||planned.id!==w.id){WOV[d]=wkClone(w);wovSave()}
   var sets={};w.ex.forEach(function(e){if(o.sets[e.n])sets[e.n]=o.sets[e.n]});
-  WL[d]={name:w.name,type:w.type,min:o.min,done:!!o.done,sets:sets,note:o.note};wlSave();m89Close();toast87((o.done?"✓ Logged ":"Saved ")+w.name+" · "+pmFd(d));render()};
+  WL[d]={name:w.name,type:w.type,icon:w.icon||"",min:o.min,done:!!o.done,sets:sets,note:o.note};wlSave();m89Close();toast87((o.done?"✓ Logged ":"Saved ")+w.name+" · "+pmFd(d));render()};
 
 /* ---------- 5. goals: target weight by a date ---------- */
 var GL89=LS.get("lm.wtgoal.v1",null);if(!GL89&&WT.length&&WT[0].sample)GL89={start:63.8,startDate:"2026-10-19",target:60,date:"2027-02-28",week:WG.week,sample:true};
@@ -9518,8 +9547,8 @@ function h92A(){var m=mode87(),wk=h92Week(),wo=h92Workout(),sp=h92Spend(),W=h92W
   var PJ=(typeof PM!=="undefined"?PM.projects:[]);
   if(HUB!=="life")C.push({k:"proj",c:["all","work"],h:'<div class="h92c"><div class="q-ch"><b>Projects</b><button class="q-lnk" data-a="go" data-v="work">Open</button></div>'+PJ.map(function(p){var pr=pmProg(p.id),od=PM.tasks.filter(function(t){return t.pid===p.id&&pmOd(t)}).length;return '<button class="h92pj" data-cx="proj" data-v="'+p.id+'"><span class="q-pa" style="background:'+p.color+'">'+esc(p.name.charAt(0))+'</span><span class="q-pt"><b>'+esc(p.name)+'</b><small>'+pr+'% · '+(od?od+' overdue · ':'')+Math.max(0,pmDays(p.launch))+' days left</small><span class="h92pb"><i style="width:'+pr+'%;background:'+p.color+'"></i></span></span></button>'}).join("")+'</div>'});
   C.push({k:"weekly",c:["all","workout"],h:'<div class="h92c"><div class="q-ch"><b>Weekly goal</b><span class="q-pc">'+Math.round(Math.min(1,wk.done/wk.target)*100)+'%</span></div><div class="h92semi">'+h92Semi(200,wk.done/wk.target,ACC())+'<div class="q-v"><b>'+wk.done+'<small>/'+wk.target+'</small></b><span>workouts this week</span></div></div><div class="h92sl"><span>0</span><div class="q-tr"><i style="width:'+Math.min(100,wk.done/wk.target*100)+'%"></i></div><span>'+wk.target+'</span></div></div>'});
-  var w=wo.w;C.push({k:"workout",c:["all","workout"],h:'<div class="h92c q-big"><div class="q-ch"><b>Today\u2019s workout</b><button class="q-lnk" data-a="go" data-v="workout">Details</button></div><div class="h92dial">'+h92Dial(208,wo.pct,ACC())+'<div class="q-v">'+(w?'<span class="q-ic">'+fic(w.type,ACC(),26)+'</span><b>'+esc(w.name)+'</b><small>'+(w.t!=null?ft(w.t)+' · ':'')+(w.min||45)+' min</small><em>'+(wo.dn?'Done ✓':wo.sd[0]?wo.sd[0]+'/'+wo.sd[1]+' sets':'Not started')+'</em>':'<span class="q-ic">'+fic("rest",ACC(),26)+'</span><b>Rest day</b><small>Recover and stretch</small>')+'</div></div>'+
-    '<div class="h92modes">'+wk.days.map(function(x){var dd=wkD(x.d);return '<span class="'+(x.d===TODAY?'on':'')+(x.dn?' ok':'')+'" title="'+(x.w?esc(x.w.name):'Rest')+'">'+fic(x.w?x.w.type:"rest",x.d===TODAY?"#fff":x.dn?ACC():"#A2958A",15)+'<small>'+"SMTWTFS".charAt(dd.getDay())+'</small></span>'}).join("")+'</div><button class="h92btn" data-h92="wkl">'+(wo.dn?'View log':'Log workout')+'</button></div>'});
+  var w=wo.w;C.push({k:"workout",c:["all","workout"],h:'<div class="h92c q-big"><div class="q-ch"><b>Today\u2019s workout</b><button class="q-lnk" data-a="go" data-v="workout">Details</button></div><div class="h92dial">'+h92Dial(208,wo.pct,ACC())+'<div class="q-v">'+(w?'<span class="q-ic">'+fic(w,ACC(),26)+'</span><b>'+esc(w.name)+'</b><small>'+(w.t!=null?ft(w.t)+' · ':'')+(w.min||45)+' min</small><em>'+(wo.dn?'Done ✓':wo.sd[0]?wo.sd[0]+'/'+wo.sd[1]+' sets':'Not started')+'</em>':'<span class="q-ic">'+fic({type:"rest"},ACC(),26)+'</span><b>Rest day</b><small>Recover and stretch</small>')+'</div></div>'+
+    '<div class="h92modes">'+wk.days.map(function(x){var dd=wkD(x.d);return '<span class="'+(x.d===TODAY?'on':'')+(x.dn?' ok':'')+'" title="'+(x.w?esc(x.w.name):'Rest')+'">'+fic(x.w||{type:"rest"},x.d===TODAY?"#fff":x.dn?ACC():"#A2958A",15)+'<small>'+"SMTWTFS".charAt(dd.getDay())+'</small></span>'}).join("")+'</div><button class="h92btn" data-h92="wkl">'+(wo.dn?'View log':'Log workout')+'</button></div>'});
   C.push({k:"brain",c:["all","errand"],h:'<div class="h92c"><div class="q-ch"><b>Brain dump</b><span class="q-ci" style="background:'+tint(CAT.errand.color,"1F")+';color:'+CAT.errand.color+'">'+h92ic("errand",18)+'</span></div><div class="h92qr">'+ITEMS.filter(function(i){return i.cat==="errand"&&!S.done[i.id]}).slice(0,3).map(function(i){return '<span data-a="open" data-id="'+i.id+'">'+esc(i.title)+'</span>'}).join("")+'</div><button class="h92btn blue" data-a="go" data-v="errand">Open brain dump</button></div>'});
   C.push({k:"fin",c:["all","budget"],h:'<div class="h92c"><div class="q-ch"><b>Finance</b><span class="q-pc">'+Math.round(sp.pct*100)+'%</span></div><div class="h92bat"><div class="q-pill"><i style="height:'+Math.round(sp.pct*100)+'%"></i><span>'+Math.round(sp.pct*100)+'%</span></div><div class="q-bt"><b>'+rm(sp.left)+'</b><small>left of '+rm(sp.b)+'</small><div class="q-rows">'+sp.rows.slice(0,3).map(function(r){return '<div><span>'+esc(r[0])+'</span><em>'+rm(r[2])+'</em></div>'}).join("")+'</div></div></div><small class="q-mut">'+esc(folderInfo(CAT.budget).x)+'</small></div>'});
   var tdL=h92Todos(day),tdd=tdL.filter(function(i){return S.done[i.id]}).length;
@@ -9561,7 +9590,7 @@ function h92B(){var m=mode87(),wk=h92Week(),wo=h92Workout(),sp=h92Spend(),W=h92W
     '<defs><linearGradient id="h92g" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="'+ACC()+'" stop-opacity=".22"/><stop offset="1" stop-color="'+ACC()+'" stop-opacity="0"/></linearGradient></defs></svg>';
   var tip=lp&&last?'<div class="h92tip" style="left:'+(lp[0]/CW*100).toFixed(1)+'%;top:'+(lp[1]/CH*100).toFixed(1)+'%"><b>'+last.kg.toFixed(1)+' kg</b><small>'+pmSd(last.d)+'</small></div>':'';
   var act='<div class="h92w h92act"><div class="q-ch"><div><b>Weight progress</b><small>'+(gc?(gc.reached?'Goal reached':Math.round(gc.pct*100)+'% to '+gc.g.target.toFixed(1)+' kg · '+gc.st[0]):'Set a goal on the Workouts page')+'</small></div><label class="q-dd"><select data-h92ch="range" aria-label="Range">'+[["6w","6 weeks"],["3m","3 months"],["all","All time"]].map(function(o){return '<option value="'+o[0]+'"'+(H92U.range===o[0]?' selected':'')+'>'+o[1]+'</option>'}).join("")+'</select></label></div><div class="q-cw">'+chart+tip+'</div></div>';
-  var hero='<div class="h92hero"><div class="q-hl"><span class="q-pill">'+(wo.dn?'Done today':'Today')+'</span><button class="q-hb" data-h92="wkl" aria-label="Log workout">'+h92ic("pencil",16)+'</button></div><div class="q-art">'+fic(w?w.type:"rest","#fff",84)+'</div><b class="q-hn">'+(w?esc(w.name):'Rest day')+'</b><small>'+(w?(w.t!=null?ft(w.t)+' · ':'')+(w.min||45)+' min · '+w.ex.length+' exercises':'Recover, stretch, hydrate')+'</small><div class="q-hs"><div><b>'+wk.done+'</b><small>this week</small></div><div><b>'+wkStreak(TODAY)+'</b><small>day streak</small></div><div><b>'+wkHist(TODAY).filter(function(d){return d.slice(0,7)===TODAY.slice(0,7)}).length+'</b><small>this month</small></div></div><button class="q-hbtn" data-h92="wkl">'+(wo.dn?'View log':'Log workout')+'</button></div>';
+  var hero='<div class="h92hero"><div class="q-hl"><span class="q-pill">'+(wo.dn?'Done today':'Today')+'</span><button class="q-hb" data-h92="wkl" aria-label="Log workout">'+h92ic("pencil",16)+'</button></div><div class="q-art">'+fic(w||{type:"rest"},"#fff",84)+'</div><b class="q-hn">'+(w?esc(w.name):'Rest day')+'</b><small>'+(w?(w.t!=null?ft(w.t)+' · ':'')+(w.min||45)+' min · '+w.ex.length+' exercises':'Recover, stretch, hydrate')+'</small><div class="q-hs"><div><b>'+wk.done+'</b><small>this week</small></div><div><b>'+wkStreak(TODAY)+'</b><small>day streak</small></div><div><b>'+wkHist(TODAY).filter(function(d){return d.slice(0,7)===TODAY.slice(0,7)}).length+'</b><small>this month</small></div></div><button class="q-hbtn" data-h92="wkl">'+(wo.dn?'View log':'Log workout')+'</button></div>';
   var nxt=h92Events(TODAY,1)[0],act0=nxt&&nxt.cat!=="work"?nxt.cat:"workout";
   var weekC='<div class="h92sec"><div class="q-st"><i></i><b>This week</b><span class="q-sp"></span><button class="q-lnk" data-a="go" data-v="calendar">view all</button></div><div class="h92wk">'+CATS.map(function(k){var f=folderInfo(k),on=k.id===act0;return '<button class="h92wc'+(on?' on':'')+'" data-a="go" data-v="'+k.id+'"><span class="q-th" style="'+(on?'':'background:'+tint(k.color,"1F")+';color:'+k.color)+'">'+h92ic(k.id,22)+'</span><span class="q-tx"><b>'+k.label+'</b><small>'+esc(f.x)+'</small></span><em>'+esc(f.n)+'<small>'+esc(f.s.split(" · ")[0])+'</small></em></button>'}).join("")+'</div></div>';
   var right='<aside class="h92right"><div class="q-pr"><span class="q-av">M</span><div><b>Mariama</b><small>@mariama · '+(HUB==="life"?"Life Hub":"Work Hub")+'</small></div><button class="q-ib" data-cx="settings" aria-label="Settings">'+h92ic("dots",20)+'</button></div>'+
@@ -9718,8 +9747,8 @@ function h93Chart(){var W=h92Wt(),last=W[W.length-1],gc=typeof gl89Calc==="funct
   return '<div class="h92c h93chart"><div class="q-ch"><div><b>Weight progress</b><small class="q-mut">'+(gc?(gc.reached?'Goal reached':Math.round(gc.pct*100)+'% to '+gc.g.target.toFixed(1)+' kg · '+gc.st[0]):'Set a goal on the Workouts page')+'</small></div><label class="q-dd"><select data-h92ch="range" aria-label="Range">'+[["6w","6 weeks"],["3m","3 months"],["all","All time"]].map(function(o){return '<option value="'+o[0]+'"'+(H92U.range===o[0]?' selected':'')+'>'+o[1]+'</option>'}).join("")+'</select></label></div><div class="q-cw">'+svg+tip+'</div></div>'}
 /* ---------- A widgets for the home overview ---------- */
 function h93Dial(){var wk=h92Week(),wo=h92Workout(),w=wo.w;
-  return '<div class="h92c h93dialc"><div class="q-ch"><b>Today\u2019s workout</b><button class="q-lnk" data-a="go" data-v="workout">Details</button></div><div class="h92dial">'+h92Dial(184,wo.pct,"#EF6F5E")+'<div class="q-v">'+(w?'<span class="q-ic">'+fic(w.type,"#EF6F5E",24)+'</span><b>'+esc(w.name)+'</b><small>'+(w.t!=null?ft(w.t)+' · ':'')+(w.min||45)+' min</small><em>'+(wo.dn?'Done ✓':wo.sd[0]?wo.sd[0]+'/'+wo.sd[1]+' sets':'Not started')+'</em>':'<span class="q-ic">'+fic("rest","#EF6F5E",24)+'</span><b>Rest day</b><small>Recover and stretch</small>')+'</div></div>'+
-    '<div class="h92modes">'+wk.days.map(function(x){var dd=wkD(x.d);return '<span class="'+(x.d===TODAY?'on':'')+(x.dn?' ok':'')+'" title="'+(x.w?esc(x.w.name):'Rest')+'">'+fic(x.w?x.w.type:"rest",x.d===TODAY?"#fff":x.dn?"#EF6F5E":"#A2958A",14)+'<small>'+"SMTWTFS".charAt(dd.getDay())+'</small></span>'}).join("")+'</div><button class="h92btn" data-h92="wkl">'+(wo.dn?'View log':'Log workout')+'</button></div>'}
+  return '<div class="h92c h93dialc"><div class="q-ch"><b>Today\u2019s workout</b><button class="q-lnk" data-a="go" data-v="workout">Details</button></div><div class="h92dial">'+h92Dial(184,wo.pct,"#EF6F5E")+'<div class="q-v">'+(w?'<span class="q-ic">'+fic(w,"#EF6F5E",24)+'</span><b>'+esc(w.name)+'</b><small>'+(w.t!=null?ft(w.t)+' · ':'')+(w.min||45)+' min</small><em>'+(wo.dn?'Done ✓':wo.sd[0]?wo.sd[0]+'/'+wo.sd[1]+' sets':'Not started')+'</em>':'<span class="q-ic">'+fic({type:"rest"},"#EF6F5E",24)+'</span><b>Rest day</b><small>Recover and stretch</small>')+'</div></div>'+
+    '<div class="h92modes">'+wk.days.map(function(x){var dd=wkD(x.d);return '<span class="'+(x.d===TODAY?'on':'')+(x.dn?' ok':'')+'" title="'+(x.w?esc(x.w.name):'Rest')+'">'+fic(x.w||{type:"rest"},x.d===TODAY?"#fff":x.dn?"#EF6F5E":"#A2958A",14)+'<small>'+"SMTWTFS".charAt(dd.getDay())+'</small></span>'}).join("")+'</div><button class="h92btn" data-h92="wkl">'+(wo.dn?'View log':'Log workout')+'</button></div>'}
 function h93Weekly(){var wk=h92Week();return '<div class="h92c"><div class="q-ch"><b>Weekly goal</b><span class="q-pc">'+Math.round(Math.min(1,wk.done/wk.target)*100)+'%</span></div><div class="h92semi">'+h92Semi(190,wk.done/wk.target,"#EF6F5E")+'<div class="q-v"><b>'+wk.done+'<small>/'+wk.target+'</small></b><span>workouts this week</span></div></div><div class="h92sl"><span>0</span><div class="q-tr"><i style="width:'+Math.min(100,wk.done/wk.target*100)+'%"></i></div><span>'+wk.target+'</span></div></div>'}
 function h93Fin(){var sp=h92Spend();return '<div class="h92c"><div class="q-ch"><b>Finance</b><span class="q-pc">'+Math.round(sp.pct*100)+'%</span></div><div class="h92bat"><div class="q-pill"><i style="height:'+Math.round(sp.pct*100)+'%"></i><span>'+Math.round(sp.pct*100)+'%</span></div><div class="q-bt"><b>'+rm(sp.left)+'</b><small>left of '+rm(sp.b)+'</small><div class="q-rows">'+sp.rows.slice(0,3).map(function(r){return '<div><span>'+esc(r[0])+'</span><em>'+rm(r[2])+'</em></div>'}).join("")+'</div></div></div><small class="q-mut">'+esc(folderInfo(CAT.budget).x)+'</small></div>'}
 function h93Brain(){return '<div class="h92c"><div class="q-ch"><b>Brain dump</b><span class="q-ci" style="background:'+tint(CAT.errand.color,"1F")+';color:'+CAT.errand.color+'">'+h92ic("errand",18)+'</span></div><div class="h92qr">'+ITEMS.filter(function(i){return i.cat==="errand"&&!S.done[i.id]}).slice(0,3).map(function(i){return '<span data-a="open" data-id="'+i.id+'">'+esc(i.title)+'</span>'}).join("")+'</div><button class="h92btn blue" data-a="go" data-v="errand">Open brain dump</button></div>'}
@@ -9772,9 +9801,9 @@ function h95Workout(){var sel=h95Sel(),w=wkFor(sel),dn=wkDoneD(sel),sd=wkSetsDon
   var tm=w?(w.t!=null?ft(w.t)+" \u2013 "+ft(w.t+(w.min||45)/60):(w.min||45)+" min"):"Recover, stretch, hydrate";
   var st=w?(dn?'<em class="q-st ok">Done \u2713</em>':sd&&sd[0]?'<em class="q-st">'+sd[0]+'/'+sd[1]+' sets</em>':sel<TODAY?'<em class="q-st mis">Not logged</em>':sel===TODAY?'<em class="q-st">Not started</em>':''):'';
   var days=[0,1,2,3,4,5,6].map(function(k){var d=addD(s,k),x=wkFor(d),xd=wkDoneD(d),cls="q-d"+(d===sel?" on":"")+(d===TODAY?" td":"")+(d<TODAY&&d!==sel?" past":"")+(x?"":" rest")+(xd?" ok":"");
-    return '<button class="'+cls+'" data-h95="pick" data-v="'+d+'" title="'+(x?esc(x.name):"Rest")+'"><small>'+h95DN(d).slice(0,3).toUpperCase()+'</small><span class="q-b">'+fic(x?x.type:"rest",d===sel?"#fff":x?C:"#A2958A",16)+(xd?'<i class="q-ck">\u2713</i>':'')+'</span><span class="q-n">'+(x?esc(x.name):"Rest")+'</span></button>'}).join("");
+    return '<button class="'+cls+'" data-h95="pick" data-v="'+d+'" title="'+(x?esc(x.name):"Rest")+'"><small>'+h95DN(d).slice(0,3).toUpperCase()+'</small><span class="q-b">'+fic(x||{type:"rest"},d===sel?"#fff":x?C:"#A2958A",16)+(xd?'<i class="q-ck">\u2713</i>':'')+'</span><span class="q-n">'+(x?esc(x.name):"Rest")+'</span></button>'}).join("");
   return '<div class="h92c h95wo"><div class="q-top"><button class="q-ar" data-h95="day" data-v="-1" aria-label="Previous day">\u2039</button><span class="q-pill">'+h95Pill(sel)+'</span><button class="q-ar" data-h95="day" data-v="1" aria-label="Next day">\u203a</button><button class="q-ed" data-h95="edit" aria-label="Log or edit workout" title="Log / edit">'+h92ic("pencil",16)+'</button></div>'+
-    '<div class="q-hero"><span class="q-ic">'+fic(w?w.type:"rest","#fff",30)+'</span><div class="q-tx"><b>'+(w?esc(w.name):"Rest day")+'</b><small>'+tm+'</small>'+st+'</div></div><hr>'+
+    '<div class="q-hero"><span class="q-ic">'+fic(w||{type:"rest"},"#fff",30)+'</span><div class="q-tx"><b>'+(w?esc(w.name):"Rest day")+'</b><small>'+tm+'</small>'+st+'</div></div><hr>'+
     '<div class="q-wk">'+days+'</div></div>'}
 h93Dial=h95Workout;
 function h95Goals(){var gd=GOALS.filter(function(g){return g.done}).length,gp=GOALS.length?gd/GOALS.length:0;
@@ -9797,16 +9826,16 @@ function h96Todos(){var L=h92Todos(TODAY),dn=L.filter(function(i){return S.done[
 /* 2. workout breakdown */
 function h96Wo(){var sel=h96Sel(),w=wkFor(sel),L=WL[sel],fut=sel>td89(),dn=wkDoneD(sel),c=CAT.workout.color,a=0,b=0;
   var head='<div class="h96wtop"><button class="q-ar" data-h96="day" data-v="-1" aria-label="Previous day">\u2039</button><span class="q-pill">'+h95Pill(sel)+'</span><button class="q-ar" data-h96="day" data-v="1" aria-label="Next day">\u203a</button>'+(sel!==TODAY?'<button class="h96lnk" data-h96="today">Today</button>':'')+'<button class="h96ib q-ed" data-h96="log" aria-label="Log or edit workout">'+h92ic("pencil",15)+'</button></div>';
-  if(!w)return '<div class="h92c h96card h96wo">'+head+'<div class="h96hero"><span class="q-ic rest">'+fic("rest","#fff",28)+'</span><div><b>Rest day</b><small>Recover, stretch, hydrate</small></div></div><div class="h96empty">No workout in your split for this day.</div><button class="h92btn h96log" data-h96="log"'+(fut?' disabled':'')+'>'+(fut?'Can\u2019t log a future day':'Log a workout anyway')+'</button></div>';
+  if(!w)return '<div class="h92c h96card h96wo">'+head+'<div class="h96hero"><span class="q-ic rest">'+fic({type:"rest"},"#fff",28)+'</span><div><b>Rest day</b><small>Recover, stretch, hydrate</small></div></div><div class="h96empty">No workout in your split for this day.</div><button class="h92btn h96log" data-h96="log"'+(fut?' disabled':'')+'>'+(fut?'Can\u2019t log a future day':'Log a workout anyway')+'</button></div>';
   var rows=w.ex.map(function(e){var arr=(L&&L.sets&&L.sets[e.n])||null,n=Math.max(1,e.s),dots="";
     for(var j=0;j<n;j++){var ok=!!(arr&&arr[j]&&arr[j].ok);b++;if(ok)a++;dots+='<button class="h96set'+(ok?' ok':'')+'" data-h96="set" data-v="'+esc(e.n)+'|'+j+'"'+(fut?' disabled':'')+' aria-label="'+esc(e.n)+' set '+(j+1)+(ok?' done':'')+'">'+(ok?'\u2713':(n>1?j+1:''))+'</button>'}
     var all=arr&&arr.length&&arr.slice(0,n).every(function(s){return s.ok});
     return '<div class="h96ex'+(all?' ok':'')+'"><div class="q-l"><b>'+esc(e.n)+'</b><small>'+esc(exT(e))+(e.rest?' \u00b7 rest '+esc(e.rest):'')+'</small></div><div class="q-s">'+dots+'</div></div>'}).join("");
   var tm=w.t!=null?ft(w.t)+" \u2013 "+ft(w.t+(w.min||45)/60):(w.min||45)+" min";
-  return '<div class="h92c h96card h96wo">'+head+'<div class="h96hero"><span class="q-ic">'+fic(w.type,"#fff",28)+'</span><div><b>'+esc(w.name)+'</b><small>'+tm+' \u00b7 '+w.ex.length+' exercises</small></div><span class="h96st'+(dn?' ok':'')+'">'+(dn?'Done \u2713':a+'/'+b+' sets')+'</span></div>'+
+  return '<div class="h92c h96card h96wo">'+head+'<div class="h96hero"><span class="q-ic">'+fic(w,"#fff",28)+'</span><div><b>'+esc(w.name)+'</b><small>'+tm+' \u00b7 '+w.ex.length+' exercises</small></div><span class="h96st'+(dn?' ok':'')+'">'+(dn?'Done \u2713':a+'/'+b+' sets')+'</span></div>'+
     '<div class="h96pb" style="--c:'+(dn?'#3FA779':c)+'"><i style="width:'+(dn?100:b?a/b*100:0)+'%"></i></div><div class="h96exl">'+rows+'</div>'+
     h96Strip(sel)+'<button class="h92btn h96log" data-h96="log"'+(fut?' disabled':'')+'>'+h92ic("workout",17)+'<span>'+(fut?'Can\u2019t log a future day':dn?'View / edit log':'Log workout')+'</span></button></div>'}
-function h96Strip(sel){var s=wkS(sel),wk=h92Week(),C="#EF6F5E";return '<div class="h95wo h96strip"><div class="q-sh"><small>This week</small><span>'+wk.done+'/'+wk.target+' workouts</span></div><div class="q-wk">'+[0,1,2,3,4,5,6].map(function(k){var d=addD(s,k),x=wkFor(d),xd=wkDoneD(d);return '<button class="q-d'+(d===sel?' on':'')+(d===TODAY?' td':'')+(d<TODAY&&d!==sel?' past':'')+(x?'':' rest')+(xd?' ok':'')+'" data-h96="pick" data-v="'+d+'" title="'+(x?esc(x.name):'Rest')+'"><small>'+WD[dO(d).getDay()].slice(0,3).toUpperCase()+'</small><span class="q-b">'+fic(x?x.type:"rest",d===sel?"#fff":x?C:"#A2958A",15)+(xd?'<i class="q-ck">\u2713</i>':'')+'</span><span class="q-n">'+(x?esc(x.name):'Rest')+'</span></button>'}).join("")+'</div></div>'}
+function h96Strip(sel){var s=wkS(sel),wk=h92Week(),C="#EF6F5E";return '<div class="h95wo h96strip"><div class="q-sh"><small>This week</small><span>'+wk.done+'/'+wk.target+' workouts</span></div><div class="q-wk">'+[0,1,2,3,4,5,6].map(function(k){var d=addD(s,k),x=wkFor(d),xd=wkDoneD(d);return '<button class="q-d'+(d===sel?' on':'')+(d===TODAY?' td':'')+(d<TODAY&&d!==sel?' past':'')+(x?'':' rest')+(xd?' ok':'')+'" data-h96="pick" data-v="'+d+'" title="'+(x?esc(x.name):'Rest')+'"><small>'+WD[dO(d).getDay()].slice(0,3).toUpperCase()+'</small><span class="q-b">'+fic(x||{type:"rest"},d===sel?"#fff":x?C:"#A2958A",15)+(xd?'<i class="q-ck">\u2713</i>':'')+'</span><span class="q-n">'+(x?esc(x.name):'Rest')+'</span></button>'}).join("")+'</div></div>'}
 /* 3. brain dump */
 function h96Brain(){var c=CAT.errand.color,L=ITEMS.filter(function(i){return i.cat==="errand"&&!S.done[i.id]}).sort(function(a,b){return (b.date||"")<(a.date||"")?-1:1});
   return '<div class="h92c h96card h96bd">'+h96Head("Brain dump","errand",c,'<span class="h96ct">'+L.length+' open</span>')+
@@ -9898,7 +9927,7 @@ function h98Dial(sz,pct,col){var c=sz/2,R=sz/2-6,n=48,p=Math.max(0,Math.min(1,pc
 function h98Front(){var sel=h96Sel(),w=wkFor(sel),dn=wkDoneD(sel),sd=wkSetsDone(sel),pct=dn?1:sd[1]?sd[0]/sd[1]:0,C="#EF6F5E";
   var st=w?(dn?'Done \u2713':sd[0]?sd[0]+'/'+sd[1]+' sets':sel<TODAY?'Not logged':sel>TODAY?'Planned':'Not started'):'Recover and stretch';
   return '<div class="h92c h96card h98f"><div class="q-ch"><b>'+(sel===TODAY?'Today\u2019s workout':'Workout \u00b7 '+h98Fd(sel))+'</b><button class="q-lnk h98det" data-h98="det">Details</button></div>'+
-   '<div class="h92dial h98dial">'+h98Dial(224,pct,C)+'<div class="q-v"><span class="q-ic">'+fic(w?w.type:"rest",C,26)+'</span><b>'+(w?esc(w.name):'Rest day')+'</b><small>'+(w?(w.t!=null?ft(w.t)+' \u00b7 ':'')+(w.min||45)+' min':'No workout planned')+'</small><em'+(dn?' class="ok"':'')+'>'+st+'</em></div></div></div>'}
+   '<div class="h92dial h98dial">'+h98Dial(224,pct,C)+'<div class="q-v"><span class="q-ic">'+fic(w||{type:"rest"},C,26)+'</span><b>'+(w?esc(w.name):'Rest day')+'</b><small>'+(w?(w.t!=null?ft(w.t)+' \u00b7 ':'')+(w.min||45)+' min':'No workout planned')+'</small><em'+(dn?' class="ok"':'')+'>'+st+'</em></div></div></div>'}
 function h98Wo(){var b=h96Wo(),i=b.indexOf('class="h96ib q-ed"');if(i>=0){var e=b.indexOf('</button>',i)+9;b=b.slice(0,e)+'<button class="h96ib h98x" data-h98="back" aria-label="Back to summary" title="Back">\u2715</button>'+b.slice(e)}
   b=b.replace('class="h92c h96card h96wo"','class="h92c h96card h96wo h98b"').replace(/<button class="h96lnk" data-h96="today">Today<\/button>/,'');
   return '<div class="h98wo'+(H98.det?' det':'')+'"><div class="h98in">'+h98Front()+b+'</div></div>'}
@@ -13048,6 +13077,107 @@ h93Head=function(){
   }
 })();
 
+
+/* vWo: Workouts — per-workout icons (auto from type + name, optional override), "min" label, per-exercise kg. */
+(function(){
+  /* ---- 1. icons in the live Workouts figure language (filled head, thick body stroke, filled props).
+        dumbbell/pilates/run/hike/rest reuse the live FIC paths byte-for-byte. */
+  var WIC={
+    legs:'<circle cx="12" cy="6.2" r="2.4" fill="C"/><path d="M8.2 11.6L12 9.4l3.8 2.2M12 9.4v4M12 13.4L7 15.2 8.4 20.6M12 13.4L17 15.2 15.6 20.6" stroke="C" stroke-width="2.9"/>',
+    dumbbell:FIC.lift,
+    kettle:'<circle cx="12" cy="4.3" r="2.4" fill="C"/><path d="M8 10.6L12 8.2 17.4 13.2M12 8.2v5.8M12 14l-3.2 6.2M12 14l3.2 6.2" stroke="C" stroke-width="2.9"/><path d="M15.8 13c.8-1.8 2.8-1.8 3.6 0" stroke="C" stroke-width="1.8"/><circle cx="18" cy="16.6" r="2.5" fill="C"/>',
+    core:'<circle cx="4.6" cy="9.8" r="2.2" fill="C"/><path d="M6.8 11.2H19.6M6.8 11.2V17.8M19.6 11.2l1.2 3.2" stroke="C" stroke-width="2.7"/><rect x="2" y="18.2" width="20" height="1.9" rx=".95" fill="C"/>',
+    pilates:FIC.pilates,
+    yoga:'<circle cx="12" cy="4.6" r="2.4" fill="C"/><path d="M8.2 10.8L12 8.2l3.8 2.6M12 8.2v5.4M12 13.6L5.6 16.8 8.4 20.4 12 16.6 15.6 20.4 18.4 16.8 12 13.6" stroke="C" stroke-width="2.7"/>',
+    run:FIC.run,
+    cycle:'<circle cx="13" cy="4.8" r="2.2" fill="C"/><circle cx="6" cy="17.4" r="4" stroke="C" stroke-width="1.8"/><circle cx="18.4" cy="17.4" r="4" stroke="C" stroke-width="1.8"/><path d="M12.6 7.2L10.4 11.6 7.2 15M12.6 7.4l2.8 4 3 .4M10.4 11.6h5.6L18.4 17.4M6 17.4l4.4-5.8" stroke="C" stroke-width="2.2"/>',
+    swim:'<circle cx="17.4" cy="6.2" r="2.2" fill="C"/><path d="M15.4 8.2L8.4 11.8 3.6 10.4M8.4 11.8l-2.2 5.6M15.4 8.2l5.2-2.2M15.4 8.4l-4.6.8-2-3.6" stroke="C" stroke-width="2.6"/><path d="M2.4 19.6c1.6-1.2 3.2-1.2 4.8 0s3.2 1.2 4.8 0 3.2-1.2 4.8 0 3.2 1.2 4.8 0" stroke="C" stroke-width="1.5"/>',
+    hike:FIC.hike,
+    rest:FIC.rest,
+    bolt:'<circle cx="12" cy="4.3" r="2.4" fill="C"/><path d="M8 11.2L12 8.2l4 3M12 8.2v5.8M12 14l-3.2 6.2M12 14l3.2 6.2" stroke="C" stroke-width="2.9"/>'
+  };
+  var WIL={legs:"Legs",dumbbell:"Strength",kettle:"Full body",core:"Core",pilates:"Pilates",yoga:"Yoga / stretch",run:"Run",cycle:"Cycling",swim:"Swim",hike:"Hike / outdoors",bolt:"Other"};
+  var WIORDER=["legs","dumbbell","kettle","core","pilates","yoga","run","cycle","swim","hike","bolt"];
+  /* name keywords, tried in order; "fam" lists which icons each workout type is allowed to take from its name */
+  var KW=[
+    ["rest",/\b(rest|recover|recovery|off day|day off|deload)/],
+    ["swim",/\bswim/],["cycle",/\b(cycl|bike|biking|spinning|spin class)/],
+    ["run",/\b(run|running|jog|sprint|5k|10k|marathon|treadmill)/],
+    ["hike",/\b(hike|hiking|trail|walk|outdoor|climb)/],
+    ["yoga",/\b(yoga|stretch|mobility|meditat|flow)/],["pilates",/\b(pilates|barre|reformer)/],
+    ["core",/\b(core|abs?\b|ab work|plank)/],
+    ["legs",/\b(leg|squat|glute|lower|quad|hamstring|calf|calves|lunge|thigh|hip)/],
+    ["kettle",/\b(hiit|full[ -]?body|circuit|crossfit|conditioning|kettlebell|metcon|tabata|boot ?camp)/],
+    ["dumbbell",/\b(upper|arms?|bicep|tricep|shoulder|chest|back|push|pull|lats?|rows?|press|delt|strength|lift|weights?|dumbbell|barbell|bench)/]];
+  var FAM={lift:null,pilates:{yoga:1,pilates:1,core:1,rest:1},run:{run:1,cycle:1,swim:1,hike:1,rest:1},hike:{hike:1,run:1,cycle:1,swim:1,rest:1}};
+  var TYPEDEF={lift:"dumbbell",pilates:"pilates",run:"run",hike:"hike",rest:"rest"};
+  function wicKey(w){
+    if(!w)return "rest";
+    if(w.icon&&WIC[w.icon])return w.icon;
+    var ty=w.type||"lift";if(ty==="rest")return "rest";
+    var nm=String(w.name||"").toLowerCase(),fam=FAM[ty];
+    if(nm)for(var i=0;i<KW.length;i++){var k=KW[i][0];if(k==="rest")continue;if(fam&&!fam[k])continue;if(KW[i][1].test(nm))return k}
+    if(nm&&KW[0][1].test(nm)&&!/\b(rest|recover)\w*\s+(pilates|yoga|run|walk)/.test(nm))return "rest";
+    return TYPEDEF[ty]||"bolt"}
+  window.wicKey=wicKey;window.WIC=WIC;
+  function wicSvg(k,c,sz){
+    return '<svg width="'+sz+'" height="'+sz+'" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" data-wic="'+k+'">'+(WIC[k]||'').replace(/="C"/g,'="'+c+'"')+'</svg>'}
+  window.wicSvg=wicSvg;
+  /* fic(workoutObject,...) -> per-workout figure icon on phones (<760px); wide screens keep the original type icon. fic("lift",...) strings are untouched. */
+  var _fic0=fic;
+  fic=function(t,c,sz){
+    if(t&&typeof t==="object"){
+      if(window.innerWidth<760)return wicSvg(wicKey(t),c,sz);
+      t=t.type||"rest"}
+    return _fic0(t,c,sz)};
+
+  /* ---- 2. per-exercise weight (kg) ---- */
+  function wkKg(e){var k=parseFloat(String(e&&e.kg!=null?e.kg:"").replace(",","."));return k>0?k:0}
+  window.wkKg=wkKg;
+  var _exT0=exT;
+  exT=function(e){var b=_exT0(e),k=wkKg(e);return k?b+" · "+(Math.round(k*100)/100)+" kg":b};
+  var _exSets0=exSets;
+  exSets=function(d,e){var had=WL[d]&&WL[d].sets&&WL[d].sets[e.n],a=_exSets0(d,e);
+    if(!had){var k=wkKg(e);if(k)a.forEach(function(s){if(!s.w)s.w=String(Math.round(k*100)/100)})}return a};
+  /* kg lifted = sum over ticked sets of reps x kg. A set with no typed reps/kg uses the exercise's plain target reps and its kg.
+     A workout marked complete with no sets ticked counts the plan as done (sets x reps x kg). Bodyweight / timed exercises count 0. */
+  var PLAIN=/^\d+(\.\d+)?( each)?$/;
+  wkVol=function(d){var L=WL[d],v=0,w=wkFor(d),by={},any=false;
+    ((w&&w.ex)||[]).forEach(function(e){by[e.n]=e});
+    if(L&&L.sets)for(var k in L.sets){var e=by[k];L.sets[k].forEach(function(s){if(!s.ok)return;any=true;
+      var r=parseFloat(s.r),g=parseFloat(String(s.w).replace(",","."));
+      if(!(r>0)&&e&&PLAIN.test(String(e.r).trim()))r=parseFloat(e.r);
+      if(!(g>0)&&e)g=wkKg(e);
+      v+=(r>0?r:0)*(g>0?g:0)})}
+    if(!any&&L&&L.done===true&&w)w.ex.forEach(function(e){var g=wkKg(e);if(g&&PLAIN.test(String(e.r).trim()))v+=(+e.s||1)*parseFloat(e.r)*g});
+    return v};
+
+  /* ---- 3. editor: minutes label, icon picker, Sets / Reps / kg headers ---- */
+  var _sync0=wkDraftSync;
+  wkDraftSync=function(){_sync0();var dr=WKU.draft;if(!dr||!dr.ex)return;
+    dr.ex.forEach(function(e){var k=parseFloat(String(e.kg==null?"":e.kg).replace(",","."));if(k>0&&k<2000)e.kg=Math.round(k*100)/100;else delete e.kg})};
+  wkEditor=function(dr,ctx){
+    var types=[["lift","Strength"],["pilates","Pilates / mobility"],["run","Cardio"],["hike","Outdoors"]];
+    var cur=wicKey(dr),auto=!dr.icon||!WIC[dr.icon];
+    var pick='<div class="wo-ic"><span class="wo-icl">Icon</span><div class="wo-icg"><button type="button" class="wo-icb wo-auto'+(auto?' on':'')+'" data-woi="auto" aria-label="Automatic icon" title="Automatic: follows the type and name">Auto</button>'+
+      WIORDER.map(function(k){return '<button type="button" class="wo-icb'+(!auto&&dr.icon===k?' on':'')+'" data-woi="'+k+'" aria-label="'+WIL[k]+'" title="'+WIL[k]+'">'+wicSvg(k,(!auto&&dr.icon===k)?"#EF6F5E":"#5A5048",20)+'</button>'}).join("")+'</div>'+
+      '<small class="wo-ich">'+(auto?'Auto picks from the type and name · now: '+(cur==="rest"?"Rest":WIL[cur]):'Custom icon: '+WIL[dr.icon])+'</small></div>';
+    return '<div class="wk-ed"><div class="wk-edr"><input data-we="name" value="'+esc(dr.name)+'" placeholder="Workout name"><select data-we="type" aria-label="Workout type">'+types.map(function(t){return '<option value="'+t[0]+'"'+(dr.type===t[0]?' selected':'')+'>'+t[1]+'</option>'}).join("")+'</select><label class="wo-min" title="Workout length in minutes"><input data-we="min" inputmode="numeric" value="'+esc(String(dr.min||""))+'" placeholder="45" class="sm" aria-label="Workout length in minutes"><em>min</em></label></div>'+
+    pick+
+    '<div class="wk-exh"><span>Exercise</span><span>Sets</span><span>Reps<i> / time</i></span><span>kg</span><span>Rest</span><span></span></div>'+
+    dr.ex.map(function(e,i){return '<div class="wk-exe"><input data-we="ex:'+i+':n" value="'+esc(e.n)+'" placeholder="Exercise"><input data-we="ex:'+i+':s" inputmode="numeric" value="'+esc(String(e.s))+'" aria-label="Sets"><input data-we="ex:'+i+':r" value="'+esc(e.r)+'" placeholder="10" aria-label="Reps or time"><input data-we="ex:'+i+':kg" inputmode="decimal" value="'+esc(e.kg?String(e.kg):"")+'" placeholder="–" aria-label="Weight in kg"><input data-we="ex:'+i+':rest" value="'+esc(e.rest)+'" placeholder="60s" aria-label="Rest"><button class="wk-x" data-wk="exdel" data-v="'+i+'" aria-label="Remove exercise">×</button></div>'}).join("")+
+    '<div class="wk-edf"><button class="wk-add" data-wk="exadd">+ Add exercise</button><span class="sp"></span>'+(ctx==="today"?(WOV[wkRef()]!==undefined?'<button class="wk-btn" data-wk="reset">Reset to split</button>':'')+'<button class="wk-btn" data-wk="rest">Make it a rest day</button>':'<button class="wk-btn" data-wk="wdel">Delete workout</button>')+'<button class="wk-btn" data-wk="edcancel">Cancel</button><button class="wk-btn pri" data-wk="edsave">'+(ctx==="today"?"Save for today":"Save workout")+'</button></div></div>'};
+  document.addEventListener("click",function(e){
+    var b=e.target.closest&&e.target.closest("[data-woi]");if(!b||!WKU.draft)return;
+    e.stopPropagation();wkDraftSync();var k=b.getAttribute("data-woi");
+    if(k==="auto")delete WKU.draft.icon;else if(WIC[k])WKU.draft.icon=k;
+    render()},true);
+  /* test hooks (read/drive only; no new behaviour) */
+  window.woT={draft:function(){return WKU.draft},vol:function(d){return wkVol(d||wkRef())},ref:wkRef,
+    view:function(v){WKU.view=v;render()},
+    setKg:function(i,k){var p=pgA(),w=pgW(p,p.days[wkD(wkRef()).getDay()]);w.ex[i].kg=k;pgSave()},
+    markDone:function(){WL[wkRef()]={sets:{},done:true};wlSave()}};
+})();
 
 render();
 if(CXC.pair&&!cxOn())cxPairPoll();
