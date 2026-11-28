@@ -14,6 +14,7 @@
 <!-- vAuth -->
 <!-- vWo -->
 <!-- vTrk fix -->
+<!-- vRefresh -->
 <title>Lifey</title>
 <meta name="apple-mobile-web-app-title" content="Lifey">
 <meta name="application-name" content="Lifey">
@@ -7332,17 +7333,39 @@ body.h93:not(.wh115).m4page.m4rt .gpanel > .list:has(.dateh){
   display:none!important
 }
 
-/* Unchecked circles: solid medium grey-purple, clearly visible. */
+/*
+  Circles must paint at full opacity and the intended colours on first
+  paint, after a tab switch, and after iOS resumes the PWA.
+  Override leftover dim classes (.fut opacity .35, .m5off opacity .28
+  and its faint #E6E3E0 border) and any fade/transition that can stick
+  mid-way on iOS.
+*/
 body.h93:not(.wh115).m4page.m4rt .m4rtdot,
-body.h93:not(.wh115).m3home .h93home .h114tk{
+body.h93:not(.wh115).m4page.m4rt .m4rtdot.fut,
+body.h93:not(.wh115).m4page.m4rt .m4rtdot.m5off,
+body.h93:not(.wh115).m4page.m4rt .m4rtdot:disabled,
+body.h93:not(.wh115).m3home .h93home .h114tk,
+body.h93:not(.wh115).m3home .h93home .h114tk:disabled,
+body.h93:not(.wh115).m3home .h93home .h114tk.m5off,
+body.h93:not(.wh115).m3home .h114tk.m5off{
   border:1.5px solid #9E96AE!important;
   border-style:solid!important;
+  border-color:#9E96AE!important;
   background:transparent!important;
-  box-shadow:none
+  box-shadow:none;
+  opacity:1!important;
+  filter:none!important;
+  animation:none!important;
+  transition:none!important;
+  -webkit-filter:none!important
 }
-/* Checked: solid purple fill, no white check, soft lilac halo on every tick. */
+/* Checked: solid purple fill, white check, soft lilac halo on every tick. */
 body.h93:not(.wh115).m4page.m4rt .m4rtdot.on,
-body.h93:not(.wh115).m3home .h93home .h114tk.on{
+body.h93:not(.wh115).m4page.m4rt .m4rtdot.on.fut,
+body.h93:not(.wh115).m4page.m4rt .m4rtdot.on.m5off,
+body.h93:not(.wh115).m3home .h93home .h114tk.on,
+body.h93:not(.wh115).m3home .h93home .h114tk.on:disabled,
+body.h93:not(.wh115).m3home .h93home .h114tk.on.m5off{
   background:#A97CD6!important;
   border-color:#A97CD6!important;
   border-style:solid!important;
@@ -7350,7 +7373,11 @@ body.h93:not(.wh115).m3home .h93home .h114tk.on{
   font-size:10px!important;
   line-height:1!important;
   font-weight:700!important;
-  box-shadow:0 0 0 3px rgba(169,124,214,.22)
+  box-shadow:0 0 0 3px rgba(169,124,214,.22);
+  opacity:1!important;
+  filter:none!important;
+  animation:none!important;
+  transition:none!important
 }
 /* Today unchecked matches other days; the SA/day header is the cue. */
 body.h93:not(.wh115).m4page.m4rt .m4rtdot.td:not(.on),
@@ -7358,13 +7385,8 @@ body.h93:not(.wh115).m3home .h93home .h114tk.td:not(.on){
   border-color:#9E96AE!important;
   border-style:solid!important;
   background:transparent!important;
-  box-shadow:none
-}
-body.h93:not(.wh115).m4page.m4rt .m4rtdot.fut,
-body.h93:not(.wh115).m3home .h93home .h114tk:disabled{
-  opacity:.55;
-  border-color:#9E96AE!important;
-  box-shadow:none
+  box-shadow:none;
+  opacity:1!important
 }
 body.h93:not(.wh115).m3home .h93home .h114tk:hover:not(:disabled),
 body.h93:not(.wh115).m3home .h93home .h114tk.td:not(.on):hover:not(:disabled){
@@ -7412,6 +7434,52 @@ body.h93:not(.wh115).m4page.m4rt .trk-part{
   letter-spacing:.02em;
   vertical-align:middle
 }
+}
+
+/* vRefresh: phone-only "Refresh app" option in the + (New to-do) sheet.
+   Desktop and open Duo unchanged. No always-visible floating button. */
+button.lm-refresh-opt{display:none!important}
+@media (max-width:759px){
+  button.lm-refresh-opt{
+    display:flex!important;
+    align-items:center;
+    justify-content:flex-start;
+    gap:10px;
+    width:100%;
+    min-height:44px;
+    margin:2px 0 0;
+    padding:0 14px;
+    box-sizing:border-box;
+    border-radius:12px;
+    border:1.5px solid #E6DFD8;
+    background:#fff;
+    color:#2A2420;
+    font:inherit;
+    font-size:14px;
+    font-weight:700;
+    text-align:left;
+    cursor:pointer;
+    touch-action:manipulation;
+    -webkit-tap-highlight-color:transparent;
+    appearance:none;
+    -webkit-appearance:none
+  }
+  button.lm-refresh-opt svg{
+    display:block;
+    flex:none;
+    pointer-events:none
+  }
+  button.lm-refresh-opt.spin svg{
+    animation:lm-refresh-spin .6s linear
+  }
+  @keyframes lm-refresh-spin{
+    to{transform:rotate(360deg)}
+  }
+  body.gdark button.lm-refresh-opt{
+    background:#2A2420;
+    border-color:rgba(255,255,255,.14);
+    color:#F4F1EE
+  }
 }
 </style>
 </head>
@@ -13435,6 +13503,12 @@ h93Head=function(){
      before the event reaches document. Observer covers swipe/paintRoutine. */
   window.addEventListener('click',scheduleAfter,true);
   window.addEventListener('pointerup',scheduleAfter,true);
+  /* iOS PWA: a backgrounded tab can leave a fade or dim class mid-paint.
+     Re-apply as soon as the page is shown again. */
+  window.addEventListener('pageshow',scheduleAfter);
+  document.addEventListener('visibilitychange',function(){
+    if(document.visibilityState==='visible') scheduleAfter();
+  });
   if(!window.__vTrkObs && typeof MutationObserver==='function'){
     var tid=0;
     window.__vTrkObs=new MutationObserver(function(){
@@ -13444,6 +13518,125 @@ h93Head=function(){
     var root=document.body||document.documentElement;
     if(root) window.__vTrkObs.observe(root,{childList:true,subtree:true});
   }
+})();
+
+/* vRefresh: phone "Refresh app" option in the + New to-do sheet.
+   Reloads the latest app and keeps sign-in. No floating button. */
+(function(){
+  if(window.__vRefresh)return;window.__vRefresh=1;
+  var BUSY=0,SPIN_MS=420;
+  function isPhone(){return window.innerWidth<=759}
+  function icon(){return (typeof h92ic==="function")?h92ic("sync",18):'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12a7.5 7.5 0 0 1 13-5.1M19.5 12a7.5 7.5 0 0 1-13 5.1"/><path d="M17.5 3.5v3.5H14M6.5 20.5V17H10"/></svg>'}
+  function optHtml(){return '<button type="button" class="lm-refresh-opt" data-lm="refresh" aria-label="Refresh app">'+icon()+'<span>Refresh app</span></button>'}
+  function enhanceSheet(){
+    if(!isPhone())return;
+    try{if(typeof TDU==="undefined"||!TDU||TDU.id)return}catch(e){return}
+    var inn=document.querySelector(".sheet.m87 .m87in");
+    if(!inn)return;
+    if(inn.querySelector(".lm-refresh-opt"))return;
+    var wrap=document.createElement("div");
+    wrap.innerHTML=optHtml();
+    var btn=wrap.firstChild;
+    var act=inn.querySelector(".m87act");
+    if(act)inn.insertBefore(btn,act);
+    else inn.appendChild(btn);
+  }
+  function wait(ms){return new Promise(function(res){setTimeout(res,ms)})}
+  function skipWaiting(reg){
+    var w=reg&& (reg.waiting||null);
+    if(!w&&reg&&reg.installing){
+      return new Promise(function(resolve){
+        var inst=reg.installing, done=false;
+        var fin=function(worker){if(!done){done=true;resolve(worker||null)}};
+        var t=setTimeout(function(){fin(reg.waiting||null)},1200);
+        inst.addEventListener("statechange",function(){
+          if(inst.state==="installed"){clearTimeout(t);fin(inst)}
+          else if(inst.state==="redundant"||inst.state==="activated"){clearTimeout(t);fin(reg.waiting||null)}
+        });
+      }).then(function(worker){return worker});
+    }
+    return Promise.resolve(w);
+  }
+  function bustPath(){
+    var path=location.pathname||"/";
+    var q=(location.search||"").replace(/[?&]lmr=\d+/g,"").replace(/^&/,"?");
+    if(q==="?")q="";
+    return path+q+(q?"&":"?")+"lmr="+Date.now();
+  }
+  function reloadLatest(){
+    var url=bustPath()+(location.hash||"");
+    if(typeof location.replace==="function") location.replace(url);
+    else location.href=url;
+  }
+  function refresh(){
+    if(BUSY)return;
+    BUSY=1;
+    var btn=document.querySelector(".lm-refresh-opt");
+    if(btn)btn.classList.add("spin");
+    var started=Date.now();
+    var sw=Promise.resolve();
+    try{
+      if(typeof navigator!=="undefined"&&navigator.serviceWorker&&navigator.serviceWorker.getRegistration){
+        sw=navigator.serviceWorker.getRegistration().then(function(reg){
+          if(!reg)return;
+          return Promise.resolve(reg.update&&reg.update()).catch(function(){}).then(function(){
+            return skipWaiting(reg);
+          }).then(function(worker){
+            if(!worker||!worker.postMessage)return;
+            try{worker.postMessage({type:"SKIP_WAITING"})}catch(e){}
+            try{worker.postMessage("skipWaiting")}catch(e){}
+            return new Promise(function(resolve){
+              var done=false,fin=function(){if(!done){done=true;resolve()}};
+              try{navigator.serviceWorker.addEventListener("controllerchange",fin,{once:true})}catch(e){}
+              setTimeout(fin,700);
+            });
+          });
+        }).catch(function(){});
+      }
+    }catch(e){sw=Promise.resolve()}
+    var fetchLatest=function(){
+      var url=bustPath();
+      if(typeof fetch!=="function")return Promise.resolve();
+      return fetch(url,{cache:"reload",credentials:"same-origin",headers:{"Cache-Control":"no-cache","Pragma":"no-cache"}}).then(function(){},function(){});
+    };
+    sw.then(fetchLatest,fetchLatest).then(function(){
+      var left=SPIN_MS-(Date.now()-started);
+      return left>0?wait(left):null;
+    },function(){}).then(function(){
+      /* localStorage, including lm.cal.cfg.v1, is left untouched. */
+      reloadLatest();
+    }).catch(function(){reloadLatest()});
+  }
+  document.addEventListener("click",function(e){
+    var t=e.target&&e.target.closest&&e.target.closest('[data-lm="refresh"]');
+    if(!t)return;
+    e.preventDefault();
+    e.stopPropagation();
+    if(e.stopImmediatePropagation)e.stopImmediatePropagation();
+    refresh();
+  },true);
+  if(typeof tdDraw==="function"&&!tdDraw.__vRefresh){
+    var _tdDraw=tdDraw;
+    tdDraw=function(){
+      var r=_tdDraw.apply(this,arguments);
+      try{enhanceSheet()}catch(err){}
+      return r;
+    };
+    tdDraw.__vRefresh=1;
+  }
+  if(typeof render==="function"&&!render.__vRefresh){
+    var _render=render;
+    render=function(){
+      var r=_render.apply(this,arguments);
+      try{enhanceSheet()}catch(err){}
+      return r;
+    };
+    render.__vRefresh=1;
+  }
+  function after(){try{enhanceSheet()}catch(err){}}
+  window.addEventListener("hashchange",after);
+  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",after);
+  else after();
 })();
 
 render();
