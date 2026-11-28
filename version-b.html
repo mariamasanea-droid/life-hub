@@ -13,6 +13,7 @@
 <!-- vM5 routine -->
 <!-- vAuth -->
 <!-- vWo -->
+<!-- vTrk fix -->
 <title>Lifey</title>
 <meta name="apple-mobile-web-app-title" content="Lifey">
 <meta name="application-name" content="Lifey">
@@ -7323,6 +7324,95 @@ body.h93:not(.wh115).m4page.m4rt .grid2.even > .card > .ct .r{
   .wk-exe input{padding-left:7px;padding-right:4px;font-size:12.5px}
   .wk-exe .wk-x{width:26px;height:26px}
 }
+
+/* vTrk: phone Routine/Home tracker fixes. Desktop and open Duo unchanged. */
+@media (max-width:759px){
+/* Hide the leftover Weekly sample list (empty after Start fresh). */
+body.h93:not(.wh115).m4page.m4rt .gpanel > .list:has(.dateh){
+  display:none!important
+}
+
+/* Unchecked circles: solid medium grey-purple, clearly visible. */
+body.h93:not(.wh115).m4page.m4rt .m4rtdot,
+body.h93:not(.wh115).m3home .h93home .h114tk{
+  border:1.5px solid #9E96AE!important;
+  border-style:solid!important;
+  background:transparent!important;
+  box-shadow:none
+}
+/* Checked: solid purple fill, no white check, soft lilac halo on every tick. */
+body.h93:not(.wh115).m4page.m4rt .m4rtdot.on,
+body.h93:not(.wh115).m3home .h93home .h114tk.on{
+  background:#A97CD6!important;
+  border-color:#A97CD6!important;
+  border-style:solid!important;
+  color:#fff!important;
+  font-size:10px!important;
+  line-height:1!important;
+  font-weight:700!important;
+  box-shadow:0 0 0 3px rgba(169,124,214,.22)
+}
+/* Today unchecked matches other days; the SA/day header is the cue. */
+body.h93:not(.wh115).m4page.m4rt .m4rtdot.td:not(.on),
+body.h93:not(.wh115).m3home .h93home .h114tk.td:not(.on){
+  border-color:#9E96AE!important;
+  border-style:solid!important;
+  background:transparent!important;
+  box-shadow:none
+}
+body.h93:not(.wh115).m4page.m4rt .m4rtdot.fut,
+body.h93:not(.wh115).m3home .h93home .h114tk:disabled{
+  opacity:.55;
+  border-color:#9E96AE!important;
+  box-shadow:none
+}
+body.h93:not(.wh115).m3home .h93home .h114tk:hover:not(:disabled),
+body.h93:not(.wh115).m3home .h93home .h114tk.td:not(.on):hover:not(:disabled){
+  border-color:#9E96AE!important
+}
+body.h93:not(.wh115).m3home .h93home .h114tk.on:hover:not(:disabled){
+  border-color:#A97CD6!important
+}
+
+/* iOS-sized hit targets for arrows and dots. */
+body.h93:not(.wh115).m4page.m4rt .m4rth button{
+  width:44px;
+  height:44px;
+  margin:0 -8px;
+  position:relative;
+  z-index:2;
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
+  cursor:pointer
+}
+body.h93:not(.wh115).m4page.m4rt .m4rtdot{
+  position:relative;
+  cursor:pointer;
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
+  appearance:none;
+  -webkit-appearance:none;
+  padding:0;
+  font:inherit
+}
+body.h93:not(.wh115).m4page.m4rt .m4rtdot::after{
+  content:"";
+  position:absolute;
+  inset:-13px
+}
+body.h93:not(.wh115).m4page.m4rt .m4rtdot.m5off{
+  pointer-events:none;
+  cursor:default
+}
+body.h93:not(.wh115).m4page.m4rt .trk-part{
+  margin-left:6px;
+  font-size:10px;
+  font-weight:600;
+  color:#A97CD6;
+  letter-spacing:.02em;
+  vertical-align:middle
+}
+}
 </style>
 </head>
 <body>
@@ -13177,6 +13267,183 @@ h93Head=function(){
     view:function(v){WKU.view=v;render()},
     setKg:function(i,k){var p=pgA(),w=pgW(p,p.days[wkD(wkRef()).getDay()]);w.ex[i].kg=k;pgSave()},
     markDone:function(){WL[wkRef()]={sets:{},done:true};wlSave()}};
+})();
+
+/* vTrk: wire Routine tracker dots (they were inert spans), enlarge
+   week-arrow hit targets, hide empty Weekly card (CSS), darker rings,
+   and a Morning/Evening hint when two steps share a name. */
+(function(){
+  if(window.__vTrk)return;window.__vTrk=1;
+  function isPhone(){return window.innerWidth<=759}
+  function life(){return document.body&&document.body.classList.contains('h93')&&!document.body.classList.contains('wh115')}
+  function view(){try{if(typeof S==='object'&&S.view)return S.view}catch(e){}return (location.hash||'#home').replace('#','')||'home'}
+  function todayIso(){try{if(typeof TODAY==='string'&&TODAY)return TODAY}catch(e){}try{return _iso(new Date())}catch(err){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}}
+  function parseWeekLabel(lab){
+    if(!lab) return null;
+    var months={Jan:0,Feb:1,Mar:2,Apr:3,May:4,Jun:5,Jul:6,Aug:7,Sep:8,Oct:9,Nov:10,Dec:11};
+    var t=String(lab).replace(/\s+/g,' ').trim();
+    var re=/(\d{1,2})(?:\s+([A-Z][a-z]{2}))?(?:\s+(\d{4}))?\s+[–\-]\s+(\d{1,2})\s+([A-Z][a-z]{2})(?:\s+(\d{4}))?/;
+    var m=t.match(re);
+    if(!m) return null;
+    var now;try{now=(typeof dO==='function')?dO(todayIso()):new Date()}catch(e){now=new Date()}
+    var y2=m[6]?+m[6]:now.getFullYear();
+    var mon2=months[m[5]], d2=+m[4];
+    var mon1=m[2]?months[m[2]]:mon2, d1=+m[1];
+    var y1=m[3]?+m[3]:y2;
+    if(!m[2]&&d1>d2){mon1=mon2-1;if(mon1<0){mon1=11;y1=y2-1}}
+    try{
+      var a=(typeof _iso==='function')?_iso(new Date(y1,mon1,d1)): (y1+'-'+String(mon1+1).padStart(2,'0')+'-'+String(d1).padStart(2,'0'));
+      var days=[],i;
+      for(i=0;i<7;i++) days.push((typeof addD==='function')?addD(a,i):a);
+      return days;
+    }catch(e){return null}
+  }
+  function weekDays(host){
+    var lab=host.querySelector('.m4rth b');
+    var days=parseWeekLabel(lab&&lab.textContent);
+    if(days) return days;
+    try{
+      var s=(typeof wkS==='function')?wkS(todayIso()):todayIso();
+      return [0,1,2,3,4,5,6].map(function(k){return addD(s,k)});
+    }catch(e){return []}
+  }
+  function stepId(row,i){
+    var id=row.getAttribute('data-m5id');
+    if(id) return id;
+    try{
+      var steps=(window.m5Routine&&m5Routine.steps&&m5Routine.steps())||[];
+      if(steps[i]&&steps[i][0]) return steps[i][0];
+    }catch(e){}
+    return null;
+  }
+  function stepPart(id){
+    try{
+      var r=window.m5Routine&&m5Routine.find&&m5Routine.find(id);
+      if(r&&r[1]) return r[1];
+    }catch(e){}
+    return '';
+  }
+  function rowName(nameEl){
+    if(!nameEl) return '';
+    var t='',nodes=nameEl.childNodes;
+    for(var i=0;i<nodes.length;i++){
+      var n=nodes[i];
+      if(n.nodeType===3) t+=n.textContent;
+      else if(n.classList&&!n.classList.contains('trk-part')&&!n.classList.contains('m5rsh-rowic')) t+=n.textContent;
+    }
+    return t.replace(/\s+/g,' ').trim();
+  }
+  function hideWeekly(){
+    if(!isPhone()||!life()||view()!=='routine') return;
+    var lists=document.querySelectorAll('.gpanel > .list');
+    for(var i=0;i<lists.length;i++){
+      if(lists[i].querySelector('.dateh')) lists[i].setAttribute('hidden','');
+    }
+  }
+  function enhance(){
+    if(!isPhone()||!life()||view()!=='routine') return;
+    var host=document.querySelector('.m4rtrack');
+    if(!host) return;
+    var days=weekDays(host);
+    var today=todayIso();
+    var rows=[].slice.call(host.querySelectorAll('.m4rtg .m4rtr:not(.m4rthd)'));
+    var counts={};
+    rows.forEach(function(row){
+      var key=rowName(row.querySelector('.m4rtn'));
+      counts[key]=(counts[key]||0)+1;
+    });
+    rows.forEach(function(row,i){
+      var id=stepId(row,i);
+      if(id) row.setAttribute('data-m5id',id);
+      var nameEl=row.querySelector('.m4rtn');
+      var name=rowName(nameEl);
+      if(nameEl&&counts[name]>1&&!nameEl.querySelector('.trk-part')){
+        var part=stepPart(id);
+        var hint=document.createElement('span');
+        hint.className='trk-part';
+        hint.setAttribute('aria-label',part||'');
+        hint.textContent=/evening|night/i.test(part)?'Eve':'Mo';
+        nameEl.appendChild(hint);
+      }
+      var dots=[].slice.call(row.querySelectorAll('.m4rtdot'));
+      dots.forEach(function(d,k){
+        var date=days[k];
+        var btn=d;
+        if(d.tagName!=='BUTTON'){
+          btn=document.createElement('button');
+          btn.type='button';
+          btn.className=d.className;
+          if(d.getAttribute('title')) btn.setAttribute('title',d.getAttribute('title'));
+          d.parentNode.replaceChild(btn,d);
+        }
+        btn.textContent=btn.classList.contains('on')?'\u2713':'';
+        if(id) btn.setAttribute('data-id',id);
+        if(date) btn.setAttribute('data-d',date);
+        btn.setAttribute('data-trk','dot');
+        var fut=!!(date&&date>today)||btn.classList.contains('fut');
+        var off=btn.classList.contains('m5off');
+        btn.disabled=fut||off;
+        var on=btn.classList.contains('on');
+        var label=(name||'Step')+(date?(' '+date):'')+(on?' done':'');
+        btn.setAttribute('aria-label',label);
+        btn.setAttribute('aria-pressed',on?'true':'false');
+      });
+    });
+  }
+  function toggle(id,d){
+    if(!id||!d) return;
+    var today=todayIso();
+    if(d>today) return;
+    if(typeof h1187==='undefined'||typeof h1187.has!=='function'||typeof h1187.set!=='function') return;
+    var next=!h1187.has(id,d);
+    h1187.set(id,d,next);
+    var y=window.scrollY||0;
+    try{if(typeof render==='function') render()}catch(e){}
+    try{window.scrollTo(0,y)}catch(e){}
+  }
+  function onLifePhone(){return isPhone()&&life()}
+
+  window.addEventListener('click',function(e){
+    if(!onLifePhone()) return;
+    var t=e.target&&e.target.closest&&e.target.closest('[data-trk="dot"]');
+    if(!t) return;
+    if(t.disabled||t.classList.contains('fut')||t.classList.contains('m5off')) return;
+    var id=t.getAttribute('data-id'), d=t.getAttribute('data-d');
+    if(!id||!d) return;
+    e.preventDefault();
+    e.stopPropagation();
+    if(e.stopImmediatePropagation) e.stopImmediatePropagation();
+    toggle(id,d);
+  },true);
+
+
+  function after(){try{hideWeekly();enhance()}catch(e){console.warn('vTrk',e)}}
+  var _render=render;
+  if(typeof _render==='function'){
+    render=function(){
+      var r=_render.apply(this,arguments);
+      try{after()}catch(e){}
+      return r;
+    };
+  }
+  window.addEventListener('hashchange',function(){try{after()}catch(e){}});
+  function scheduleAfter(){
+    if(typeof requestAnimationFrame==='function') requestAnimationFrame(function(){try{after()}catch(e){}});
+    else setTimeout(function(){try{after()}catch(e){}},0);
+  }
+  /* Window capture still runs after M4's arrow handler, which stopPropagation
+     before the event reaches document. Observer covers swipe/paintRoutine. */
+  window.addEventListener('click',scheduleAfter,true);
+  window.addEventListener('pointerup',scheduleAfter,true);
+  if(!window.__vTrkObs && typeof MutationObserver==='function'){
+    var tid=0;
+    window.__vTrkObs=new MutationObserver(function(){
+      if(tid) cancelAnimationFrame(tid);
+      tid=requestAnimationFrame(function(){tid=0;try{after()}catch(e){}});
+    });
+    var root=document.body||document.documentElement;
+    if(root) window.__vTrkObs.observe(root,{childList:true,subtree:true});
+  }
 })();
 
 render();
