@@ -12873,6 +12873,182 @@ h93Head=function(){
   try{m5ArmReminders()}catch(e){}
 })();
 
+
+/* vT277: to-dos are tasks only — not on the calendar or Apple Calendar. */
+(function(){
+  function isTodo(i){return !!(i&&i.cat==="todo")}
+  function keepTodoOffApple(){if(typeof CXC!=="undefined"&&CXC.write)CXC.write.todo=""}
+
+  keepTodoOffApple();
+  if(typeof EXTRA!=="undefined"){
+    var pending=false;
+    EXTRA.forEach(function(i){if(isTodo(i)&&i.icPending){delete i.icPending;pending=true}});
+    if(pending&&typeof cxSaveExtra==="function")cxSaveExtra();
+  }
+
+  if(typeof dayItems==="function"){
+    var _dayItems=dayItems;
+    dayItems=function(d){return _dayItems(d).filter(function(i){return !isTodo(i)})};
+  }
+  if(typeof c87Its==="function"){
+    var _c87Its=c87Its;
+    c87Its=function(d){return _c87Its(d).filter(function(i){return !isTodo(i)})};
+  }
+
+  if(typeof h1187IsUserTodo==="function"){
+    var _isUser=h1187IsUserTodo;
+    h1187IsUserTodo=function(i){return _isUser(i)};
+  }
+
+  if(typeof vTodo87==="function"){
+    var _vTodo87b=vTodo87;
+    vTodo87=function(){
+      var prev=ITEMS.slice(), hidden=0;
+      for(var i=ITEMS.length-1;i>=0;i--){
+        if(ITEMS[i]&&ITEMS[i].cat==="todo"&&ITEMS[i].pm){ITEMS.splice(i,1);hidden++}
+      }
+      try{return _vTodo87b()}
+      finally{if(hidden){ITEMS.length=0;prev.forEach(function(x){ITEMS.push(x)})}}
+    };
+  }
+
+  if(typeof h92TodoRows==="function"){
+    h92TodoRows=function(d,n){
+      var L=h92Todos(d).slice(0,n);
+      if(!L.length)return '<div class="h92empty">Nothing on the list. Enjoy it.</div>';
+      return L.map(function(i){
+        var sc=(typeof tdSec==="function"&&TSECC[tdSec(i)])||["","","#E3A33B"];
+        var dn=!!S.done[i.id], od=i.date<TODAY&&!dn;
+        var day=od?"Overdue":i.date===TODAY?"Today":(typeof addD==="function"&&i.date===addD(TODAY,1)?"Tomorrow":(typeof h92D==="function"?h92D(i.date):(i.date||"")));
+        var tm="";
+        if(i.start!=null){
+          tm=(typeof shortT==="function")?shortT(i.start):String(i.start);
+          if(i.end!=null)tm+=" – "+((typeof shortT==="function")?shortT(i.end):String(i.end));
+        }
+        var when=od?(tm?("Overdue · "+tm):"Overdue"):tm?(day+" · "+tm):(i.date===TODAY?(sc[1]||""):day);
+        return '<div class="h92tr'+(dn?" dn":"")+'" data-a="open" data-id="'+i.id+'">'+check(i.id,sc[2])+'<span class="q-t">'+esc(i.title)+'</span><span class="m'+(od?" od":"")+'">'+when+'</span></div>';
+      }).join("");
+    };
+  }
+
+  if(typeof cxPush==="function"){
+    var _cxPush=cxPush;
+    cxPush=function(i){if(isTodo(i)){if(i)delete i.icPending;return Promise.resolve(false)}return _cxPush(i)};
+  }
+  if(typeof cxFlush==="function"){
+    var _cxFlush=cxFlush;
+    cxFlush=function(){
+      if(typeof EXTRA!=="undefined")EXTRA.forEach(function(i){if(isTodo(i)&&i.icPending)delete i.icPending});
+      return _cxFlush();
+    };
+  }
+  if(typeof cxAfterCreate==="function"){
+    var _cxAfter=cxAfterCreate;
+    cxAfterCreate=function(n0){
+      if(typeof EXTRA!=="undefined")EXTRA.slice(n0).forEach(function(i){if(isTodo(i)&&i.icPending)delete i.icPending});
+      var skip=typeof EXTRA!=="undefined"&&EXTRA.slice(n0).every(function(i){return isTodo(i)});
+      if(skip)return;
+      return _cxAfter(n0);
+    };
+  }
+  if(typeof cxLoadCals==="function"){
+    var _cxLoadCals=cxLoadCals;
+    cxLoadCals=function(){return _cxLoadCals.apply(this,arguments).then(function(j){keepTodoOffApple();if(typeof cxSaveCfg==="function")cxSaveCfg();return j})};
+  }
+  if(typeof cxSaveCfg==="function"){
+    var _cxSaveCfg=cxSaveCfg;
+    cxSaveCfg=function(){keepTodoOffApple();return _cxSaveCfg.apply(this,arguments)};
+  }
+  if(typeof cxSheetBody==="function"){
+    var _cxSheetBody=cxSheetBody;
+    cxSheetBody=function(i){
+      var hold=CXC&&CXC.write?CXC.write.todo:undefined;
+      if(CXC&&CXC.write&&isTodo(i))CXC.write.todo="";
+      try{
+        var h=_cxSheetBody(i);
+        if(isTodo(i)&&i&&i.ic){
+          h=h.replace("from Apple Calendar","from Lifey");
+        }
+        return h;
+      }finally{if(CXC&&CXC.write&&hold!==undefined)CXC.write.todo=hold;keepTodoOffApple()}
+    };
+  }
+  if(typeof cxEditSave==="function"){
+    var _cxEditSave=cxEditSave;
+    cxEditSave=function(id){
+      var i=BYID[id];
+      if(isTodo(i)&&i.ic){
+        var t=cxV("cxe-t"),d=cxV("cxe-d");
+        if(!t||!d){CXU.editErr=!t?"Give it a title.":"Pick a date.";render();return}
+        var ad=cxV("cxe-ad"),st=ad?null:hrs(cxV("cxe-s")||""),en=ad?null:hrs(cxV("cxe-e")||"");
+        if(st!=null&&en!=null&&en<=st){CXU.editErr="End time must be after the start.";render();return}
+        i.title=t;i.date=d;i.note=cxV("cxe-n")||"";
+        if(cxV("cxe-p"))i.priority=cxV("cxe-p");
+        if(st==null){delete i.start;delete i.end}else{i.start=st;i.end=en!=null?en:st+1}
+        var keep={};["title","date","note","cat","priority","start","end","sec"].forEach(function(k){if(i[k]!==undefined)keep[k]=i[k]});
+        if(typeof CXE!=="undefined"){CXE[i.id]=keep;LS.set("lm.itemedits.v1",CXE)}
+        CXU.edit=null;CXU.editErr="";CXU.msg="Saved in Lifey. The Apple Calendar copy was left as it is.";render();
+        return;
+      }
+      return _cxEditSave(id);
+    };
+  }
+  if(typeof cxDelete==="function"){
+    var _cxDelete=cxDelete;
+    cxDelete=function(id){
+      var i=BYID[id];
+      if(isTodo(i)&&i.ic){
+        if(!confirm('Remove “'+i.title+'” from Lifey? It will stay in Apple Calendar if it was already saved there.'))return;
+        if(typeof CXE!=="undefined"){CXE[id]={deleted:true};LS.set("lm.itemedits.v1",CXE)}
+        ITEMS.splice(ITEMS.indexOf(i),1);delete BYID[id];S.sel=null;CXU.msg="";render();
+        return;
+      }
+      if(isTodo(i)&&i.ic)return;
+      return _cxDelete(id);
+    };
+  }
+  if(typeof c87Commit==="function"){
+    var _c87Commit=c87Commit;
+    c87Commit=function(i,ch){
+      if(isTodo(i)){if(typeof toast87==="function")toast87("To-dos stay in Lifey, not the calendar.");render();return}
+      return _c87Commit(i,ch);
+    };
+  }
+  if(typeof cxSettings==="function"){
+    var _cxSettings=cxSettings;
+    cxSettings=function(){
+      var h=_cxSettings();
+      h=h.replace(/<div class="cx-cal"><i style="background:#E3A33B"><\/i><span>New to-dos<\/span><select data-cxwrite="todo">[\s\S]*?<\/select><\/div>/,
+        '<div class="cx-cal"><i style="background:#E3A33B"></i><span>New to-dos</span><span class="cx-p" style="margin:0">Stay in Lifey. They aren’t added to Apple Calendar.</span></div>');
+      return h;
+    };
+  }
+  document.addEventListener("change",function(e){
+    var t=e.target;
+    if(t&&t.getAttribute&&t.getAttribute("data-cxwrite")==="todo"){
+      t.value="";
+      keepTodoOffApple();
+      if(typeof cxSaveCfg==="function")cxSaveCfg();
+    }
+  },true);
+
+  if(typeof cxSyncVirtual==="function"){
+    var _cxSyncVirtual=cxSyncVirtual;
+    cxSyncVirtual=function(){
+      _cxSyncVirtual();
+      if(typeof CXE!=="undefined"){
+        Object.keys(CXE).forEach(function(id){
+          var e=CXE[id],it=BYID[id];
+          if(!it||!isTodo(it)||!it.ic)return;
+          if(e&&e.deleted){ITEMS.splice(ITEMS.indexOf(it),1);delete BYID[id];return}
+          if(e){["title","date","note","priority","start","end","sec"].forEach(function(k){if(e[k]!==undefined){if(e[k]==null)delete it[k];else it[k]=e[k]}})}
+        });
+      }
+    };
+  }
+})();
+
+
 render();
 if(CXC.pair&&!cxOn())cxPairPoll();
 
