@@ -12,13 +12,14 @@
 <!-- vM4b day rail -->
 <!-- vM5 routine -->
 <!-- vAuth -->
+<!-- vPush -->
 <!-- vWo -->
 <!-- vTrk fix -->
 <!-- vRefresh -->
 <title>Lifey</title>
 <meta name="apple-mobile-web-app-title" content="Lifey">
 <meta name="application-name" content="Lifey">
-<link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Lifey%22%2C%22short_name%22%3A%22Lifey%22%2C%22display%22%3A%22standalone%22%2C%22start_url%22%3A%22.%2F%22%2C%22theme_color%22%3A%22%23EF6F5E%22%2C%22background_color%22%3A%22%23FAFAF9%22%7D">
+<link rel="manifest" href="manifest.webmanifest">
 <style>
 :root{
   --bg:#FAFAF9; --card:#FFFFFF; --subtle:#F3F3F1; --fill:#ECECE9; --border:#E6E5E1; --border2:#D5D4CF;
@@ -13638,6 +13639,131 @@ h93Head=function(){
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",after);
   else after();
 })();
+
+
+/* vPush: routine reminders through web push (they arrive when Lifey is closed). Device-only state lives in lfy.push.v1
+   (not lm.*, never synced). The reminder schedule is synced as lm.push.v1 so the server knows what to send and when. */
+(function(){
+  var PK="lfy.push.v1",SK="lm.push.v1";
+  function st(){try{return JSON.parse(localStorage.getItem(PK)||"{}")||{}}catch(e){return {}}}
+  function stSave(o){try{localStorage.setItem(PK,JSON.stringify(o))}catch(e){}}
+  var PU={busy:false,msg:"",err:"",reg:null,sub:null,checked:false,checking:false,vk:st().vk||"",cfg:null,info:null};
+  function tz(){try{return Intl.DateTimeFormat().resolvedOptions().timeZone||"Africa/Dakar"}catch(e){return "Africa/Dakar"}}
+  function isIOS(){return /iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1)}
+  function standalone(){try{return !!((window.matchMedia&&matchMedia("(display-mode: standalone)").matches)||navigator.standalone)}catch(e){return false}}
+  function can(){return "serviceWorker" in navigator&&"PushManager" in window&&typeof Notification!=="undefined"}
+  function state(){
+    if(isIOS()&&!standalone())return "homescreen";
+    if(!can())return "unsupported";
+    if(!syOn())return "signin";
+    if(PU.cfg===false)return "noserver";
+    if(Notification.permission==="denied")return "blocked";
+    if(PU.sub&&st().on)return "on";
+    return "off"}
+  function api(method,a,body){return fetch(SY_URL+"/api/push?a="+a,{method:method,headers:{"Content-Type":"application/json",Authorization:"Bearer "+CXC.token},body:body?JSON.stringify(body):undefined})
+    .then(function(r){return r.json().catch(function(){return {}}).then(function(j){if(!r.ok){var e=new Error(j.message||("Server error "+r.status));e.key=j.error;e.status=r.status;throw e}return j})},function(){var e=new Error("Can\u2019t reach Lifey\u2019s server. Check your connection.");e.offline=true;throw e})}
+  function keyP(){if(PU.vk)return Promise.resolve(PU.vk);return fetch(SY_URL+"/api/push?a=key").then(function(r){return r.json()}).then(function(j){PU.cfg=!!j.configured;if(!j.publicKey)throw new Error("Notifications aren\u2019t set up on the server yet.");PU.vk=j.publicKey;var s=st();s.vk=j.publicKey;stSave(s);return j.publicKey})}
+  function b64u(s){var p="=".repeat((4-s.length%4)%4),b=atob((s+p).replace(/-/g,"+").replace(/_/g,"/")),a=new Uint8Array(b.length);for(var i=0;i<b.length;i++)a[i]=b.charCodeAt(i);return a}
+  function label(){return isIOS()?"iPhone":/Android/.test(navigator.userAgent)?"Android phone":/Mac/.test(navigator.platform)?"Mac":"This device"}
+  function paint(){try{if(CXU.set)render()}catch(e){}}
+
+  /* The name Lifey already greets her with (first name only). Empty → the server says "Hey there,". */
+  function firstName(){var n="Mariama";n=String(n||"").trim().split(/\s+/)[0]||"";return n.replace(/[^\u00C0-\u024Fa-zA-Z'’-]/g,"").slice(0,24)}
+  /* ---- the schedule the server reads (routine reminders + to-dos with a time). Never written to Apple Calendar. ---- */
+  function hmOf(h){if(h==null||h==="")return "";if(typeof h==="string"&&/^([01]\d|2[0-3]):[0-5]\d$/.test(h))return h;if(typeof h==="number"&&isFinite(h)){var hh=Math.floor(h),mm=Math.round((h-hh)*60);if(mm===60){hh++;mm=0}if(hh>=0&&hh<=23&&mm>=0&&mm<=59)return ("0"+hh).slice(-2)+":"+("0"+mm).slice(-2)}return ""}
+  function monDays(arr){var d=[false,false,false,false,false,false,false];(arr||[]).forEach(function(js){d[js===0?6:js-1]=true});return d}
+  function ownTodo(i){return (typeof cxIsExtra==="function"&&cxIsExtra(i))||/^u\d/.test(String(i.id))}
+  function todoItem(i,hm){var it={id:String(i.id),t:String(i.title||"To-do").slice(0,80),kind:"todo",times:[hm]},r=i.rep||{t:"none"},tp=r.t||"none",a=i.anchor||i.date;
+    if(tp==="none"&&!(i.wd&&i.wd.length)){it.start=i.date;it.end=i.date;return it}
+    if(tp==="none"){it.start=typeof wkS==="function"?wkS(a):a;it.end=addD(it.start,6);it.days=monDays(i.wd);return it}
+    it.start=a;
+    if(tp==="daily")return it;
+    if(tp==="weekdays"){it.days=[true,true,true,true,true,false,false];return it}
+    if(tp==="weekly"){it.days=monDays((r.days&&r.days.length)?r.days:(i.wd||(typeof dO==="function"?[dO(a).getDay()]:[])));return it}
+    if(tp==="monthly"){it.md=(typeof dO==="function"?dO(a).getDate():+String(a).slice(8));return it}
+    if(tp==="custom"&&r.u==="w"){it.days=monDays((r.days&&r.days.length)?r.days:(i.wd||(typeof dO==="function"?[dO(a).getDay()]:[])));if((r.n||1)>1)it.everyWeeks=Math.max(1,r.n||1);return it}
+    if(tp==="custom"){it.every=Math.max(1,r.n||1);return it}
+    it.start=i.date;it.end=i.date;return it}
+  function build(){var items=[],R=window.m5Routine;
+    if(R&&R.steps&&R.meta)R.steps().forEach(function(r){var m=R.meta(r);if(!r||!m||!m.remind||!m.times||!m.times.length)return;
+      var times=m.times.filter(function(t){return /^([01]\d|2[0-3]):[0-5]\d$/.test(String(t))}).slice(0,5);if(!times.length)return;
+      var it={id:String(r[0]),t:String(r[2]||"Routine").slice(0,80),kind:"routine",times:times};
+      var has=!!(m.start||m.end||(m.cal&&m.cal!=="start")||(m.days&&m.days.length===7&&m.days.some(function(x){return !x})));
+      if(has){if(m.start)it.start=m.start;if(m.cal==="range"&&m.end)it.end=m.end;if(m.cal==="duration"&&m.start)it.end=addD(m.start,Math.max(1,+m.dur||21)-1);
+        if(m.days&&m.days.length===7&&m.days.some(function(x){return !x}))it.days=m.days.map(function(x){return !!x})}
+      items.push(it)});
+    /* to-dos with a start time: local schedule only (never pushed to Apple Calendar) */
+    if(typeof ITEMS!=="undefined"&&ITEMS)ITEMS.forEach(function(i){if(!i||i.cat!=="todo"||i.start==null||!ownTodo(i))return;if(typeof S!=="undefined"&&S.done&&S.done[i.id]&&!(typeof isRep87==="function"&&isRep87(i)))return;
+        var hm=hmOf(i.start);if(!hm)return;items.push(todoItem(i,hm))})
+    return items}
+  function cur(){var v=LS.get(SK,null);if(typeof v==="string"){try{v=JSON.parse(v)}catch(e){v=null}}return v&&Array.isArray(v.items)?v:null}
+  function writeSchedule(force){var items=build(),name=firstName();if(!items)return;var c=cur();
+    if(!force&&c&&JSON.stringify({n:c.name||"",i:c.items})===JSON.stringify({n:name,i:items}))return;   /* tz alone never ping-pongs between devices */
+    if(!c&&!items.length&&!name&&!force)return;
+    LS.set(SK,JSON.stringify({v:1,tz:tz(),name:name,items:items}))}
+  var wT=0;function soon(){clearTimeout(wT);wT=setTimeout(function(){try{writeSchedule(false)}catch(e){}},700)}
+  var _rPush=render;render=function(){if(!CXU.set)PU.open=false;var r=_rPush.apply(this,arguments);soon();return r};
+  var _lsPush=LS.set;LS.set=function(k){var r=_lsPush.apply(this,arguments);if(/^lm\.(routine\.|itemedits)/.test(String(k)))soon();return r};
+
+  /* ---- no double alerts: with push on, the open app leaves the system notification to the service worker (same tag) ---- */
+  if(typeof window.Notification==="function"&&!window.Notification.__lfy){
+    var N0=window.Notification,N1=function(title,o){if(o&&typeof o.tag==="string"&&o.tag.indexOf("m5rem:")===0&&st().on&&N0.permission==="granted")return {close:function(){},tag:o.tag,lfySkipped:true};return new N0(title,o)};
+    N1.prototype=N0.prototype;N1.__lfy=true;Object.defineProperty(N1,"permission",{get:function(){return N0.permission}});N1.requestPermission=function(){return N0.requestPermission.apply(N0,arguments)};
+    try{window.Notification=N1}catch(e){}}
+
+  /* ---- status ---- */
+  function check(){if(PU.checking||!can()||(isIOS()&&!standalone()))return;PU.checking=true;
+    var g=navigator.serviceWorker.getRegistration("./").then(function(reg){PU.reg=reg||null;if(reg)try{reg.update()}catch(e){}return reg?reg.pushManager.getSubscription():null}).then(function(s){PU.sub=s||null;if(!s&&st().on){var o=st();o.on=0;stSave(o)}}).catch(function(){});
+    var k=fetch(SY_URL+"/api/push?a=key").then(function(r){return r.json()}).then(function(j){PU.cfg=!!j.configured;if(j.publicKey&&j.publicKey!==PU.vk){PU.vk=j.publicKey;var s=st();s.vk=j.publicKey;stSave(s)}}).catch(function(){});
+    Promise.all([g,k]).then(function(){if(PU.sub&&st().on&&syOn())return api("GET","status").then(function(j){PU.info=j;if(!j.subscribed)return api("POST","subscribe",{sub:PU.sub.toJSON(),tz:tz(),label:label()})}).catch(function(){})})
+     .then(function(){PU.checked=true;PU.checking=false;paint()})}
+  /* ---- actions (Enable runs straight from the tap so iPhone shows its permission prompt) ---- */
+  function enable(){if(PU.busy)return;PU.busy=true;PU.err="";PU.msg="";
+    var perm=Notification.permission==="granted"?Promise.resolve("granted"):Promise.resolve(Notification.requestPermission());
+    var reg=PU.reg?Promise.resolve(PU.reg):navigator.serviceWorker.register("sw.js",{scope:"./",updateViaCache:"none"});
+    PU.msg="Turning on\u2026";paint();
+    Promise.all([perm,reg,keyP()]).then(function(r){if(r[0]!=="granted"){var e=new Error(Notification.permission==="denied"?"":"Notifications weren\u2019t allowed. Tap Enable to try again.");e.key="denied";throw e}PU.reg=r[1];
+        return navigator.serviceWorker.ready.then(function(rg){return rg.pushManager.getSubscription().then(function(s){return s||rg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:b64u(r[2])})})})})
+     .then(function(s){PU.sub=s;writeSchedule(true);if(typeof syRun==="function")try{syRun()}catch(e){}return api("POST","subscribe",{sub:s.toJSON(),tz:tz(),label:label()})})
+     .then(function(){var o=st();o.on=1;o.at=Date.now();stSave(o);PU.msg="";return api("GET","status").then(function(j){PU.info=j}).catch(function(){})})
+     .catch(function(e){PU.msg="";PU.err=e.key==="denied"&&!e.message?"":(e.message||"Couldn\u2019t turn notifications on.")})
+     .then(function(){PU.busy=false;paint()})}
+  function disable(){if(PU.busy)return;PU.busy=true;PU.err="";PU.msg="Turning off\u2026";paint();var ep=PU.sub&&PU.sub.endpoint;
+    Promise.resolve(PU.sub?PU.sub.unsubscribe():true).catch(function(){}).then(function(){return api("POST","unsubscribe",ep?{endpoint:ep}:{}).catch(function(){})})
+     .then(function(){PU.sub=null;var o=st();o.on=0;stSave(o);PU.msg="Off. Reminders show only while Lifey is open."})
+     .then(function(){PU.busy=false;paint()})}
+  function test(){if(PU.busy)return;PU.busy=true;PU.err="";PU.msg="Sending a test\u2026";paint();
+    api("POST","test").then(function(){var o=st();o.test=Date.now();stSave(o);PU.msg="Test sent. It should arrive in a few seconds."},function(e){PU.msg="";PU.err=e.message})
+     .then(function(){PU.busy=false;paint()})}
+  document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("[data-lfp]");if(!b)return;e.preventDefault();e.stopPropagation();var a=b.getAttribute("data-lfp");
+    if(a==="on")enable();else if(a==="off")disable();else if(a==="test")test();else if(a==="re"){PU.checked=false;PU.err="";PU.msg="";check();paint()}},true);
+  if(navigator.serviceWorker&&navigator.serviceWorker.addEventListener)navigator.serviceWorker.addEventListener("message",function(e){var d=e.data||{};if(d.lifeyOpen&&d.url){var h=String(d.url).split("#")[1];if(h&&location.hash!=="#"+h)location.hash="#"+h}});
+
+  /* ---- Settings row ---- */
+  function when(ms){try{return new Date(ms).toLocaleString([], {weekday:"short",hour:"numeric",minute:"2-digit"})}catch(e){return ""}}
+  function section(){var s=state(),o=st(),chip,txt,btn="";
+    var ok='<button class="btn pri cx-pri" data-lfp="on"'+(PU.busy?" disabled":"")+'>Enable</button>';
+    if(s==="homescreen"){chip=["Home Screen app only","#9C8673"];txt="Routine reminders can reach your iPhone even when Lifey is closed, but iPhone only allows this in the Lifey app on your Home Screen (iOS 16.4 or later). In Safari tap Share, then <b>Add to Home Screen</b>, open Lifey from that icon and come back here."}
+    else if(s==="unsupported"){chip=["Not available","#9C8673"];txt="This browser can\u2019t receive push notifications. Reminders still show while Lifey is open."}
+    else if(s==="signin"){chip=["Off","#9C8673"];txt="Sign in under <b>Account &amp; sync</b> first, so reminders know which account they belong to."}
+    else if(s==="noserver"){chip=["Not set up","#E3A33B"];txt="Notifications aren\u2019t set up on Lifey\u2019s server yet."}
+    else if(s==="blocked"){chip=["Blocked","#D0503D"];txt="Notifications are turned off for Lifey. Turn them on in iPhone <b>Settings \u2192 Notifications \u2192 Lifey</b>, then come back here.";btn='<button class="btn" data-lfp="re">Check again</button>'}
+    else if(s==="on"){chip=["On","#3FA779"];var n=PU.info&&PU.info.reminders;txt="On for this device. Reminders arrive even when Lifey is closed"+(n!=null?" \u00b7 "+n+" reminder time"+(n===1?"":"s")+" set":"")+"."+(o.test?" Last test "+esc(when(o.test))+".":"");
+      btn='<button class="btn" data-lfp="test"'+(PU.busy?" disabled":"")+'>Send test</button><button class="btn" data-lfp="off"'+(PU.busy?" disabled":"")+'>Turn off</button>'}
+    else{chip=["Off","#9C8673"];txt="Get your routine reminders on this phone even when Lifey is closed. Works only in the Lifey app on your Home Screen.";btn=ok}
+    return '<section class="lfp" data-lfp-state="'+s+'"><div class="cx-st"><h3>Notifications</h3><span class="cx-chip" style="--c:'+chip[1]+'">'+chip[0]+'</span></div>'+
+      '<p class="cx-p">'+txt+'</p>'+(btn?'<div class="cx-row">'+btn+'</div>':'')+
+      (PU.err?'<div class="cx-err">'+esc(PU.err)+'</div>':PU.msg?'<div class="cx-ok">'+esc(PU.msg)+'</div>':'')+'</section>'}
+  var _setPush=cxSettings;cxSettings=function(){var h=_setPush();if(!h)return h;if(!PU.checked||!PU.open){PU.open=true;setTimeout(check,0)}
+    var mk='<section><div class="cx-st"><h3><span class="cx-apple"></span> Apple Calendar';var i=h.indexOf(mk);
+    return i<0?h.replace(/<\/div>$/,section()+"</div>"):h.slice(0,i)+section()+h.slice(i)};
+
+  /* keep this device's subscription fresh on open */
+  if(st().on)setTimeout(check,1500);
+  setTimeout(function(){try{writeSchedule(false)}catch(e){}},1200);
+  window.lfPush={state:state,build:build,schedule:cur,firstName:firstName,check:check,enable:enable,disable:disable,test:test,openSettings:function(){CXU.set=true;render()},ui:PU};
+})();
+
 
 render();
 if(CXC.pair&&!cxOn())cxPairPoll();

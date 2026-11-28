@@ -1,0 +1,9 @@
+{
+  "name": "Lifey",
+  "short_name": "Lifey",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "theme_color": "#EF6F5E",
+  "background_color": "#FAFAF9"
+}
