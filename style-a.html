@@ -8,7 +8,7 @@
 <!-- v118.7 mock -->
 <!-- v118.7.1 mock -->
 <!-- vM3 home phone -->
-<!-- vM4day phone Day -->
+<!-- vM4 phone pages -->
 <title>Life’s</title>
 <meta name="apple-mobile-web-app-title" content="Life’s">
 <meta name="application-name" content="Life’s">
@@ -5264,8 +5264,6 @@ body.h93:not(.wh115).m3home .h93home .h95goals .h1187mrow{
 
 }
 
-/* vM4day: styles apply on phone Day only (body.m4page is set only on #today)
-   and on phone Home week labels / round checks (.m3home). Other Life pages stay M3b. */
 /* ===== vM4: phone Life pages (non-Home). Desktop and open Duo stay live M3b. ===== */
 /* Checkpoint 1: Calendar and To-dos only (body.m4page). */
 
@@ -5470,6 +5468,9 @@ body.h93:not(.wh115).m4page .m4dup{
   display:none!important
 }
 body.h93:not(.wh115).m4page .h93hd h1{
+  display:flex!important;
+  align-items:center;
+  gap:8px;
   font-size:27px!important;
   font-weight:700!important;
   letter-spacing:-.03em!important;
@@ -5479,6 +5480,21 @@ body.h93:not(.wh115).m4page .h93hd h1{
   overflow:hidden;
   text-overflow:ellipsis;
   margin:0
+}
+body.h93:not(.wh115).m4page .h93hd h1 .m4tic{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  flex:none;
+  width:24px;
+  height:24px;
+  color:var(--m4tic);
+  line-height:0
+}
+body.h93:not(.wh115).m4page .h93hd h1 .m4tic svg{
+  width:24px;
+  height:24px;
+  display:block
 }
 body.gdark.h93:not(.wh115).m4page .h93hd h1{
   color:#F2ECE6!important
@@ -5851,6 +5867,10 @@ body.h93:not(.wh115).m4page .h92gl button i{
   border-radius:50%!important
 }
 
+
+}
+
+
 /* 12. Phone Home + Day week labels: two letters, airy gap above the numbers.
       Phone Home only (.m3home); desktop / open Duo stay untouched. */
 body.h93:not(.wh115).m3home .h93home .h92mini .q-md,
@@ -5870,6 +5890,611 @@ body.h93:not(.wh115).m3home .h93r .h92mini .q-md .q-w{
   color:#A0A0A0!important;
   padding:0;
   line-height:1
+}
+
+
+/* 13. Phone To-dos: hide the 4 stat squares; amber pill for + New to-do. */
+body.h93:not(.wh115).m4page .td87st{
+  display:none!important
+}
+body.h93:not(.wh115).m4page .td87new{
+  background:var(--todo,#E3A33B)!important;
+  color:#1A1A1A!important;
+  border-radius:999px!important;
+  box-shadow:0 6px 16px -8px rgba(227,163,59,.55)
+}
+
+
+/* 14. Phone Workouts: Body goals first after the title (grey frame:
+      weight row + Programs & splits only). THIS WEEK is its own white
+      elevated frame immediately after Body goals. Hide History pill,
+      streak, chart, and ON TRACK Edit. Archive History button at the
+      bottom of the page. */
+body.h93:not(.wh115).m4page .wkt .shell{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:18px
+}
+body.h93:not(.wh115).m4page .wkt .h114body{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:18px!important;
+  background:linear-gradient(180deg,#F3F2F0 0%,#EFEEEC 100%)!important;
+  border:1px solid #E3E1DE!important;
+  border-radius:28px!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 8px 24px rgba(0,0,0,.06),0 2px 6px rgba(0,0,0,.04)!important
+}
+body.h93:not(.wh115).m4page .wkt .h114body > .h93chart{
+  display:none!important
+}
+body.h93:not(.wh115).m4page .wkt .wk-strk{
+  display:none!important
+}
+body.h93:not(.wh115).m4page .wkt .ch-head:not(:has(.wk-acts)){
+  display:none!important
+}
+body.h93:not(.wh115).m4page .wkt .h114body > .wk-acts{
+  display:flex!important;
+  flex-wrap:wrap;
+  gap:8px;
+  width:100%;
+  min-width:0
+}
+body.h93:not(.wh115).m4page .wkt .wk-acts [data-wk="go"][data-v="history"]{
+  display:none!important
+}
+body.h93:not(.wh115).m4page .wkt .wk89edit{
+  display:none!important
+}
+body.h93:not(.wh115).m4page .wkt .wk89g,
+body.h93:not(.wh115).m4page .wkt .cr.wk-r1{
+  display:none!important
+}
+body.h93:not(.wh115).m4page .wkt .h1187wk,
+body.h93:not(.wh115).m4page .wkt .h1187wmain{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:18px
+}
+
+/* THIS WEEK is a standard white elevated frame (section.pn tokens).
+   Week strip fills the frame padding edge to edge: no inner card. */
+body.h93:not(.wh115).m4page .wkt .wk-wc .pn-h{
+  padding:0!important
+}
+body.h93:not(.wh115).m4page .wkt .wk-wc .pn-in{
+  padding:0!important;
+  background:transparent!important;
+  border-radius:0!important;
+  box-shadow:none!important
+}
+body.h93:not(.wh115).m4page .wkt .wk-wc .wk-week{
+  display:grid!important;
+  grid-template-columns:repeat(7,1fr)!important;
+  gap:0!important;
+  width:100%;
+  box-sizing:border-box;
+  background:transparent;
+  border-radius:0;
+  padding:0
+}
+body.h93:not(.wh115).m4page .wkt .wk-wc .wk-day{
+  gap:0;
+  padding-left:0!important;
+  padding-right:0!important;
+  padding-top:8px;
+  padding-bottom:8px;
+  min-width:0;
+  align-items:center
+}
+body.h93:not(.wh115).m4page .wkt .wk-wc .wk-dn{
+  font-family:inherit;
+  font-size:14px!important;
+  font-weight:400!important;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  color:#A0A0A0!important;
+  padding:0;
+  line-height:1
+}
+body.h93:not(.wh115).m4page .wkt .wk-wc .wk-day.td .wk-dn{
+  color:#A0A0A0!important
+}
+body.h93:not(.wh115).m4page .wkt .wk-wc .wk-dd{
+  width:calc(34px / var(--ui113,1));
+  height:calc(34px / var(--ui113,1));
+  margin-top:20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:inherit;
+  font-size:16px!important;
+  font-weight:400!important;
+  line-height:1;
+  color:#333;
+  background:none;
+  border-radius:0
+}
+body.h93:not(.wh115).m4page .wkt .wk-wc .wk-day.td .wk-dd,
+body.h93:not(.wh115).m4page .wkt .wk-wc .wk-day.now .wk-dd{
+  background:var(--co,#EF6F5E)!important;
+  color:#fff!important;
+  font-weight:400!important;
+  border-radius:50%!important
+}
+body.h93:not(.wh115).m4page .wkt .wk-wc .wk-c{
+  margin-top:8px
+}
+body.h93:not(.wh115).m4page .wkt .m4whist{
+  width:44px;
+  height:44px;
+  flex:none;
+  align-self:flex-start;
+  margin:8px 0 4px;
+  padding:0;
+  border:1px solid #E6E3E0;
+  border-radius:50%;
+  background:linear-gradient(180deg,#FFFFFF 0%,#FBFAF9 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 8px 24px rgba(0,0,0,.06),0 2px 6px rgba(0,0,0,.04);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  color:#1A1A1A
+}
+
+
+/* 15. Phone M4 titles: folder-colored side bar pill before the icon.
+      Hide leftover page-title intro copy (CSS only). */
+body.h93:not(.wh115).m4page .h93hd h1 .m4bar{
+  display:inline-block;
+  flex:none;
+  width:5px;
+  height:24px;
+  border-radius:999px;
+  background:var(--m4tic,currentColor);
+  align-self:center
+}
+body.h93:not(.wh115).m4page .phead,
+body.h93:not(.wh115).m4page .phead .sub,
+body.h93:not(.wh115).m4page .phead .stripe,
+body.h93:not(.wh115).m4page .ch-head .tsub,
+body.h93:not(.wh115).m4page .ch-head .eyebrow{
+  display:none!important
+}
+
+
+/* 16. Phone Routine: hide the 3 stat squares; purple + Add pill;
+      Morning / Evening side by side; weekly habit tracker. */
+body.h93:not(.wh115).m4page.m4rt .stats{
+  display:none!important
+}
+body.h93:not(.wh115).m4page.m4rt .cx-radd{
+  display:flex!important;
+  justify-content:flex-start!important;
+  align-items:center;
+  flex-wrap:nowrap!important;
+  gap:0;
+  margin:8px 0 14px!important
+}
+body.h93:not(.wh115).m4page.m4rt .cx-radd input,
+body.h93:not(.wh115).m4page.m4rt .cx-radd select{
+  display:none!important
+}
+body.h93:not(.wh115).m4page.m4rt .cx-radd .cx-cta{
+  background:var(--routine,#A97CD6)!important;
+  color:#1A1A1A!important;
+  border-radius:999px!important;
+  box-shadow:0 6px 16px -8px rgba(169,124,214,.55)
+}
+body.h93:not(.wh115).m4page.m4rt .m4rsh-bg{
+  position:fixed;
+  inset:0;
+  background:rgba(26,26,26,.35);
+  z-index:200;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  padding:0;
+  box-sizing:border-box
+}
+body.h93:not(.wh115).m4page.m4rt .m4rsh{
+  width:100%;
+  max-width:100%;
+  height:min(86dvh, calc(100dvh - 52px));
+  background:#fff;
+  border:0;
+  border-top:1px solid #E6E3E0;
+  border-radius:28px 28px 0 0;
+  box-shadow:0 -12px 40px rgba(0,0,0,.16);
+  padding:14px 22px calc(18px + var(--sab,0px));
+  box-sizing:border-box;
+  display:flex;
+  flex-direction:column;
+  min-height:0
+}
+body.h93:not(.wh115).m4page.m4rt .m4rsh-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin:0 0 8px
+}
+body.h93:not(.wh115).m4page.m4rt .m4rsh-ic{
+  width:32px;
+  height:32px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  color:#A97CD6
+}
+body.h93:not(.wh115).m4page.m4rt .m4rsh-x{
+  width:36px;
+  height:36px;
+  border:0;
+  background:transparent;
+  color:#1A1A1A;
+  font:inherit;
+  font-size:28px;
+  line-height:1;
+  font-weight:400;
+  cursor:pointer;
+  padding:0;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center
+}
+body.h93:not(.wh115).m4page.m4rt .m4rsh-n{
+  width:100%;
+  border:0;
+  border-radius:0;
+  padding:6px 0 18px;
+  margin:0;
+  font:inherit;
+  font-size:28px;
+  font-weight:700;
+  letter-spacing:-.03em;
+  line-height:1.2;
+  color:#1A1A1A;
+  background:transparent;
+  box-sizing:border-box;
+  outline:none;
+  box-shadow:none
+}
+body.h93:not(.wh115).m4page.m4rt .m4rsh-n::placeholder{
+  color:#C8C4C0;
+  font-weight:700
+}
+body.h93:not(.wh115).m4page.m4rt .m4rsh-n:focus{
+  outline:none;
+  box-shadow:none
+}
+body.h93:not(.wh115).m4page.m4rt .m4rsh-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:14px 0;
+  border-top:1px solid #EFECEA
+}
+body.h93:not(.wh115).m4page.m4rt .m4rsh-lab{
+  font:inherit;
+  font-size:15px;
+  font-weight:600;
+  color:#1A1A1A;
+  min-width:0
+}
+body.h93:not(.wh115).m4page.m4rt .m4rsh-seg{
+  display:inline-flex;
+  flex:none;
+  background:#F4EEFB;
+  border-radius:999px;
+  padding:3px;
+  gap:0
+}
+body.h93:not(.wh115).m4page.m4rt .m4rsh-seg button{
+  height:32px;
+  padding:0 12px;
+  border:0;
+  border-radius:999px;
+  background:transparent;
+  color:#1A1A1A;
+  font:inherit;
+  font-size:13px;
+  font-weight:600;
+  cursor:pointer
+}
+body.h93:not(.wh115).m4page.m4rt .m4rsh-seg button.on{
+  background:#A97CD6;
+  color:#fff
+}
+body.h93:not(.wh115).m4page.m4rt .m4rsh-save{
+  width:100%;
+  height:52px;
+  margin-top:auto;
+  padding:0;
+  border:0;
+  border-radius:999px;
+  background:#A97CD6;
+  color:#1A1A1A;
+  font:inherit;
+  font-size:16px;
+  font-weight:700;
+  cursor:pointer;
+  box-shadow:0 6px 16px -8px rgba(169,124,214,.55)
+}
+body.h93:not(.wh115).m4page.m4rt .grid2.even{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+  gap:12px!important;
+  width:100%;
+  min-width:0
+}
+body.h93:not(.wh115).m4page.m4rt .grid2.even > .card{
+  min-width:0!important;
+  overflow:visible!important
+}
+
+body.h93:not(.wh115).m4page.m4rt .grid2.even > .card:first-child{
+  background:linear-gradient(180deg,#FFFFFF 0%,#FBFAF9 100%)!important;
+  border:1px solid #E6E3E0!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 8px 24px rgba(0,0,0,.06),0 2px 6px rgba(0,0,0,.04)!important
+}
+body.h93:not(.wh115).m4page.m4rt .grid2.even > .card:last-child{
+  background:linear-gradient(180deg,#F4EEFB 0%,#EFE6F9 100%)!important;
+  border:1px solid #E3D6F2!important
+}
+body.h93:not(.wh115).m4page.m4rt .grid2.even > .card > .ct .t{
+  background:rgba(169,124,214,.22)
+}
+body.h93:not(.wh115).m4page.m4rt .grid2.even > .card .check{
+  color:#fff!important
+}
+body.h93:not(.wh115).m4page.m4rt .grid2.even > .card > .ct{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  align-items:flex-start!important;
+  column-gap:8px!important;
+  row-gap:4px!important
+}
+body.h93:not(.wh115).m4page.m4rt .grid2.even > .card > .ct .dot{
+  display:none!important
+}
+body.h93:not(.wh115).m4page.m4rt .grid2.even > .card > .ct .t{
+  flex:1 1 auto!important;
+  min-width:0!important;
+  display:inline;
+  padding:4px;
+  border-radius:3px;
+  background:rgba(169,124,214,.22);
+  -webkit-box-decoration-break:clone;
+  box-decoration-break:clone
+}
+body.h93:not(.wh115).m4page.m4rt .grid2.even > .card > .ct .r{
+  flex:0 1 auto;
+  min-width:0;
+  white-space:nowrap
+}
+body.h93:not(.wh115).m4page.m4rt .step,
+body.h93:not(.wh115).m4page.m4rt .step span{
+  font-weight:400!important;
+  overflow-wrap:break-word;
+  word-break:normal
+}
+body.h93:not(.wh115).m4page.m4rt .card:has(.heat){
+  display:none!important
+}
+body.h93:not(.wh115).m4page.m4rt .m4rtrack{
+  min-width:0;
+  touch-action:pan-y
+}
+body.h93:not(.wh115).m4page.m4rt .m4rth{
+  display:grid;
+  grid-template-columns:28px 1fr 28px;
+  align-items:center;
+  gap:8px;
+  margin:0 0 12px
+}
+body.h93:not(.wh115).m4page.m4rt .m4rth b{
+  text-align:center;
+  font-size:14px;
+  font-weight:600;
+  color:#1A1A1A;
+  letter-spacing:-.01em
+}
+body.h93:not(.wh115).m4page.m4rt .m4rth button{
+  width:28px;
+  height:28px;
+  padding:0;
+  border:0;
+  border-radius:50%;
+  background:rgba(169,124,214,.12);
+  color:#1A1A1A;
+  font-size:18px;
+  line-height:1;
+  cursor:pointer
+}
+body.h93:not(.wh115).m4page.m4rt .m4rth button:disabled{
+  opacity:.35;
+  cursor:default
+}
+body.h93:not(.wh115).m4page.m4rt .m4rtg{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  min-width:0
+}
+body.h93:not(.wh115).m4page.m4rt .m4rtr{
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+  gap:6px;
+  min-width:0
+}
+body.h93:not(.wh115).m4page.m4rt .m4rthd,
+body.h93:not(.wh115).m4page.m4rt .m4rtdots{
+  display:grid;
+  grid-template-columns:repeat(7,minmax(20px,1fr));
+  align-items:center;
+  gap:4px;
+  min-width:0
+}
+body.h93:not(.wh115).m4page.m4rt .m4rthd{
+  margin-bottom:2px
+}
+body.h93:not(.wh115).m4page.m4rt .m4rthd .m4rtdl{
+  font-size:11px;
+  font-weight:400;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  color:#A0A0A0;
+  text-align:center;
+  line-height:1
+}
+body.h93:not(.wh115).m4page.m4rt .m4rthd .m4rtdl.td{
+  color:#A97CD6;
+  font-weight:600
+}
+body.h93:not(.wh115).m4page.m4rt .m4rtn{
+  font-size:12px;
+  font-weight:400;
+  color:#1A1A1A;
+  min-width:0;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  line-height:1.25
+}
+body.h93:not(.wh115).m4page.m4rt .m4rtdot{
+  width:18px;
+  height:18px;
+  margin:0 auto;
+  border-radius:50%;
+  border:1.5px solid #E6E3E0;
+  background:transparent;
+  box-sizing:border-box;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:10px;
+  line-height:1;
+  color:#fff;
+  font-weight:700
+}
+body.h93:not(.wh115).m4page.m4rt .m4rtdot.on{
+  background:#A97CD6;
+  border-color:#A97CD6
+}
+body.h93:not(.wh115).m4page.m4rt .m4rtdot.td{
+  box-shadow:0 0 0 3px rgba(169,124,214,.22)
+}
+body.h93:not(.wh115).m4page.m4rt .m4rtdot.fut{
+  opacity:.35
+}
+
+
+/* 17. Phone Home habit tracker: same stacked layout as Routine
+      (name on one line, dots below). Keep the card header/links. */
+body.h93:not(.wh115).m3home .h93home .h114hg{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  background:transparent;
+  border:0;
+  padding:0
+}
+body.h93:not(.wh115).m3home .h93home .h114hr{
+  display:grid!important;
+  grid-template-columns:repeat(7,minmax(20px,1fr))!important;
+  align-items:center;
+  gap:6px 4px!important;
+  padding:0!important;
+  border:0!important;
+  min-width:0
+}
+body.h93:not(.wh115).m3home .h93home .h114hr + .h114hr{
+  margin-top:8px
+}
+body.h93:not(.wh115).m3home .h93home .h114hh > span:first-child,
+body.h93:not(.wh115).m3home .h93home .h114sk,
+body.h93:not(.wh115).m3home .h93home .h114hn i,
+body.h93:not(.wh115).m3home .h93home .h114hn small,
+body.h93:not(.wh115).m3home .h93home .h114dl small{
+  display:none!important
+}
+body.h93:not(.wh115).m3home .h93home .h114hn{
+  grid-column:1/-1;
+  display:block;
+  min-width:0;
+  gap:0
+}
+body.h93:not(.wh115).m3home .h93home .h114hn b{
+  display:block;
+  font-size:12px!important;
+  font-weight:400!important;
+  color:#1A1A1A!important;
+  letter-spacing:0;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  line-height:1.25
+}
+body.h93:not(.wh115).m3home .h93home .h114dl{
+  display:block;
+  font-size:11px!important;
+  font-weight:400!important;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  color:#A0A0A0!important;
+  text-align:center;
+  line-height:1
+}
+body.h93:not(.wh115).m3home .h93home .h114dl.td{
+  color:#A97CD6!important;
+  font-weight:600!important
+}
+body.h93:not(.wh115).m3home .h93home .h114tk{
+  width:18px!important;
+  height:18px!important;
+  margin:0 auto;
+  justify-self:center;
+  border-radius:50%;
+  border:1.5px solid #E6E3E0;
+  background:transparent!important;
+  box-sizing:border-box;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0;
+  font-size:10px;
+  line-height:1;
+  color:#fff;
+  font-weight:700;
+  transform:none
+}
+body.h93:not(.wh115).m3home .h93home .h114tk.on{
+  background:#A97CD6!important;
+  border-color:#A97CD6!important;
+  border-style:solid!important
+}
+body.h93:not(.wh115).m3home .h93home .h114tk.td:not(.on){
+  border-color:#A97CD6!important;
+  border-style:dashed!important;
+  background:transparent!important
+}
+body.h93:not(.wh115).m3home .h93home .h114tk:disabled{
+  opacity:.35;
+  cursor:default;
+  background:transparent!important
+}
+body.h93:not(.wh115).m3home .h93home .h114tk:hover:not(:disabled){
+  transform:none;
+  border-color:#E6E3E0
+}
+body.h93:not(.wh115).m3home .h93home .h114tk.on:hover:not(:disabled){
+  border-color:#A97CD6
+}
+body.h93:not(.wh115).m3home .h93home .h114tk.td:not(.on):hover:not(:disabled){
+  border-color:#A97CD6
 }
 </style>
 </head>
@@ -9916,10 +10541,9 @@ h93Head=function(){
   });
 })();
 
-/* vM4day: phone Day page only, plus Home week labels and round checks.
-   Full M4 (all pages) stays in pM4.js / mockM4-glass.html. */
-(function m4DayOnly(){
-  if(window.__m4dayonly)return;window.__m4dayonly=1;
+/* vM4 phone: Life pages other than Home. */
+(function m4Pages(){
+  if(window.__m4pages)return;window.__m4pages=1;
   function isPhone(){return window.innerWidth<=759}
   function life(){return document.body&&document.body.classList.contains('h93')&&!document.body.classList.contains('wh115')}
   function view(){try{if(typeof S==='object'&&S.view)return S.view}catch(e){}return (location.hash||'#home').replace('#','')||'home'}
@@ -9930,7 +10554,7 @@ h93Head=function(){
     var s=getComputedStyle(el);
     return s.display!=='none'&&s.visibility!=='hidden'&&s.opacity!=='0';
   }
-  function onM4(){return isPhone()&&life()&&view()==='today'}
+  function onM4(){var v=view();return isPhone()&&life()&&v&&v!=='home'}
   function hideDupTitle(){
     var h=document.querySelector('.h93hd h1');
     var t=h?String(h.textContent||'').trim().toLowerCase():'';
@@ -10125,20 +10749,245 @@ h93Head=function(){
       b.appendChild(span);
     }
   }
+  function pageIconKey(v){
+    if(v==='reflection')return 'notes';
+    return v;
+  }
+  function pageFolderColor(v){
+    try{if(typeof CAT==='object'&&CAT[v]&&CAT[v].color)return CAT[v].color}catch(e){}
+    var map={calendar:'#EF6F5E',today:'#EF6F5E',notes:'#A97CD6',library:'#C98B5A',reflection:'#D9739B',settings:'#6E635A'};
+    return map[v]||'#EF6F5E';
+  }
+  function paintTitleIcon(){
+    if(!onM4()||onDayPage())return;
+    var h=document.querySelector('.gmain > .h93hd h1, .h93hd h1');
+    if(!h)return;
+    var v=view();
+    var key=pageIconKey(v);
+    var col=pageFolderColor(v);
+    var bar=h.querySelector('.m4bar');
+    if(!bar){
+      bar=document.createElement('span');
+      bar.className='m4bar';
+      bar.setAttribute('aria-hidden','true');
+      h.insertBefore(bar,h.firstChild);
+    }
+    bar.style.setProperty('--m4tic',col);
+    bar.style.background=col;
+    if(h.querySelector('.m4tic'))return;
+    var ic=(typeof h92ic==='function')?h92ic(key,24):'';
+    if(!ic)return;
+    var tip=document.createElement('span');
+    tip.className='m4tic';
+    tip.setAttribute('aria-hidden','true');
+    tip.style.setProperty('--m4tic',col);
+    tip.style.color=col;
+    tip.innerHTML=ic;
+    h.insertBefore(tip,bar.nextSibling);
+  }
+  function paintWkBody(){
+    if(!onM4() || view()!=='workout') return;
+    var shell=document.querySelector('.wkt .shell');
+    var side=document.querySelector('.wkt .h1187wside');
+    var body=document.querySelector('.wkt .h114body');
+    var week=document.querySelector('.wkt .wk-wc');
+    var hist=document.querySelector('.m4whist');
+    var isMain=!!(shell&&side&&body&&week&&document.querySelector('.wkt.wkv-main'));
+    if(!isMain){
+      if(hist&&hist.parentNode)hist.parentNode.removeChild(hist);
+      return;
+    }
+    var chart=body.querySelector('.h93chart');
+    if(chart) chart.setAttribute('hidden','');
+    var acts=document.querySelector('.wkt .wk-acts');
+    if(acts && acts.parentElement!==body) body.appendChild(acts);
+    if(shell.firstElementChild!==side) shell.insertBefore(side, shell.firstElementChild);
+    if(week.parentElement!==shell || side.nextElementSibling!==week){
+      shell.insertBefore(week, side.nextSibling);
+    }
+    var labs=['MO','TU','WE','TH','FR','SA','SU'];
+    var dns=document.querySelectorAll('.wkt .wk-wc .wk-dn');
+    for(var i=0;i<dns.length && i<7;i++) dns[i].textContent=labs[i];
+    if(!hist){
+      hist=document.createElement('button');
+      hist.type='button';
+      hist.className='m4whist';
+      hist.setAttribute('data-wk','go');
+      hist.setAttribute('data-v','history');
+      hist.setAttribute('aria-label','History');
+      hist.innerHTML='<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#1A1A1A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3.5" width="18" height="5" rx="1.2"/><path d="M5 8.5V19a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8.5"/><path d="M10 13h4"/></svg>';
+    }
+    if(hist.parentElement!==shell || shell.lastElementChild!==hist) shell.appendChild(hist);
+  }
+  var RW={w:0};
+  function onRoutine(){return onM4()&&view()==='routine'}
+  function rtEsc(t){
+    return String(t||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+  function rtHas(id,d){
+    try{if(window.h1187&&typeof h1187.has==='function')return !!h1187.has(id,d)}catch(e){}
+    try{if(d===todayIso()&&typeof S==='object'&&S.done)return !!S.done[id]}catch(e){}
+    return false;
+  }
+  function rtWeekInfo(){
+    var today=todayIso();
+    var anchor=(typeof addD==='function')?addD(today,(RW.w||0)*7):today;
+    var start=weekStart(anchor);
+    var days=[],i;
+    for(i=0;i<7;i++)days.push((typeof addD==='function')?addD(start,i):start);
+    return {today:today,days:days};
+  }
+  function rtRangeLab(days){
+    var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    function dt(iso){return (typeof dO==='function')?dO(iso):new Date(iso+'T12:00:00')}
+    var a=dt(days[0]),b=dt(days[6]);
+    if(a.getMonth()===b.getMonth()&&a.getFullYear()===b.getFullYear())
+      return a.getDate()+' \u2013 '+b.getDate()+' '+months[b.getMonth()];
+    if(a.getFullYear()===b.getFullYear())
+      return a.getDate()+' '+months[a.getMonth()]+' \u2013 '+b.getDate()+' '+months[b.getMonth()];
+    return a.getDate()+' '+months[a.getMonth()]+' '+a.getFullYear()+' \u2013 '+b.getDate()+' '+months[b.getMonth()]+' '+b.getFullYear();
+  }
+  function rtTrackerHTML(){
+    var info=rtWeekInfo();
+    var labs=['MO','TU','WE','TH','FR','SA','SU'];
+    var steps=(typeof ROUTINE!=='undefined'&&ROUTINE)||[];
+    var head='<div class="m4rth">'+
+      '<button type="button" data-m4="rtw" data-v="-1" aria-label="Previous week">\u2039</button>'+
+      '<b>'+rtRangeLab(info.days)+'</b>'+
+      '<button type="button" data-m4="rtw" data-v="1" aria-label="Next week"'+(RW.w>=0?' disabled':'')+'>\u203a</button>'+
+      '</div>';
+    var cols='<div class="m4rtr m4rthd">'+info.days.map(function(d,i){
+      return '<span class="m4rtdl'+(d===info.today?' td':'')+'">'+labs[i]+'</span>';
+    }).join('')+'</div>';
+    var rows=steps.map(function(s){
+      return '<div class="m4rtr"><span class="m4rtn">'+rtEsc(s[2])+'</span><div class="m4rtdots">'+info.days.map(function(d){
+        var on=rtHas(s[0],d),fut=d>info.today;
+        return '<span class="m4rtdot'+(on?' on':'')+(d===info.today?' td':'')+(fut?' fut':'')+'" title="'+rtEsc(s[2])+'">'+(on?'\u2713':'')+'</span>';
+      }).join('')+'</div></div>';
+    }).join('');
+    return head+'<div class="m4rtg">'+cols+rows+'</div>';
+  }
+  function bindRtSwipe(el){
+    if(!el||el.getAttribute('data-swipe')==='1')return;
+    el.setAttribute('data-swipe','1');
+    var x0=0,y0=0,armed=0;
+    el.addEventListener('pointerdown',function(e){
+      if(e.target.closest&&e.target.closest('button,input,a,textarea,select'))return;
+      x0=e.clientX;y0=e.clientY;armed=1;
+    });
+    function end(e){
+      if(!armed)return;armed=0;
+      var dx=e.clientX-x0,dy=e.clientY-y0;
+      if(Math.abs(dx)<48||Math.abs(dx)<Math.abs(dy)*1.2)return;
+      rtGo(dx<0?1:-1);
+    }
+    el.addEventListener('pointerup',end);
+    el.addEventListener('pointercancel',function(){armed=0});
+  }
+  function rtGo(dir){
+    var n=(RW.w||0)+dir;
+    if(n>0)n=0;
+    if(n===RW.w)return;
+    RW.w=n;
+    paintRoutine();
+  }
+  function paintRoutine(){
+    if(!onRoutine())return;
+    var heat=document.querySelector('.gpanel .heat');
+    var old=heat&&(heat.closest('section.card')||heat.closest('.card'));
+    var host=document.querySelector('.m4rtrack');
+    if(!host&&old&&old.parentNode){
+      host=document.createElement('section');
+      host.className='card m4rtrack';
+      old.parentNode.insertBefore(host,old);
+    }
+    if(old){old.setAttribute('hidden','');old.setAttribute('aria-hidden','true')}
+    if(!host)return;
+    host.innerHTML=rtTrackerHTML();
+    bindRtSwipe(host);
+  }
+  var RS={open:false,saving:false,part:'Morning'};
+  function rtDefaultPart(){
+    var h=12;
+    try{h=(new Date()).getHours()}catch(e){}
+    return h<17?'Morning':'Evening';
+  }
+  function closeRtSheet(){
+    RS.open=false;
+    var el=document.querySelector('.m4rsh-bg');
+    if(el&&el.parentNode)el.parentNode.removeChild(el);
+  }
+  function openRtSheet(){
+    if(!onRoutine())return;
+    closeRtSheet();
+    RS.open=true;
+    RS.part=rtDefaultPart();
+    var bg=document.createElement('div');
+    bg.className='m4rsh-bg';
+    bg.innerHTML='<div class="m4rsh" role="dialog" aria-modal="true" aria-label="Add a step">'+
+      '<div class="m4rsh-top">'+
+        '<span class="m4rsh-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="7" r="2.15"/><path d="M12.2 7H20"/><circle cx="8" cy="17" r="2.15"/><path d="M12.2 17H20"/></svg></span>'+
+        '<button type="button" class="m4rsh-x" data-m4="rcancel" aria-label="Close">\u00d7</button>'+
+      '</div>'+
+      '<input class="m4rsh-n" id="m4rsh-n" type="text" maxlength="80" placeholder="New step" autocomplete="off">'+
+      '<div class="m4rsh-row">'+
+        '<span class="m4rsh-lab">Time of day</span>'+
+        '<div class="m4rsh-seg" role="tablist" aria-label="Time of day">'+
+          '<button type="button" data-m4="rpart" data-v="Morning"'+(RS.part==='Morning'?' class="on"':'')+'>Morning</button>'+
+          '<button type="button" data-m4="rpart" data-v="Evening"'+(RS.part==='Evening'?' class="on"':'')+'>Evening</button>'+
+        '</div>'+
+      '</div>'+
+      '<button type="button" class="m4rsh-save" data-m4="rsave">Save</button>'+
+      '</div>';
+    document.body.appendChild(bg);
+    var inp=document.getElementById('m4rsh-n');
+    if(inp){try{inp.focus()}catch(e){}}
+  }
+  function saveRtSheet(){
+    var inp=document.getElementById('m4rsh-n');
+    var n=inp?String(inp.value||'').trim():'';
+    if(!n){if(inp)inp.focus();return}
+    var hiddenN=document.getElementById('cxr-n');
+    var hiddenP=document.getElementById('cxr-p');
+    if(!hiddenN||!hiddenP)return;
+    hiddenN.value=n;
+    hiddenP.value=RS.part||'Morning';
+    var btn=document.querySelector('.cx-radd [data-c82="routadd"]');
+    if(!btn)return;
+    RS.saving=true;
+    closeRtSheet();
+    btn.click();
+  }
+  function paintHomeHabits(){
+    if(!isPhone()||!life()||view()!=='home')return;
+    var labs=['MO','TU','WE','TH','FR','SA','SU'];
+    var els=document.querySelectorAll('.h93home .h114hab .h114hh .h114dl');
+    for(var i=0;i<els.length&&i<7;i++){
+      var el=els[i], small=el.querySelector('small'), node=el.firstChild;
+      if(node&&node.nodeType===3) node.textContent=labs[i];
+      else el.innerHTML=labs[i]+(small?small.outerHTML:'');
+    }
+  }
   function after(){
     var b=document.body;
     if(!b)return;
     if(onM4())b.classList.add('m4page');
     else b.classList.remove('m4page');
-    var set=onM4()&&settingsOpen();
+    var set=isPhone()&&life()&&settingsOpen();
     if(set)b.classList.add('m4set');
     else b.classList.remove('m4set');
     if(onDayPage())b.classList.add('m4day');
     else b.classList.remove('m4day');
+    if(onM4()&&view()==='routine')b.classList.add('m4rt');
+    else {b.classList.remove('m4rt');try{closeRtSheet()}catch(e){}}
     try{if(b.classList.contains('m4page'))hideDupTitle()}catch(e){}
+    try{paintTitleIcon()}catch(e){}
     try{paintSettingsTitle(set)}catch(e){}
     try{if(onDayPage()){paintDayWeek();paintHighlights()}else clearDayHead()}catch(e){}
     try{paintWeekLabs()}catch(e){}
+    try{paintWkBody()}catch(e){}
+    try{paintRoutine()}catch(e){}
+    try{paintHomeHabits()}catch(e){}
   }
   var _render=render;
   if(typeof _render==='function'){
@@ -10195,6 +11044,50 @@ h93Head=function(){
     DW.w=(DW.w||0)+(+v);
     keepScroll(function(){paintDayWeek()});
   },true);
+  window.addEventListener('click',function(e){
+    if(!onRoutine())return;
+    var btn=e.target&&e.target.closest&&e.target.closest('[data-m4="rtw"]');
+    if(!btn||btn.disabled)return;
+    e.preventDefault();
+    e.stopPropagation();
+    rtGo(+btn.getAttribute('data-v'));
+  },true);
+  window.addEventListener('click',function(e){
+    if(!onRoutine())return;
+    var t=e.target&&e.target.closest&&e.target.closest('[data-m4]');
+    if(t){
+      var a=t.getAttribute('data-m4');
+      if(a==='rpart'){
+        e.preventDefault();
+        RS.part=t.getAttribute('data-v')||'Morning';
+        var segs=document.querySelectorAll('.m4rsh-seg [data-m4="rpart"]');
+        for(var i=0;i<segs.length;i++) segs[i].classList.toggle('on', segs[i].getAttribute('data-v')===RS.part);
+        return;
+      }
+      if(a==='rcancel'){e.preventDefault();closeRtSheet();return}
+      if(a==='rsave'){
+        e.preventDefault();
+        e.stopPropagation();
+        if(e.stopImmediatePropagation)e.stopImmediatePropagation();
+        saveRtSheet();
+        return;
+      }
+    }
+    if(e.target&&e.target.classList&&e.target.classList.contains('m4rsh-bg')){
+      closeRtSheet();
+      return;
+    }
+    var add=e.target&&e.target.closest&&e.target.closest('.cx-radd [data-c82="routadd"]');
+    if(!add)return;
+    if(RS.saving){RS.saving=false;return}
+    e.preventDefault();
+    openRtSheet();
+  },true);
+  document.addEventListener('keydown',function(e){
+    if(!RS.open)return;
+    if(e.key==='Escape'){e.preventDefault();closeRtSheet();return}
+    if(e.key==='Enter'&&e.target&&e.target.id==='m4rsh-n'){e.preventDefault();saveRtSheet()}
+  });
   window.addEventListener('resize',function(){
     if(!onDayPage())return;
     var el=document.querySelector('.h98page > .m4week');
